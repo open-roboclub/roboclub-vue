@@ -10,11 +10,12 @@
         </v-layout>
         <v-layout row wrap>
             <v-flex xs12 sm12 lg8 offset-lg2>
-                <v-carousel>
+                <v-carousel style="cursor: pointer">
                     <v-carousel-item 
                         v-for="meetup in meetups"
                         v-bind:src="meetup.imageUrl"
-                        :key="meetup.ip">
+                        :key="meetup.ip"
+                        @click="onLoadMeetup(meetup.id)">
                         <div class="title">
                             {{ meetup.title }}
                         </div>
@@ -38,6 +39,11 @@
           { imageUrl: 'https://thenypost.files.wordpress.com/2017/04/new-york.jpg?quality=90&strip=all&w=1200', id: 'randomny', title: 'Meetup in New York' },
           { imageUrl: 'https://en.parisinfo.com/var/otcp/sites/images/node_43/node_51/node_233/visuel-carrousel-dossier-ou-sortir-le-soir-a-paris-740x380-c-dr/16967596-1-fre-FR/Visuel-carrousel-dossier-Ou-sortir-le-soir-a-Paris-740x380-C-DR.jpg', id: 'randomparis', title: 'Meetup in Paris' }
         ]
+      }
+    },
+    methods: {
+      onLoadMeetup (id) {
+        this.$router.push('/meetups/' + id)
       }
     }
   }
