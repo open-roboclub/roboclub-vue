@@ -33,12 +33,9 @@
 
 <script>
   export default {
-    data () {
-      return {
-        meetups: [
-          { imageUrl: 'https://thenypost.files.wordpress.com/2017/04/new-york.jpg?quality=90&strip=all&w=1200', id: 'randomny', title: 'Meetup in New York' },
-          { imageUrl: 'https://en.parisinfo.com/var/otcp/sites/images/node_43/node_51/node_233/visuel-carrousel-dossier-ou-sortir-le-soir-a-paris-740x380-c-dr/16967596-1-fre-FR/Visuel-carrousel-dossier-Ou-sortir-le-soir-a-Paris-740x380-C-DR.jpg', id: 'randomparis', title: 'Meetup in Paris' }
-        ]
+    computed: {
+      meetups () {
+        return this.$store.getters.featuredMeetups
       }
     },
     methods: {
