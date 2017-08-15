@@ -17,7 +17,7 @@
       <v-toolbar-side-icon @click.stop="sideNav = !sideNav" class="hidden-sm-and-up">
       </v-toolbar-side-icon>
       <v-toolbar-title>
-        <router-link to="/" tag="span" style="cursor: pointer">Dev Meetups</router-link>
+        <router-link to="/" tag="span" style="cursor: pointer">AMU RoboClub</router-link>
       </v-toolbar-title>
       <v-spacer></v-spacer>
       <v-toolbar-items class="hidden-xs-only">
@@ -45,8 +45,8 @@
         menuItems: [
           { icon: 'supervisor_account', title: 'View Meetups', link: '/meetups' },
           { icon: 'room', title: 'Organize Meetups', link: '/meetups/new' },
+          { icon: 'monetization_on', title: 'Contributions', link: '/contributions' },
           { icon: 'person', title: 'Profile', link: '/profile' },
-          { icon: 'face', title: 'Sign Up', link: '/signup' },
           { icon: 'lock_open', title: 'Sign In', link: '/signin' }
         ]
       }

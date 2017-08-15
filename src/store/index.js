@@ -1,46 +1,49 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import contributions from './modules/contributions'
+import meetups from './modules/meetups'
+import { database, auth } from 'firebase'
+import {
+  firebaseMutations
+} from 'vuexfire'
 
 Vue.use(Vuex)
 
 export const store = new Vuex.Store({
-  state: {
-    loadedMeetups: [
-      {
-        imageUrl: 'https://thenypost.files.wordpress.com/2017/04/new-york.jpg?quality=90&strip=all&w=1200',
-        id: 'randomny',
-        title: 'Meetup in New York',
-        date: '2017-07-19'
-      },
-      {
-        imageUrl: 'https://en.parisinfo.com/var/otcp/sites/images/node_43/node_51/node_233/visuel-carrousel-dossier-ou-sortir-le-soir-a-paris-740x380-c-dr/16967596-1-fre-FR/Visuel-carrousel-dossier-Ou-sortir-le-soir-a-Paris-740x380-C-DR.jpg',
-        id: 'randomparis',
-        title: 'Meetup in Paris',
-        date: '2017-07-19'
-      }
-    ],
-    user: {
-      id: 'referer',
-      registeredMeetups: ['testid34']
-    }
+  modules: {
+    contributions,
+    meetups
   },
-  mutations: {},
-  actions: {},
-  getters: {
-    loadedMeetups (state) {
-      return state.loadedMeetups.sort((meetupA, meetupB) => {
-        return meetupA.date > meetupB.date
-      })
+  state: {
+    user: null,
+    isAdmin: false
+  },
+  mutations: {
+    setUser (state, user) {
+      state.user = user
     },
-    featuredMeetups (state, getters) {
-      return getters.loadedMeetups.slice(0, 5)
+    clearUser (state) {
+      state.user = null
     },
-    loadedMeetup (state) {
-      return (meetupId) => {
-        return state.loadedMeetups.find((meetup) => {
-          return meetup.id === meetupId
+    setAdmin (state, admin) {
+      state.isAdmin = admin
+    },
+    ...firebaseMutations
+  },
+  actions: {
+    isAdmin ({ commit }, user) {
+      var ref = user ? user.uid : ''
+      database().ref('admins/' + ref).once('value')
+        .then(snapshot => {
+          commit('setAdmin', snapshot.val())
+        }).catch(error => {
+          console.log(error)
+          commit('setAdmin', false)
         })
-      }
-    }
+    },
+    logout: () => auth().signOut()
+  },
+  getters: {
+    isAdmin: state => state.isAdmin
   }
 })
