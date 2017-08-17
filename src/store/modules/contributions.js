@@ -1,24 +1,36 @@
 import { firebaseAction } from 'vuexfire'
 
+function clearContribution (contribution) {
+  if (!contribution) {
+    contribution = {}
+  }
+  contribution.contributor = ''
+  contribution.amount = ''
+  contribution.purpose = ''
+  contribution.remark = ''
+
+  return contribution
+}
+
+function copyProperties (source, destination) {
+  for (var prop in source) {
+    if (destination.hasOwnProperty(prop)) {
+      destination[prop] = source[prop]
+    }
+  }
+
+  return destination
+}
+
 export default {
   state: {
-    contribution: {
-      contributor: '',
-      amount: '',
-      purpose: '',
-      remark: ''
-    },
+    contribution: clearContribution(),
     contributions: [],
     contributionsRef: null
   },
   mutations: {
     resetContribution: (state) => {
-      state.contribution = {
-        contributor: '',
-        amount: '',
-        purpose: '',
-        remark: ''
-      }
+      clearContribution(state.contribution)
     },
     setContribution: (state, contribution) => {
       state.contribution = contribution
@@ -40,12 +52,9 @@ export default {
       commit('resetContribution')
     },
     saveContribution: ({ state, commit }) => {
-      state.contributionsRef.child(state.contribution['.key']).set({
-        contributor: state.contribution.contributor,
-        amount: state.contribution.amount,
-        purpose: state.contribution.purpose,
-        remark: state.contribution.remark
-      })
+      state.contributionsRef.child(state.contribution['.key']).set(
+        copyProperties(state.contribution, clearContribution())
+      )
       commit('resetContribution')
     }
   },

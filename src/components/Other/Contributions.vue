@@ -9,6 +9,8 @@
               <span class="grey--text text--lighten-3">You made us what we are today</span>
             </div>
           </v-card-title>
+
+              <v-progress-linear :indeterminate="loading" v-show="loading" success></v-progress-linear>
         </v-card>
       </v-flex>
     </v-layout>
@@ -73,6 +75,7 @@
   export default {
     data () {
       return {
+        loading: true,
         editing: false,
         selected: [],
         rules: {
@@ -147,7 +150,18 @@
       }
     },
     created () {
-      this.$store.dispatch('setContributionsRef', this.$firebase.database().ref('contribution'))
+      this.$store.dispatch('setContributionsRef', {
+        ref: this.$firebase.database().ref('contribution'),
+        callbacks: {
+          readyCallback: snapshot => {
+            this.loading = false
+          },
+          cancelCallback: error => {
+            console.log(error)
+            this.loading = false
+          }
+        }
+      })
     }
   }
 
