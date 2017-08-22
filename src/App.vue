@@ -43,8 +43,7 @@
       return {
         sideNav: false,
         menuItems: [
-          { icon: 'supervisor_account', title: 'View Meetups', link: '/meetups' },
-          { icon: 'room', title: 'Organize Meetups', link: '/meetups/new' },
+          { icon: 'notifications', title: 'News', link: '/news' },
           { icon: 'monetization_on', title: 'Contributions', link: '/contributions' },
           { icon: 'person', title: 'Profile', link: '/profile' },
           { icon: 'lock_open', title: 'Sign In', link: '/signin' }

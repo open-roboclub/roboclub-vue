@@ -1,0 +1,79 @@
+import { firebaseAction } from 'vuexfire'
+
+function clearNews (news) {
+  if (!news) {
+    news = {}
+  }
+  news.title = ''
+  news.notice = ''
+  news.link = ''
+  news.timestamp = -Date.now() / 1000
+  news.date = 'XX/YY/ZZ'
+  news.notification = 'no'
+
+  return news
+}
+
+function copyProperties (source, destination) {
+  for (var prop in source) {
+    if (destination.hasOwnProperty(prop)) {
+      destination[prop] = source[prop]
+    }
+  }
+
+  return destination
+}
+
+export default {
+  state: {
+    newsItem: clearNews(),
+    news: [],
+    newsRef: null
+  },
+  mutations: {
+    resetNews: (state) => {
+      clearNews(state.newsItem)
+    },
+    setNewsRef: (state, newsRef) => {
+      state.newsRef = newsRef
+    }
+  },
+  actions: {
+    setNewsRef: firebaseAction(({ commit, bindFirebaseRef }, { ref, callbacks }) => {
+      bindFirebaseRef('news', ref, callbacks)
+      commit('setNewsRef', ref)
+    }),
+    deleteNews: ({ state }, id) => {
+      state.newsRef.child(id).remove()
+    },
+    addNews: ({ state, commit }) => {
+      if (state.newsItem.link === '') {
+        delete state.newsItem.link
+      }
+
+      var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }
+      var today = new Date()
+      var date = today.toLocaleDateString('en-US', options)
+
+      state.newsItem.timestamp = -today / 1000
+      state.newsItem.date = date
+
+      state.newsRef.push(state.newsItem)
+      commit('resetNews')
+    },
+    saveNews: ({ state, commit }, newsUpdate) => {
+      var news = copyProperties(newsUpdate, clearNews())
+      news.notification = 'no'
+
+      if (news.link === '') {
+        delete news.link
+      }
+
+      state.newsRef.child(newsUpdate['.key']).set(news)
+    }
+  },
+  getters: {
+    news: state => state.news.slice().reverse(),
+    newsItem: state => state.newsItem
+  }
+}

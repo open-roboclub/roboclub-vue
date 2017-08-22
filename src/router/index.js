@@ -7,6 +7,7 @@ import Meetup from '@/components/Meetup/Meetup'
 import Profile from '@/components/User/Profile'
 import Signin from '@/components/User/Signin'
 import Contributions from '@/components/Other/Contributions'
+import News from '@/components/Other/News'
 
 Vue.use(Router)
 
@@ -47,6 +48,11 @@ export default new Router({
       path: '/contributions',
       name: 'contributions',
       component: Contributions
+    },
+    {
+      path: '/news',
+      name: 'news',
+      component: News
     }
   ],
   mode: 'history'
