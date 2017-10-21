@@ -10,7 +10,7 @@
     </v-layout>
     <div class="mt-2"></div>
     <v-layout row justify-center>
-      <v-dialog v-model="addDialog">
+      <v-dialog v-model="addDialog" v-if="isAdmin">
         <v-btn slot="activator" fab dark class="cyan">
           <v-icon dark>add</v-icon>
         </v-btn>
