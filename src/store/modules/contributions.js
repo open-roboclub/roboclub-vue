@@ -33,7 +33,7 @@ export default {
       clearContribution(state.contribution)
     },
     setContribution: (state, contribution) => {
-      state.contribution = contribution
+      state.contribution = Object.assign({}, contribution)
     },
     setContributionsRef: (state, contributionsRef) => {
       state.contributionsRef = contributionsRef
@@ -52,10 +52,7 @@ export default {
       commit('resetContribution')
     },
     saveContribution: ({ state, commit }) => {
-      console.log(state.contribution)
-      /*state.contributionsRef.child(state.contribution['.key']).set(
-        copyProperties(state.contribution, clearContribution())
-      )*/
+      state.contributionsRef.child(state.contribution['.key']).set(copyProperties(state.contribution, clearContribution()))
       commit('resetContribution')
     }
   },
