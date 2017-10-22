@@ -17,7 +17,7 @@
     <v-layout row>
       <v-flex xs12 sm10 md8 lg6 offset-sm1 offset-md2 offset-lg3>
         <v-data-table :headers="headers" :items="contributions" v-model="selected" selected-key=".key" select-all class="purple lighten-5 elevation-1">
-          <template slot="items" scope="props">
+          <template slot="items" slot-scope="props">
             <td>
               <v-checkbox primary hide-details v-model="props.selected">
               </v-checkbox>
@@ -119,7 +119,6 @@
     computed: Vuex.mapGetters(['contributions', 'contribution', 'isAdmin']),
     methods: {
       deleteContributions () {
-        console.log(this.selected)
         if (this.selected.length > 0) {
           this.selected.forEach(contribution => {
             this.$store.dispatch('deleteContribution', contribution['.key'])
@@ -137,7 +136,7 @@
         }
 
         if (this.editing) {
-          this.$store.dispatch('saveContribution')
+          // this.$store.dispatch('saveContribution')
           this.editing = false
         } else {
           this.$store.dispatch('addContribution')

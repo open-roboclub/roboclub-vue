@@ -52,9 +52,10 @@ export default {
       commit('resetContribution')
     },
     saveContribution: ({ state, commit }) => {
-      state.contributionsRef.child(state.contribution['.key']).set(
+      console.log(state.contribution)
+      /*state.contributionsRef.child(state.contribution['.key']).set(
         copyProperties(state.contribution, clearContribution())
-      )
+      )*/
       commit('resetContribution')
     }
   },
