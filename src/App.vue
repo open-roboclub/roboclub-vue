@@ -65,11 +65,15 @@
       return {
         sideNav: false,
         menuItems: [
+          { icon: 'group', title: 'Team', link: '/team' },
+          { icon: 'build', title: 'Projects', link: '/projects' },
           { icon: 'notifications', title: 'News', link: '/news' },
           { icon: 'person', title: 'Profile', link: '/profile', auth: true },
           { icon: 'lock_open', title: 'Sign In', link: '/signin', auth: false }
         ],
         moreItems: [
+          { icon: 'android', title: 'Robocon', link: '/robocon' },
+          { icon: 'file_download', title: 'Downloads', link: '/downloads' },
           { icon: 'monetization_on', title: 'Contributions', link: '/contributions' }
         ]
       }

@@ -8,6 +8,10 @@ import Profile from '@/components/User/Profile'
 import Signin from '@/components/User/Signin'
 import Contributions from '@/components/Other/Contributions'
 import News from '@/components/Other/News'
+import Projects from '@/components/Other/Projects'
+import Robocon from '@/components/Other/Robocon'
+import Team from '@/components/Other/Team'
+import Downloads from '@/components/Other/Downloads'
 
 Vue.use(Router)
 
@@ -53,6 +57,26 @@ export default new Router({
       path: '/news',
       name: 'news',
       component: News
+    },
+    {
+      path: '/projects',
+      name: 'projects',
+      component: Projects
+    },
+    {
+      path: '/downloads',
+      name: 'downloads',
+      component: Downloads
+    },
+    {
+      path: '/team',
+      name: 'team',
+      component: Team
+    },
+    {
+      path: '/robocon',
+      name: 'robocon',
+      component: Robocon
     }
   ],
   mode: 'history'
