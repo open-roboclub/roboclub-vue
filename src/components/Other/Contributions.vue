@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <v-layout row wrap class="mb-3">
-      <v-flex xs12 sm10 md8 lg6 offset-sm1 offset-md2 offset-lg3>
+      <v-flex xs12 md10 lg8 xl6 offset-md1 offset-lg2 offset-xl3>
         <v-card class="green white--text">
           <v-card-title primary-title>
             <div>
@@ -15,7 +15,7 @@
       </v-flex>
     </v-layout>
     <v-layout row>
-      <v-flex xs12 sm10 md8 lg6 offset-sm1 offset-md2 offset-lg3>
+      <v-flex xs12 md10 lg8 xl6 offset-md1 offset-lg2 offset-xl3>
         <v-data-table :headers="headers" :items="contributions" v-model="selected" selected-key=".key" select-all class="purple lighten-5 elevation-1">
           <template slot="items" scope="props">
             <td>

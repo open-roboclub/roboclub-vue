@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <v-layout row wrap class="mb-3">
-      <v-flex xs12 sm10 md8 lg4 offset-sm1 offset-md2 offset-lg4>
+      <v-flex xs12 sm10 md8 lg6 xl4 offset-sm1 offset-md2 offset-lg3 offset-xl4>
         <v-card class="blue-grey white--text">
           <div class="text-xs-center headline pt-4 pb-4">News Panel</div>
           <v-progress-linear :indeterminate="loading" v-show="loading" class="blue-grey"></v-progress-linear>
@@ -74,7 +74,7 @@
     </v-layout>
 
     <v-layout row>
-      <v-flex xs12 sm10 md8 lg4 offset-sm1 offset-md2 offset-lg4>
+      <v-flex xs12 sm10 md8 lg6 xl4 offset-sm1 offset-md2 offset-lg3 offset-xl4>
         <v-card v-for="newsUpdate in news" :key="newsUpdate.id" class="mt-3">
           <v-card-title primary-title>
             <div>
