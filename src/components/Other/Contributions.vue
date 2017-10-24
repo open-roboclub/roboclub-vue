@@ -9,15 +9,14 @@
               <span class="grey--text text--lighten-3">You made us what we are today</span>
             </div>
           </v-card-title>
-
-              <v-progress-linear :indeterminate="loading" v-show="loading" success></v-progress-linear>
+          <v-progress-linear :indeterminate="loading" v-show="loading" color="success"></v-progress-linear>
         </v-card>
       </v-flex>
     </v-layout>
     <v-layout row>
       <v-flex xs12 md10 lg8 xl6 offset-md1 offset-lg2 offset-xl3>
-        <v-data-table :headers="headers" :items="contributions" v-model="selected" selected-key=".key" select-all class="purple lighten-5 elevation-1">
-          <template slot="items" scope="props">
+        <v-data-table :headers="headers" :items="contributions" v-model="selected" selected-key=".key" select-all class="elevation-1">
+          <template slot="items" slot-scope="props">
             <td>
               <v-checkbox primary hide-details v-model="props.selected">
               </v-checkbox>

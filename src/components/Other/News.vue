@@ -4,7 +4,7 @@
       <v-flex xs12 sm10 md8 lg6 xl4 offset-sm1 offset-md2 offset-lg3 offset-xl4>
         <v-card class="blue-grey white--text">
           <div class="text-xs-center headline pt-4 pb-4">News Panel</div>
-          <v-progress-linear :indeterminate="loading" v-show="loading" class="blue-grey"></v-progress-linear>
+          <v-progress-linear :indeterminate="loading" v-show="loading" color="blue-grey" background-color="blue-grey lighten-3"></v-progress-linear>
         </v-card>
       </v-flex>
     </v-layout>

@@ -3,6 +3,7 @@ import Vuex from 'vuex'
 import contributions from './modules/contributions'
 import news from './modules/news'
 import meetups from './modules/meetups'
+import downloads from './modules/downloads'
 import { database, auth } from 'firebase'
 import {
   firebaseMutations
@@ -14,6 +15,7 @@ export const store = new Vuex.Store({
   modules: {
     contributions,
     news,
+    downloads,
     meetups
   },
   state: {
