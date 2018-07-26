@@ -2,48 +2,43 @@
   <v-container fluid>
     <v-layout row wrap class="mb-3">
       <v-flex xs12 md10 lg8 xl6 offset-md1 offset-lg2 offset-xl3>
-        <v-card dark color="cyan">
+        <v-card color="cyan">
           <v-card-title primary-title>
-            <h3 class="headline mb-0">Downloads</h3>
+            <h3 class="headline mb-0 white--text">Downloads</h3>
           </v-card-title>
           <v-progress-linear :indeterminate="loading" v-show="loading" color="cyan" background-color="cyan lighten-3"></v-progress-linear>
-          <v-tabs dark v-model="active">
-            <v-tabs-bar class="cyan lighten-1">
-              <v-tabs-item v-for="tab in downloadTypes" :key="tab" :href="'#' + tab" ripple>
+          <v-tabs color="cyan" dark slider-color="yellow" v-model="active">
+            <v-tab v-for="tab in downloadTypes" :key="tab" :href="'#' + tab" ripple>
                 {{ tab }}
-              </v-tabs-item>
-              <v-tabs-slider color="yellow"></v-tabs-slider>
-            </v-tabs-bar>
-            <v-tabs-items>
-              <v-tabs-content v-for="download in downloads" :key="download.name" :id="download.name">
-                <v-data-table
-                  v-bind:headers="headers"
-                  v-bind:items="download.items"
-                  item-key="name"
-                  class="elevation-1"
-                >
-                  <template slot="headers" slot-scope="props">
-                    <tr>
-                      <th v-for="header in props.headers" :key="header.text" class="text-xs-left">
-                        {{ header.text }}
-                      </th>
-                    </tr>
-                  </template>
-                  <template slot="items" slot-scope="props">
-                    <tr>
-                      <td>{{ props.item.name }}</td>
-                      <td>{{ props.item.file }}</td>
-                      <td><div v-if="props.item.size">{{ fileSizeSI(props.item.size) }}</div></td>
-                      <td><a v-if="props.item.url" :href="props.item.url" target="_blank">
-                        <v-btn color="pink" dark small fab>
-                          <v-icon>cloud_download</v-icon>
-                        </v-btn>
-                      </a></td>
-                    </tr>
-                  </template>
-                </v-data-table>
-              </v-tabs-content>
-            </v-tabs-items>
+            </v-tab>
+            <v-tab-item v-for="download in downloads" :key="download.name" :id="download.name">
+              <v-data-table
+                v-bind:headers="headers"
+                v-bind:items="download.items"
+                item-key="name"
+                class="elevation-1"
+              >
+                <template slot="headers" slot-scope="props">
+                  <tr>
+                    <th v-for="header in props.headers" :key="header.text" class="text-xs-left">
+                      {{ header.text }}
+                    </th>
+                  </tr>
+                </template>
+                <template slot="items" slot-scope="props">
+                  <tr>
+                    <td>{{ props.item.name }}</td>
+                    <td>{{ props.item.file }}</td>
+                    <td><div v-if="props.item.size">{{ fileSizeSI(props.item.size) }}</div></td>
+                    <td><a v-if="props.item.url" :href="props.item.url" target="_blank">
+                      <v-btn color="pink" dark small fab>
+                        <v-icon>cloud_download</v-icon>
+                      </v-btn>
+                    </a></td>
+                  </tr>
+                </template>
+              </v-data-table>
+            </v-tab-item>
           </v-tabs>
         </v-card>
       </v-flex>

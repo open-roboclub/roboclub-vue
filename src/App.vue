@@ -1,6 +1,6 @@
 <template>
   <v-app light>
-    <v-navigation-drawer temporary v-model="sideNav">
+    <v-navigation-drawer app temporary v-model="sideNav">
       <v-list>
         <v-list-tile v-for="item in menuItems" v-if="isAuth(item)" :key="item.title" :to="item.link">
           <v-list-tile-action>
@@ -17,7 +17,7 @@
         </v-list-tile>
       </v-list>
     </v-navigation-drawer>
-    <v-toolbar>
+    <v-toolbar app>
       <v-toolbar-side-icon @click.stop="sideNav = !sideNav" class="hidden-sm-and-up">
       </v-toolbar-side-icon>
       <v-toolbar-title>
@@ -41,11 +41,11 @@
         </v-list>
       </v-menu>
     </v-toolbar>
-    <main>
-      <v-content>
-        <router-view></router-view>
-      </v-content>
-    </main>
+    <v-content>
+        <main>
+            <router-view></router-view>
+        </main>
+    </v-content>
   </v-app>
 </template>
 
