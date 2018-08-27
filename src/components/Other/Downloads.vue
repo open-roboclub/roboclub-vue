@@ -47,52 +47,60 @@
 </template>
 
 <style scoped>
-  a {
-    text-decoration: none;
-  }
+a {
+  text-decoration: none;
+}
 </style>
 
 <script>
-  import Vuex from 'vuex'
+import Vuex from 'vuex'
 
-  export default {
-    data () {
-      return {
-        loading: true,
-        active: null,
-        headers: [
-          {
-            text: 'File',
-            value: 'file'
-          },
-          { text: 'Name', value: 'name' },
-          { text: 'File Size', value: 'size' },
-          { text: 'URL', value: 'url' }
-        ],
-        text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'
-      }
-    },
-    computed: Vuex.mapGetters(['downloads', 'downloadTypes']),
-    methods: {
-      fileSizeSI(a,b,c,d,e) {
-        a = parseInt(a)
-        return (b=Math,c=b.log,d=1e3,e=c(a)/c(d)|0,a/b.pow(d,e)).toFixed(2) +' '+(e?'kMGTPEZY'[--e]+'B':'Bytes')
-      }
-    },
-    created () {
-      this.$store.dispatch('setDownloadsRef', {
-        ref: this.$firebase.database().ref('downloads'),
-        callbacks: {
-          readyCallback: snapshot => {
-            this.loading = false
-            this.active = (Object.keys(snapshot.val())[0])
-          },
-          cancelCallback: error => {
-            this.loading = false
-          }
-        }
-      })
+export default {
+  data() {
+    return {
+      loading: true,
+      active: null,
+      headers: [
+        {
+          text: 'File',
+          value: 'file'
+        },
+        { text: 'Name', value: 'name' },
+        { text: 'File Size', value: 'size' },
+        { text: 'URL', value: 'url' }
+      ],
+      text:
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'
     }
+  },
+  computed: Vuex.mapGetters(['downloads', 'downloadTypes']),
+  methods: {
+    fileSizeSI(a, b, c, d, e) {
+      a = parseInt(a)
+      return (
+        ((b = Math),
+        (c = b.log),
+        (d = 1e3),
+        (e = (c(a) / c(d)) | 0),
+        a / b.pow(d, e)).toFixed(2) +
+        ' ' +
+        (e ? 'kMGTPEZY'[--e] + 'B' : 'Bytes')
+      )
+    }
+  },
+  created() {
+    this.$store.dispatch('setDownloadsRef', {
+      ref: this.$firebase.database().ref('downloads'),
+      callbacks: {
+        readyCallback: snapshot => {
+          this.loading = false
+          this.active = Object.keys(snapshot.val())[0]
+        },
+        cancelCallback: () => {
+          this.loading = false
+        }
+      }
+    })
   }
-
+}
 </script>

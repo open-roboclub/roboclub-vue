@@ -99,74 +99,75 @@
 </template>
 
 <script>
-  import Vuex from 'vuex'
+import Vuex from 'vuex'
 
-  export default {
-    data () {
-      return {
-        loading: true,
-        addDialog: false,
-        editDialog: false,
-        deleteDialog: false,
-        selectedToEdit: {},
-        selectedToDelete: null
-      }
-    },
-    computed: Vuex.mapGetters(['news', 'newsItem', 'isAdmin']),
-    methods: {
-      add () {
-        if (this.newsItem.title.length < 5 || this.newsItem.notice.length < 5) {
-          return
-        }
-
-        this.addDialog = false
-        this.$store.dispatch('addNews')
-      },
-      confirmEdit (newsUpdate) {
-        this.editDialog = true
-        this.selectedToEdit = newsUpdate
-      },
-      editNews () {
-        if (this.selectedToEdit.title.length < 5 || this.selectedToEdit.notice.length < 5) {
-          return
-        }
-
-        this.editDialog = false
-        this.$store.dispatch('saveNews', this.selectedToEdit)
-        this.selectedToEdit = {}
-      },
-      confirmDelete (newsUpdate) {
-        this.deleteDialog = true
-        this.selectedToDelete = newsUpdate
-      },
-      deleteNews () {
-        this.deleteDialog = false
-        this.$store.dispatch('deleteNews', this.selectedToDelete['.key'])
-        this.selectedToDelete = null
-      }
-    },
-    created () {
-      this.$store.dispatch('setNewsRef', {
-        ref: this.$firebase.database().ref('news'),
-        callbacks: {
-          readyCallback: snapshot => {
-            this.loading = false
-          },
-          cancelCallback: error => {
-            console.log(error)
-            this.loading = false
-          }
-        }
-      })
+export default {
+  data() {
+    return {
+      loading: true,
+      addDialog: false,
+      editDialog: false,
+      deleteDialog: false,
+      selectedToEdit: {},
+      selectedToDelete: null
     }
-  }
+  },
+  computed: Vuex.mapGetters(['news', 'newsItem', 'isAdmin']),
+  methods: {
+    add() {
+      if (this.newsItem.title.length < 5 || this.newsItem.notice.length < 5) {
+        return
+      }
 
+      this.addDialog = false
+      this.$store.dispatch('addNews')
+    },
+    confirmEdit(newsUpdate) {
+      this.editDialog = true
+      this.selectedToEdit = newsUpdate
+    },
+    editNews() {
+      if (
+        this.selectedToEdit.title.length < 5 ||
+        this.selectedToEdit.notice.length < 5
+      ) {
+        return
+      }
+
+      this.editDialog = false
+      this.$store.dispatch('saveNews', this.selectedToEdit)
+      this.selectedToEdit = {}
+    },
+    confirmDelete(newsUpdate) {
+      this.deleteDialog = true
+      this.selectedToDelete = newsUpdate
+    },
+    deleteNews() {
+      this.deleteDialog = false
+      this.$store.dispatch('deleteNews', this.selectedToDelete['.key'])
+      this.selectedToDelete = null
+    }
+  },
+  created() {
+    this.$store.dispatch('setNewsRef', {
+      ref: this.$firebase.database().ref('news'),
+      callbacks: {
+        readyCallback: () => {
+          this.loading = false
+        },
+        cancelCallback: error => {
+          console.log(error)
+          this.loading = false
+        }
+      }
+    })
+  }
+}
 </script>
 
 <style scoped>
-  xmp {
-    white-space: pre-wrap;
-    word-wrap: break-word;
-  }
-
+xmp {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
 </style>

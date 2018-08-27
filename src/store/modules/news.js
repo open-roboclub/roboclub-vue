@@ -1,6 +1,6 @@
 import { firebaseAction } from 'vuexfire'
 
-function clearNews (news) {
+function clearNews(news) {
   if (!news) {
     news = {}
   }
@@ -14,7 +14,7 @@ function clearNews (news) {
   return news
 }
 
-function copyProperties (source, destination) {
+function copyProperties(source, destination) {
   for (var prop in source) {
     if (destination.hasOwnProperty(prop)) {
       destination[prop] = source[prop]
@@ -31,7 +31,7 @@ export default {
     newsRef: null
   },
   mutations: {
-    resetNews: (state) => {
+    resetNews: state => {
       clearNews(state.newsItem)
     },
     setNewsRef: (state, newsRef) => {
@@ -39,10 +39,12 @@ export default {
     }
   },
   actions: {
-    setNewsRef: firebaseAction(({ commit, bindFirebaseRef }, { ref, callbacks }) => {
-      bindFirebaseRef('news', ref, callbacks)
-      commit('setNewsRef', ref)
-    }),
+    setNewsRef: firebaseAction(
+      ({ commit, bindFirebaseRef }, { ref, callbacks }) => {
+        bindFirebaseRef('news', ref, callbacks)
+        commit('setNewsRef', ref)
+      }
+    ),
     deleteNews: ({ state }, id) => {
       state.newsRef.child(id).remove()
     },
@@ -51,7 +53,12 @@ export default {
         delete state.newsItem.link
       }
 
-      var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }
+      var options = {
+        weekday: 'long',
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+      }
       var today = new Date()
       var date = today.toLocaleDateString('en-US', options)
 
@@ -61,7 +68,7 @@ export default {
       state.newsRef.push(state.newsItem)
       commit('resetNews')
     },
-    saveNews: ({ state, commit }, newsUpdate) => {
+    saveNews: ({ state }, newsUpdate) => {
       var news = copyProperties(newsUpdate, clearNews())
       news.notification = 'no'
 

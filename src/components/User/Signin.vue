@@ -26,31 +26,32 @@
   </v-container>
 </template>
 
-<style src="firebaseui/dist/firebaseui.css"></style>
+<style src="firebaseui/dist/firebaseui.css">
+</style>
 
 <script>
-  import firebase from 'firebase'
-  import Vuex from 'vuex'
+import firebase from 'firebase'
+import Vuex from 'vuex'
 
-  export default {
-    name: 'auth',
-    computed: Vuex.mapState(['user']),
-    methods: {
-      logout () {
-        this.$store.dispatch('logout')
-      }
-    },
-    mounted () {
-      var uiConfig = {
-        signInSuccessUrl: '/',
-        signInOptions: [
-          firebase.auth.EmailAuthProvider.PROVIDER_ID,
-          firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-          firebase.auth.FacebookAuthProvider.PROVIDER_ID,
-          firebase.auth.GithubAuthProvider.PROVIDER_ID
-        ]
-      }
-      this.$authUI.start('#firebaseui-auth-container', uiConfig)
+export default {
+  name: 'auth',
+  computed: Vuex.mapState(['user']),
+  methods: {
+    logout() {
+      this.$store.dispatch('logout')
     }
+  },
+  mounted() {
+    var uiConfig = {
+      signInSuccessUrl: '/',
+      signInOptions: [
+        firebase.auth.EmailAuthProvider.PROVIDER_ID,
+        firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+        firebase.auth.FacebookAuthProvider.PROVIDER_ID,
+        firebase.auth.GithubAuthProvider.PROVIDER_ID
+      ]
+    }
+    this.$authUI.start('#firebaseui-auth-container', uiConfig)
   }
+}
 </script>

@@ -11,10 +11,12 @@ export default {
     }
   },
   actions: {
-    setDownloadsRef: firebaseAction(({ commit, bindFirebaseRef }, { ref, callbacks }) => {
-      bindFirebaseRef('downloads', ref, callbacks)
-      commit('setDownloadsRef', ref)
-    })
+    setDownloadsRef: firebaseAction(
+      ({ commit, bindFirebaseRef }, { ref, callbacks }) => {
+        bindFirebaseRef('downloads', ref, callbacks)
+        commit('setDownloadsRef', ref)
+      }
+    )
   },
   getters: {
     downloads: state => state.downloads,

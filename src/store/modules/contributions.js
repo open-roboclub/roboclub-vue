@@ -1,6 +1,6 @@
 import { firebaseAction } from 'vuexfire'
 
-function clearContribution (contribution) {
+function clearContribution(contribution) {
   if (!contribution) {
     contribution = {}
   }
@@ -12,7 +12,7 @@ function clearContribution (contribution) {
   return contribution
 }
 
-function copyProperties (source, destination) {
+function copyProperties(source, destination) {
   for (var prop in source) {
     if (destination.hasOwnProperty(prop)) {
       destination[prop] = source[prop]
@@ -29,7 +29,7 @@ export default {
     contributionsRef: null
   },
   mutations: {
-    resetContribution: (state) => {
+    resetContribution: state => {
       clearContribution(state.contribution)
     },
     setContribution: (state, contribution) => {
@@ -40,10 +40,12 @@ export default {
     }
   },
   actions: {
-    setContributionsRef: firebaseAction(({ commit, bindFirebaseRef }, { ref, callbacks }) => {
-      bindFirebaseRef('contributions', ref, callbacks)
-      commit('setContributionsRef', ref)
-    }),
+    setContributionsRef: firebaseAction(
+      ({ commit, bindFirebaseRef }, { ref, callbacks }) => {
+        bindFirebaseRef('contributions', ref, callbacks)
+        commit('setContributionsRef', ref)
+      }
+    ),
     deleteContribution: ({ state }, id) => {
       state.contributionsRef.child(id).remove()
     },
@@ -52,7 +54,9 @@ export default {
       commit('resetContribution')
     },
     saveContribution: ({ state, commit }) => {
-      state.contributionsRef.child(state.contribution['.key']).set(copyProperties(state.contribution, clearContribution()))
+      state.contributionsRef
+        .child(state.contribution['.key'])
+        .set(copyProperties(state.contribution, clearContribution()))
       commit('resetContribution')
     }
   },

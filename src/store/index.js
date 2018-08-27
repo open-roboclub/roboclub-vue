@@ -5,13 +5,11 @@ import news from './modules/news'
 import meetups from './modules/meetups'
 import downloads from './modules/downloads'
 import { database, auth } from 'firebase'
-import {
-  firebaseMutations
-} from 'vuexfire'
+import { firebaseMutations } from 'vuexfire'
 
 Vue.use(Vuex)
 
-export const store = new Vuex.Store({
+export default new Vuex.Store({
   modules: {
     contributions,
     news,
@@ -23,24 +21,27 @@ export const store = new Vuex.Store({
     isAdmin: false
   },
   mutations: {
-    setUser (state, user) {
+    setUser(state, user) {
       state.user = user
     },
-    clearUser (state) {
+    clearUser(state) {
       state.user = null
     },
-    setAdmin (state, admin) {
+    setAdmin(state, admin) {
       state.isAdmin = admin
     },
     ...firebaseMutations
   },
   actions: {
-    isAdmin ({ commit }, user) {
+    isAdmin({ commit }, user) {
       var ref = user ? user.uid : ''
-      database().ref('admins/' + ref).once('value')
+      database()
+        .ref('admins/' + ref)
+        .once('value')
         .then(snapshot => {
           commit('setAdmin', snapshot.val())
-        }).catch(error => {
+        })
+        .catch(error => {
           console.log(error)
           commit('setAdmin', false)
         })

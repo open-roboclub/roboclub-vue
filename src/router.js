@@ -16,6 +16,8 @@ import Downloads from '@/components/Other/Downloads'
 Vue.use(Router)
 
 export default new Router({
+  mode: 'history',
+  base: process.env.BASE_URL,
   routes: [
     {
       path: '/',
@@ -78,6 +80,5 @@ export default new Router({
       name: 'robocon',
       component: Robocon
     }
-  ],
-  mode: 'history'
+  ]
 })

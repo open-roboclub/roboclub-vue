@@ -69,98 +69,100 @@
 </template>
 
 <script>
-  import Vuex from 'vuex'
+import Vuex from 'vuex'
 
-  export default {
-    data () {
-      return {
-        loading: true,
-        editing: false,
-        selected: [],
-        rules: {
-          required: (value) => !!value || 'Required.'
+export default {
+  data() {
+    return {
+      loading: true,
+      editing: false,
+      selected: [],
+      rules: {
+        required: value => !!value || 'Required.'
+      },
+      headers: [
+        {
+          text: 'Contributor(s)',
+          align: 'left',
+          sortable: false,
+          value: 'contributor'
         },
-        headers: [
-          {
-            text: 'Contributor(s)',
-            align: 'left',
-            sortable: false,
-            value: 'contributor'
-          },
-          {
-            text: 'Contribution',
-            align: 'left',
-            sortable: false,
-            value: 'amount'
-          },
-          {
-            text: 'Purpose',
-            align: 'left',
-            sortable: false,
-            value: 'purpose'
-          },
-          {
-            text: 'Remarks',
-            align: 'left',
-            sortable: false,
-            value: 'remark'
-          }
-        ],
-        snackbar: {
-          show: false,
-          context: '',
-          mode: '',
-          timeout: 6000,
-          text: 'Hello, I\'m a snackbar'
+        {
+          text: 'Contribution',
+          align: 'left',
+          sortable: false,
+          value: 'amount'
+        },
+        {
+          text: 'Purpose',
+          align: 'left',
+          sortable: false,
+          value: 'purpose'
+        },
+        {
+          text: 'Remarks',
+          align: 'left',
+          sortable: false,
+          value: 'remark'
         }
+      ],
+      snackbar: {
+        show: false,
+        context: '',
+        mode: '',
+        timeout: 6000,
+        text: "Hello, I'm a snackbar"
       }
-    },
-    computed: Vuex.mapGetters(['contributions', 'contribution', 'isAdmin']),
-    methods: {
-      deleteContributions () {
-        if (this.selected.length > 0) {
-          this.selected.forEach(contribution => {
-            this.$store.dispatch('deleteContribution', contribution['.key'])
-          })
-          this.selected = []
-        } else {
-          this.snackbar.context = 'error'
-          this.snackbar.text = 'No contributions selected'
-          this.snackbar.show = true
-        }
-      },
-      saveContribution () {
-        if (this.$store.getters.contribution.contributor === '' || this.$store.getters.contribution.amount === '') {
-          return
-        }
-
-        if (this.editing) {
-          this.$store.dispatch('saveContribution')
-          this.editing = false
-        } else {
-          this.$store.dispatch('addContribution')
-        }
-      },
-      editContribution () {
-        this.editing = true
-        this.$store.commit('setContribution', this.selected[0])
-        this.selected = []
-      }
-    },
-    created () {
-      this.$store.dispatch('setContributionsRef', {
-        ref: this.$firebase.database().ref('contribution'),
-        callbacks: {
-          readyCallback: snapshot => {
-            this.loading = false
-          },
-          cancelCallback: error => {
-            console.log(error)
-            this.loading = false
-          }
-        }
-      })
     }
-  }
+  },
+  computed: Vuex.mapGetters(['contributions', 'contribution', 'isAdmin']),
+  methods: {
+    deleteContributions() {
+      if (this.selected.length > 0) {
+        this.selected.forEach(contribution => {
+          this.$store.dispatch('deleteContribution', contribution['.key'])
+        })
+        this.selected = []
+      } else {
+        this.snackbar.context = 'error'
+        this.snackbar.text = 'No contributions selected'
+        this.snackbar.show = true
+      }
+    },
+    saveContribution() {
+      if (
+        this.$store.getters.contribution.contributor === '' ||
+        this.$store.getters.contribution.amount === ''
+      ) {
+        return
+      }
 
+      if (this.editing) {
+        this.$store.dispatch('saveContribution')
+        this.editing = false
+      } else {
+        this.$store.dispatch('addContribution')
+      }
+    },
+    editContribution() {
+      this.editing = true
+      this.$store.commit('setContribution', this.selected[0])
+      this.selected = []
+    }
+  },
+  created() {
+    this.$store.dispatch('setContributionsRef', {
+      ref: this.$firebase.database().ref('contribution'),
+      callbacks: {
+        readyCallback: () => {
+          this.loading = false
+        },
+        cancelCallback: error => {
+          console.log(error)
+          this.loading = false
+        }
+      }
+    })
+  }
+}
 </script>
