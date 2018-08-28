@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <v-layout row wrap class="mb-3">
-      <v-flex xs12 sm10 md8 lg6 xl4 offset-sm1 offset-md2 offset-lg3 offset-xl4>
+      <v-flex xs12 sm10 md8 lg6 offset-sm1 offset-md2 offset-lg3>
         <v-card class="blue-grey white--text">
           <div class="text-xs-center headline pt-4 pb-4">News Panel</div>
           <v-progress-linear :indeterminate="loading" v-show="loading" color="blue-grey" background-color="blue-grey lighten-3"></v-progress-linear>
@@ -16,24 +16,15 @@
       v-if="isAdmin" />
 
     <v-layout row>
-      <v-flex xs12 sm10 md8 lg6 xl4 offset-sm1 offset-md2 offset-lg3 offset-xl4>
-        <v-card v-for="newsUpdate in news" :key="newsUpdate.id" class="mt-3">
-          <v-card-title primary-title>
-            <div>
-              <div class="headline">{{ newsUpdate.title ? newsUpdate.title : 'News Update' }}</div>
-            </div>
-          </v-card-title>
-          <div class="pr-3 pl-3 pb-3">
-            <div class="grey--text text--darken-3">{{ newsUpdate.date }}</div>
-            <br>
-            <xmp>{{ newsUpdate.notice }}</xmp>
-          </div>
-          <v-card-actions>
-            <v-btn flat class="orange--text" v-if="newsUpdate.link" :href="newsUpdate.link" target="_blank">Link</v-btn>
-            <v-btn flat class="blue--text" v-if="isAdmin" @click.stop="confirmEdit(newsUpdate)">Edit</v-btn>
-            <v-btn flat class="red--text" v-if="isAdmin" @click.stop="confirmDelete(newsUpdate)">Delete</v-btn>
-          </v-card-actions>
-        </v-card>
+      <v-flex xs12 sm10 md8 lg6 offset-sm1 offset-md2 offset-lg3>
+        <NewsCard
+          v-for="newsUpdate in news"
+          :key="newsUpdate.id"
+          :newsUpdate="newsUpdate"
+          :isAdmin="isAdmin"
+          @edit="confirmEdit(newsUpdate)"
+          @delete="confirmDelete(newsUpdate)"
+          class="mt-3" />
       </v-flex>
     </v-layout>
 
@@ -47,7 +38,10 @@ export default {
   components: {
     Admin: () =>
       import(/* webpackChunkName: "news-admin" */
-      './Admin')
+      './Admin'),
+    NewsCard: () =>
+      import(/* webpackChunkName: "news-card" */
+      './Card')
   },
   data() {
     return {
@@ -81,10 +75,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-xmp {
-  white-space: pre-wrap;
-  word-wrap: break-word;
-}
-</style>
