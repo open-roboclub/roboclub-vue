@@ -21,7 +21,7 @@ const Signin = () =>
   '@/components/User/Signin')
 const Contributions = () =>
   import(/* webpackChunkName: "contributions" */
-  '@/components/Other/Contributions')
+  '@/components/Contributions')
 const News = () =>
   import(/* webpackChunkName: "news" */
   '@/components/News')
@@ -36,7 +36,7 @@ const Team = () =>
   '@/components/Other/Team')
 const Downloads = () =>
   import(/* webpackChunkName: "downloads" */
-  '@/components/Other/Downloads')
+  '@/components/Downloads')
 
 Vue.use(Router)
 

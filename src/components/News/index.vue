@@ -32,7 +32,7 @@
 </template>
 
 <script>
-import Vuex from 'vuex'
+import { mapState, mapGetters, mapActions } from 'vuex'
 
 export default {
   components: {
@@ -50,17 +50,21 @@ export default {
       selectedToDelete: null
     }
   },
-  computed: Vuex.mapGetters(['news', 'isAdmin']),
+  computed: {
+    ...mapState(['isAdmin']),
+    ...mapGetters('news', ['news'])
+  },
   methods: {
     confirmEdit(newsUpdate) {
       this.selectedToEdit = newsUpdate
     },
     confirmDelete(newsUpdate) {
       this.selectedToDelete = newsUpdate
-    }
+    },
+    ...mapActions('news', ['setNewsRef'])
   },
   created() {
-    this.$store.dispatch('setNewsRef', {
+    this.setNewsRef({
       ref: this.$firebase.database().ref('news'),
       callbacks: {
         readyCallback: () => {

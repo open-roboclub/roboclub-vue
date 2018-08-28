@@ -36,7 +36,7 @@ export default new Vuex.Store({
   },
   actions: {
     isAdmin({ commit }, user) {
-      var ref = user ? user.uid : ''
+      const ref = user ? user.uid : ''
       database()
         .ref('admins/' + ref)
         .once('value')
@@ -48,8 +48,5 @@ export default new Vuex.Store({
         })
     },
     logout: () => auth().signOut()
-  },
-  getters: {
-    isAdmin: state => state.isAdmin
   }
 })

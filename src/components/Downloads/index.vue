@@ -53,7 +53,7 @@ a {
 </style>
 
 <script>
-import Vuex from 'vuex'
+import { mapState, mapGetters, mapActions } from 'vuex'
 
 export default {
   data() {
@@ -73,7 +73,10 @@ export default {
         'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'
     }
   },
-  computed: Vuex.mapGetters(['downloads', 'downloadTypes']),
+  computed: {
+    ...mapGetters('downloads', ['downloadTypes']),
+    ...mapState('downloads', ['downloads'])
+  },
   methods: {
     fileSizeSI(a, b, c, d, e) {
       a = parseInt(a)
@@ -86,10 +89,11 @@ export default {
         ' ' +
         (e ? 'kMGTPEZY'[--e] + 'B' : 'Bytes')
       )
-    }
+    },
+    ...mapActions('downloads', ['setDownloadsRef'])
   },
   created() {
-    this.$store.dispatch('setDownloadsRef', {
+    this.setDownloadsRef({
       ref: this.$firebase.database().ref('downloads'),
       callbacks: {
         readyCallback: snapshot => {

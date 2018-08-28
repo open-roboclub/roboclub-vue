@@ -1,6 +1,7 @@
 import { firebaseAction } from 'vuexfire'
 
 export default {
+  namespaced: true,
   state: {
     downloads: [],
     downloadsRef: null
@@ -19,7 +20,6 @@ export default {
     )
   },
   getters: {
-    downloads: state => state.downloads,
     downloadTypes: state => state.downloads.map(item => item.name)
   }
 }

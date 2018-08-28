@@ -25,6 +25,7 @@ function copyProperties(source, destination) {
 }
 
 export default {
+  namespaced: true,
   state: {
     newsItem: clearNews(),
     news: [],
@@ -53,14 +54,14 @@ export default {
         delete state.newsItem.link
       }
 
-      var options = {
+      const options = {
         weekday: 'long',
         year: 'numeric',
         month: 'long',
         day: 'numeric'
       }
-      var today = new Date()
-      var date = today.toLocaleDateString('en-US', options)
+      const today = new Date()
+      const date = today.toLocaleDateString('en-US', options)
 
       state.newsItem.timestamp = -today / 1000
       state.newsItem.date = date
@@ -69,7 +70,7 @@ export default {
       commit('resetNews')
     },
     saveNews: ({ state }, newsUpdate) => {
-      var news = copyProperties(newsUpdate, clearNews())
+      const news = copyProperties(newsUpdate, clearNews())
       news.notification = 'no'
 
       if (news.link === '') {
@@ -80,7 +81,6 @@ export default {
     }
   },
   getters: {
-    news: state => state.news.slice().reverse(),
-    newsItem: state => state.newsItem
+    news: state => state.news.slice().reverse()
   }
 }

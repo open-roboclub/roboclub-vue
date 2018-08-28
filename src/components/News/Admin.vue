@@ -60,7 +60,7 @@
           <v-card-actions>
             <v-spacer></v-spacer>
             <v-btn class="blue--text" flat @click="deleteDialog = false">No</v-btn>
-            <v-btn class="red--text" flat @click="deleteNews">Yes</v-btn>
+            <v-btn class="red--text" flat @click="deleteNewsItem">Yes</v-btn>
           </v-card-actions>
         </v-card>
       </v-dialog>
@@ -69,7 +69,7 @@
 </template>
 
 <script>
-import Vuex from 'vuex'
+import { mapState, mapActions } from 'vuex'
 
 export default {
   data() {
@@ -88,7 +88,7 @@ export default {
     editModel() {
       return this.selectedToEdit === null ? {} : this.selectedToEdit
     },
-    ...Vuex.mapGetters(['newsItem'])
+    ...mapState('news', ['newsItem'])
   },
   methods: {
     add() {
@@ -97,7 +97,7 @@ export default {
       }
 
       this.addDialog = false
-      this.$store.dispatch('addNews')
+      this.addNews()
     },
     editNews() {
       if (
@@ -107,13 +107,14 @@ export default {
         return
       }
 
-      this.$store.dispatch('saveNews', this.selectedToEdit)
+      this.saveNews(this.selectedToEdit)
       this.$emit('update:selectedToEdit', null)
     },
-    deleteNews() {
-      this.$store.dispatch('deleteNews', this.selectedToDelete['.key'])
+    deleteNewsItem() {
+      this.deleteNews(this.selectedToDelete['.key'])
       this.$emit('update:selectedToDelete', null)
-    }
+    },
+    ...mapActions('news', ['addNews', 'saveNews', 'deleteNews'])
   }
 }
 </script>

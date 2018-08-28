@@ -23,6 +23,7 @@ function copyProperties(source, destination) {
 }
 
 export default {
+  namespaced: true,
   state: {
     contribution: clearContribution(),
     contributions: [],
@@ -50,10 +51,12 @@ export default {
       state.contributionsRef.child(id).remove()
     },
     addContribution: ({ state, commit }) => {
+      console.log(state.contribution)
       state.contributionsRef.push(state.contribution)
       commit('resetContribution')
     },
     saveContribution: ({ state, commit }) => {
+      console.log('Hello ', state.contribution)
       state.contributionsRef
         .child(state.contribution['.key'])
         .set(copyProperties(state.contribution, clearContribution()))
@@ -61,7 +64,6 @@ export default {
     }
   },
   getters: {
-    contributions: state => state.contributions.slice().reverse(),
-    contribution: state => state.contribution
+    contributions: state => state.contributions.slice().reverse()
   }
 }

@@ -9,13 +9,13 @@
               <span class="grey--text text--lighten-3">You made us what we are today</span>
             </div>
           </v-card-title>
-          <v-progress-linear :indeterminate="loading" v-show="loading" color="success"></v-progress-linear>
+          <v-progress-linear :indeterminate="loading" v-show="loading" color="green lighten-3"></v-progress-linear>
         </v-card>
       </v-flex>
     </v-layout>
     <v-layout row>
       <v-flex xs12 md10 lg8 xl6 offset-md1 offset-lg2 offset-xl3>
-        <v-data-table :headers="headers" :items="contributions" v-model="selected" selected-key=".key" select-all class="elevation-1">
+        <v-data-table :headers="headers" :items="contributions" v-model="selected" item-key="contributor" select-all class="elevation-1">
           <template slot="items" slot-scope="props">
             <td>
               <v-checkbox primary hide-details v-model="props.selected">
@@ -50,7 +50,7 @@
               <v-text-field v-model="contribution.remark" label="Remark"></v-text-field>
             </v-flex>
             <v-flex xs12 md4 xl2>
-              <v-btn @click="saveContribution" fab dark class="cyan">
+              <v-btn @click="save" fab dark class="cyan">
                 <v-icon dark>{{ editing ? 'save' : 'add' }}</v-icon>
               </v-btn>
             </v-flex>
@@ -69,7 +69,7 @@
 </template>
 
 <script>
-import Vuex from 'vuex'
+import { mapGetters, mapState, mapActions, mapMutations } from 'vuex'
 
 export default {
   data() {
@@ -115,12 +115,16 @@ export default {
       }
     }
   },
-  computed: Vuex.mapGetters(['contributions', 'contribution', 'isAdmin']),
+  computed: {
+    ...mapState(['isAdmin']),
+    ...mapGetters('contributions', ['contributions']),
+    ...mapState('contributions', ['contribution'])
+  },
   methods: {
     deleteContributions() {
       if (this.selected.length > 0) {
         this.selected.forEach(contribution => {
-          this.$store.dispatch('deleteContribution', contribution['.key'])
+          this.deleteContribution(contribution['.key'])
         })
         this.selected = []
       } else {
@@ -129,29 +133,38 @@ export default {
         this.snackbar.show = true
       }
     },
-    saveContribution() {
+    save() {
       if (
-        this.$store.getters.contribution.contributor === '' ||
-        this.$store.getters.contribution.amount === ''
+        this.contribution.contributor === '' ||
+        this.contribution.amount === ''
       ) {
         return
       }
 
+      console.log('editing', this.editing)
       if (this.editing) {
-        this.$store.dispatch('saveContribution')
+        this.saveContribution()
         this.editing = false
       } else {
-        this.$store.dispatch('addContribution')
+        console.log('Adding')
+        this.addContribution()
       }
     },
     editContribution() {
       this.editing = true
-      this.$store.commit('setContribution', this.selected[0])
+      this.setContribution(this.selected[0])
       this.selected = []
-    }
+    },
+    ...mapActions('contributions', [
+      'setContributionsRef',
+      'addContribution',
+      'saveContribution',
+      'deleteContribution'
+    ]),
+    ...mapMutations('contributions', ['setContribution'])
   },
   created() {
-    this.$store.dispatch('setContributionsRef', {
+    this.setContributionsRef({
       ref: this.$firebase.database().ref('contribution'),
       callbacks: {
         readyCallback: () => {
