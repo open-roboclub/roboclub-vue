@@ -53,7 +53,9 @@ export default {
         firebase.auth.GithubAuthProvider.PROVIDER_ID
       ]
     }
-    const firebaseUI = new firebaseui.auth.AuthUI(this.$auth)
+    const uiInstance = firebaseui.auth.AuthUI.getInstance()
+    const firebaseUI =
+      uiInstance !== null ? uiInstance : new firebaseui.auth.AuthUI(this.$auth)
     firebaseUI.start('#firebaseui-auth-container', uiConfig)
   }
 }
