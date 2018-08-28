@@ -6,8 +6,8 @@ import router from './router'
 import store from './store'
 import './registerServiceWorker'
 
-import * as firebase from 'firebase'
-import firebaseui from 'firebaseui'
+import firebase from 'firebase/app'
+import 'firebase/auth'
 
 import config from './firebaseconfig'
 
@@ -15,7 +15,6 @@ Vue.config.productionTip = false
 
 Vue.prototype.$firebase = firebase.initializeApp(config)
 Vue.prototype.$auth = firebase.auth()
-Vue.prototype.$authUI = new firebaseui.auth.AuthUI(Vue.prototype.$auth)
 
 new Vue({
   router,
