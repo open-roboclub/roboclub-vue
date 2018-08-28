@@ -1,0 +1,28 @@
+
+
+version: 2
+jobs:
+  build:
+    working_directory: ~/code
+    docker:
+      - image: circleci/node:8
+    steps:
+      - checkout
+      - run:
+          name: update-npm 
+          command: 'sudo npm install -g yarn@latest'
+      - restore_cache: # special step to restore the dependency cache 
+          key: dependency-cache-{{ checksum "package.json" }}
+      - run:
+          name: install-yarn-wee
+          command: yarn install
+      - save_cache: # special step to save the dependency cache
+          key: dependency-cache-{{ checksum "package.json" }}
+          paths:
+            - ./node_modules
+      - run: # run tests
+          name: build
+          command: yarn build
+      - store_artifacts:
+          path: dist
+          prefix: dist
