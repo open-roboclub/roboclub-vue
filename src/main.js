@@ -6,14 +6,11 @@ import router from './router'
 import store from './store'
 import './registerServiceWorker'
 
-import firebase from 'firebase/app'
+import firebase from '@/firebase'
 import 'firebase/auth'
-
-import config from './firebaseconfig'
 
 Vue.config.productionTip = false
 
-Vue.prototype.$firebase = firebase.initializeApp(config)
 Vue.prototype.$auth = firebase.auth()
 
 new Vue({
@@ -21,7 +18,7 @@ new Vue({
   store,
   render: h => h(App),
   created() {
-    firebase.auth().onAuthStateChanged(user => {
+    this.$auth.onAuthStateChanged(user => {
       this.$store.dispatch('isAdmin', user)
       if (user) {
         this.$store.commit('setUser', user)
