@@ -30,7 +30,9 @@
 </style>
 
 <script>
-import firebase from 'firebase'
+import firebase from 'firebase/app'
+import 'firebase/auth'
+import firebaseui from 'firebaseui'
 import Vuex from 'vuex'
 
 export default {
@@ -51,7 +53,8 @@ export default {
         firebase.auth.GithubAuthProvider.PROVIDER_ID
       ]
     }
-    this.$authUI.start('#firebaseui-auth-container', uiConfig)
+    const firebaseUI = new firebaseui.auth.AuthUI(this.$auth)
+    firebaseUI.start('#firebaseui-auth-container', uiConfig)
   }
 }
 </script>

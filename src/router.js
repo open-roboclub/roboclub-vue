@@ -1,17 +1,31 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from '@/components/Home'
-import Meetups from '@/components/Meetup/Meetups'
-import CreateMeetup from '@/components/Meetup/CreateMeetup'
-import Meetup from '@/components/Meetup/Meetup'
-import Profile from '@/components/User/Profile'
-import Signin from '@/components/User/Signin'
-import Contributions from '@/components/Other/Contributions'
-import News from '@/components/Other/News'
-import Projects from '@/components/Other/Projects'
-import Robocon from '@/components/Other/Robocon'
-import Team from '@/components/Other/Team'
-import Downloads from '@/components/Other/Downloads'
+
+// Dynamically import components by lazy loading through routes
+
+const Home = () => import(/* webpackChunkName: "home" */ '@/components/Home')
+const Meetups = () =>
+  import(/* webpackChunkName: "meetups" */ '@/components/Meetup/Meetups')
+const CreateMeetup = () =>
+  import(/* webpackChunkName: "create-meetup" */ '@/components/Meetup/CreateMeetup')
+const Meetup = () =>
+  import(/* webpackChunkName: "meetup" */ '@/components/Meetup/Meetup')
+const Profile = () =>
+  import(/* webpackChunkName: "profile" */ '@/components/User/Profile')
+const Signin = () =>
+  import(/* webpackChunkName: "signin" */ '@/components/User/Signin')
+const Contributions = () =>
+  import(/* webpackChunkName: "contributions" */ '@/components/Other/Contributions')
+const News = () =>
+  import(/* webpackChunkName: "news" */ '@/components/Other/News')
+const Projects = () =>
+  import(/* webpackChunkName: "projects" */ '@/components/Other/Projects')
+const Robocon = () =>
+  import(/* webpackChunkName: "robocon" */ '@/components/Other/Robocon')
+const Team = () =>
+  import(/* webpackChunkName: "team" */ '@/components/Other/Team')
+const Downloads = () =>
+  import(/* webpackChunkName: "downloads" */ '@/components/Other/Downloads')
 
 Vue.use(Router)
 

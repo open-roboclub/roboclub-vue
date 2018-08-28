@@ -4,7 +4,9 @@ import contributions from './modules/contributions'
 import news from './modules/news'
 import meetups from './modules/meetups'
 import downloads from './modules/downloads'
-import { database, auth } from 'firebase'
+import { database, auth } from 'firebase/app'
+import 'firebase/auth'
+import 'firebase/database'
 import { firebaseMutations } from 'vuexfire'
 
 Vue.use(Vuex)
@@ -42,7 +44,7 @@ export default new Vuex.Store({
           commit('setAdmin', snapshot.val())
         })
         .catch(error => {
-          console.log(error)
+          console.error(error)
           commit('setAdmin', false)
         })
     },

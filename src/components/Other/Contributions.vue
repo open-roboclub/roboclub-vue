@@ -158,7 +158,7 @@ export default {
           this.loading = false
         },
         cancelCallback: error => {
-          console.log(error)
+          console.error(error)
           this.loading = false
         }
       }
