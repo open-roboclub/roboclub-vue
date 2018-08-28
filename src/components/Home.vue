@@ -33,6 +33,9 @@
 
 <script>
 export default {
+  metaInfo: {
+    title: 'Home'
+  },
   computed: {
     meetups() {
       return this.$store.getters.featuredMeetups

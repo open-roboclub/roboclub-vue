@@ -31,6 +31,9 @@ import { mapState, mapGetters, mapActions } from 'vuex'
 import headers from './headers'
 
 export default {
+  metaInfo: {
+    title: 'Downloads'
+  },
   components: {
     DownloadTab: () =>
       import(/* webpackChunkName: "download-tab" */

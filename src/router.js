@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import Meta from 'vue-meta'
 
 // Dynamically import components by lazy loading through routes
 
@@ -39,6 +40,7 @@ const Downloads = () =>
   '@/components/Downloads')
 
 Vue.use(Router)
+Vue.use(Meta)
 
 export default new Router({
   mode: 'history',

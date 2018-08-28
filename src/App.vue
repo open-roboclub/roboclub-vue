@@ -53,6 +53,10 @@
 import Vuex from 'vuex'
 
 export default {
+  metaInfo: {
+    title: 'AMU RoboClub',
+    titleTemplate: '%s | AMU RoboClub'
+  },
   computed: Vuex.mapState(['user']),
   methods: {
     isAuth(item) {

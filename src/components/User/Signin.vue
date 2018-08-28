@@ -37,6 +37,9 @@ import Vuex from 'vuex'
 
 export default {
   name: 'auth',
+  metaInfo: {
+    title: 'Sign In'
+  },
   computed: Vuex.mapState(['user']),
   methods: {
     logout() {

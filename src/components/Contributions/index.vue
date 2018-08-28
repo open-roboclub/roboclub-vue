@@ -42,6 +42,9 @@ import { mapGetters, mapState, mapActions } from 'vuex'
 import headers from './headers'
 
 export default {
+  metaInfo: {
+    title: 'Contributions'
+  },
   components: {
     ContributionAdmin: () =>
       import(/* webpackChunkName: "contributions-admin" */
