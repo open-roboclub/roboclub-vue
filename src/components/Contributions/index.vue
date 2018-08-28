@@ -39,41 +39,19 @@
 
 <script>
 import { mapGetters, mapState, mapActions } from 'vuex'
+import headers from './headers'
 
 export default {
   components: {
-    ContributionAdmin: () => import('./Admin')
+    ContributionAdmin: () =>
+      import(/* webpackChunkName: "contributions-admin" */
+      './Admin')
   },
   data() {
     return {
       loading: true,
       selected: [],
-      headers: [
-        {
-          text: 'Contributor(s)',
-          align: 'left',
-          sortable: false,
-          value: 'contributor'
-        },
-        {
-          text: 'Contribution',
-          align: 'left',
-          sortable: false,
-          value: 'amount'
-        },
-        {
-          text: 'Purpose',
-          align: 'left',
-          sortable: false,
-          value: 'purpose'
-        },
-        {
-          text: 'Remarks',
-          align: 'left',
-          sortable: false,
-          value: 'remark'
-        }
-      ]
+      headers
     }
   },
   computed: {

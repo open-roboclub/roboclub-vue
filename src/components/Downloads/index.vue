@@ -28,24 +28,19 @@
 
 <script>
 import { mapState, mapGetters, mapActions } from 'vuex'
+import headers from './headers'
 
 export default {
   components: {
-    DownloadTab: () => import('./Tab')
+    DownloadTab: () =>
+      import(/* webpackChunkName: "download-tab" */
+      './Tab')
   },
   data() {
     return {
       loading: true,
       active: null,
-      headers: [
-        {
-          text: 'File',
-          value: 'file'
-        },
-        { text: 'Name', value: 'name' },
-        { text: 'File Size', value: 'size' },
-        { text: 'URL', value: 'url' }
-      ]
+      headers
     }
   },
   computed: {
