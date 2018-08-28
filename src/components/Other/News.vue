@@ -22,9 +22,11 @@
             <v-text-field label="Title" v-model="newsItem.title" prepend-icon="title" required></v-text-field>
             <v-textarea label="Notice" v-model="newsItem.notice" prepend-icon="edit" required></v-textarea>
             <v-text-field label="Link" v-model="newsItem.link" prepend-icon="link"></v-text-field>
-            <v-radio label="Save" v-model="newsItem.notification" value="no"></v-radio>
-            <v-radio label="Send notification" v-model="newsItem.notification" value="only"></v-radio>
-            <v-radio label="Send notification and save" v-model="newsItem.notification" value="yes"></v-radio>
+            <v-radio-group v-model="newsItem.notification">
+              <v-radio label="Save" value="no"></v-radio>
+              <v-radio label="Send notification" value="only"></v-radio>
+              <v-radio label="Send notification and save" value="yes"></v-radio>
+            </v-radio-group>
             <small>*indicates required field</small>
           </v-card-text>
           <v-card-actions>
