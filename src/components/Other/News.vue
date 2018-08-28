@@ -20,7 +20,7 @@
           </v-card-title>
           <v-card-text>
             <v-text-field label="Title" v-model="newsItem.title" prepend-icon="title" required></v-text-field>
-            <v-text-field label="Notice" v-model="newsItem.notice" prepend-icon="edit" required multi-line></v-text-field>
+            <v-textarea label="Notice" v-model="newsItem.notice" prepend-icon="edit" required></v-textarea>
             <v-text-field label="Link" v-model="newsItem.link" prepend-icon="link"></v-text-field>
             <v-radio label="Save" v-model="newsItem.notification" value="no"></v-radio>
             <v-radio label="Send notification" v-model="newsItem.notification" value="only"></v-radio>
@@ -43,7 +43,7 @@
           </v-card-title>
           <v-card-text>
             <v-text-field label="Title" v-model="selectedToEdit.title" prepend-icon="title" required></v-text-field>
-            <v-text-field label="Notice" v-model="selectedToEdit.notice" prepend-icon="edit" required multi-line></v-text-field>
+            <v-textarea label="Notice" v-model="selectedToEdit.notice" prepend-icon="edit" required></v-textarea>
             <v-text-field label="Link" v-model="selectedToEdit.link" prepend-icon="link"></v-text-field>
             <small>*indicates required field</small>
           </v-card-text>

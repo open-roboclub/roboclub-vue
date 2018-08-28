@@ -43,8 +43,7 @@ export default new Vuex.Store({
         .then(snapshot => {
           commit('setAdmin', snapshot.val())
         })
-        .catch(error => {
-          console.error(error)
+        .catch(() => {
           commit('setAdmin', false)
         })
     },
