@@ -21,7 +21,11 @@
       <v-toolbar-side-icon @click.stop="sideNav = !sideNav" class="hidden-sm-and-up">
       </v-toolbar-side-icon>
       <v-toolbar-title>
-        <router-link to="/" tag="span" style="cursor: pointer">AMU RoboClub</router-link>
+        <router-link to="/" tag="span" style="cursor: pointer">
+          <div class="logo">
+            <span class="amu">amu</span> <span class="roboclub">roboclub</span>
+          </div>
+        </router-link>
       </v-toolbar-title>
       <v-spacer></v-spacer>
       <v-toolbar-items class="hidden-xs-only">
@@ -88,3 +92,19 @@ export default {
   }
 }
 </script>
+
+<style lang="stylus" scoped>
+.logo
+  border-radius 5px
+  overflow hidden
+
+.logo > .amu, .logo > .roboclub
+  padding 5px
+
+.logo > .amu
+  background-color black
+  color white
+
+.logo > .roboclub
+  background-color rgba(0, 0, 0, 0.07)
+</style>
