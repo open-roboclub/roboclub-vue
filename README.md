@@ -1,5 +1,7 @@
 # roboclub
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/open-roboclub/roboclub-vue.svg)](https://greenkeeper.io/)
+
 ## Project setup
 ```
 yarn install
