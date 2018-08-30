@@ -17,6 +17,11 @@
     "team":{
       ".read":true,
       "$year":{
+        ".indexOn":[
+          "uid",
+          "position",
+          "rank"
+        ],
         "members":{
           ".indexOn":[
             "uid",
