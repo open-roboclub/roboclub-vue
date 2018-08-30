@@ -20,7 +20,7 @@ else
     export REPONAME=${CIRCLE_PR_REPONAME}
 fi
 
-export DEPLOY_DOMAIN=https://pr-${ISSUE_NUMBER}-${CONTEXT}-${REPONAME}.surge.sh
+export DEPLOY_DOMAIN=https://pr-${ISSUE_NUMBER}-${CONTEXT##*/}-${REPONAME}.surge.sh
 
 cp ./dist/index.html ./dist/200.html
 surge --project ./dist --domain $DEPLOY_DOMAIN
