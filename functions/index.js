@@ -1,63 +1,74 @@
-const functions = require('firebase-functions');
-const admin = require('firebase-admin');
+const functions = require('firebase-functions')
+const admin = require('firebase-admin')
 
-admin.initializeApp();
+admin.initializeApp()
 
-const newsKey = 'news';
-const debugNewsKey = 'debug/news';
+const newsKey = 'news'
+const debugNewsKey = 'debug/news'
 
 function notification(event, context, key) {
-    const message = event.after.val();
-    if (!message) {
-        console.log('Notification Deleted. Exiting');
-        return false;
+  const message = event.after.val()
+  if (!message) {
+    console.log('Notification Deleted. Exiting')
+    return false
+  }
+
+  console.log('Send Notification?', context.params.pushId, message.notification)
+
+  const payload = {
+    notification: {
+      title: message.title || 'Notification',
+      body: message.notice
     }
+  }
 
-    console.log('Send Notification?', context.params.pushId, message.notification);
+  const topic = key.replace('/', '-')
 
-    const payload = {
-        notification: {
-            title: message.title || 'Notification',
-            body: message.notice
-        }
-    };
-
-    if (!message.sent) {
-        if (message.notification === 'yes') {
-            return admin.messaging().sendToTopic(key, payload)
-                .then(() => event.after.ref.update({
-                        sent: new Date().toISOString()
-                    }));
-        } else if (message.notification === 'only') {
-            return admin.messaging().sendToTopic(key, payload)
-                .then(() => event.after.ref.remove());
-        }
-    } else if (message.notification === 'only') {
-        return event.after.ref.remove();
+  if (!message.sent) {
+    if (message.notification === 'yes' || message.notification === 'only') {
+      return admin
+        .messaging()
+        .sendToTopic(topic, payload)
+        .then(() => {
+          if (message.notification === 'yes') {
+            return event.after.ref.update({
+              sent: new Date().toISOString()
+            })
+          } else {
+            return event.after.ref.remove()
+          }
+        })
     }
+  } else if (message.notification === 'only') {
+    return event.after.ref.remove()
+  }
 
-    return true;
+  return true
 }
 
-const getNotificationTrigger = key => functions.database.ref('/' + key + '/{pushId}')
-    .onWrite((event, context) => notification(event, context, key));
+const getNotificationTrigger = key =>
+  functions.database
+    .ref('/' + key + '/{pushId}')
+    .onWrite((event, context) => notification(event, context, key))
 
-exports.sendNotification = getNotificationTrigger(newsKey);
+exports.sendNotification = getNotificationTrigger(newsKey)
 
-exports.sendDebugNotification = getNotificationTrigger(debugNewsKey);
+exports.sendDebugNotification = getNotificationTrigger(debugNewsKey)
 
-exports.testDebug = functions.database.ref('/debug/test/{pushId}').onWrite((snapshot, context) => {
-    const message = snapshot.after.val();
+exports.testDebug = functions.database
+  .ref('/debug/test/{pushId}')
+  .onWrite((snapshot, context) => {
+    const message = snapshot.after.val()
     if (!message) {
-        console.log('Debug Deleted. Exiting');
-        return false;
+      console.log('Debug Deleted. Exiting')
+      return false
     }
 
-    console.log('Debug Message?', context.params.pushId, message.message);
+    console.log('Debug Message?', context.params.pushId, message.message)
 
-    return true;
-});
+    return true
+  })
 
 exports.hello = functions.https.onRequest((req, res) => {
-    res.status(200).send('Hello, World');
-});
+  res.status(200).send('Hello, World')
+})
