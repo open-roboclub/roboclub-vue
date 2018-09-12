@@ -905,9 +905,9 @@
     source-map "^0.5.6"
     vue-template-es2015-compiler "^1.6.0"
 
-"@vue/eslint-config-prettier@^3.0.2":
-  version "3.0.2"
-  resolved "https://registry.yarnpkg.com/@vue/eslint-config-prettier/-/eslint-config-prettier-3.0.2.tgz#734b79f5178997f4668dcbb9038e418432ddd01f"
+"@vue/eslint-config-prettier@^3.0.3":
+  version "3.0.3"
+  resolved "https://registry.yarnpkg.com/@vue/eslint-config-prettier/-/eslint-config-prettier-3.0.3.tgz#b1e43da08b4d2137db9cb974f56990015c0ac2b2"
   dependencies:
     eslint-config-prettier "^2.9.0"
     eslint-plugin-prettier "^2.6.2"
