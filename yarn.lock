@@ -7202,9 +7202,9 @@ vm-browserify@0.0.4:
   dependencies:
     indexof "0.0.1"
 
-vue-cli-plugin-vuetify@^0.2.1:
-  version "0.2.1"
-  resolved "https://registry.yarnpkg.com/vue-cli-plugin-vuetify/-/vue-cli-plugin-vuetify-0.2.1.tgz#fea624e5e4cf3cc2e655d469d441ec151fbb2c23"
+vue-cli-plugin-vuetify@^0.3.0:
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/vue-cli-plugin-vuetify/-/vue-cli-plugin-vuetify-0.3.0.tgz#09c0c0f8929b67398cbe5fb962b1ab38e919fa09"
 
 vue-eslint-parser@^2.0.3:
   version "2.0.3"
