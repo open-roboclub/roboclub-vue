@@ -28,7 +28,7 @@
     "lint-staged": "^7.3.0",
     "stylus": "^0.54.5",
     "stylus-loader": "^3.0.2",
-    "vue-cli-plugin-vuetify": "^0.2.1",
+    "vue-cli-plugin-vuetify": "^0.3.0",
     "vue-template-compiler": "^2.5.17"
   },
   "gitHooks": {
