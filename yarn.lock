@@ -4348,9 +4348,9 @@ levn@^0.3.0, levn@~0.3.0:
     prelude-ls "~1.1.2"
     type-check "~0.3.2"
 
-lint-staged@^8.0.0:
-  version "8.0.0"
-  resolved "https://registry.yarnpkg.com/lint-staged/-/lint-staged-8.0.0.tgz#65f0eaa2d9cc0a74de7be0c07c84fdff54d83ea0"
+lint-staged@^8.0.1:
+  version "8.0.1"
+  resolved "https://registry.yarnpkg.com/lint-staged/-/lint-staged-8.0.1.tgz#7682eed53550011bab33871905b67c34b1219c7e"
   dependencies:
     chalk "^2.3.1"
     commander "^2.14.1"
