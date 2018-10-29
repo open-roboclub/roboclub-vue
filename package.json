@@ -25,7 +25,7 @@
     "@vue/cli-plugin-pwa": "^3.0.5",
     "@vue/cli-service": "^3.0.5",
     "@vue/eslint-config-prettier": "^3.0.5",
-    "lint-staged": "^7.3.0",
+    "lint-staged": "^8.0.0",
     "stylus": "^0.54.5",
     "stylus-loader": "^3.0.2",
     "vue-cli-plugin-vuetify": "^0.4.5",
