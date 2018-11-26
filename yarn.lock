@@ -2437,9 +2437,9 @@ deepmerge@^1.5.2:
   version "1.5.2"
   resolved "https://registry.yarnpkg.com/deepmerge/-/deepmerge-1.5.2.tgz#10499d868844cdad4fee0842df8c7f6f0c95a753"
 
-deepmerge@^2.0.0:
-  version "2.1.1"
-  resolved "https://registry.yarnpkg.com/deepmerge/-/deepmerge-2.1.1.tgz#e862b4e45ea0555072bf51e7fd0d9845170ae768"
+deepmerge@^2.2.1:
+  version "2.2.1"
+  resolved "https://registry.yarnpkg.com/deepmerge/-/deepmerge-2.2.1.tgz#5d3ff22a01c00f645405a2fbc17d0778a1801170"
 
 default-gateway@^2.6.0:
   version "2.7.2"
@@ -7478,11 +7478,11 @@ vue-loader@^15.4.2:
     vue-hot-reload-api "^2.3.0"
     vue-style-loader "^4.1.0"
 
-vue-meta@^1.5.5:
-  version "1.5.5"
-  resolved "https://registry.yarnpkg.com/vue-meta/-/vue-meta-1.5.5.tgz#e24a5fea3a0c11b67c85947f0a7ee3f3edcbc01d"
+vue-meta@^1.5.6:
+  version "1.5.6"
+  resolved "https://registry.yarnpkg.com/vue-meta/-/vue-meta-1.5.6.tgz#8c6e56e560217c63637bb9ed66434df15c162057"
   dependencies:
-    deepmerge "^2.0.0"
+    deepmerge "^2.2.1"
     lodash.isplainobject "^4.0.6"
     object-assign "^4.1.1"
 
