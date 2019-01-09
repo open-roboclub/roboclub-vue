@@ -771,11 +771,11 @@
     eslint-plugin-vue "^4.7.1"
     globby "^8.0.1"
 
-"@vue/cli-plugin-pwa@^3.1.1":
-  version "3.1.1"
-  resolved "https://registry.yarnpkg.com/@vue/cli-plugin-pwa/-/cli-plugin-pwa-3.1.1.tgz#f679217dad44a55f4bf3d9920e3436e3a01781bb"
+"@vue/cli-plugin-pwa@^3.3.0":
+  version "3.3.0"
+  resolved "https://registry.yarnpkg.com/@vue/cli-plugin-pwa/-/cli-plugin-pwa-3.3.0.tgz#7818db99d96fb711014d7f5e35f24d3f909527b7"
   dependencies:
-    "@vue/cli-shared-utils" "^3.1.1"
+    "@vue/cli-shared-utils" "^3.3.0"
     workbox-webpack-plugin "^3.6.3"
 
 "@vue/cli-service@^3.3.0":
@@ -833,7 +833,7 @@
     webpack-merge "^4.1.5"
     yorkie "^2.0.0"
 
-"@vue/cli-shared-utils@^3.1.1", "@vue/cli-shared-utils@^3.3.0":
+"@vue/cli-shared-utils@^3.3.0":
   version "3.3.0"
   resolved "https://registry.yarnpkg.com/@vue/cli-shared-utils/-/cli-shared-utils-3.3.0.tgz#aba6c435bf9affb8180c43195ee85eb8d736d70f"
   dependencies:
