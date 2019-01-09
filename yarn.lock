@@ -760,11 +760,11 @@
     "@vue/babel-preset-app" "^3.1.0"
     babel-loader "^8.0.4"
 
-"@vue/cli-plugin-eslint@^3.1.4":
-  version "3.1.4"
-  resolved "https://registry.yarnpkg.com/@vue/cli-plugin-eslint/-/cli-plugin-eslint-3.1.4.tgz#7cf1a4a4540db9210a5e418eae3c19e1eb302275"
+"@vue/cli-plugin-eslint@^3.3.0":
+  version "3.3.0"
+  resolved "https://registry.yarnpkg.com/@vue/cli-plugin-eslint/-/cli-plugin-eslint-3.3.0.tgz#74689305e8623057106ed7654dfb0ea7d11395b1"
   dependencies:
-    "@vue/cli-shared-utils" "^3.1.1"
+    "@vue/cli-shared-utils" "^3.3.0"
     babel-eslint "^10.0.1"
     eslint "^4.19.1"
     eslint-loader "^2.1.1"
