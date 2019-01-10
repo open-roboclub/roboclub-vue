@@ -3363,9 +3363,9 @@ firebase@^5.7.2:
     "@firebase/polyfill" "0.3.3"
     "@firebase/storage" "0.2.4"
 
-firebaseui@^3.4.1:
-  version "3.4.1"
-  resolved "https://registry.yarnpkg.com/firebaseui/-/firebaseui-3.4.1.tgz#f440f1cc653d98f97caadf8f58f7d67b83d00fde"
+firebaseui@^3.5.1:
+  version "3.5.1"
+  resolved "https://registry.yarnpkg.com/firebaseui/-/firebaseui-3.5.1.tgz#98621f7c4f4a2cc74697b07537fd7f76fd76c646"
   dependencies:
     dialog-polyfill "^0.4.7"
 
