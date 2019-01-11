@@ -10,9 +10,23 @@
             <span class="headline">Add News Update</span>
           </v-card-title>
           <v-card-text>
-            <v-text-field label="Title" v-model="newsItem.title" prepend-icon="title" required></v-text-field>
-            <v-textarea label="Notice" v-model="newsItem.notice" prepend-icon="edit" required></v-textarea>
-            <v-text-field label="Link" v-model="newsItem.link" prepend-icon="link"></v-text-field>
+            <v-text-field
+              label="Title"
+              v-model="newsItem.title"
+              prepend-icon="title"
+              required
+            ></v-text-field>
+            <v-textarea
+              label="Notice"
+              v-model="newsItem.notice"
+              prepend-icon="edit"
+              required
+            ></v-textarea>
+            <v-text-field
+              label="Link"
+              v-model="newsItem.link"
+              prepend-icon="link"
+            ></v-text-field>
             <v-radio-group v-model="newsItem.notification">
               <v-radio label="Save" value="no"></v-radio>
               <v-radio label="Send notification" value="only"></v-radio>
@@ -22,7 +36,9 @@
           </v-card-text>
           <v-card-actions>
             <v-spacer></v-spacer>
-            <v-btn class="blue--text darken-1" flat @click="addDialog = false">Close</v-btn>
+            <v-btn class="blue--text darken-1" flat @click="addDialog = false"
+              >Close</v-btn
+            >
             <v-btn class="blue--text darken-1" flat @click="add">Save</v-btn>
           </v-card-actions>
         </v-card>
@@ -35,15 +51,36 @@
             <span class="headline">Edit News Update</span>
           </v-card-title>
           <v-card-text>
-            <v-text-field label="Title" v-model="editModel.title" prepend-icon="title" required></v-text-field>
-            <v-textarea label="Notice" v-model="editModel.notice" prepend-icon="edit" required></v-textarea>
-            <v-text-field label="Link" v-model="editModel.link" prepend-icon="link"></v-text-field>
+            <v-text-field
+              label="Title"
+              v-model="editModel.title"
+              prepend-icon="title"
+              required
+            ></v-text-field>
+            <v-textarea
+              label="Notice"
+              v-model="editModel.notice"
+              prepend-icon="edit"
+              required
+            ></v-textarea>
+            <v-text-field
+              label="Link"
+              v-model="editModel.link"
+              prepend-icon="link"
+            ></v-text-field>
             <small>*indicates required field</small>
           </v-card-text>
           <v-card-actions>
             <v-spacer></v-spacer>
-            <v-btn class="blue--text darken-1" flat @click="$emit('update:selectedToEdit', null)">Close</v-btn>
-            <v-btn class="blue--text darken-1" flat @click="editNews">Save</v-btn>
+            <v-btn
+              class="blue--text darken-1"
+              flat
+              @click="$emit('update:selectedToEdit', null)"
+              >Close</v-btn
+            >
+            <v-btn class="blue--text darken-1" flat @click="editNews"
+              >Save</v-btn
+            >
           </v-card-actions>
         </v-card>
       </v-dialog>
@@ -59,7 +96,9 @@
           </v-card-text>
           <v-card-actions>
             <v-spacer></v-spacer>
-            <v-btn class="blue--text" flat @click="deleteDialog = false">No</v-btn>
+            <v-btn class="blue--text" flat @click="deleteDialog = false"
+              >No</v-btn
+            >
             <v-btn class="red--text" flat @click="deleteNewsItem">Yes</v-btn>
           </v-card-actions>
         </v-card>

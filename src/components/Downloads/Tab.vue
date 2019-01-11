@@ -7,7 +7,11 @@
   >
     <template slot="headers" slot-scope="props">
       <tr>
-        <th v-for="header in props.headers" :key="header.text" class="text-xs-left">
+        <th
+          v-for="header in props.headers"
+          :key="header.text"
+          class="text-xs-left"
+        >
           {{ header.text }}
         </th>
       </tr>

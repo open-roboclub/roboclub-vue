@@ -1,5 +1,3 @@
 <template>
-    <div>
-        <p>The Create Meetup Page</p>
-    </div>
+  <div><p>The Create Meetup Page</p></div>
 </template>
