@@ -28,7 +28,8 @@
   </v-container>
 </template>
 
-<style src="firebaseui/dist/firebaseui.css"></style>
+<style src="firebaseui/dist/firebaseui.css">
+</style>
 
 <script>
 import firebase from 'firebase/app'

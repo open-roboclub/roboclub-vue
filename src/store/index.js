@@ -22,19 +22,7 @@ export default new Vuex.Store({
   },
   state: {
     user: null,
-    isAdmin: false,
-    items: [
-      {
-        imageUrl:
-          'https://proxy.duckduckgo.com/iu/?u=https%3A%2F%2Ftse2.mm.bing.net%2Fth%3Fid%3DOIP.G880D3i3lPayK7rxr4bQDwHaE6%26pid%3D15.1&f=1',
-        id: 'dkjcbdjkc'
-      },
-      {
-        imageUrl:
-          'https://proxy.duckduckgo.com/iu/?u=https%3A%2F%2Fi.ytimg.com%2Fvi%2FIska65C1kZ8%2Fmaxresdefault.jpg&f=1',
-        id: 'jkbckjec'
-      }
-    ]
+    isAdmin: false
   },
   mutations: {
     setUser(state, user) {

@@ -7,8 +7,7 @@
             <div>
               <div class="headline">Thanks for contributing!</div>
               <span class="grey--text text--lighten-3"
-                >You made us what we are today</span
-              >
+                >You made us what we are today</span>
             </div>
           </v-card-title>
           <v-progress-linear
