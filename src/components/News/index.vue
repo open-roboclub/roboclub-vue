@@ -4,7 +4,12 @@
       <v-flex xs12 sm10 md8 lg6 offset-sm1 offset-md2 offset-lg3>
         <v-card class="blue-grey white--text">
           <div class="text-xs-center headline pt-4 pb-4">News Panel</div>
-          <v-progress-linear :indeterminate="loading" v-show="loading" color="blue-grey" background-color="blue-grey lighten-3"></v-progress-linear>
+          <v-progress-linear
+            :indeterminate="loading"
+            v-show="loading"
+            color="blue-grey"
+            background-color="blue-grey lighten-3"
+          ></v-progress-linear>
         </v-card>
       </v-flex>
     </v-layout>
@@ -13,7 +18,8 @@
     <Admin
       :selectedToEdit.sync="selectedToEdit"
       :selectedToDelete.sync="selectedToDelete"
-      v-if="isAdmin" />
+      v-if="isAdmin"
+    />
 
     <v-layout row>
       <v-flex xs12 sm10 md8 lg6 offset-sm1 offset-md2 offset-lg3>
@@ -24,10 +30,10 @@
           :isAdmin="isAdmin"
           @edit="confirmEdit(newsUpdate)"
           @delete="confirmDelete(newsUpdate)"
-          class="mt-3" />
+          class="mt-3"
+        />
       </v-flex>
     </v-layout>
-
   </v-container>
 </template>
 

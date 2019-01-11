@@ -1,7 +1,5 @@
 <template>
-  <div>
-    <p>The Robocon Page</p>
-  </div>
+  <div><p>The Robocon Page</p></div>
 </template>
 
 <script>

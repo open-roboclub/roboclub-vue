@@ -6,16 +6,29 @@
           <v-card-title primary-title>
             <div>
               <div class="headline">Thanks for contributing!</div>
-              <span class="grey--text text--lighten-3">You made us what we are today</span>
+              <span class="grey--text text--lighten-3"
+                >You made us what we are today</span
+              >
             </div>
           </v-card-title>
-          <v-progress-linear :indeterminate="loading" v-show="loading" color="green lighten-3"></v-progress-linear>
+          <v-progress-linear
+            :indeterminate="loading"
+            v-show="loading"
+            color="green lighten-3"
+          ></v-progress-linear>
         </v-card>
       </v-flex>
     </v-layout>
     <v-layout row>
       <v-flex xs12 md10 lg8 xl6 offset-md1 offset-lg2 offset-xl3>
-        <v-data-table :headers="headers" :items="contributions" v-model="selected" item-key="contributor" select-all class="elevation-1">
+        <v-data-table
+          :headers="headers"
+          :items="contributions"
+          v-model="selected"
+          item-key="contributor"
+          select-all
+          class="elevation-1"
+        >
           <template slot="items" slot-scope="props">
             <td>
               <v-checkbox primary hide-details v-model="props.selected">
@@ -28,10 +41,7 @@
           </template>
         </v-data-table>
 
-        <ContributionAdmin
-          v-if="isAdmin"
-          :selected.sync="selected" />
-
+        <ContributionAdmin v-if="isAdmin" :selected.sync="selected" />
       </v-flex>
     </v-layout>
   </v-container>

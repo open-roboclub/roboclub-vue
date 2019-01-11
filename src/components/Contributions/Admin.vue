@@ -1,24 +1,52 @@
 <template>
   <div class="text-xs-center">
-    <v-btn @click="deleteContributions" v-show="selected.length > 0" fab dark large class="red mt-3">
+    <v-btn
+      @click="deleteContributions"
+      v-show="selected.length > 0"
+      fab
+      dark
+      large
+      class="red mt-3"
+    >
       <v-icon dark>delete</v-icon>
     </v-btn>
-    <v-btn @click="editContribution" v-show="selected.length == 1" fab dark large class="blue mt-3">
+    <v-btn
+      @click="editContribution"
+      v-show="selected.length == 1"
+      fab
+      dark
+      large
+      class="blue mt-3"
+    >
       <v-icon dark>edit</v-icon>
     </v-btn>
     <h5 class="grey--text text--darken-3 mt-4">Add a contribution</h5>
     <v-layout row wrap justify-space-between>
       <v-flex xs12 md4 xl2>
-        <v-text-field v-model="contribution.contributor" label="Contributor" :rules="[rules.required]"></v-text-field>
+        <v-text-field
+          v-model="contribution.contributor"
+          label="Contributor"
+          :rules="[rules.required]"
+        ></v-text-field>
       </v-flex>
       <v-flex xs12 md4 xl2>
-        <v-text-field v-model="contribution.amount" label="Amount" :rules="[rules.required]"></v-text-field>
+        <v-text-field
+          v-model="contribution.amount"
+          label="Amount"
+          :rules="[rules.required]"
+        ></v-text-field>
       </v-flex>
       <v-flex xs12 md4 xl2>
-        <v-text-field v-model="contribution.purpose" label="Purpose"></v-text-field>
+        <v-text-field
+          v-model="contribution.purpose"
+          label="Purpose"
+        ></v-text-field>
       </v-flex>
       <v-flex xs12 md4 xl2>
-        <v-text-field v-model="contribution.remark" label="Remark"></v-text-field>
+        <v-text-field
+          v-model="contribution.remark"
+          label="Remark"
+        ></v-text-field>
       </v-flex>
       <v-flex xs12 md4 xl2>
         <v-btn @click="save" fab dark class="cyan">
@@ -26,9 +54,18 @@
         </v-btn>
       </v-flex>
     </v-layout>
-    <v-snackbar :timeout="snackbar.timeout" :success="snackbar.context === 'success'" :info="snackbar.context === 'info'" :warning="snackbar.context === 'warning'"
-      :error="snackbar.context === 'error'" :primary="snackbar.context === 'primary'" :secondary="snackbar.context === 'secondary'"
-      :multi-line="snackbar.mode === 'multi-line'" :vertical="snackbar.mode === 'vertical'" v-model="snackbar.show">
+    <v-snackbar
+      :timeout="snackbar.timeout"
+      :success="snackbar.context === 'success'"
+      :info="snackbar.context === 'info'"
+      :warning="snackbar.context === 'warning'"
+      :error="snackbar.context === 'error'"
+      :primary="snackbar.context === 'primary'"
+      :secondary="snackbar.context === 'secondary'"
+      :multi-line="snackbar.mode === 'multi-line'"
+      :vertical="snackbar.mode === 'vertical'"
+      v-model="snackbar.show"
+    >
       {{ snackbar.text }}
       <v-btn dark flat @click="snackbar.show = false">Close</v-btn>
     </v-snackbar>

@@ -2,12 +2,16 @@
   <tr>
     <td>{{ item.name }}</td>
     <td>{{ item.file }}</td>
-    <td><div v-if="item.size">{{ fileSizeSI(item.size) }}</div></td>
-    <td><a v-if="item.url" :href="item.url" target="_blank">
-      <v-btn color="pink" dark small fab>
-        <v-icon>cloud_download</v-icon>
-      </v-btn>
-    </a></td>
+    <td>
+      <div v-if="item.size">{{ fileSizeSI(item.size) }}</div>
+    </td>
+    <td>
+      <a v-if="item.url" :href="item.url" target="_blank">
+        <v-btn color="pink" dark small fab>
+          <v-icon>cloud_download</v-icon>
+        </v-btn>
+      </a>
+    </td>
   </tr>
 </template>
 
