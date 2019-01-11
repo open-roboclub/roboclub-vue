@@ -5,7 +5,7 @@
         <v-card class="mt-0 mb-3" color="rgb(77, 77, 255)">
           <v-card-text>
             <div>
-              <h1 class="robocon-header">Robocon</h1>
+              <h1 class="robocon-header">{{ robocon.title || "Robocon" }}</h1>
             </div>
           </v-card-text>
         </v-card>
@@ -23,21 +23,14 @@
           </v-card>
           <v-card>
             <v-img
-           src="https://cdn.vuetifyjs.com/images/cards/desert.jpg"
+           :src="robocon.image"
            aspect-ratio="2.75"
          ></v-img>
           </v-card>
           <v-card class="mb-3">
             <v-card-text>
               <div>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-                dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                proident, sunt in culpa qui officia deserunt mollit anim id
-                est laborum.
+                {{ robocon.introduction }}
               </div>
             </v-card-text>
           </v-card>
@@ -50,18 +43,14 @@
               </div>
             </v-card-title>
           </v-card>
-          <v-card class="mb-3">
-            <v-data-table
-            :headers="headers"
-            :items="sponsors"
-            class="elevation-1"
-            >
-              <template slot="items" slot-scope="props">
-                <td>{{ props.item.name }}</td>
-                <td>{{ props.item.contribution }}</td>
-                <td>{{ props.item.remarks }}</td>
-              </template>
-            </v-data-table>
+          <v-card>
+              <v-carousel delimiter-icon="stop">
+    	    			<v-carousel-item
+    	      			v-for="item in robocon.sponsors"
+    	      			:key="item"
+    	      			:src="item.image">
+    	   				</v-carousel-item>
+   				    </v-carousel>
           </v-card>
         </v-card>
       </v-flex>
@@ -70,9 +59,9 @@
           <v-card class="mb-3">
               <v-carousel delimiter-icon="stop">
     	    			<v-carousel-item
-    	      			v-for="item in items"
-    	      			:key="item.id"
-    	      			:src="item.imageUrl">
+    	      			v-for="item in robocon.gallery"
+    	      			:key="item"
+    	      			:src="item">
     	   				</v-carousel-item>
    				    </v-carousel>
             </v-card>
@@ -86,30 +75,7 @@
           <v-card>
             <v-card-text>
               <div>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed
-                   do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                   Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                   laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-                   irure dolor in reprehenderit in voluptate velit esse cillum
-                   dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-                   cupidatat non proident, sunt in culpa qui officia deserunt
-                   mollit anim id est laborum.</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed
-                   do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                   Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                   laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-                   irure dolor in reprehenderit in voluptate velit esse cillum
-                   dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-                   cupidatat non proident, sunt in culpa qui officia deserunt
-                   mollit anim id est laborum.</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed
-                   do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                   Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                   laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-                   irure dolor in reprehenderit in voluptate velit esse cillum
-                   dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-                   cupidatat non proident, sunt in culpa qui officia deserunt
-                   mollit anim id est laborum.</p>
+                {{ robocon.about }}
               </div>
             </v-card-text>
           </v-card>
@@ -120,47 +86,33 @@
 </template>
 
 <script>
+import { mapState, mapActions } from 'vuex'
+
 export default {
   metaInfo: {
     title: 'Robocon'
   },
   computed: {
-    items() {
-      return this.$store.getters.imgItems
-    }
+    ...mapState('robocon', ['robocon'])
+  },
+  methods: mapActions('robocon', ['setRoboconRef']),
+  created() {
+    this.setRoboconRef({
+      ref: this.$firebase.database().ref('robocon/current'),
+      callbacks: {
+        readyCallback: () => {
+          this.loading = false
+        },
+        cancelCallback: error => {
+          console.error(error)
+          this.loading = false
+        }
+      }
+    })
   },
   data() {
     return {
-      headers: [
-        {
-          text: 'Sponsor(s)',
-          align: 'left',
-          sortable: false,
-          value: 'name'
-        },
-        { text: 'Contribution', value: 'contribution' },
-        { text: 'Remarks', value: 'remarks' }
-      ],
-      sponsors: [
-        {
-          value: false,
-          name: "Engineer's choice",
-          contribution: '₹ 5000',
-          remarks: '-'
-        },
-        {
-          value: false,
-          name: 'Prof. Ekram Khan',
-          contribution: '1300',
-          remarks: '-'
-        },
-        {
-          value: false,
-          name: "La'Chef",
-          contribution: 'Robocon T-Shirts',
-          remarks: '-'
-        }
-      ]
+      loading: true
     }
   }
 }
