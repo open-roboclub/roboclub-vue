@@ -22,7 +22,7 @@ export default {
   getters: {
     team: state => {
       return state.team.sort((memberA, memberB) => {
-        return memberA.rank > memberB.rank
+        return memberA.rank - memberB.rank
       })
     }
   }

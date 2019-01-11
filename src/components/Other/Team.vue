@@ -44,6 +44,15 @@
               </div>
             </v-flex>
           </v-card-title>
+          <v-card color="#F8F8FF">
+            <v-card-title>
+              <v-flex xs12 class="text-xs-center">
+                <div class="ml-2 grey--text text--darken-2">
+                  <span class="headline">No Contact</span>
+                </div>
+              </v-flex>
+            </v-card-title>
+          </v-card>
         </v-card>
       </v-hover>
     </v-layout>
