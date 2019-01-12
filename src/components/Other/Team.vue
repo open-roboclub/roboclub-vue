@@ -53,6 +53,20 @@
               </v-flex>
             </v-card-text>
           </v-card>
+          <v-card color="#F8F8FF" v-if="member.links">
+            <v-card-text>
+              <v-flex xs12 class="text-xs-center">
+                <v-btn
+                v-for="link in member.links"
+                :key="link"
+                class="mx-3"
+                icon
+                >
+                  <v-img size="24px" aspect-ratio="1" src="https://cdn3.iconfinder.com/data/icons/free-social-icons/67/facebook_circle_color-512.png" v-if="link[facebook]"></v-img>
+                </v-btn>
+              </v-flex>
+            </v-card-text>
+          </v-card>
         </v-card>
       </v-hover>
     </v-layout>
@@ -86,13 +100,7 @@ export default {
   },
   data() {
     return {
-      loading: true,
-      icons: [
-        'fa-Coffee',
-        'fa fa-twitter-square',
-        'fa fa-google-plus-square',
-        'fa fa-linkedin-square'
-      ]
+      loading: true
     }
   }
 }
