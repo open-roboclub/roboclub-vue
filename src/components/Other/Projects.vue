@@ -12,8 +12,12 @@
       </v-flex>
     </v-layout>
     <v-layout row wrap>
-      <v-hover v-for="project in projects" :key="project" class="mb-3"
-      v-if="!project.ongoing">
+      <v-hover
+      v-for="project in projects"
+      :key="project"
+      class="mb-3"
+      v-if="!project.ongoing"
+      >
         <v-card
           slot-scope="{ hover }"
           :class="`elevation-${hover ? 12 : 2}`"
@@ -42,38 +46,10 @@
                     <span>{{ project.team }}</span>
                   </div>
                 </div>
-                <v-btn
-              color="primary"
-              dark
-              @click="dialog = true"
-            >
-              Open Dialog
-            </v-btn>
               </div>
             </v-flex>
           </v-card-title>
         </v-card>
-        <v-dialog
-        v-model="dialog"
-        max-width="290"
-      >
-        <v-card>
-          <v-card-title class="headline">{{ project.name }}</v-card-title>
-          <v-card-text>
-            {{ project.description }}
-          </v-card-text>
-          <v-card-actions>
-            <v-spacer></v-spacer>
-            <v-btn
-              color="green darken-1"
-              flat="flat"
-              @click="dialog = false"
-            >
-              Close
-            </v-btn>
-          </v-card-actions>
-        </v-card>
-      </v-dialog>
       </v-hover>
     </v-layout>
   </v-container>
@@ -106,8 +82,7 @@ export default {
   },
   data() {
     return {
-      loading: true,
-      dialog: false
+      loading: true
     }
   }
 }
