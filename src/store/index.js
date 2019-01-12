@@ -6,6 +6,7 @@ import meetups from './modules/meetups'
 import downloads from './modules/downloads'
 import robocon from './modules/robocon'
 import team from './modules/team'
+import projects from './modules/projects'
 import { database, auth } from 'firebase/app'
 import 'firebase/auth'
 import 'firebase/database'
@@ -20,6 +21,7 @@ export default new Vuex.Store({
     downloads,
     robocon,
     team,
+    projects,
     meetups
   },
   state: {
