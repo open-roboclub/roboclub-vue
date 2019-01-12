@@ -44,14 +44,14 @@
               </div>
             </v-flex>
           </v-card-title>
-          <v-card color="#F8F8FF">
-            <v-card-title>
+          <v-card color="#F8F8FF" v-if="!member.links">
+            <v-card-text>
               <v-flex xs12 class="text-xs-center">
                 <div class="ml-2 grey--text text--darken-2">
-                  <span class="headline">No Contact</span>
+                  <span class="headline mb-0">No Contact</span>
                 </div>
               </v-flex>
-            </v-card-title>
+            </v-card-text>
           </v-card>
         </v-card>
       </v-hover>
@@ -86,7 +86,13 @@ export default {
   },
   data() {
     return {
-      loading: true
+      loading: true,
+      icons: [
+        'fa-Coffee',
+        'fa fa-twitter-square',
+        'fa fa-google-plus-square',
+        'fa fa-linkedin-square'
+      ]
     }
   }
 }
