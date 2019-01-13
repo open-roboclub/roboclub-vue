@@ -44,7 +44,7 @@
               </div>
             </v-flex>
           </v-card-title>
-          <v-card color="#F8F8FF" v-if="!member.links">
+          <v-card color="#F8F8FF" v-if="!member.links" class="mt-3">
             <v-card-text>
               <v-flex xs12 class="text-xs-center">
                 <div class="ml-2 grey--text text--darken-2">
@@ -89,22 +89,16 @@ export default {
       switch (type) {
         case 'facebook':
           return 'https://cdn3.iconfinder.com/data/icons/free-social-icons/67/facebook_circle_color-512.png'
-          break
         case 'email':
           return 'https://cdn2.iconfinder.com/data/icons/jetflat-multimedia/90/004_009_mail_email_envelope_message-512.png'
-          break
         case 'g-plus':
           return 'https://cdn0.iconfinder.com/data/icons/social-media-2091/100/social-03-512.png'
-          break
         case 'linkedin':
           return 'https://cdn4.iconfinder.com/data/icons/miu-flat-social/60/linkedin-512.png'
-          break
         case 'mobile':
           return 'https://cdn3.iconfinder.com/data/icons/mobile-functions/154/call-512.png'
-          break
         case 'twitter':
           return 'https://cdn4.iconfinder.com/data/icons/social-media-icons-the-circle-set/48/twitter_circle-512.png'
-          break
       }
     },
     openLink: function(link, type) {
