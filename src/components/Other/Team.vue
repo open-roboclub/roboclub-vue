@@ -12,7 +12,7 @@
       </v-flex>
     </v-layout>
     <v-layout row wrap>
-      <v-hover v-for="(member, index) in team" :key="index" class="mb-3">
+      <v-hover v-for="(member, index) in members" :key="index" class="mb-3">
         <v-card
           slot-scope="{ hover }"
           :class="`elevation-${hover ? 12 : 2}`"
@@ -57,12 +57,13 @@
             <v-card-text>
               <v-flex xs12 class="text-xs-center">
                 <v-btn
-                v-for="link in member.links"
-                :key="link"
+                v-for="(link, type) in member.links"
+                :key="type"
+                @click="openLink(link, type)"
                 class="mx-3"
                 icon
                 >
-                  <v-img size="24px" aspect-ratio="1" src="https://cdn3.iconfinder.com/data/icons/free-social-icons/67/facebook_circle_color-512.png" v-if="link[facebook]"></v-img>
+                  <v-img size="24px" aspect-ratio="1" :src="iconUrl(type)"></v-img>
                 </v-btn>
               </v-flex>
             </v-card-text>
@@ -81,12 +82,48 @@ export default {
     title: 'Team'
   },
   computed: {
-    ...mapGetters('team', ['team'])
+    ...mapGetters('team', ['members'])
   },
-  methods: mapActions('team', ['setTeamRef']),
+  methods: {
+    iconUrl: function(type) {
+      switch (type) {
+        case 'facebook':
+          return 'https://cdn3.iconfinder.com/data/icons/free-social-icons/67/facebook_circle_color-512.png'
+          break
+        case 'email':
+          return 'https://cdn2.iconfinder.com/data/icons/jetflat-multimedia/90/004_009_mail_email_envelope_message-512.png'
+          break
+        case 'g-plus':
+          return 'https://cdn0.iconfinder.com/data/icons/social-media-2091/100/social-03-512.png'
+          break
+        case 'linkedin':
+          return 'https://cdn4.iconfinder.com/data/icons/miu-flat-social/60/linkedin-512.png'
+          break
+        case 'mobile':
+          return 'https://cdn3.iconfinder.com/data/icons/mobile-functions/154/call-512.png'
+          break
+        case 'twitter':
+          return 'https://cdn4.iconfinder.com/data/icons/social-media-icons-the-circle-set/48/twitter_circle-512.png'
+          break
+      }
+    },
+    openLink: function(link, type) {
+      if (
+        type == 'facebook' ||
+        type == 'linkedin' ||
+        type == 'twitter' ||
+        type == 'g-plus'
+      ) {
+        window.location.href = link
+      } else {
+        window.alert(link)
+      }
+    },
+    ...mapActions('team', ['setTeamRef'])
+  },
   created() {
     this.setTeamRef({
-      ref: this.$firebase.database().ref('team/current/members'),
+      ref: this.$firebase.database().ref('team/current'),
       callbacks: {
         readyCallback: () => {
           this.loading = false

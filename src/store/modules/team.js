@@ -3,7 +3,7 @@ import { firebaseAction } from 'vuexfire'
 export default {
   namespaced: true,
   state: {
-    team: [],
+    team: {},
     teamRef: null
   },
   mutations: {
@@ -20,8 +20,11 @@ export default {
     )
   },
   getters: {
-    team: state => {
-      return state.team.sort((memberA, memberB) => {
+    members: state => {
+      if (!state.team.members) {
+        return []
+      }
+      return Object.values(state.team.members).sort((memberA, memberB) => {
         return memberA.rank - memberB.rank
       })
     }
