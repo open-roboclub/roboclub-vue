@@ -5,7 +5,7 @@
         <v-card class="mt-0 mb-3" color="rgb(77, 77, 255)">
           <v-card-text>
             <div>
-              <h1 class="robocon-header">{{ robocon.title || "Robocon" }}</h1>
+              <h1 class="robocon-header">{{ robocon.title || 'Robocon' }}</h1>
             </div>
           </v-card-text>
         </v-card>
@@ -22,61 +22,55 @@
             </v-card-title>
           </v-card>
           <v-card>
-            <v-img
-           :src="robocon.image"
-           aspect-ratio="2.75"
-         ></v-img>
+            <v-img :src="robocon.image" aspect-ratio="2.75"></v-img>
           </v-card>
           <v-card class="mb-3">
             <v-card-text>
-              <div>
-                {{ robocon.introduction }}
-              </div>
+              <div>{{ robocon.introduction }}</div>
             </v-card-text>
           </v-card>
           <v-card color="#00FFFF">
             <v-card-title primary-title>
               <div>
                 <div class="headline #000080--text">Our Sponsors</div>
-                <span class="#000080--text text--lighten-3">Thanks for your
-                support!</span>
+                <span class="#000080--text text--lighten-3">
+                  Thanks for your support!
+                </span>
               </div>
             </v-card-title>
           </v-card>
           <v-card>
-              <v-carousel delimiter-icon="stop">
-    	    			<v-carousel-item
-    	      			v-for="item in robocon.sponsors"
-    	      			:key="item"
-    	      			:src="item.image">
-    	   				</v-carousel-item>
-   				    </v-carousel>
+            <v-carousel delimiter-icon="stop">
+              <v-carousel-item
+                v-for="item in robocon.sponsors"
+                :key="item"
+                :src="item.image"
+              >
+              </v-carousel-item>
+            </v-carousel>
           </v-card>
         </v-card>
       </v-flex>
-      <v-flex xs12 sm12  md6 class="text-sm-center md-right">
+      <v-flex xs12 sm12 md6 class="text-sm-center md-right">
         <v-card class="ml-3">
           <v-card class="mb-3">
-              <v-carousel delimiter-icon="stop">
-    	    			<v-carousel-item
-    	      			v-for="item in robocon.gallery"
-    	      			:key="item"
-    	      			:src="item">
-    	   				</v-carousel-item>
-   				    </v-carousel>
-            </v-card>
+            <v-carousel delimiter-icon="stop">
+              <v-carousel-item
+                v-for="item in robocon.gallery"
+                :key="item"
+                :src="item"
+              >
+              </v-carousel-item>
+            </v-carousel>
+          </v-card>
           <v-card color="rgb(211, 211, 211)">
             <v-card-title primary-title>
-              <div>
-                <h1 class="heading mb-0">About</h1>
-              </div>
+              <div><h1 class="heading mb-0">About</h1></div>
             </v-card-title>
           </v-card>
           <v-card>
             <v-card-text>
-              <div>
-                {{ robocon.about }}
-              </div>
+              <div>{{ robocon.about }}</div>
             </v-card-text>
           </v-card>
         </v-card>

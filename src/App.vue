@@ -53,7 +53,9 @@
         </v-btn>
       </v-toolbar-items>
       <v-menu bottom left class="hidden-xs-only">
-        <v-btn icon slot="activator"> <v-icon>more_vert</v-icon> </v-btn>
+        <v-btn icon slot="activator">
+          <v-icon>mdi-dots-vertical</v-icon>
+        </v-btn>
         <v-list>
           <v-list-tile
             v-for="item in moreItems"
@@ -91,17 +93,22 @@ export default {
     return {
       sideNav: false,
       menuItems: [
-        { icon: 'group', title: 'Team', link: '/team' },
-        { icon: 'build', title: 'Projects', link: '/projects' },
-        { icon: 'notifications', title: 'News', link: '/news' },
-        { icon: 'person', title: 'Profile', link: '/profile', auth: true },
-        { icon: 'lock_open', title: 'Sign In', link: '/signin', auth: false }
+        { icon: 'mdi-account-multiple', title: 'Team', link: '/team' },
+        { icon: 'mdi-wrench', title: 'Projects', link: '/projects' },
+        { icon: 'mdi-bell', title: 'News', link: '/news' },
+        { icon: 'mdi-account', title: 'Profile', link: '/profile', auth: true },
+        {
+          icon: 'mdi-lock-open',
+          title: 'Sign In',
+          link: '/signin',
+          auth: false
+        }
       ],
       moreItems: [
-        { icon: 'android', title: 'Robocon', link: '/robocon' },
-        { icon: 'file_download', title: 'Downloads', link: '/downloads' },
+        { icon: 'mdi-android', title: 'Robocon', link: '/robocon' },
+        { icon: 'mdi-cloud-download', title: 'Downloads', link: '/downloads' },
         {
-          icon: 'monetization_on',
+          icon: 'mdi-coin',
           title: 'Contributions',
           link: '/contributions'
         }

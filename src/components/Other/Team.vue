@@ -4,72 +4,63 @@
       <v-flex xs10 sm6 offset-sm3 offset-xs1>
         <v-card class="mt-0 mb-4" color="#C1FFC1">
           <v-card-text>
-            <div>
-              <h1 class="team-header">Team</h1>
-            </div>
+            <div><h1 class="team-header">Team</h1></div>
           </v-card-text>
         </v-card>
       </v-flex>
     </v-layout>
     <v-layout row wrap>
-      <v-hover v-for="(member, index) in members" :key="index" class="mb-3">
-        <v-card
-          slot-scope="{ hover }"
-          :class="`elevation-${hover ? 12 : 2}`"
-          class="mx-auto"
-          width="400"
-        ><br>
+      <v-card
+        v-for="member in members"
+        :key="member['.key']"
+        class="mx-auto mb-3"
+        width="400"
+      >
         <v-flex xs12 class="text-xs-center">
-          <v-avatar
-            :tile="false"
-            :size="200"
-            color="grey lighten-4"
-          >
+          <v-avatar :tile="false" :size="200" color="grey lighten-4 mt-3">
             <v-img
-              :aspect-ratio="16/9"
+              :aspect-ratio="16 / 9"
               :src="member.thumbnail"
               alt="Avatar"
-            ></v-img>
+            />
           </v-avatar>
         </v-flex>
-          <v-card-title>
-            <v-flex xs12 class="text-xs-center">
-              <div>
-                <span class="headline">{{ member.name }}</span>
-                <div class="d-flex">
-                  <div class="ml-2 grey--text text--darken-2">
-                    <span>{{ member.position }}</span>
-                  </div>
+        <v-card-title>
+          <v-flex xs12 class="text-xs-center">
+            <div>
+              <span class="headline">{{ member.name }}</span>
+              <div class="d-flex">
+                <div class="ml-2 grey--text text--darken-2">
+                  <span>{{ member.position }}</span>
                 </div>
               </div>
-            </v-flex>
-          </v-card-title>
-          <v-card color="#F8F8FF" v-if="!member.links" class="mt-3">
-            <v-card-text>
-              <v-flex xs12 class="text-xs-center">
-                <div class="ml-2 grey--text text--darken-2">
-                  <span class="headline mb-0">No Contact</span>
-                </div>
-              </v-flex>
-            </v-card-text>
-          </v-card>
-          <v-card color="#F8F8FF" v-if="member.links">
-            <v-card-text>
-              <v-flex xs12 class="text-xs-center">
-                <v-btn
-                v-for="(link, type) in member.links"
-                :key="type"
-                @click="openLink(link, type)"
-                class="mx-3"
-                icon
-                >
-                  <v-img size="24px" aspect-ratio="1" :src="iconUrl(type)"></v-img>
-                </v-btn>
-              </v-flex>
-            </v-card-text>
-          </v-card>
-        </v-card>
-      </v-hover>
+            </div>
+          </v-flex>
+        </v-card-title>
+        <v-flex class="grey lighten-3 text-xs-center">
+          <div v-if="!member.links" class="ml-2 grey--text text--darken-2">
+            <span class="headline mb-0">No Contact</span>
+          </div>
+          <v-btn
+            v-else
+            v-for="(link, type) in member.links"
+            :key="type"
+            class="mx-3"
+            :color="iconColor(type)"
+            fab
+            dark
+            small
+          >
+            <a
+              :href="getLink(link, type)"
+              target="_blank"
+              style="text-decoration: none; color: inherit"
+            >
+              <v-icon dark>{{ icon(type) }}</v-icon>
+            </a>
+          </v-btn>
+        </v-flex>
+      </v-card>
     </v-layout>
   </v-container>
 </template>
@@ -85,33 +76,44 @@ export default {
     ...mapGetters('team', ['members'])
   },
   methods: {
-    iconUrl: function(type) {
+    iconColor(type) {
       switch (type) {
         case 'facebook':
-          return 'https://cdn3.iconfinder.com/data/icons/free-social-icons/67/facebook_circle_color-512.png'
+          return 'blue darken-4'
         case 'email':
-          return 'https://cdn2.iconfinder.com/data/icons/jetflat-multimedia/90/004_009_mail_email_envelope_message-512.png'
+          return 'red darken-1'
         case 'g-plus':
-          return 'https://cdn0.iconfinder.com/data/icons/social-media-2091/100/social-03-512.png'
+          return 'red darken-4'
         case 'linkedin':
-          return 'https://cdn4.iconfinder.com/data/icons/miu-flat-social/60/linkedin-512.png'
+          return 'indigo darken-1'
         case 'mobile':
-          return 'https://cdn3.iconfinder.com/data/icons/mobile-functions/154/call-512.png'
+          return 'green darken-3'
         case 'twitter':
-          return 'https://cdn4.iconfinder.com/data/icons/social-media-icons-the-circle-set/48/twitter_circle-512.png'
+          return 'light-blue darken-1'
       }
     },
-    openLink: function(link, type) {
-      if (
-        type == 'facebook' ||
-        type == 'linkedin' ||
-        type == 'twitter' ||
-        type == 'g-plus'
-      ) {
-        window.location.href = link
-      } else {
-        window.alert(link)
+    icon(type) {
+      switch (type) {
+        case 'g-plus':
+          return 'mdi-google-plus'
+        case 'mobile':
+          return 'mdi-phone'
+        default:
+          return `mdi-${type}`
       }
+    },
+    getLink(link, type) {
+      if (type === 'email') {
+        return 'mailto:' + link
+      } else if (type === 'mobile') {
+        return 'tel:' + link
+      } else {
+        if (!link.startsWith('http://') || !link.startsWith('https://')) {
+          return '//' + link
+        }
+      }
+
+      return link
     },
     ...mapActions('team', ['setTeamRef'])
   },
