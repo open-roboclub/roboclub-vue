@@ -21,6 +21,8 @@
         <v-card
           slot-scope="{ hover }"
           :class="`elevation-${hover ? 12 : 2}`"
+          @click="openDialog(project)"
+          style="cursor: pointer"
           class="mx-auto"
           width="450"
         ><br>
@@ -39,18 +41,60 @@
         </v-flex>
           <v-card-title>
             <v-flex xs12 class="text-xs-center">
-              <div>
                 <span class="headline">{{ project.name }}</span>
                 <div class="d-flex">
                   <div class="ml-2 grey--text text--darken-2">
                     <span>{{ project.team }}</span>
                   </div>
                 </div>
-              </div>
             </v-flex>
           </v-card-title>
         </v-card>
       </v-hover>
+      <div class="text-xs-center">
+        <v-dialog
+        v-model="dialog"
+        full-width
+        scrollable
+        transition="dialog-bottom-transition"
+        >
+          <v-card>
+            <v-card-title
+            class="headline grey lighten-2"
+            primary-title
+            >
+              {{ name }}
+            </v-card-title>
+            <v-flex xs12 class="text-xs-center mt-2 mb-0">
+              <v-avatar
+                :tile="false"
+                :size="225"
+                color="grey lighten-4"
+              >
+                <v-img
+                  :aspect-ratio="16/9"
+                  :src="image"
+                  alt="Avatar"
+                ></v-img>
+              </v-avatar>
+            </v-flex>
+            <v-card-text>
+              <p>{{ description }}</p>
+            </v-card-text>
+            <v-divider></v-divider>
+            <v-card-actions>
+              <v-spacer></v-spacer>
+              <v-btn
+              color="primary"
+              flat
+              @click="dialog = false"
+              >
+                Close
+              </v-btn>
+            </v-card-actions>
+          </v-card>
+        </v-dialog>
+      </div>
     </v-layout>
   </v-container>
 </template>
@@ -65,7 +109,15 @@ export default {
   computed: {
     ...mapState('projects', ['projects'])
   },
-  methods: mapActions('projects', ['setProjectsRef']),
+  methods: {
+    openDialog: function(project) {
+      this.dialog = true
+      this.name = project.name
+      this.description = project.description
+      this.image = project.image
+    },
+    ...mapActions('projects', ['setProjectsRef'])
+  },
   created() {
     this.setProjectsRef({
       ref: this.$firebase.database().ref('projects'),
@@ -82,7 +134,11 @@ export default {
   },
   data() {
     return {
-      loading: true
+      loading: true,
+      dialog: false,
+      name: '',
+      description: '',
+      image: ''
     }
   }
 }
@@ -92,5 +148,8 @@ export default {
 .projects-header {
   color: white;
   text-align: center;
+}
+p {
+  font-size: 18px;
 }
 </style>
