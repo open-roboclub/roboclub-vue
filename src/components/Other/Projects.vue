@@ -54,7 +54,7 @@
       <div class="text-xs-center">
         <v-dialog
         v-model="dialog"
-        full-width
+        max-width="500"
         scrollable
         transition="dialog-bottom-transition"
         >
@@ -85,6 +85,13 @@
             <v-card-actions>
               <v-spacer></v-spacer>
               <v-btn
+              color="green darken-1"
+              flat
+              @click="openProject(projectId)"
+              >
+                Amaze Me
+              </v-btn>
+              <v-btn
               color="primary"
               flat
               @click="dialog = false"
@@ -113,8 +120,16 @@ export default {
     openDialog: function(project) {
       this.dialog = true
       this.name = project.name
-      this.description = project.description
       this.image = project.image
+      this.id = project.id
+      if (project.description == '') {
+        this.description = 'No description'
+      } else {
+        this.description = project.description
+      }
+    },
+    openProject: function () {
+      this.$router.push('/projects/' + this.id)
     },
     ...mapActions('projects', ['setProjectsRef'])
   },
@@ -138,7 +153,8 @@ export default {
       dialog: false,
       name: '',
       description: '',
-      image: ''
+      image: '',
+      id: ''
     }
   }
 }
