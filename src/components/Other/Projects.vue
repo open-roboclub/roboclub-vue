@@ -128,7 +128,7 @@ export default {
         this.description = project.description
       }
     },
-    openProject: function () {
+    openProject: function() {
       this.$router.push('/projects/' + this.id)
     },
     ...mapActions('projects', ['setProjectsRef'])
