@@ -18,5 +18,10 @@ export default {
         commit('setProjectsRef', ref)
       }
     )
+  },
+  getters: {
+    getProjectById(state) {
+      return id => state.projects.find(project => project.id === id)
+    }
   }
 }

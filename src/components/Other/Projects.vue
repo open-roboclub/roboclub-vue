@@ -54,7 +54,7 @@
       <div class="text-xs-center">
         <v-dialog
         v-model="dialog"
-        max-width="500"
+        full-width
         scrollable
         transition="dialog-bottom-transition"
         >
@@ -89,7 +89,7 @@
               flat
               @click="openProject(projectId)"
               >
-                Amaze Me
+                Know More
               </v-btn>
               <v-btn
               color="primary"
