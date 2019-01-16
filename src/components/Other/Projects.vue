@@ -53,10 +53,10 @@
       </v-hover>
       <div class="text-xs-center">
         <v-dialog
-        v-model="dialog"
-        full-width
-        scrollable
-        transition="dialog-bottom-transition"
+          v-model="dialog"
+          full-width
+          scrollable
+          transition="dialog-bottom-transition"
         >
           <v-card>
             <v-card-title
@@ -85,16 +85,16 @@
             <v-card-actions>
               <v-spacer></v-spacer>
               <v-btn
-              color="green darken-1"
-              flat
-              @click="openProject(projectId)"
+                color="green darken-1"
+                flat
+                @click="openProject(projectId)"
               >
                 Know More
               </v-btn>
               <v-btn
-              color="primary"
-              flat
-              @click="dialog = false"
+                color="primary"
+                flat
+                @click="dialog = false"
               >
                 Close
               </v-btn>

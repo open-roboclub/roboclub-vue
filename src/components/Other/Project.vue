@@ -11,10 +11,10 @@
           </v-card-title>
           <v-flex xs12 class="text-xs-center mt-2 mb-0">
             <v-avatar
-            v-if="!project.images"
-            :tile="false"
-            :size="225"
-            color="grey lighten-4"
+              v-if="!project.images"
+              :tile="false"
+              :size="225"
+              color="grey lighten-4"
             >
               <v-img
                 :aspect-ratio="16/9"
@@ -24,9 +24,9 @@
             </v-avatar>
             <v-carousel v-if="project.images">
               <v-carousel-item
-              v-for="image in project.images"
-              :src="image"
-              :key="image"
+                v-for="image in project.images"
+                :src="image"
+                :key="image"
               >
               </v-carousel-item>
             </v-carousel>
