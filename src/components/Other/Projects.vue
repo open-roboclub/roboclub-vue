@@ -60,10 +60,10 @@
         >
           <v-card>
             <v-card-title
-            class="headline grey lighten-2"
-            primary-title
+              class="headline grey lighten-2"
+              primary-title
             >
-              {{ name }}
+              {{ selectedProject.name }}
             </v-card-title>
             <v-flex xs12 class="text-xs-center mt-2 mb-0">
               <v-avatar
@@ -73,13 +73,13 @@
               >
                 <v-img
                   :aspect-ratio="16/9"
-                  :src="image"
+                  :src="selectedProject.image"
                   alt="Avatar"
                 ></v-img>
               </v-avatar>
             </v-flex>
             <v-card-text>
-              <p>{{ description }}</p>
+              <p>{{ selectedProject.description }}</p>
             </v-card-text>
             <v-divider></v-divider>
             <v-card-actions>
@@ -87,7 +87,7 @@
               <v-btn
                 color="green darken-1"
                 flat
-                @click="openProject(projectId)"
+                @click="openProject()"
               >
                 Know More
               </v-btn>
@@ -119,17 +119,10 @@ export default {
   methods: {
     openDialog: function(project) {
       this.dialog = true
-      this.name = project.name
-      this.image = project.image
-      this.id = project.id
-      if (project.description == '') {
-        this.description = 'No description'
-      } else {
-        this.description = project.description
-      }
+      this.selectedProject = project
     },
     openProject: function() {
-      this.$router.push('/projects/' + this.id)
+      this.$router.push('/projects/' + this.selectedProject.id)
     },
     ...mapActions('projects', ['setProjectsRef'])
   },
@@ -151,10 +144,12 @@ export default {
     return {
       loading: true,
       dialog: false,
-      name: '',
-      description: '',
-      image: '',
-      id: ''
+      selectedProject: {
+        name: '',
+        description: '',
+        image: '',
+        id: ''
+      }
     }
   }
 }
