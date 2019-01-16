@@ -29,6 +29,9 @@ const News = () =>
 const Projects = () =>
   import(/* webpackChunkName: "projects" */
   '@/components/Other/Projects')
+const Project = () =>
+  import(/* webpackChunkName: "project" */
+  '@/components/Other/Project')
 const Robocon = () =>
   import(/* webpackChunkName: "robocon" */
   '@/components/Other/Robocon')
@@ -91,6 +94,12 @@ export default new Router({
       path: '/projects',
       name: 'projects',
       component: Projects
+    },
+    {
+      path: '/projects/:id',
+      name: 'project',
+      props: true,
+      component: Project
     },
     {
       path: '/downloads',
