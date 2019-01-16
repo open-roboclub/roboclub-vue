@@ -8,7 +8,7 @@
     <td>
       <a v-if="item.url" :href="item.url" target="_blank">
         <v-btn color="pink" dark small fab>
-          <v-icon>cloud_download</v-icon>
+          <v-icon>mdi-cloud-download</v-icon>
         </v-btn>
       </a>
     </td>
