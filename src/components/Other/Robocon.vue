@@ -40,13 +40,16 @@
             </v-card-title>
           </v-card>
           <v-card>
-            <v-carousel delimiter-icon="stop">
-              <v-carousel-item
-                v-for="item in robocon.sponsors"
-                :key="item"
-                :src="item.image"
-              >
-              </v-carousel-item>
+            <v-carousel>
+                <v-carousel-item
+                  v-for="item in robocon.sponsors"
+                  :key="item"
+                  :src="item.image"
+                > 
+                  <div class="title">
+                    {{ item.name }}
+                  </div>
+                </v-carousel-item>
             </v-carousel>
           </v-card>
         </v-card>
@@ -54,7 +57,7 @@
       <v-flex xs12 sm12 md6 class="text-sm-center md-right">
         <v-card class="ml-3">
           <v-card class="mb-3">
-            <v-carousel delimiter-icon="stop">
+            <v-carousel>
               <v-carousel-item
                 v-for="item in robocon.gallery"
                 :key="item"
@@ -116,5 +119,16 @@ export default {
 .robocon-header {
   color: white;
   text-align: center;
+}
+.title {
+  position: absolute;
+  bottom: 50px;
+  background-color: rgb(0, 0, 0, 0.5);
+  color: white;
+  font-size: 2em;
+  padding: 20px;
+  justify-content: center;
+  left: 50%;
+  transform: translateX(-50%);
 }
 </style>
