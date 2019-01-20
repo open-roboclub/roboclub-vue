@@ -41,13 +41,15 @@
           </v-card>
           <v-card>
             <v-carousel>
-              <v-carousel-item
-                v-for="item in robocon.sponsors"
-                :key="item"
-                :src="item.image"
-              >
-                <div class="title">{{ item.name }}</div>
-              </v-carousel-item>
+                <v-carousel-item
+                  v-for="item in robocon.sponsors"
+                  :key="item"
+                  :src="item.image"
+                > 
+                  <div class="title">
+                    {{ item.name }}
+                  </div>
+                </v-carousel-item>
             </v-carousel>
           </v-card>
         </v-card>
@@ -121,9 +123,12 @@ export default {
 .title {
   position: absolute;
   bottom: 50px;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgb(0, 0, 0, 0.5);
   color: white;
   font-size: 2em;
   padding: 20px;
+  justify-content: center;
+  left: 50%;
+  transform: translateX(-50%);
 }
 </style>
