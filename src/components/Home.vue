@@ -61,6 +61,8 @@
             <v-flex xs12 class="text-xs-center">
               <div>
                 <span class="headline mb-0">Harshit Varshney</span>
+                <br>
+                <a href="/team"><v-icon dark x-large color="#7FFF00">keyboard_tab</v-icon></a>
               </div>
             </v-flex>
           </v-container>
@@ -111,16 +113,22 @@
             </v-card>
             <v-card color="#CDC8B1" class="mt-3">
               <v-container>
-                <v-icon left light>arrow_forward</v-icon>
-                WS-18,
-                <br>
-                Mechanical Workshop Compound,
-                <br>
-                Zakir Husain College of Engg & Tech,
-                <br>
-                Aligarh Muslim University, Aligarh.
-                <br>
-                India.
+                <v-layout row wrap>
+                  <v-flex xs2>
+                    <v-icon left light x-large color="black">location_city</v-icon>
+                  </v-flex>
+                  <v-flex xs10>
+                    WS-18,
+                    <br>
+                    Mechanical Workshop Compound,
+                    <br>
+                    Zakir Husain College of Engg & Tech,
+                    <br>
+                    Aligarh Muslim University, Aligarh.
+                    <br>
+                    India.
+                  </v-flex>
+                </v-layout>
               </v-container>
             </v-card>
           </v-flex>
