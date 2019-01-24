@@ -127,7 +127,7 @@
                 </a>
               </v-card-actions>
             </v-card>
-            <v-card color="#CDC8B1" class="mt-3">
+            <v-card color="#CDC8B1" class="mt-3 mb-4">
               <v-container>
                 <v-layout row wrap>
                   <v-flex xs2>
@@ -141,19 +141,92 @@
                     India.
                   </v-flex>
                 </v-layout>
+                <v-layout>
+                  <v-flex xs12 class="text-xs-center mt-1">
+                    <a
+                      href="//www.google.co.in/maps/place/AMU+Roboclub/@27.91423,78.07735,15z"
+                      target="_blank"
+                    >
+                      <v-icon light x-large color="primary"
+                        >mdi-map-legend</v-icon
+                      >
+                    </a>
+                  </v-flex>
+                </v-layout>
               </v-container>
             </v-card>
           </v-flex>
         </v-layout>
+      </v-flex>
+      <v-flex xs12 sm2 lg4>
+        <v-card
+          color="#F5F5DC"
+          v-for="item in news"
+          :key="item"
+          class="mb-3 ml-3"
+        >
+          <v-container>
+            <v-layout row wrap>
+              <v-flex xs2>
+                <v-icon left x-large color="black">mdi-newspaper</v-icon>
+              </v-flex>
+              <v-flex xs10>
+                {{ item.notice }} <br />
+                <br />
+                {{ item.date }}
+              </v-flex>
+            </v-layout>
+          </v-container>
+        </v-card>
+        <v-card color="#CDC8B1" class="mb-3 ml-3">
+          <v-container>
+            <v-layout row wrap>
+              <v-flex xs12 class="text-xs-center">
+                <a href="/news">
+                  <v-icon x-large color="primary">mdi-expand-all</v-icon>
+                </a>
+              </v-flex>
+            </v-layout>
+          </v-container>
+        </v-card>
       </v-flex>
     </v-layout>
   </v-container>
 </template>
 
 <script>
+import { mapState, mapActions } from 'vuex'
+
 export default {
   metaInfo: {
     title: 'Home'
+  },
+  computed: {
+    ...mapState('news', ['news'])
+  },
+  methods: mapActions('news', ['setNewsRef']),
+  created() {
+    this.setNewsRef({
+      ref: this.$firebase
+        .database()
+        .ref('news')
+        .orderByChild('timestamp')
+        .limitToFirst(5),
+      callbacks: {
+        readyCallback: () => {
+          this.loading = false
+        },
+        cancelCallback: error => {
+          console.error(error)
+          this.loading = false
+        }
+      }
+    })
+  },
+  data() {
+    return {
+      loading: true
+    }
   }
 }
 </script>
@@ -166,5 +239,8 @@ export default {
   color: white;
   text-align: center;
   font-size: 33px;
+}
+.news-item {
+  font-size: 16px;
 }
 </style>
