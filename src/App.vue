@@ -106,6 +106,7 @@ export default {
       ],
       moreItems: [
         { icon: 'mdi-android', title: 'Robocon', link: '/robocon' },
+        { icon: 'mdi-robot', title: 'RoboVoyage', link: '/robovoyage' },
         { icon: 'mdi-cloud-download', title: 'Downloads', link: '/downloads' },
         {
           icon: 'mdi-coin',

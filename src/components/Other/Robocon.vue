@@ -41,15 +41,13 @@
           </v-card>
           <v-card>
             <v-carousel>
-                <v-carousel-item
-                  v-for="item in robocon.sponsors"
-                  :key="item"
-                  :src="item.image"
-                > 
-                  <div class="title">
-                    {{ item.name }}
-                  </div>
-                </v-carousel-item>
+              <v-carousel-item
+                v-for="item in robocon.sponsors"
+                :key="item"
+                :src="item.image"
+              >
+                <div class="title">{{ item.name }}</div>
+              </v-carousel-item>
             </v-carousel>
           </v-card>
         </v-card>

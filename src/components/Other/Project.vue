@@ -17,7 +17,7 @@
               color="grey lighten-4"
             >
               <v-img
-                :aspect-ratio="16/9"
+                :aspect-ratio="16 / 9"
                 :src="project.image"
                 alt="Avatar"
               ></v-img>
