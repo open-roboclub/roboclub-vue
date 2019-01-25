@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <v-layout row wrap>
-      <v-flex xs12 sm10 lg8>
+      <v-flex sm12 lg8>
         <v-card class="mb-3">
           <v-container>
             <v-layout row wrap>
@@ -158,7 +158,7 @@
           </v-flex>
         </v-layout>
       </v-flex>
-      <v-flex xs12 sm2 lg4>
+      <v-flex sm12 lg4>
         <v-card
           color="#F5F5DC"
           v-for="item in news"
