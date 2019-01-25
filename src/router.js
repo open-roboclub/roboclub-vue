@@ -35,6 +35,9 @@ const Project = () =>
 const Robocon = () =>
   import(/* webpackChunkName: "robocon" */
   '@/components/Other/Robocon')
+const Robovoyage = () =>
+  import(/* webpackChunkName: "robovoyage" */
+  '@/components/Other/Robovoyage')
 const Team = () =>
   import(/* webpackChunkName: "team" */
   '@/components/Other/Team')
@@ -115,6 +118,11 @@ export default new Router({
       path: '/robocon',
       name: 'robocon',
       component: Robocon
+    },
+    {
+      path: '/robovoyage',
+      name: 'robovoyage',
+      component: Robovoyage
     }
   ]
 })
