@@ -69,19 +69,64 @@
     </v-toolbar>
     <v-content>
       <main><router-view></router-view></main>
+      <template>
+        <v-footer dark height="auto">
+          <v-card class="flex" flat tile>
+            <v-card-title class="grey lighten-1">
+              <strong class="subheading"
+                ><a
+                  href="https://github.com/open-roboclub/roboclub-vue/graphs/contributors"
+                  target="_blank"
+                  style="color: black; text-decoration: none;"
+                  ><strong
+                    ><v-icon size="24px" color="black">mdi-worker</v-icon
+                    >Developers</strong
+                  ></a
+                ></strong
+              >
+              <v-spacer></v-spacer>
+              <v-btn
+                v-for="icon in icons"
+                :key="icon.name"
+                class="mx-3"
+                dark
+                icon
+              >
+                <a
+                  :href="icon.link"
+                  target="_blank"
+                  style="text-decoration: none; color: black"
+                >
+                  <v-icon size="24px">{{ icon.name }}</v-icon>
+                </a>
+              </v-btn>
+            </v-card-title>
+            <v-card-actions class="grey darken-3 justify-center">
+              &copy;{{ getDate }} — <strong>AMURoboclub</strong>
+            </v-card-actions>
+          </v-card>
+        </v-footer>
+      </template>
     </v-content>
   </v-app>
 </template>
 
 <script>
-import Vuex from 'vuex'
+import { mapState } from 'vuex'
 
 export default {
   metaInfo: {
     title: 'AMU RoboClub',
     titleTemplate: '%s | AMU RoboClub'
   },
-  computed: Vuex.mapState(['user']),
+  computed: {
+    getDate() {
+      return (
+        new Date().getFullYear() + '-' + ((new Date().getFullYear() + 1) % 100)
+      )
+    },
+    ...mapState(['user'])
+  },
   methods: {
     isAuth(item) {
       if (item.auth === undefined) return true
@@ -112,6 +157,20 @@ export default {
           icon: 'mdi-coin',
           title: 'Contributions',
           link: '/contributions'
+        }
+      ],
+      icons: [
+        {
+          name: 'mdi-facebook',
+          link: 'https://www.facebook.com/groups/amuroboculb/'
+        },
+        {
+          name: 'mdi-youtube',
+          link: 'https://www.youtube.com/channel/UCKTQZXhxAWfhz1Mb8c2UKTg'
+        },
+        {
+          name: 'mdi-google-plus',
+          link: 'https://plus.google.com/117931649297311148189'
         }
       ]
     }
