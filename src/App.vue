@@ -76,6 +76,7 @@
               <strong class="subheading"
                 ><a
                   href="https://github.com/open-roboclub/roboclub-vue/graphs/contributors"
+                  target="_blank"
                   style="color: black; text-decoration: none;"
                   ><strong
                     ><v-icon size="24px" color="black">mdi-worker</v-icon
@@ -101,10 +102,7 @@
               </v-btn>
             </v-card-title>
             <v-card-actions class="grey darken-3 justify-center">
-              &copy;{{ new Date().getFullYear() }}-{{
-                (new Date().getFullYear() + 1) % 100
-              }}
-              — <strong>AMURoboclub</strong>
+              &copy;{{ getDate }} — <strong>AMURoboclub</strong>
             </v-card-actions>
           </v-card>
         </v-footer>
@@ -114,14 +112,21 @@
 </template>
 
 <script>
-import Vuex from 'vuex'
+import { mapState } from 'vuex'
 
 export default {
   metaInfo: {
     title: 'AMU RoboClub',
     titleTemplate: '%s | AMU RoboClub'
   },
-  computed: Vuex.mapState(['user']),
+  computed: {
+    getDate() {
+      return (
+        new Date().getFullYear() + '-' + ((new Date().getFullYear() + 1) % 100)
+      )
+    },
+    ...mapState(['user'])
+  },
   methods: {
     isAuth(item) {
       if (item.auth === undefined) return true
