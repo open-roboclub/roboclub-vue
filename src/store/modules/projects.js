@@ -4,11 +4,16 @@ export default {
   namespaced: true,
   state: {
     projects: [],
-    projectsRef: null
+    projectsRef: null,
+    project: [],
+    projectRef: null
   },
   mutations: {
     setProjectsRef: (state, projectsRef) => {
       state.projectsRef = projectsRef
+    },
+    setProjectRef: (state, projectRef) => {
+      state.projectRef = projectRef
     }
   },
   actions: {
@@ -16,6 +21,12 @@ export default {
       ({ commit, bindFirebaseRef }, { ref, callbacks }) => {
         bindFirebaseRef('projects', ref, callbacks)
         commit('setProjectsRef', ref)
+      }
+    ),
+    setProjectRef: firebaseAction(
+      ({ commit, bindFirebaseRef }, { ref, callbacks }) => {
+        bindFirebaseRef('project', ref, callbacks)
+        commit('setProjectRef', ref)
       }
     )
   },

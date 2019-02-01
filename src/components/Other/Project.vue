@@ -56,10 +56,10 @@ export default {
     }
   },
   computed: {
-    ...mapState('project', ['project'])
+    ...mapState('projects', ['project'])
   },
   methods: {
-    ...mapActions('project', ['setProjectRef'])
+    ...mapActions('projects', ['setProjectRef'])
   },
   created() {
     this.setProjectRef({
