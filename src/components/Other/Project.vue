@@ -1,30 +1,30 @@
 <template>
   <v-container>
-    <v-layout row wrap v-for="proj in project" :key="proj.name">
+    <v-layout row wrap>
       <v-flex xs12 xl8 offset-xl2>
         <v-card>
           <v-card-title>
             <div>
-              <h2 class="primary--text">{{ proj.name }}</h2>
-              <div class="primary--text">{{ proj.team }}</div>
+              <h2 class="primary--text">{{ project[0].name }}</h2>
+              <div class="primary--text">{{ project[0].team }}</div>
             </div>
           </v-card-title>
           <v-flex xs12 class="text-xs-center mt-2 mb-0">
             <v-avatar
-              v-if="!proj.images"
+              v-if="!project[0].images"
               :tile="false"
               :size="225"
               color="grey lighten-4"
             >
               <v-img
                 :aspect-ratio="16 / 9"
-                :src="proj.image"
+                :src="project[0].image"
                 alt="Avatar"
               ></v-img>
             </v-avatar>
-            <v-carousel v-if="proj.images">
+            <v-carousel v-if="project[0].images">
               <v-carousel-item
-                v-for="image in proj.images"
+                v-for="image in project[0].images"
                 :src="image"
                 :key="image"
               >
@@ -33,7 +33,7 @@
           </v-flex>
           <v-card-text>
             <div>
-              <p style="font-size: 18px;">{{ proj.description }}</p>
+              <p style="font-size: 18px;">{{ project[0].description }}</p>
             </div>
           </v-card-text>
         </v-card>
