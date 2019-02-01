@@ -20,7 +20,7 @@
   },
   "devDependencies": {
     "@babel/polyfill": "^7.2.5",
-    "@vue/cli-plugin-babel": "^3.3.0",
+    "@vue/cli-plugin-babel": "^3.4.0",
     "@vue/cli-plugin-eslint": "^3.3.0",
     "@vue/cli-plugin-pwa": "^3.3.0",
     "@vue/cli-service": "^3.3.1",
