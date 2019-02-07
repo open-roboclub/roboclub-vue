@@ -69,7 +69,7 @@
             <v-flex xs12 class="text-xs-center">
               <div>
                 <span class="headline mb-0">Harshit Varshney</span> <br />
-                <a href="/team"
+                <a href="/team" class="iconLink"
                   ><v-icon dark x-large color="#7FFF00"
                     >mdi-arrow-right-bold-circle</v-icon
                   ></a
@@ -144,6 +144,7 @@
                 <v-layout>
                   <v-flex xs12 class="text-xs-center mt-1">
                     <a
+                      class="iconLink"
                       href="//www.google.co.in/maps/place/AMU+Roboclub/@27.91423,78.07735,15z"
                       target="_blank"
                     >
@@ -182,7 +183,7 @@
           <v-container>
             <v-layout row wrap>
               <v-flex xs12 class="text-xs-center">
-                <a href="/news">
+                <a href="/news" class="iconLink">
                   <v-icon x-large color="primary">mdi-expand-all</v-icon>
                 </a>
               </v-flex>
@@ -242,5 +243,8 @@ export default {
 }
 .news-item {
   font-size: 16px;
+}
+.iconLink {
+  text-decoration: none;
 }
 </style>

@@ -47,8 +47,7 @@
       <div class="text-xs-center">
         <v-dialog
           v-model="dialog"
-          full-width
-          scrollable
+          width="500"
           transition="dialog-bottom-transition"
         >
           <v-card>
