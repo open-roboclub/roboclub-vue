@@ -39,7 +39,7 @@
         </v-card-title>
         <v-flex class="grey lighten-3 text-xs-center">
           <div v-if="!member.links" class="ml-2 grey--text text--darken-2">
-            <span class="headline mb-0">No Contact</span>
+            <span class="mb-0 contact">No Contact</span>
           </div>
           <v-btn
             v-else
@@ -143,5 +143,8 @@ export default {
 .team-header {
   color: black;
   text-align: center;
+}
+.contact {
+  font-size: 35px;
 }
 </style>
