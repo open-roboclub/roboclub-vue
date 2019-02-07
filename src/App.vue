@@ -70,7 +70,8 @@
     <v-content>
       <main><router-view></router-view></main>
       <template>
-        <v-footer dark height="auto">
+        <div class="space"></div>
+        <v-footer dark height="auto" class="footer">
           <v-card class="flex" flat tile>
             <v-card-title class="grey lighten-1">
               <strong class="subheading"
@@ -192,4 +193,12 @@ export default {
 
 .logo > .roboclub
   background-color rgba(0, 0, 0, 0.07)
+
+.footer
+  position absolute
+  bottom 0px
+  width 100%
+
+.space
+  margin-top 100px
 </style>
