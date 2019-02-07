@@ -38,11 +38,7 @@
           </v-flex>
         </v-card-title>
         <v-flex class="grey lighten-3 text-xs-center">
-          <div v-if="!member.links" class="ml-2 grey--text text--darken-2">
-            <span class="mb-0 contact">No Contact</span>
-          </div>
           <v-btn
-            v-else
             v-for="(link, type) in member.links"
             :key="type"
             class="mx-3"
