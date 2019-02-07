@@ -243,4 +243,7 @@ export default {
 .news-item {
   font-size: 16px;
 }
+a {
+  text-decoration: none;
+}
 </style>
