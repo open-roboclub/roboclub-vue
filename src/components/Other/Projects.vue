@@ -11,10 +11,9 @@
     </v-layout>
     <v-layout row wrap>
       <v-hover
-        v-for="project in projects"
-        :key="project"
+        v-for="project in completedProjects"
+        :key="project.id"
         class="mb-3"
-        v-if="!project.ongoing"
       >
         <v-card
           slot-scope="{ hover }"
@@ -86,14 +85,15 @@
 </template>
 
 <script>
-import { mapState, mapActions } from 'vuex'
+import { mapState, mapActions, mapGetters } from 'vuex'
 
 export default {
   metaInfo: {
     title: 'Projects'
   },
   computed: {
-    ...mapState('projects', ['projects'])
+    ...mapState('projects', ['projects']),
+    ...mapGetters('projects', ['completedProjects'])
   },
   methods: {
     openDialog: function(project) {
