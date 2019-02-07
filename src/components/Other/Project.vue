@@ -1,30 +1,33 @@
 <template>
   <v-container>
     <v-layout row wrap>
-      <v-flex xs12 xl8 offset-xl2>
+      <v-flex xs12 xl8 offset-xl2 v-if="loadedProject == null">
+        Loading...
+      </v-flex>
+      <v-flex xs12 xl8 offset-xl2 v-else>
         <v-card>
           <v-card-title>
             <div>
-              <h2 class="primary--text">{{ project.name }}</h2>
-              <div class="primary--text">{{ project.team }}</div>
+              <h2 class="primary--text">{{ loadedProject.name }}</h2>
+              <div class="primary--text">{{ loadedProject.team }}</div>
             </div>
           </v-card-title>
           <v-flex xs12 class="text-xs-center mt-2 mb-0">
             <v-avatar
-              v-if="!project.images"
+              v-if="!loadedProject.images"
               :tile="false"
               :size="225"
               color="grey lighten-4"
             >
               <v-img
                 :aspect-ratio="16 / 9"
-                :src="project.image"
+                :src="loadedProject.image"
                 alt="Avatar"
               ></v-img>
             </v-avatar>
-            <v-carousel v-if="project.images">
+            <v-carousel v-if="loadedProject.images">
               <v-carousel-item
-                v-for="image in project.images"
+                v-for="image in loadedProject.images"
                 :src="image"
                 :key="image"
               >
@@ -33,7 +36,7 @@
           </v-flex>
           <v-card-text>
             <div>
-              <p style="font-size: 18px;">{{ project.description }}</p>
+              <p style="font-size: 18px;">{{ loadedProject.description }}</p>
             </div>
           </v-card-text>
         </v-card>
@@ -43,24 +46,45 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 
 export default {
   metaInfo: {
     title: 'Project'
   },
-  methods: {
-    ...mapGetters('projects', ['getProjectById'])
-  },
-  computed: {
-    project() {
-      return this.getProjectById()(this.id)
-    }
-  },
   props: ['id'],
   data() {
     return {
       loading: true
+    }
+  },
+  computed: {
+    loadedProject() {
+      return this.getProjectById()(this.id)
+    }
+  },
+  methods: {
+    ...mapActions('projects', ['setProjectRef']),
+    ...mapGetters('projects', ['getProjectById'])
+  },
+  created() {
+    if (this.loadedProject == null) {
+      this.setProjectRef({
+        ref: this.$firebase
+          .database()
+          .ref('projects')
+          .orderByChild('id')
+          .equalTo(this.id),
+        callbacks: {
+          readyCallback: () => {
+            this.loading = false
+          },
+          cancelCallback: error => {
+            console.error(error)
+            this.loading = false
+          }
+        }
+      })
     }
   }
 }
