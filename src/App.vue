@@ -73,13 +73,12 @@
         <div class="space"></div>
         <v-footer dark height="auto" class="footer">
           <v-card class="flex" flat tile>
-            <v-card-title class="grey lighten-1">
+            <v-card-text class="grey lighten-1 text-xs-center">
               <strong class="subheading"
                 ><strong
                   ><a
                     href="https://github.com/open-roboclub/roboclub-vue/graphs/contributors"
                     class="dev"
-                    ><v-icon size="24px" color="black">mdi-worker</v-icon
                     ><span class="dev">Developers: </span></a
                   ></strong
                 >
@@ -94,7 +93,7 @@
                   >Haider Ali</a
                 ></strong
               >
-              <v-spacer></v-spacer>
+              <br />
               <v-btn
                 v-for="icon in icons"
                 :key="icon.name"
@@ -110,7 +109,7 @@
                   <v-icon size="24px">{{ icon.name }}</v-icon>
                 </a>
               </v-btn>
-            </v-card-title>
+            </v-card-text>
             <v-card-actions class="grey darken-3 justify-center">
               &copy;{{ getDate }} — <strong>AMURoboclub</strong>
             </v-card-actions>
@@ -209,13 +208,9 @@ export default {
   width 100%
 
 .space
-  margin-top 100px
+  margin-top 125px
 
 .dev
   text-decoration none
   color black
-
-@media(max-width: 539px)
-	.space
-		margin-top 145px
 </style>
