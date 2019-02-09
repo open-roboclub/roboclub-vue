@@ -75,14 +75,23 @@
           <v-card class="flex" flat tile>
             <v-card-title class="grey lighten-1">
               <strong class="subheading"
-                ><a
-                  href="https://github.com/open-roboclub/roboclub-vue/graphs/contributors"
-                  target="_blank"
-                  style="color: black; text-decoration: none;"
-                  ><strong
+                ><strong
+                  ><a
+                    href="https://github.com/open-roboclub/roboclub-vue/graphs/contributors"
+                    class="dev"
                     ><v-icon size="24px" color="black">mdi-worker</v-icon
-                    >Developers</strong
-                  ></a
+                    ><span class="dev">Developers: </span></a
+                  ></strong
+                >
+                <a
+                  href="https://github.com/iamareebjamal"
+                  target="_blank"
+                  class="dev"
+                  >Areeb Jamal</a
+                >
+                <span class="dev"> | </span>
+                <a href="https://github.com/Haider8" target="_blank" class="dev"
+                  >Haider Ali</a
                 ></strong
               >
               <v-spacer></v-spacer>
@@ -201,4 +210,12 @@ export default {
 
 .space
   margin-top 100px
+
+.dev
+  text-decoration none
+  color black
+
+@media(max-width: 539px)
+	.space
+		margin-top 145px
 </style>
