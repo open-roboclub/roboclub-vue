@@ -74,7 +74,7 @@
         <v-footer dark height="auto" class="footer">
           <v-card class="flex" flat tile>
             <v-card-title class="grey lighten-1">
-              <strong class="subheading"
+              <strong class="subheading justify-center"
                 ><strong
                   ><a
                     href="https://github.com/open-roboclub/roboclub-vue/graphs/contributors"
@@ -217,4 +217,8 @@ export default {
 .dev
   text-decoration none
   color black
+
+@media(max-width: 539px)
+	.space
+		margin-top 145px
 </style>
