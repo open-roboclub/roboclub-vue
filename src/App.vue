@@ -81,20 +81,17 @@
                     class="dev"
                     ><v-icon size="24px" color="black">mdi-worker</v-icon
                     ><span class="dev">Developers: </span></a
-                  >
-                  <a
-                    href="https://github.com/iamareebjamal"
-                    target="_blank"
-                    class="dev"
-                    >Areeb Jamal</a
-                  >
-                  <span class="dev"> | </span>
-                  <a
-                    href="https://github.com/Haider8"
-                    target="_blank"
-                    class="dev"
-                    >Haider Ali</a
                   ></strong
+                >
+                <a
+                  href="https://github.com/iamareebjamal"
+                  target="_blank"
+                  class="dev"
+                  >Areeb Jamal</a
+                >
+                <span class="dev"> | </span>
+                <a href="https://github.com/Haider8" target="_blank" class="dev"
+                  >Haider Ali</a
                 ></strong
               >
               <v-spacer></v-spacer>
