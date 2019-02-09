@@ -76,8 +76,13 @@
             <v-card-title class="grey lighten-1">
               <strong class="subheading"
                 ><strong
-                  ><v-icon size="24px" color="black">mdi-worker</v-icon
                   ><a
+                    href="https://github.com/open-roboclub/roboclub-vue/graphs/contributors"
+                    class="dev"
+                    ><v-icon size="24px" color="black">mdi-worker</v-icon
+                    ><span class="dev">Developers: </span></a
+                  >
+                  <a
                     href="https://github.com/iamareebjamal"
                     target="_blank"
                     class="dev"
