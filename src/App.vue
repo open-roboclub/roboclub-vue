@@ -74,7 +74,7 @@
         <v-footer dark height="auto" class="footer">
           <v-card class="flex" flat tile>
             <v-card-title class="grey lighten-1">
-              <strong class="subheading justify-center"
+              <strong class="subheading"
                 ><strong
                   ><a
                     href="https://github.com/open-roboclub/roboclub-vue/graphs/contributors"
