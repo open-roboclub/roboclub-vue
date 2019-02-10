@@ -10,7 +10,7 @@
                   width="250"
                   height="180"
                   allowfullscreen
-                  src="https://www.youtube.com/embed/ME-akMrWflk?rel=0&showinfo=0&theme=light"
+                  src="https://www.youtube.com/embed/3TSxPcIJCB0?rel=0&showinfo=0&theme=light"
                 >
                 </iframe>
               </v-flex>
