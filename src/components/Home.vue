@@ -183,9 +183,9 @@
           <v-container>
             <v-layout row wrap>
               <v-flex xs12 class="text-xs-center">
-                <a href="/news" class="iconLink">
+                <router-link to="/news" class="iconLink">
                   <v-icon x-large color="primary">mdi-expand-all</v-icon>
-                </a>
+                </router-link>
               </v-flex>
             </v-layout>
           </v-container>
