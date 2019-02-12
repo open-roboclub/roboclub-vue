@@ -69,10 +69,10 @@
             <v-flex xs12 class="text-xs-center">
               <div>
                 <span class="headline mb-0">Harshit Varshney</span> <br />
-                <a href="/team" class="iconLink"
+                <router-link to="/team" class="iconLink"
                   ><v-icon dark x-large color="#7FFF00"
                     >mdi-arrow-right-bold-circle</v-icon
-                  ></a
+                  ></router-link
                 >
               </div>
             </v-flex>
