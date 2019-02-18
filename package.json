@@ -1,47 +1,35 @@
 {
   "name": "roboclub",
-  "version": "0.1.0",
+  "version": "1.0.0",
+  "description": "My tremendous Nuxt.js project",
+  "author": "Areeb Jamal",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate",
+    "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
+    "precommit": "npm run lint"
   },
   "dependencies": {
+    "cross-env": "^5.2.0",
     "firebase": "^5.8.3",
     "firebaseui": "^3.5.2",
-    "register-service-worker": "^1.6.1",
-    "vue": "^2.6.6",
-    "vue-meta": "^1.5.8",
-    "vue-router": "^3.0.2",
-    "vuetify": "^1.5.1",
-    "vuex": "^3.1.0",
+    "nuxt": "^2.0.0",
+    "vuetify": "^1.2.4",
     "vuexfire": "^2.3.1"
   },
   "devDependencies": {
-    "@babel/polyfill": "^7.2.5",
-    "@vue/cli-plugin-babel": "^3.4.0",
-    "@vue/cli-plugin-eslint": "^3.4.0",
-    "@vue/cli-plugin-pwa": "^3.4.0",
-    "@vue/cli-service": "^3.4.0",
-    "@vue/eslint-config-prettier": "^4.0.1",
-    "lint-staged": "^8.1.4",
+    "babel-eslint": "^8.2.1",
+    "eslint": "^5.0.1",
+    "eslint-config-prettier": "^3.1.0",
+    "eslint-loader": "^2.0.0",
+    "eslint-plugin-prettier": "2.6.2",
+    "eslint-plugin-vue": "^4.0.0",
+    "nodemon": "^1.11.0",
+    "prettier": "1.14.3",
     "stylus": "^0.54.5",
-    "stylus-loader": "^3.0.2",
-    "vue-cli-plugin-vuetify": "^0.4.6",
-    "vue-template-compiler": "^2.6.6"
-  },
-  "gitHooks": {
-    "pre-commit": "lint-staged"
-  },
-  "lint-staged": {
-    "*.js": [
-      "vue-cli-service lint",
-      "git add"
-    ],
-    "*.vue": [
-      "vue-cli-service lint",
-      "git add"
-    ]
+    "stylus-loader": "^3.0.2"
   }
 }
