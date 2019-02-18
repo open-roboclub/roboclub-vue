@@ -1,25 +1,22 @@
 # roboclub
 
-[![CircleCI](https://circleci.com/gh/open-roboclub/roboclub-vue.svg?style=svg)](https://circleci.com/gh/open-roboclub/roboclub-vue)
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/1aa38a15edf043f783bfe50ffbbe58aa)](https://www.codacy.com/app/open-roboclub/roboclub-vue?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=open-roboclub/roboclub-vue&amp;utm_campaign=Badge_Grade)
-[![Greenkeeper badge](https://badges.greenkeeper.io/open-roboclub/roboclub-vue.svg)](https://greenkeeper.io/)
+> My tremendous Nuxt.js project
 
-## Project setup
-```
-yarn install
+## Build Setup
+
+``` bash
+# install dependencies
+$ yarn install
+
+# serve with hot reload at localhost:3000
+$ yarn run dev
+
+# build for production and launch server
+$ yarn run build
+$ yarn start
+
+# generate static project
+$ yarn run generate
 ```
 
-### Compiles and hot-reloads for development
-```
-yarn run serve
-```
-
-### Compiles and minifies for production
-```
-yarn run build
-```
-
-### Lints and fixes files
-```
-yarn run lint
-```
+For detailed explanation on how things work, checkout [Nuxt.js docs](https://nuxtjs.org).
