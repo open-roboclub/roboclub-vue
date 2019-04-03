@@ -8,7 +8,9 @@
       class="red mt-3"
       @click="deleteContributions"
     >
-      <v-icon dark>mdi-delete</v-icon>
+      <v-icon dark>
+        mdi-delete
+      </v-icon>
     </v-btn>
     <v-btn
       v-show="selected.length == 1"
@@ -18,39 +20,44 @@
       class="blue mt-3"
       @click="editContribution"
     >
-      <v-icon dark>mdi-pencil</v-icon>
+      <v-icon dark>
+        mdi-pencil
+      </v-icon>
     </v-btn>
-    <h5 class="grey--text text--darken-3 mt-4">Add a contribution</h5>
+    <h5 class="grey--text text--darken-3 mt-4">
+      Add a contribution
+    </h5>
     <v-layout row wrap justify-space-between>
       <v-flex xs12 md4 xl2>
         <v-text-field
           v-model="contribution.contributor"
           :rules="[rules.required]"
-          label="Contributor" />
+          label="Contributor"
+        />
       </v-flex>
       <v-flex xs12 md4 xl2>
         <v-text-field
           v-model="contribution.amount"
           :rules="[rules.required]"
-          label="Amount" />
+          label="Amount"
+        />
       </v-flex>
       <v-flex xs12 md4 xl2>
-        <v-text-field
-          v-model="contribution.purpose"
-          label="Purpose" />
+        <v-text-field v-model="contribution.purpose" label="Purpose" />
       </v-flex>
       <v-flex xs12 md4 xl2>
-        <v-text-field
-          v-model="contribution.remark"
-          label="Remark" />
+        <v-text-field v-model="contribution.remark" label="Remark" />
       </v-flex>
       <v-flex xs12 md4 xl2>
         <v-btn fab dark class="cyan" @click="save">
-          <v-icon dark>{{ editing ? 'mdi-content-save' : 'mdi-plus' }}</v-icon>
+          <v-icon dark>
+            {{ editing ? 'mdi-content-save' : 'mdi-plus' }}
+          </v-icon>
         </v-btn>
       </v-flex>
     </v-layout>
     <v-snackbar
+      v-model="snackbar.show"
       :timeout="snackbar.timeout"
       :success="snackbar.context === 'success'"
       :info="snackbar.context === 'info'"
@@ -60,10 +67,11 @@
       :secondary="snackbar.context === 'secondary'"
       :multi-line="snackbar.mode === 'multi-line'"
       :vertical="snackbar.mode === 'vertical'"
-      v-model="snackbar.show"
     >
       {{ snackbar.text }}
-      <v-btn dark flat @click="snackbar.show = false">Close</v-btn>
+      <v-btn dark flat @click="snackbar.show = false">
+        Close
+      </v-btn>
     </v-snackbar>
   </div>
 </template>

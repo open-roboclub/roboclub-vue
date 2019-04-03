@@ -7,11 +7,7 @@
   >
     <template slot="headers">
       <tr>
-        <th
-          v-for="header in headers"
-          :key="header.text"
-          class="text-xs-left"
-        >
+        <th v-for="header in headers" :key="header.text" class="text-xs-left">
           {{ header.text }}
         </th>
       </tr>

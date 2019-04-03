@@ -1,48 +1,36 @@
 <template>
   <v-container>
     <v-layout wrap>
-      <v-flex
-        xs10
-        sm6
-        offset-sm3
-        offset-xs1>
-        <v-card 
-          class="mt-0 mb-4"
-          color="#C1FFC1">
+      <v-flex xs10 sm6 offset-sm3 offset-xs1>
+        <v-card class="mt-0 mb-4" color="#C1FFC1">
           <v-card-text>
             <div>
-              <h1 class="team-header">Team</h1>
+              <h1 class="team-header">
+                Team
+              </h1>
             </div>
           </v-card-text>
         </v-card>
       </v-flex>
     </v-layout>
-    <v-layout
-      row
-      wrap>
+    <v-layout row wrap>
       <v-card
         v-for="member in members"
         :key="member['.key']"
         class="mx-auto mb-3"
         width="400"
       >
-        <v-flex
-          xs12
-          class="text-xs-center">
-          <v-avatar
-            :tile="false"
-            :size="200"
-            color="grey lighten-4 mt-3">
+        <v-flex xs12 class="text-xs-center">
+          <v-avatar :tile="false" :size="200" color="grey lighten-4 mt-3">
             <v-img
               :aspect-ratio="16 / 9"
               :src="member.thumbnail"
-              alt="Avatar" />
+              alt="Avatar"
+            />
           </v-avatar>
         </v-flex>
         <v-card-title>
-          <v-flex
-            xs12
-            class="text-xs-center">
+          <v-flex xs12 class="text-xs-center">
             <div>
               <span class="headline">{{ member.name }}</span>
               <div class="d-flex">
@@ -61,7 +49,8 @@
             class="mx-3"
             fab
             dark
-            small>
+            small
+          >
             <a
               :href="getLink(link, type)"
               target="_blank"

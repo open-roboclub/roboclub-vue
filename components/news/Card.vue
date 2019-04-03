@@ -8,8 +8,10 @@
       </div>
     </v-card-title>
     <div class="pr-3 pl-3 pb-3">
-      <div class="grey--text text--darken-3">{{ newsUpdate.date }}</div>
-      <br>
+      <div class="grey--text text--darken-3">
+        {{ newsUpdate.date }}
+      </div>
+      <br />
       <xmp>{{ newsUpdate.notice }}</xmp>
     </div>
     <v-card-actions>
@@ -18,21 +20,19 @@
         :href="newsUpdate.link"
         flat
         class="orange--text"
-        target="_blank">
+        target="_blank"
+      >
         Link
       </v-btn>
-      <v-btn
-        v-if="isAdmin"
-        flat
-        class="blue--text"
-        @click.stop="$emit('edit')">
+      <v-btn v-if="isAdmin" flat class="blue--text" @click.stop="$emit('edit')">
         Edit
       </v-btn>
       <v-btn
         v-if="isAdmin"
         flat
-        class="red--text" 
-        @click.stop="$emit('delete')">
+        class="red--text"
+        @click.stop="$emit('delete')"
+      >
         Delete
       </v-btn>
     </v-card-actions>

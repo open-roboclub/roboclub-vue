@@ -1,9 +1,6 @@
 <template>
   <v-app light>
-    <v-navigation-drawer 
-      v-model="sideNav" 
-      app 
-      temporary>
+    <v-navigation-drawer v-model="sideNav" app temporary>
       <v-list>
         <v-list-tile
           v-for="item in displayedItems"
@@ -15,7 +12,9 @@
           </v-list-tile-action>
           <v-list-tile-content>{{ item.title }}</v-list-tile-content>
         </v-list-tile>
-        <v-subheader inset>More</v-subheader>
+        <v-subheader inset>
+          More
+        </v-subheader>
         <v-list-tile
           v-for="item in moreItems"
           :key="item.title"
@@ -34,16 +33,13 @@
         @click.stop="sideNav = !sideNav"
       />
       <v-toolbar-title>
-        <nuxt-link
-          to="/" 
-          tag="span" 
-          style="cursor: pointer">
+        <nuxt-link to="/" tag="span" style="cursor: pointer">
           <div class="logo">
             <span class="amu">amu</span> <span class="roboclub">roboclub</span>
           </div>
         </nuxt-link>
       </v-toolbar-title>
-      <v-spacer/>
+      <v-spacer />
       <v-toolbar-items class="hidden-xs-only">
         <v-btn
           v-for="item in displayedItems"
@@ -51,17 +47,14 @@
           :to="item.link"
           flat
         >
-          <v-icon left>{{ item.icon }}</v-icon>
+          <v-icon left>
+            {{ item.icon }}
+          </v-icon>
           {{ item.title }}
         </v-btn>
       </v-toolbar-items>
-      <v-menu 
-        bottom 
-        left 
-        class="hidden-xs-only">
-        <v-btn 
-          slot="activator" 
-          icon>
+      <v-menu bottom left class="hidden-xs-only">
+        <v-btn slot="activator" icon>
           <v-icon>mdi-dots-vertical</v-icon>
         </v-btn>
         <v-list>
@@ -76,45 +69,33 @@
       </v-menu>
     </v-toolbar>
     <v-content>
-      <main><nuxt/></main>
+      <main><nuxt /></main>
       <template>
-        <div class="space"/>
-        <v-footer 
-          dark 
-          height="auto" 
-          class="footer">
-          <v-card 
-            class="flex" 
-            flat 
-            tile>
+        <div class="space" />
+        <v-footer dark height="auto" class="footer">
+          <v-card class="flex" flat tile>
             <v-card-title class="grey lighten-1">
-              <strong 
-                class="subheading"
-              ><strong
-              ><a
-                href="https://github.com/open-roboclub/roboclub-vue/graphs/contributors"
-                class="dev"
-              ><v-icon 
-                size="24px" 
-                color="black">mdi-worker</v-icon
-              ><span class="dev">Developers: </span></a
-              ></strong
-              >
+              <strong class="subheading">
                 <a
-                  href="https://github.com/iamareebjamal"
-                  target="_blank"
+                  href="https://github.com/open-roboclub/roboclub-vue/graphs/contributors"
                   class="dev"
-                >Areeb Jamal</a
                 >
-                <span class="dev"> | </span>
-                <a 
-                  href="https://github.com/Haider8" 
-                  target="_blank" 
-                  class="dev"
-                >Haider Ali</a
-              ></strong
+                  <v-icon size="24px" color="black">mdi-worker</v-icon>
+                  <span class="dev">Developers: </span>
+                </a>
+              </strong>
+              <a
+                href="https://github.com/iamareebjamal"
+                target="_blank"
+                class="dev"
               >
-              <v-spacer/>
+                Areeb Jamal
+              </a>
+              <span class="dev"> | </span>
+              <a href="https://github.com/Haider8" target="_blank" class="dev">
+                Haider Ali
+              </a>
+              <v-spacer />
               <v-btn
                 v-for="icon in icons"
                 :key="icon.name"

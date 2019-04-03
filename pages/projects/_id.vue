@@ -8,8 +8,12 @@
         <v-card>
           <v-card-title>
             <div>
-              <h2 class="primary--text">{{ loadedProject.name }}</h2>
-              <div class="primary--text">{{ loadedProject.team }}</div>
+              <h2 class="primary--text">
+                {{ loadedProject.name }}
+              </h2>
+              <div class="primary--text">
+                {{ loadedProject.team }}
+              </div>
             </div>
           </v-card-title>
           <v-flex xs12 class="text-xs-center mt-2 mb-0">
@@ -17,22 +21,27 @@
               v-if="!loadedProject.images"
               :tile="false"
               :size="225"
-              color="grey lighten-4">
+              color="grey lighten-4"
+            >
               <v-img
                 :aspect-ratio="16 / 9"
                 :src="loadedProject.image"
-                alt="Avatar" />
+                alt="Avatar"
+              />
             </v-avatar>
             <v-carousel v-if="loadedProject.images">
               <v-carousel-item
                 v-for="image in loadedProject.images"
+                :key="image"
                 :src="image"
-                :key="image" />
+              />
             </v-carousel>
           </v-flex>
           <v-card-text>
             <div>
-              <p style="font-size: 18px;">{{ loadedProject.description }}</p>
+              <p style="font-size: 18px;">
+                {{ loadedProject.description }}
+              </p>
             </div>
           </v-card-text>
         </v-card>

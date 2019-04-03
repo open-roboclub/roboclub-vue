@@ -5,7 +5,9 @@
         <v-card class="green white--text">
           <v-card-title primary-title>
             <div>
-              <div class="headline">Thanks for contributing!</div>
+              <div class="headline">
+                Thanks for contributing!
+              </div>
               <span class="grey--text text--lighten-3">
                 You made us what we are today
               </span>
@@ -14,16 +16,17 @@
           <v-progress-linear
             v-show="loading"
             :indeterminate="loading"
-            color="green lighten-3" />
+            color="green lighten-3"
+          />
         </v-card>
       </v-flex>
     </v-layout>
     <v-layout row>
       <v-flex xs12 md10 lg8 xl6 offset-md1 offset-lg2 offset-xl3>
         <v-data-table
+          v-model="selected"
           :headers="headers"
           :items="contributions"
-          v-model="selected"
           item-key="contributor"
           select-all
           class="elevation-1"

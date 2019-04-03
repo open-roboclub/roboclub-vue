@@ -3,7 +3,9 @@
     <td>{{ item.name }}</td>
     <td>{{ item.file }}</td>
     <td>
-      <div v-if="item.size">{{ fileSizeSI(item.size) }}</div>
+      <div v-if="item.size">
+        {{ fileSizeSI(item.size) }}
+      </div>
     </td>
     <td>
       <a v-if="item.url" :href="item.url" target="_blank">
