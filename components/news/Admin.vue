@@ -1,15 +1,11 @@
 <template>
   <div>
-    <v-layout
-      row
-      justify-center>
+    <v-layout row justify-center>
       <v-dialog v-model="addDialog" max-width="500">
-        <v-btn
-          slot="activator"
-          fab
-          dark
-          class="cyan">
-          <v-icon dark>mdi-plus</v-icon>
+        <v-btn slot="activator" fab dark class="cyan">
+          <v-icon dark>
+            mdi-plus
+          </v-icon>
         </v-btn>
         <v-card>
           <v-card-title>
@@ -20,50 +16,39 @@
               v-model="newsItem.title"
               label="Title"
               prepend-icon="mdi-format-title"
-              required />
+              required
+            />
             <v-textarea
               v-model="newsItem.notice"
               label="Notice"
               prepend-icon="mdi-pencil"
-              required />
+              required
+            />
             <v-text-field
               v-model="newsItem.link"
               label="Link"
-              prepend-icon="mdi-link" />
+              prepend-icon="mdi-link"
+            />
             <v-radio-group v-model="newsItem.notification">
-              <v-radio
-                label="Save"
-                value="no" />
-              <v-radio
-                label="Send notification"
-                value="only" />
-              <v-radio
-                label="Send notification and save"
-                value="yes" />
+              <v-radio label="Save" value="no" />
+              <v-radio label="Send notification" value="only" />
+              <v-radio label="Send notification and save" value="yes" />
             </v-radio-group>
             <small>*indicates required field</small>
           </v-card-text>
           <v-card-actions>
             <v-spacer />
-            <v-btn
-              class="blue--text darken-1"
-              flat
-              @click="addDialog = false" >
+            <v-btn class="blue--text darken-1" flat @click="addDialog = false">
               Close
             </v-btn>
-            <v-btn
-              class="blue--text darken-1"
-              flat
-              @click="add">
+            <v-btn class="blue--text darken-1" flat @click="add">
               Save
             </v-btn>
           </v-card-actions>
         </v-card>
       </v-dialog>
     </v-layout>
-    <v-layout
-      row
-      justify-center>
+    <v-layout row justify-center>
       <v-dialog v-model="editDialog" max-width="500">
         <v-card>
           <v-card-title>
@@ -74,16 +59,19 @@
               v-model="editModel.title"
               label="Title"
               prepend-icon="mdi-format-title"
-              required />
+              required
+            />
             <v-textarea
               v-model="editModel.notice"
               label="Notice"
               prepend-icon="mdi-pencil"
-              required />
+              required
+            />
             <v-text-field
               v-model="editModel.link"
               label="Link"
-              prepend-icon="mdi-link" />
+              prepend-icon="mdi-link"
+            />
             <small>*indicates required field</small>
           </v-card-text>
           <v-card-actions>
@@ -91,22 +79,18 @@
             <v-btn
               class="blue--text darken-1"
               flat
-              @click="$emit('update:selectedToEdit', null)">
+              @click="$emit('update:selectedToEdit', null)"
+            >
               Close
             </v-btn>
-            <v-btn
-              class="blue--text darken-1"
-              flat
-              @click="editNews" >
+            <v-btn class="blue--text darken-1" flat @click="editNews">
               Save
             </v-btn>
           </v-card-actions>
         </v-card>
       </v-dialog>
     </v-layout>
-    <v-layout 
-      row 
-      justify-center>
+    <v-layout row justify-center>
       <v-dialog v-model="deleteDialog">
         <v-card>
           <v-card-title>
@@ -117,16 +101,10 @@
           </v-card-text>
           <v-card-actions>
             <v-spacer />
-            <v-btn
-              class="blue--text"
-              flat 
-              @click="deleteDialog = false">
+            <v-btn class="blue--text" flat @click="deleteDialog = false">
               No
             </v-btn>
-            <v-btn
-              class="red--text"
-              flat
-              @click="deleteNewsItem">
+            <v-btn class="red--text" flat @click="deleteNewsItem">
               Yes
             </v-btn>
           </v-card-actions>
@@ -142,10 +120,12 @@ import { mapState, mapActions } from 'vuex'
 export default {
   props: {
     selectedToEdit: {
+      // eslint-disable-next-line vue/require-prop-type-constructor
       type: Object | null,
       required: true
     },
     selectedToDelete: {
+      // eslint-disable-next-line vue/require-prop-type-constructor
       type: Object | null,
       required: true
     }

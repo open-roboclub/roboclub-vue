@@ -1,24 +1,17 @@
 <template>
   <v-container>
-    <v-layout
-      row
-      wrap
-      class="mb-3">
-      <v-flex
-        xs12
-        sm10
-        md8
-        lg6
-        offset-sm1
-        offset-md2
-        offset-lg3>
+    <v-layout row wrap class="mb-3">
+      <v-flex xs12 sm10 md8 lg6 offset-sm1 offset-md2 offset-lg3>
         <v-card class="blue-grey white--text">
-          <div class="text-xs-center headline pt-4 pb-4">News Panel</div>
+          <div class="text-xs-center headline pt-4 pb-4">
+            News Panel
+          </div>
           <v-progress-linear
             v-show="loading"
             :indeterminate="loading"
             color="blue-grey"
-            background-color="blue-grey lighten-3" />
+            background-color="blue-grey lighten-3"
+          />
         </v-card>
       </v-flex>
     </v-layout>
@@ -27,17 +20,11 @@
     <Admin
       v-if="isAdmin"
       :selected-to-edit.sync="selectedToEdit"
-      :selected-to-delete.sync="selectedToDelete" />
+      :selected-to-delete.sync="selectedToDelete"
+    />
 
     <v-layout row>
-      <v-flex
-        xs12
-        sm10
-        md8
-        lg6
-        offset-sm1
-        offset-md2
-        offset-lg3>
+      <v-flex xs12 sm10 md8 lg6 offset-sm1 offset-md2 offset-lg3>
         <NewsCard
           v-for="newsUpdate in news"
           :key="newsUpdate.id"

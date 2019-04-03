@@ -8,10 +8,14 @@
           </div>
           <v-layout row wrap class="mt-2 pb-2">
             <v-flex xs12 sm6 class="text-xs-center text-sm-right">
-              <v-btn info large to="/profile" class="purple">Profile</v-btn>
+              <v-btn info large to="/profile" class="purple">
+                Profile
+              </v-btn>
             </v-flex>
             <v-flex xs12 sm6 class="text-xs-center text-sm-left">
-              <v-btn error large @click="logout">Logout</v-btn>
+              <v-btn error large @click="logout">
+                Logout
+              </v-btn>
             </v-flex>
           </v-layout>
         </v-card>
@@ -20,7 +24,9 @@
     <v-layout v-show="!user" row>
       <v-flex xs12 sm8 lg6 xl4 offset-sm2 offset-lg3 offset-xl4>
         <v-card>
-          <div class="display-1 text-xs-center pt-3">Sign In or Register</div>
+          <div class="display-1 text-xs-center pt-3">
+            Sign In or Register
+          </div>
           <div id="firebaseui-auth-container" class="pt-3 pb-3" />
         </v-card>
       </v-flex>
@@ -28,8 +34,7 @@
   </v-container>
 </template>
 
-<style src="firebaseui/dist/firebaseui.css">
-</style>
+<style src="firebaseui/dist/firebaseui.css"></style>
 
 <script>
 import firebaseui from 'firebaseui'

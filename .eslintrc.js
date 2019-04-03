@@ -26,6 +26,14 @@ module.exports = {
          'max': 1,
          'allowFirstLine': false
        }
-    }]
+    }],
+    "vue/html-self-closing": [
+      "error",
+      {
+        "html": {
+          "void": "any"
+        }
+      }
+    ]
   }
 }

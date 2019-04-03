@@ -55,7 +55,9 @@
           <v-container>
             <v-card-text class="pt-3">
               <div>
-                <h1 class="team-header">Team - Coordinators</h1>
+                <h1 class="team-header">
+                  Team - Coordinators
+                </h1>
               </div>
             </v-card-text>
             <v-flex xs12 class="text-xs-center">
@@ -70,9 +72,11 @@
             <v-flex xs12 class="text-xs-center">
               <div>
                 <span class="headline mb-0">Harshit Varshney</span>
-                <br>
+                <br />
                 <nuxt-link to="/team" class="iconLink">
-                  <v-icon dark x-large color="#7FFF00">mdi-arrow-right-bold-circle</v-icon>
+                  <v-icon dark x-large color="#7FFF00">
+                    mdi-arrow-right-bold-circle
+                  </v-icon>
                 </nuxt-link>
               </div>
             </v-flex>
@@ -131,13 +135,14 @@
               <v-container>
                 <v-layout row wrap>
                   <v-flex xs2>
-                    <v-icon left x-large color="black">mdi-city</v-icon>
+                    <v-icon left x-large color="black">
+                      mdi-city
+                    </v-icon>
                   </v-flex>
-                  <v-flex xs10>WS-18,
-                    <br>Mechanical Workshop Compound,
-                    <br>Zakir Husain College of Engg & Tech,
-                    <br>Aligarh Muslim University, Aligarh.
-                    <br>India.
+                  <v-flex xs10>
+                    WS-18, <br />Mechanical Workshop Compound, <br />Zakir
+                    Husain College of Engg & Tech, <br />Aligarh Muslim
+                    University, Aligarh. <br />India.
                   </v-flex>
                 </v-layout>
                 <v-layout>
@@ -147,7 +152,9 @@
                       href="//www.google.co.in/maps/place/AMU+Roboclub/@27.91423,78.07735,15z"
                       target="_blank"
                     >
-                      <v-icon light x-large color="primary">mdi-map-legend</v-icon>
+                      <v-icon light x-large color="primary">
+                        mdi-map-legend
+                      </v-icon>
                     </a>
                   </v-flex>
                 </v-layout>
@@ -157,16 +164,23 @@
         </v-layout>
       </v-flex>
       <v-flex sm12 lg4>
-        <v-card v-for="item in news" :key="item['.key']" class="mb-3 ml-3" color="#F5F5DC">
+        <v-card
+          v-for="item in news"
+          :key="item['.key']"
+          class="mb-3 ml-3"
+          color="#F5F5DC"
+        >
           <v-container>
             <v-layout row wrap>
               <v-flex xs2>
-                <v-icon left x-large color="black">mdi-newspaper</v-icon>
+                <v-icon left x-large color="black">
+                  mdi-newspaper
+                </v-icon>
               </v-flex>
               <v-flex xs10>
                 {{ item.notice }}
-                <br>
-                <br>
+                <br />
+                <br />
                 {{ item.date }}
               </v-flex>
             </v-layout>
@@ -177,7 +191,9 @@
             <v-layout row wrap>
               <v-flex xs12 class="text-xs-center">
                 <nuxt-link to="/news" class="iconLink">
-                  <v-icon x-large color="primary">mdi-expand-all</v-icon>
+                  <v-icon x-large color="primary">
+                    mdi-expand-all
+                  </v-icon>
                 </nuxt-link>
               </v-flex>
             </v-layout>

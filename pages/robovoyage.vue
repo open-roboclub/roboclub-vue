@@ -26,7 +26,8 @@
               <v-carousel-item
                 v-for="item in robovoyage.gallery"
                 :key="item['.key']"
-                :src="item" />
+                :src="item"
+              />
             </v-carousel>
           </v-card>
         </v-card>

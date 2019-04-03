@@ -4,13 +4,16 @@
       <v-flex xs12 md10 lg8 xl6 offset-md1 offset-lg2 offset-xl3>
         <v-card color="cyan">
           <v-card-title primary-title>
-            <h3 class="headline mb-0 white--text">Downloads</h3>
+            <h3 class="headline mb-0 white--text">
+              Downloads
+            </h3>
           </v-card-title>
           <v-progress-linear
             v-show="loading"
             :indeterminate="loading"
             color="cyan"
-            background-color="cyan lighten-3" />
+            background-color="cyan lighten-3"
+          />
           <v-tabs v-model="active" color="cyan" dark slider-color="yellow">
             <v-tab
               v-for="tab in downloadTypes"
@@ -22,8 +25,8 @@
             </v-tab>
             <v-tab-item
               v-for="download in downloads"
-              :key="download.name"
               :id="download.name"
+              :key="download.name"
             >
               <DownloadTab :download="download" />
             </v-tab-item>

@@ -4,7 +4,11 @@
       <v-flex xs10 sm6 offset-sm3 offset-xs1>
         <v-card class="mt-0 mb-4" color="#BF3EFF">
           <v-card-text>
-            <div><h1 class="projects-header">Completed Projects</h1></div>
+            <div>
+              <h1 class="projects-header">
+                Completed Projects
+              </h1>
+            </div>
           </v-card-text>
         </v-card>
       </v-flex>
@@ -21,14 +25,12 @@
           style="cursor: pointer"
           class="mx-auto"
           width="450"
-          @click="openDialog(project)">
-          <br>
+          @click="openDialog(project)"
+        >
+          <br />
           <v-flex xs12 class="text-xs-center">
             <v-avatar :tile="false" :size="250" color="grey lighten-4">
-              <v-img
-                :aspect-ratio="16 / 9"
-                :src="project.image"
-                alt="Avatar" />
+              <v-img :aspect-ratio="16 / 9" :src="project.image" alt="Avatar" />
             </v-avatar>
           </v-flex>
           <v-card-title>
@@ -58,7 +60,8 @@
                 <v-img
                   :aspect-ratio="16 / 9"
                   :src="selectedProject.image"
-                  alt="Avatar" />
+                  alt="Avatar"
+                />
               </v-avatar>
             </v-flex>
             <v-card-text>
@@ -71,7 +74,7 @@
                 <v-btn color="green darken-1" flat>
                   Know More
                 </v-btn>
-              </nuxt-link>   
+              </nuxt-link>
               <v-btn color="primary" flat @click="dialog = false">
                 Close
               </v-btn>
