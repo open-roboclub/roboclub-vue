@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "cross-env": "^5.2.0",
-    "firebase": "^5.9.2",
+    "firebase": "^6.0.1",
     "firebaseui": "^3.5.2",
     "nuxt": "^2.6.2",
     "vuetify": "^1.5.14",
