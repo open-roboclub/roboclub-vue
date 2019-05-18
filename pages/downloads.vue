@@ -48,8 +48,10 @@ export default {
   },
   components: {
     DownloadTab: () =>
-      import(/* webpackChunkName: "download-tab" */
-      '~/components/download/Tab')
+      import(
+        /* webpackChunkName: "download-tab" */
+        '~/components/download/Tab'
+      )
   },
   data() {
     return {

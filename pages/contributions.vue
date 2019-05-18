@@ -60,8 +60,10 @@ export default {
   },
   components: {
     ContributionAdmin: () =>
-      import(/* webpackChunkName: "contributions-admin" */
-      '~/components/contribution/Admin')
+      import(
+        /* webpackChunkName: "contributions-admin" */
+        '~/components/contribution/Admin'
+      )
   },
   data() {
     return {

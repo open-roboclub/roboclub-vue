@@ -50,11 +50,15 @@ export default {
   },
   components: {
     Admin: () =>
-      import(/* webpackChunkName: "news-admin" */
-      '~/components/news/Admin'),
+      import(
+        /* webpackChunkName: "news-admin" */
+        '~/components/news/Admin'
+      ),
     NewsCard: () =>
-      import(/* webpackChunkName: "news-card" */
-      '~/components/news/Card')
+      import(
+        /* webpackChunkName: "news-card" */
+        '~/components/news/Card'
+      )
   },
   data() {
     return {
