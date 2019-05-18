@@ -23,6 +23,10 @@ path /robocon {
     read() { true }
 }
 
+path /robovoyage {
+    read() { true }
+}
+
 path /ui {
     read() { true }
 }
@@ -37,11 +41,15 @@ path /feedback/{feedback} is String {
     write() { isAdmin() && createOnly(this) }
 }
 
+path /admins/{admin} {
+    read() { isCurrentUser(admin) }
+}
+
 // --- User Section ---
 
 path /users/{id} is User {
     read() { true }
-    write() { isCurrentUser(userid) }
+    write() { isCurrentUser(id) }
     validate() { updateOnly(this) }
 }
 
@@ -68,14 +76,26 @@ type ProviderData {
 
 // --- News Section ---
 
-path /news/{news} is News {
+path /news {
     read() { true }
-    write() { isAdmin() }
+
+    index() { ['timestamp'] }
+
+    path /{news} is News {
+        read() { true }
+        write() { isAdmin() }
+    }
 }
 
-path /debug/news/{news} is News {
+path /debug/news {
     read() { true }
-    write() { isAdmin() }
+
+    path /{news} is News {
+        read() { true }
+        write() { isAdmin() }
+
+        index() { ['timestamp'] }
+    }
 }
 
 type News {
@@ -97,9 +117,12 @@ type OldTimestamp extends Number {
 
 // --- Contribution Section ---
 
-path /contribution/{contribution} is Contribution {
+path /contribution {
     read() { true }
-    write() { isAdmin() }
+
+    path /{contribution} is Contribution {
+        write() { isAdmin() }
+    }
 }
 
 type Contribution {

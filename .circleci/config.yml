@@ -11,12 +11,13 @@ jobs:
       - restore_cache: # special step to restore the dependency cache 
           key: dependency-cache-{{ checksum "package.json" }}
       # install
-      - run: yarn global add surge
       - run: yarn install
       - save_cache: # special step to save the dependency cache
           key: dependency-cache-{{ checksum "package.json" }}
           paths:
             - ./node_modules
+      - run: yarn lint
+      - run: yarn test
       # build
       - run: yarn build
       - store_artifacts:
