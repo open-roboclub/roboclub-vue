@@ -1,0 +1,341 @@
+{
+  "rules":{
+    "users":{
+      ".read":true,
+      "$uid":{
+        ".write":"auth!=null && $uid===auth.uid",
+        ".validate":"newData.child('name').exists() && newData.child('email').exists()"
+      }
+    },
+    "projects":{
+      ".read":true,
+      ".indexOn":[
+        "ongoing",
+        "id"
+      ]
+    },
+    "team":{
+      ".read":true,
+      "$year":{
+        ".indexOn":[
+          "uid",
+          "position",
+          "rank"
+        ],
+        "members":{
+          ".indexOn":[
+            "uid",
+            "position",
+            "rank"
+          ],
+          "$team-member":{
+            ".validate":"newData.hasChildren(['name', 'position', 'rank'])",
+            ".write":"auth != null && (root.child('admins/'+auth.uid).exists() || data.child('uid').val() === auth.uid)",
+            "name":{
+              ".validate":"newData.isString()"
+            },
+            "thumbnail":{
+              ".validate":"newData.isString()"
+            },
+            "old_avatars":{
+              ".validate":"newData.hasChildren()",
+              "photo":{
+                ".validate":"newData.isString()"
+              }
+            },
+            "position":{
+              ".validate":"newData.isString() && root.child('admins/'+auth.uid).exists()"
+            },
+            "rank":{
+              ".validate":"root.child('ui/ranks/' + newData.val()).exists() && root.child('admins/'+auth.uid).exists()"
+            },
+            "uid":{
+              ".validate":"newData.exists() && root.child('admins/'+auth.uid).exists()"
+            },
+            "profile_info":{
+              ".validate":"newData.hasChildren()",
+              "about":{
+                ".validate":"newData.isString()"
+              },
+              "batch":{
+                ".validate":"newData.isString()"
+              },
+              "cv":{
+                ".validate":"newData.isString()"
+              },
+              "interests":{
+                ".validate":"newData.hasChildren()",
+                "$interest":{
+                  ".validate":"newData.isString()"
+                }
+              },
+              "projects":{
+                ".validate":"newData.hasChildren()",
+                "$project":{
+                  "name":{
+                    ".validate":"newData.isString()"
+                  },
+                  "id":{
+                    ".validate":"newData.isString()"
+                  },
+                  "$other":{
+                    ".validate":false
+                  }
+                }
+              },
+              "$other":{
+                ".validate":false
+              }
+            },
+            "links":{
+              ".validate":"newData.hasChildren()",
+              "mobile":{
+                ".validate":"newData.isString()"
+              },
+              "email":{
+                ".validate":"newData.isString()"
+              },
+              "facebook":{
+                ".validate":"newData.isString()"
+              },
+              "g-plus":{
+                ".validate":"newData.isString()"
+              },
+              "linkedin":{
+                ".validate":"newData.isString()"
+              },
+              "other_links":{
+                ".validate":"newData.hasChildren()",
+                "$link":{
+                  ".validate":"newData.isString()"
+                }
+              },
+              "$other":{
+                ".validate":false
+              }
+            },
+            "$other":{
+              ".validate":false
+            }
+          }
+        }
+      }
+    },
+    "downloads":{
+      ".read":true
+    },
+    "news":{
+      ".read":true,
+      ".indexOn":"timestamp",
+      "$news_id":{
+        ".write":"auth!=null && root.child('admins/'+auth.uid).exists()",
+        ".validate":"newData.hasChildren(['notice', 'date', 'timestamp'])",
+        "notification":{
+          ".validate":"newData.isString()"
+        },
+        "title":{
+          ".validate":"newData.isString() && newData.val().length >= 5"
+        },
+        "notice":{
+          ".validate":"newData.isString() && newData.val().length >= 5"
+        },
+        "date":{
+          ".validate":"newData.isString() && newData.val().length >= 5"
+        },
+        "link":{
+          ".validate":"newData.isString() && newData.val().length >= 5"
+        },
+        "timestamp":{
+          ".validate":"newData.val() <= now"
+        },
+        "$other":{
+          ".validate":false
+        }
+      }
+    },
+    "debug": {
+      ".read": true,
+      "news": {
+        "$news_id":{
+            ".write":"auth!=null && root.child('admins/'+auth.uid).exists()",
+            ".validate":"newData.hasChildren(['notice', 'date', 'timestamp'])",
+            ".indexOn":"timestamp",
+            "notification":{
+              ".validate":"newData.isString()"
+            },
+            "title":{
+              ".validate":"newData.isString() && newData.val().length >= 4"
+            },
+            "notice":{
+              ".validate":"newData.isString() && newData.val().length >= 5"
+            },
+            "date":{
+              ".validate":"newData.isString() && newData.val().length >= 5"
+            },
+            "link":{
+              ".validate":"newData.isString() && newData.val().length >= 5"
+            },
+            "timestamp":{
+              ".validate":"newData.val() <= now"
+            },
+            "$other":{
+              ".validate":false
+            }
+          }
+      },
+      "team":{
+      "$year":{
+        "members":{
+          ".indexOn":[
+            "uid",
+            "position",
+            "rank"
+          ],
+          "$team-member":{
+            ".validate":"newData.hasChildren(['name', 'position', 'rank'])",
+            ".write":"auth != null && (root.child('admins/'+auth.uid).exists() || data.child('uid').val() === auth.uid)",
+            "name":{
+              ".validate":"newData.isString()"
+            },
+            "thumbnail":{
+              ".validate":"newData.isString()"
+            },
+            "old_avatars":{
+              ".validate":"newData.hasChildren()",
+              "photo":{
+                ".validate":"newData.isString()"
+              }
+            },
+            "position":{
+              ".validate":"newData.isString() && root.child('admins/'+auth.uid).exists()"
+            },
+            "rank":{
+              ".validate":"root.child('ui/ranks/' + newData.val()).exists() && root.child('admins/'+auth.uid).exists()"
+            },
+            "uid":{
+              ".validate":"newData.exists() && root.child('admins/'+auth.uid).exists()"
+            },
+            "profile_info":{
+              ".validate":"newData.hasChildren()",
+              "about":{
+                ".validate":"newData.isString()"
+              },
+              "batch":{
+                ".validate":"newData.isString()"
+              },
+              "cv":{
+                ".validate":"newData.isString()"
+              },
+              "interests":{
+                ".validate":"newData.hasChildren()",
+                "$interest":{
+                  ".validate":"newData.isString()"
+                }
+              },
+              "projects":{
+                ".validate":"newData.hasChildren()",
+                "$project":{
+                  "name":{
+                    ".validate":"newData.isString()"
+                  },
+                  "id":{
+                    ".validate":"newData.isString()"
+                  },
+                  "$other":{
+                    ".validate":false
+                  }
+                }
+              },
+              "$other":{
+                ".validate":false
+              }
+            },
+            "links":{
+              ".validate":"newData.hasChildren()",
+              "mobile":{
+                ".validate":"newData.isString()"
+              },
+              "email":{
+                ".validate":"newData.isString()"
+              },
+              "facebook":{
+                ".validate":"newData.isString()"
+              },
+              "g-plus":{
+                ".validate":"newData.isString()"
+              },
+              "linkedin":{
+                ".validate":"newData.isString()"
+              },
+              "other_links":{
+                ".validate":"newData.hasChildren()",
+                "$link":{
+                  ".validate":"newData.isString()"
+                }
+              },
+              "$other":{
+                ".validate":false
+              }
+            },
+            "$other":{
+              ".validate":false
+            }
+          }
+        }
+      }
+    }
+    },
+    "contribution":{
+      ".read":true,
+      "$contrib_id":{
+        ".write":"auth!=null && root.child('admins/'+auth.uid).exists()",
+        ".validate":"newData.hasChildren(['contributor', 'amount'])",
+        "contributor":{
+          ".validate":"newData.isString()"
+        },
+        "amount":{
+          ".validate":"newData.isString()"
+        },
+        "purpose":{
+          ".validate":"newData.isString()"
+        },
+        "remark":{
+          ".validate":"newData.isString()"
+        },
+        "$other":{
+          ".validate":false
+        }
+      }
+    },
+    "robocon":{
+      ".read":true
+    },
+    "ui":{
+      ".read":true
+    },
+    "feedback":{
+      ".read":true,
+      "$fid":{
+        ".write":true,
+        ".validate":"newData.exists() && !data.exists()"
+      }
+    },
+    "admins":{
+      ".write":false,
+      "$uid":{
+        ".read":"auth!=null && $uid === auth.uid"
+      }
+    },
+    "keys":{
+      ".read":true,
+      "$key":{
+        ".write":"auth!=null && data.child('current').val()===auth.uid",
+        ".validate":"newData.hasChildren(['current', 'previous', 'timestamp']) && newData.child('previous').val() == data.child('current').val()",
+        "timestamp":{
+          ".validate":"newData.val() <= now"
+        }
+      }
+    }
+  }
+}
+  
