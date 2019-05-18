@@ -51,6 +51,7 @@
     "prettier": "1.17.1",
     "stylus": "^0.54.5",
     "stylus-loader": "^3.0.2",
+    "targaryen": "3",
     "vue-jest": "^3.0.3"
   }
 }

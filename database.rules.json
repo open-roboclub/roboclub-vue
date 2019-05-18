@@ -6,6 +6,9 @@
     "robocon": {
       ".read": "true"
     },
+    "robovoyage": {
+      ".read": "true"
+    },
     "ui": {
       ".read": "true"
     },
@@ -20,6 +23,11 @@
       "$feedback": {
         ".validate": "newData.isString()",
         ".write": "((auth != null && root.child('admins').child(auth.uid).val() != null) && (data.val() == null && newData.val() != null))"
+      }
+    },
+    "admins": {
+      "$admin": {
+        ".read": "(auth != null && auth.uid == $admin)"
       }
     },
     "users": {
@@ -68,7 +76,7 @@
           ".validate": "false"
         },
         ".read": "true",
-        ".write": "(auth != null && auth.uid == userid)"
+        ".write": "(auth != null && auth.uid == $id)"
       }
     },
     "news": {
@@ -97,7 +105,11 @@
         },
         ".read": "true",
         ".write": "(auth != null && root.child('admins').child(auth.uid).val() != null)"
-      }
+      },
+      ".read": "true",
+      ".indexOn": [
+        "timestamp"
+      ]
     },
     "debug": {
       "news": {
@@ -125,8 +137,12 @@
             ".validate": "false"
           },
           ".read": "true",
-          ".write": "(auth != null && root.child('admins').child(auth.uid).val() != null)"
-        }
+          ".write": "(auth != null && root.child('admins').child(auth.uid).val() != null)",
+          ".indexOn": [
+            "timestamp"
+          ]
+        },
+        ".read": "true"
       }
     },
     "contribution": {
@@ -147,9 +163,9 @@
         "$other": {
           ".validate": "false"
         },
-        ".read": "true",
         ".write": "(auth != null && root.child('admins').child(auth.uid).val() != null)"
-      }
+      },
+      ".read": "true"
     },
     "team": {
       "$year": {
