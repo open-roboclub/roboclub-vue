@@ -49,7 +49,7 @@ export default {
   computed: mapState(['user']),
   mounted() {
     const firebase = this.$firebase
-    var uiConfig = {
+    const uiConfig = {
       signInSuccessUrl: '/',
       signInOptions: [
         firebase.auth.EmailAuthProvider.PROVIDER_ID,

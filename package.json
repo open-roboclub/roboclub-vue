@@ -10,30 +10,47 @@
     "start": "nuxt start",
     "generate": "nuxt generate",
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
-    "precommit": "npm run lint"
+    "precommit": "npm run lint",
+    "test": "jest"
   },
   "dependencies": {
+    "@nuxtjs/pwa": "^v3.0.0-beta.16",
     "cross-env": "^5.2.0",
     "firebase": "^6.0.2",
     "firebaseui": "^4.0.0",
     "nuxt": "^2.7.1",
     "vuetify": "^1.5.14",
+    "vuetify-loader": "^1.2.1",
     "vuexfire": "^2.3.1"
   },
   "devDependencies": {
+    "@babel/plugin-syntax-dynamic-import": "^7.2.0",
     "@babel/runtime-corejs2": "^7.4.4",
+    "@nuxtjs/eslint-config": "^0.0.1",
+    "@vue/test-utils": "^1.0.0-beta.27",
+    "babel-core": "7.0.0-bridge.0",
     "babel-eslint": "^10.0.1",
+    "babel-jest": "^24.1.0",
     "core-js": "2",
     "eslint": "^5.16.0",
     "eslint-config-prettier": "^4.3.0",
-    "eslint-loader": "^2.0.0",
+    "eslint-config-standard": ">=12.0.0",
+    "eslint-loader": "^2.1.2",
+    "eslint-plugin-import": ">=2.16.0",
+    "eslint-plugin-jest": ">=22.3.0",
+    "eslint-plugin-node": ">=8.0.1",
+    "eslint-plugin-nuxt": ">=0.4.2",
     "eslint-plugin-prettier": "3.1.0",
+    "eslint-plugin-promise": ">=4.0.1",
+    "eslint-plugin-standard": ">=4.0.0",
     "eslint-plugin-vue": "^5.2.2",
     "firebase-bolt": "^0.8.4",
+    "jest": "^24.1.0",
     "node-fetch": "2.5.0",
     "nodemon": "^1.19.0",
     "prettier": "1.17.1",
     "stylus": "^0.54.5",
-    "stylus-loader": "^3.0.2"
+    "stylus-loader": "^3.0.2",
+    "vue-jest": "^3.0.3"
   }
 }

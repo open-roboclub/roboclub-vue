@@ -15,7 +15,7 @@ function clearNews(news) {
 }
 
 function copyProperties(source, destination) {
-  for (var prop in source) {
+  for (const prop in source) {
     if (destination.hasOwnProperty(prop)) {
       destination[prop] = source[prop]
     }
