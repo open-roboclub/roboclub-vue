@@ -1,0 +1,167 @@
+// Nullable
+type N<T> extends T | Null;
+
+type AdminEditable<T> extends T {
+    validate() { isAdmin() }
+}
+
+isAdmin() { auth != null && prior(root.admins[auth.uid]) != null }
+
+// Define isCurrentUser() function to test if the given user id
+// matches the currently signed-in user.
+isCurrentUser(uid) { auth != null && auth.uid === uid }
+
+updateOnly(value) { value != null }
+
+createOnly(value) { prior(value) == null && value != null }
+
+path /downloads {
+    read() { true }
+}
+
+path /robocon {
+    read() { true }
+}
+
+path /ui {
+    read() { true }
+}
+
+path /projects {
+    read() { true }
+
+    index() { ['ongoing', 'id'] }
+}
+
+path /feedback/{feedback} is String {
+    write() { isAdmin() && createOnly(this) }
+}
+
+// --- User Section ---
+
+path /users/{id} is User {
+    read() { true }
+    write() { isCurrentUser(userid) }
+    validate() { updateOnly(this) }
+}
+
+type User {
+    uid: Uid,
+    email: String,
+    emailVerified: Boolean,
+    name: String,
+    photoURL: String,
+    providerData: ProviderData[]
+}
+
+type Uid extends String {
+    validate() { this == auth.uid }
+}
+
+type ProviderData {
+    displayName: String,
+    email: String,
+    photoURL: String,
+    providerId: String,
+    uid: String
+}
+
+// --- News Section ---
+
+path /news/{news} is News {
+    read() { true }
+    write() { isAdmin() }
+}
+
+path /debug/news/{news} is News {
+    read() { true }
+    write() { isAdmin() }
+}
+
+type News {
+    title: N<LengthString>,
+    notice: LengthString,
+    date: LengthString,
+    timestamp: OldTimestamp,
+    link: N<LengthString>,
+    notification: N<String>
+}
+
+type LengthString extends String {
+    validate() { this.length >= 5 }
+}
+
+type OldTimestamp extends Number {
+    validate() { this <= now }
+}
+
+// --- Contribution Section ---
+
+path /contribution/{contribution} is Contribution {
+    read() { true }
+    write() { isAdmin() }
+}
+
+type Contribution {
+    contributor: String,
+    amount: String,
+    purpose: N<String>,
+    remark: N<String>
+}
+
+// --- Team Section ---
+
+path /team/{year} {
+    read() { true }
+    
+    /info is TeamInfo;
+    /members/{member} is Member {
+        write() {
+            isAdmin() || isCurrentUser(data.child('uid').val())
+        }
+        validate() { updateOnly(this) }
+
+        index() { ['uid', 'position', 'rank'] }
+    }
+}
+
+type TeamInfo {
+    session: String
+}
+
+type Member {
+    uid: N<AdminEditable<String>>,
+    name: String,
+    position: AdminEditable<String>,
+    rank: Rank,
+    thumbnail: N<String>,
+    links: N<Links>,
+    profile_info: N<ProfileInfo>,
+    old_avatars: N<String[]>
+}
+
+type Links {
+    email: N<String>,
+    mobile: N<String>,
+    facebook: N<String>,
+    linkedin: N<String>,
+    twitter: N<String>
+}
+
+type ProfileInfo {
+    about: N<String>,
+    batch: N<String>,
+    cv: N<String>,
+    interests: N<String[]>,
+    projects: N<Project[]>
+}
+
+type Project {
+    id: String,
+    name: String
+}
+
+type Rank extends Number {
+    validate() { isAdmin() && prior(root.ui.ranks[newData.val()] != null) }
+}
+

@@ -1,341 +1,261 @@
 {
-  "rules":{
-    "users":{
-      ".read":true,
-      "$uid":{
-        ".write":"auth!=null && $uid===auth.uid",
-        ".validate":"newData.child('name').exists() && newData.child('email').exists()"
-      }
+  "rules": {
+    "downloads": {
+      ".read": "true"
     },
-    "projects":{
-      ".read":true,
-      ".indexOn":[
+    "robocon": {
+      ".read": "true"
+    },
+    "ui": {
+      ".read": "true"
+    },
+    "projects": {
+      ".read": "true",
+      ".indexOn": [
         "ongoing",
         "id"
       ]
     },
-    "team":{
-      ".read":true,
-      "$year":{
-        ".indexOn":[
-          "uid",
-          "position",
-          "rank"
-        ],
-        "members":{
-          ".indexOn":[
-            "uid",
-            "position",
-            "rank"
-          ],
-          "$team-member":{
-            ".validate":"newData.hasChildren(['name', 'position', 'rank'])",
-            ".write":"auth != null && (root.child('admins/'+auth.uid).exists() || data.child('uid').val() === auth.uid)",
-            "name":{
-              ".validate":"newData.isString()"
-            },
-            "thumbnail":{
-              ".validate":"newData.isString()"
-            },
-            "old_avatars":{
-              ".validate":"newData.hasChildren()",
-              "photo":{
-                ".validate":"newData.isString()"
-              }
-            },
-            "position":{
-              ".validate":"newData.isString() && root.child('admins/'+auth.uid).exists()"
-            },
-            "rank":{
-              ".validate":"root.child('ui/ranks/' + newData.val()).exists() && root.child('admins/'+auth.uid).exists()"
-            },
-            "uid":{
-              ".validate":"newData.exists() && root.child('admins/'+auth.uid).exists()"
-            },
-            "profile_info":{
-              ".validate":"newData.hasChildren()",
-              "about":{
-                ".validate":"newData.isString()"
-              },
-              "batch":{
-                ".validate":"newData.isString()"
-              },
-              "cv":{
-                ".validate":"newData.isString()"
-              },
-              "interests":{
-                ".validate":"newData.hasChildren()",
-                "$interest":{
-                  ".validate":"newData.isString()"
-                }
-              },
-              "projects":{
-                ".validate":"newData.hasChildren()",
-                "$project":{
-                  "name":{
-                    ".validate":"newData.isString()"
-                  },
-                  "id":{
-                    ".validate":"newData.isString()"
-                  },
-                  "$other":{
-                    ".validate":false
-                  }
-                }
-              },
-              "$other":{
-                ".validate":false
-              }
-            },
-            "links":{
-              ".validate":"newData.hasChildren()",
-              "mobile":{
-                ".validate":"newData.isString()"
-              },
-              "email":{
-                ".validate":"newData.isString()"
-              },
-              "facebook":{
-                ".validate":"newData.isString()"
-              },
-              "g-plus":{
-                ".validate":"newData.isString()"
-              },
-              "linkedin":{
-                ".validate":"newData.isString()"
-              },
-              "other_links":{
-                ".validate":"newData.hasChildren()",
-                "$link":{
-                  ".validate":"newData.isString()"
-                }
-              },
-              "$other":{
-                ".validate":false
-              }
-            },
-            "$other":{
-              ".validate":false
-            }
-          }
-        }
+    "feedback": {
+      "$feedback": {
+        ".validate": "newData.isString()",
+        ".write": "((auth != null && root.child('admins').child(auth.uid).val() != null) && (data.val() == null && newData.val() != null))"
       }
     },
-    "downloads":{
-      ".read":true
+    "users": {
+      "$id": {
+        ".validate": "(newData.hasChildren(['uid', 'email', 'emailVerified', 'name', 'photoURL']) && newData.val() != null)",
+        "uid": {
+          ".validate": "(newData.isString() && newData.val() == auth.uid)"
+        },
+        "email": {
+          ".validate": "newData.isString()"
+        },
+        "emailVerified": {
+          ".validate": "newData.isBoolean()"
+        },
+        "name": {
+          ".validate": "newData.isString()"
+        },
+        "photoURL": {
+          ".validate": "newData.isString()"
+        },
+        "providerData": {
+          "$key1": {
+            ".validate": "newData.hasChildren(['displayName', 'email', 'photoURL', 'providerId', 'uid'])",
+            "displayName": {
+              ".validate": "newData.isString()"
+            },
+            "email": {
+              ".validate": "newData.isString()"
+            },
+            "photoURL": {
+              ".validate": "newData.isString()"
+            },
+            "providerId": {
+              ".validate": "newData.isString()"
+            },
+            "uid": {
+              ".validate": "newData.isString()"
+            },
+            "$other": {
+              ".validate": "false"
+            }
+          },
+          ".validate": "newData.hasChildren()"
+        },
+        "$other": {
+          ".validate": "false"
+        },
+        ".read": "true",
+        ".write": "(auth != null && auth.uid == userid)"
+      }
     },
-    "news":{
-      ".read":true,
-      ".indexOn":"timestamp",
-      "$news_id":{
-        ".write":"auth!=null && root.child('admins/'+auth.uid).exists()",
-        ".validate":"newData.hasChildren(['notice', 'date', 'timestamp'])",
-        "notification":{
-          ".validate":"newData.isString()"
+    "news": {
+      "$news": {
+        ".validate": "newData.hasChildren(['notice', 'date', 'timestamp'])",
+        "title": {
+          ".validate": "(newData.isString() && newData.val().length >= 5)"
         },
-        "title":{
-          ".validate":"newData.isString() && newData.val().length >= 5"
+        "notice": {
+          ".validate": "(newData.isString() && newData.val().length >= 5)"
         },
-        "notice":{
-          ".validate":"newData.isString() && newData.val().length >= 5"
+        "date": {
+          ".validate": "(newData.isString() && newData.val().length >= 5)"
         },
-        "date":{
-          ".validate":"newData.isString() && newData.val().length >= 5"
+        "timestamp": {
+          ".validate": "(newData.isNumber() && newData.val() <= now)"
         },
-        "link":{
-          ".validate":"newData.isString() && newData.val().length >= 5"
+        "link": {
+          ".validate": "(newData.isString() && newData.val().length >= 5)"
         },
-        "timestamp":{
-          ".validate":"newData.val() <= now"
+        "notification": {
+          ".validate": "newData.isString()"
         },
-        "$other":{
-          ".validate":false
-        }
+        "$other": {
+          ".validate": "false"
+        },
+        ".read": "true",
+        ".write": "(auth != null && root.child('admins').child(auth.uid).val() != null)"
       }
     },
     "debug": {
-      ".read": true,
       "news": {
-        "$news_id":{
-            ".write":"auth!=null && root.child('admins/'+auth.uid).exists()",
-            ".validate":"newData.hasChildren(['notice', 'date', 'timestamp'])",
-            ".indexOn":"timestamp",
-            "notification":{
-              ".validate":"newData.isString()"
-            },
-            "title":{
-              ".validate":"newData.isString() && newData.val().length >= 4"
-            },
-            "notice":{
-              ".validate":"newData.isString() && newData.val().length >= 5"
-            },
-            "date":{
-              ".validate":"newData.isString() && newData.val().length >= 5"
-            },
-            "link":{
-              ".validate":"newData.isString() && newData.val().length >= 5"
-            },
-            "timestamp":{
-              ".validate":"newData.val() <= now"
-            },
-            "$other":{
-              ".validate":false
-            }
+        "$news": {
+          ".validate": "newData.hasChildren(['notice', 'date', 'timestamp'])",
+          "title": {
+            ".validate": "(newData.isString() && newData.val().length >= 5)"
+          },
+          "notice": {
+            ".validate": "(newData.isString() && newData.val().length >= 5)"
+          },
+          "date": {
+            ".validate": "(newData.isString() && newData.val().length >= 5)"
+          },
+          "timestamp": {
+            ".validate": "(newData.isNumber() && newData.val() <= now)"
+          },
+          "link": {
+            ".validate": "(newData.isString() && newData.val().length >= 5)"
+          },
+          "notification": {
+            ".validate": "newData.isString()"
+          },
+          "$other": {
+            ".validate": "false"
+          },
+          ".read": "true",
+          ".write": "(auth != null && root.child('admins').child(auth.uid).val() != null)"
+        }
+      }
+    },
+    "contribution": {
+      "$contribution": {
+        ".validate": "newData.hasChildren(['contributor', 'amount'])",
+        "contributor": {
+          ".validate": "newData.isString()"
+        },
+        "amount": {
+          ".validate": "newData.isString()"
+        },
+        "purpose": {
+          ".validate": "newData.isString()"
+        },
+        "remark": {
+          ".validate": "newData.isString()"
+        },
+        "$other": {
+          ".validate": "false"
+        },
+        ".read": "true",
+        ".write": "(auth != null && root.child('admins').child(auth.uid).val() != null)"
+      }
+    },
+    "team": {
+      "$year": {
+        "info": {
+          ".validate": "newData.hasChildren(['session'])",
+          "session": {
+            ".validate": "newData.isString()"
+          },
+          "$other": {
+            ".validate": "false"
           }
-      },
-      "team":{
-      "$year":{
-        "members":{
-          ".indexOn":[
-            "uid",
-            "position",
-            "rank"
-          ],
-          "$team-member":{
-            ".validate":"newData.hasChildren(['name', 'position', 'rank'])",
-            ".write":"auth != null && (root.child('admins/'+auth.uid).exists() || data.child('uid').val() === auth.uid)",
-            "name":{
-              ".validate":"newData.isString()"
+        },
+        "members": {
+          "$member": {
+            ".validate": "(newData.hasChildren(['name', 'position', 'rank']) && newData.val() != null)",
+            "uid": {
+              ".validate": "(newData.isString() && (auth != null && root.child('admins').child(auth.uid).val() != null))"
             },
-            "thumbnail":{
-              ".validate":"newData.isString()"
+            "name": {
+              ".validate": "newData.isString()"
             },
-            "old_avatars":{
-              ".validate":"newData.hasChildren()",
-              "photo":{
-                ".validate":"newData.isString()"
+            "position": {
+              ".validate": "(newData.isString() && (auth != null && root.child('admins').child(auth.uid).val() != null))"
+            },
+            "rank": {
+              ".validate": "((newData.isNumber() && (auth != null && root.child('admins').child(auth.uid).val() != null)) && root.child('ui').child('ranks').child(newData.val()).val() != null)"
+            },
+            "thumbnail": {
+              ".validate": "newData.isString()"
+            },
+            "links": {
+              ".validate": "newData.hasChildren()",
+              "email": {
+                ".validate": "newData.isString()"
+              },
+              "mobile": {
+                ".validate": "newData.isString()"
+              },
+              "facebook": {
+                ".validate": "newData.isString()"
+              },
+              "linkedin": {
+                ".validate": "newData.isString()"
+              },
+              "twitter": {
+                ".validate": "newData.isString()"
+              },
+              "$other": {
+                ".validate": "false"
               }
             },
-            "position":{
-              ".validate":"newData.isString() && root.child('admins/'+auth.uid).exists()"
-            },
-            "rank":{
-              ".validate":"root.child('ui/ranks/' + newData.val()).exists() && root.child('admins/'+auth.uid).exists()"
-            },
-            "uid":{
-              ".validate":"newData.exists() && root.child('admins/'+auth.uid).exists()"
-            },
-            "profile_info":{
-              ".validate":"newData.hasChildren()",
-              "about":{
-                ".validate":"newData.isString()"
+            "profile_info": {
+              ".validate": "newData.hasChildren()",
+              "about": {
+                ".validate": "newData.isString()"
               },
-              "batch":{
-                ".validate":"newData.isString()"
+              "batch": {
+                ".validate": "newData.isString()"
               },
-              "cv":{
-                ".validate":"newData.isString()"
+              "cv": {
+                ".validate": "newData.isString()"
               },
-              "interests":{
-                ".validate":"newData.hasChildren()",
-                "$interest":{
-                  ".validate":"newData.isString()"
-                }
+              "interests": {
+                "$key2": {
+                  ".validate": "newData.isString()"
+                },
+                ".validate": "newData.hasChildren()"
               },
-              "projects":{
-                ".validate":"newData.hasChildren()",
-                "$project":{
-                  "name":{
-                    ".validate":"newData.isString()"
+              "projects": {
+                "$key3": {
+                  ".validate": "(newData.hasChildren() && newData.hasChildren(['id', 'name']))",
+                  "id": {
+                    ".validate": "newData.isString()"
                   },
-                  "id":{
-                    ".validate":"newData.isString()"
+                  "name": {
+                    ".validate": "newData.isString()"
                   },
-                  "$other":{
-                    ".validate":false
+                  "$other": {
+                    ".validate": "false"
                   }
-                }
+                },
+                ".validate": "newData.hasChildren()"
               },
-              "$other":{
-                ".validate":false
+              "$other": {
+                ".validate": "false"
               }
             },
-            "links":{
-              ".validate":"newData.hasChildren()",
-              "mobile":{
-                ".validate":"newData.isString()"
+            "old_avatars": {
+              "$key2": {
+                ".validate": "newData.isString()"
               },
-              "email":{
-                ".validate":"newData.isString()"
-              },
-              "facebook":{
-                ".validate":"newData.isString()"
-              },
-              "g-plus":{
-                ".validate":"newData.isString()"
-              },
-              "linkedin":{
-                ".validate":"newData.isString()"
-              },
-              "other_links":{
-                ".validate":"newData.hasChildren()",
-                "$link":{
-                  ".validate":"newData.isString()"
-                }
-              },
-              "$other":{
-                ".validate":false
-              }
+              ".validate": "newData.hasChildren()"
             },
-            "$other":{
-              ".validate":false
-            }
+            "$other": {
+              ".validate": "false"
+            },
+            ".write": "((auth != null && root.child('admins').child(auth.uid).val() != null) || (auth != null && auth.uid == data.child('uid').val()))",
+            ".indexOn": [
+              "uid",
+              "position",
+              "rank"
+            ]
           }
-        }
-      }
-    }
-    },
-    "contribution":{
-      ".read":true,
-      "$contrib_id":{
-        ".write":"auth!=null && root.child('admins/'+auth.uid).exists()",
-        ".validate":"newData.hasChildren(['contributor', 'amount'])",
-        "contributor":{
-          ".validate":"newData.isString()"
         },
-        "amount":{
-          ".validate":"newData.isString()"
-        },
-        "purpose":{
-          ".validate":"newData.isString()"
-        },
-        "remark":{
-          ".validate":"newData.isString()"
-        },
-        "$other":{
-          ".validate":false
-        }
-      }
-    },
-    "robocon":{
-      ".read":true
-    },
-    "ui":{
-      ".read":true
-    },
-    "feedback":{
-      ".read":true,
-      "$fid":{
-        ".write":true,
-        ".validate":"newData.exists() && !data.exists()"
-      }
-    },
-    "admins":{
-      ".write":false,
-      "$uid":{
-        ".read":"auth!=null && $uid === auth.uid"
-      }
-    },
-    "keys":{
-      ".read":true,
-      "$key":{
-        ".write":"auth!=null && data.child('current').val()===auth.uid",
-        ".validate":"newData.hasChildren(['current', 'previous', 'timestamp']) && newData.child('previous').val() == data.child('current').val()",
-        "timestamp":{
-          ".validate":"newData.val() <= now"
-        }
+        ".read": "true"
       }
     }
   }
 }
-  
