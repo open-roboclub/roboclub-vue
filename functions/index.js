@@ -55,20 +55,36 @@ exports.sendNotification = getNotificationTrigger(newsKey)
 
 exports.sendDebugNotification = getNotificationTrigger(debugNewsKey)
 
-exports.testDebug = functions.database
-  .ref('/debug/test/{pushId}')
-  .onWrite((snapshot, context) => {
-    const message = snapshot.after.val()
-    if (!message) {
-      console.log('Debug Deleted. Exiting')
-      return false
-    }
+exports.saveAuthenticatedUser = functions.auth.user().onCreate(user => {
+  const userEntry = {
+    uid: user.uid,
+    email: user.email,
+    emailVerified: user.emailVerified,
+    name: user.displayName,
+    displayName: user.displayName,
+    phoneNumber: user.phoneNumber,
+    photoURL: user.photoURL,
+    originalPhotoURL: user.photoURL,
+    avatars: [
+      {
+        photoURL: user.photoURL,
+        timestamp: new Date().getTime()
+      }
+    ],
+    disabled: user.disabled,
+    metadata: user.metadata,
+    providerData: user.providerData.map(userInfo => ({
+      uid: userInfo.uid,
+      displayName: userInfo.displayName || null,
+      email: userInfo.email || null,
+      phoneNumber: userInfo.phoneNumber || null,
+      photoURL: userInfo.photoURL || null,
+      providerId: userInfo.providerId || 'null'
+    }))
+  }
 
-    console.log('Debug Message?', context.params.pushId, message.message)
-
-    return true
-  })
-
-exports.hello = functions.https.onRequest((req, res) => {
-  res.status(200).send('Hello, World')
+  return admin
+    .database()
+    .ref('users/' + user.uid)
+    .set(userEntry)
 })
