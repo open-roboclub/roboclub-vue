@@ -10,6 +10,4 @@ fi
 
 export PATH="$(yarn global bin):$PATH"
 
-cp ./dist/index.html ./dist/200.html
-export SURGE_LOGIN=open-roboclub@gmail.com
-surge --project ./dist --domain roboclub.surge.sh
+yarn deploy-rules
