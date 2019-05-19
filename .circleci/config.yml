@@ -17,9 +17,12 @@ jobs:
           paths:
             - ./node_modules
       - run: yarn lint
+      - run: yarn generate-rules
       - run: yarn test
       # build
       - run: yarn build
+      # deploy
+      - run: bash .circleci/deploy.sh
       - store_artifacts:
           path: dist
           prefix: dist
