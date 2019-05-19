@@ -38,7 +38,7 @@ path /projects {
 }
 
 path /feedback/{feedback} is String {
-    write() { isAdmin() && createOnly(this) }
+    create() { auth != null }
 }
 
 path /admins/{admin} {
@@ -47,10 +47,13 @@ path /admins/{admin} {
 
 // --- User Section ---
 
-path /users/{id} is User {
-    read() { true }
-    write() { isCurrentUser(id) }
-    validate() { updateOnly(this) }
+path /users {
+    read() { isAdmin() }
+
+    path /{id} is User {
+        read() { isCurrentUser(id) }
+        write() { isCurrentUser(id) && updateOnly(this) }
+    }
 }
 
 type User {
@@ -60,6 +63,8 @@ type User {
     name: String,
     photoURL: String,
     providerData: ProviderData[]
+
+    validate() { this.providerData != null }
 }
 
 type Uid extends String {

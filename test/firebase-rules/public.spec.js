@@ -8,7 +8,7 @@ expect.extend({
   toAllowWrite: targaryen.toAllowWrite
 })
 
-describe('A set of rules and data', function() {
+describe('Public Routes Access Tests', function() {
   const database = targaryen.getDatabase(rules, {
     admins: {
       admin: true
