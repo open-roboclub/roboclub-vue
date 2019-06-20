@@ -9,7 +9,7 @@
     			"rank" : 20,
     			"thumbnail" : "https://res.cloudinary.com/amuroboclub/image/upload/old/team/DrAbidAliKhan.bmp"
     		},
-    		"anwawsadat" : {
+    		"anwarsadat" : {
     			"links" : {
     				"email" : "anwar7039@gmail.com"
     			},
@@ -91,7 +91,7 @@
     				"linkedin" : "https://www.linkedin.com/in/kakul-shrivastava-821310148/",
     				"mobile" : "9634747915"
     			},
-    			"name" : "Kakul Srivastava",
+    			"name" : "Kakul Shrivastava",
     			"old_avatars" : {
     				"-KmFC5EJb4hUe4G7vPav" : "https://www.materialui.co/materialIcons/social/person_grey_192x192.png",
     				"-Ks4yELT5Xom3shuFARK" : "https://res.cloudinary.com/amuroboclub/image/upload/v1497067967/profile_img/12042681_900308980065236_9069563880213364885_n.jpg",
@@ -101,7 +101,7 @@
     			"profile_info" : {
     				"batch" : "B.Tech (Electronics Engineering)\n2016-20",
     				"cv" : "https://drive.google.com/file/d/1--_NoGR0fWKosxmhjQgzL3HuPyB6NOsY/view?usp=drivesdk",
-    				"interests" : ["Embedded systems", "Robotics"]
+    				"interests" : ["Embedded Systems", "Robotics"]
     			},
     			"rank" : 30,
     			"thumbnail" : "https://res.cloudinary.com/amuroboclub/image/upload/v1543928887/profile_img/FB_IMG_1543928797162.jpg",
@@ -141,7 +141,7 @@
     			"position" : "Joint Coordinator",
     			"rank" : 40,
     			"thumbnail" : "https://res.cloudinary.com/amuroboclub/image/upload/v1554290001/profile_img/IMG_20180630_125455_789.jpg",
-    			"uid" : "IHJgzo9GjmVBCSTIpHjzLsSwDAJ2"
+    			"uid" : "AlEDNz37hpWqWHhjA9AoQdNJUvt1"
     		},
     		"karandeepsaluja" : {
     			"name" : "Karandeep Singh Saluja",
@@ -187,7 +187,7 @@
     		},
     		"sheikhsaud" : {
     			"links" : {
-    				"emails" : "saudredmi@gmail.com",
+    				"email" : "saudredmi@gmail.com",
     				"facebook" : "sheikh.saud.90",
     				"mobile" : "+91-8267848235"
     			},
