@@ -5,7 +5,7 @@
     	"members" : {
     		"abidalikhan" : {
     			"name" : "Dr. Abid Ali Khan",
-    			"position" : "Faculty Advisor",
+    			"position" : "Faculty Adviser",
     			"rank" : 20,
     			"thumbnail" : "https://res.cloudinary.com/amuroboclub/image/upload/old/team/DrAbidAliKhan.bmp"
     		},
@@ -14,7 +14,7 @@
     				"email" : "anwar7039@gmail.com"
     			},
     			"name" : "Dr. Anwar Sadat",
-    			"position" : "Faculty Advisor",
+    			"position" : "Faculty Adviser",
     			"rank" : 20,
     			"thumbnail" : "https://res.cloudinary.com/amuroboclub/image/upload/old/team/DrAnwarSadat.bmp"
     		},
@@ -27,10 +27,9 @@
     			"rank" : 10,
     			"thumbnail" : "https://res.cloudinary.com/amuroboclub/image/upload/old/team/ProfEkramKhan.jpg"
     		},
-    		"mumtazahmadkhan" : {
+    		"badrulhasankhan" : {
     			"name" : "Prof. Badrul Hasan Khan",
     			"old_avatars" : {
-    				"-Kim_35ge-QFeN3-vOuw" : "https://res.cloudinary.com/amuroboclub/image/upload/old/team/ProfMumtazAhmadKhan.jpg",
     				"-LJapR9ZV9egGv_xGKyW" : "https://res.cloudinary.com/amuroboclub/image/upload/v1493349708/profile_img/2904.jpg"
     			},
     			"position" : "Patron",
@@ -42,6 +41,24 @@
     			"position" : "Patron",
     			"rank" : 1,
     			"thumbnail" : "https://res.cloudinary.com/amuroboclub/image/upload/old/team/ProfMMSufyanBeg.jpg"
+    		},
+    		"mrihan" : {
+    			"links" : {
+    				"email" : "m.rihan.ee@amu.ac.in"
+    			},
+    			"name" : "Dr. M. Rihan",
+    			"position" : "Faculty Adviser",
+    			"rank" : 20,
+    			"thumbnail" : "https://res.cloudinary.com/amuroboclub/image/upload/old/team/MrMohdRihan.jpg"
+    		},
+    		"izharuddin" : {
+    			"links" : {
+    				"email" : "izharuddinmuhammed67@gmail.com"
+    			},
+    			"name" : "Dr. Izharuddin",
+    			"position" : "Faculty Adviser",
+    			"rank" : 20,
+    			"thumbnail" : "https://res.cloudinary.com/amuroboclub/image/upload/old/team/MrIzharuddin.bmp"
     		},
     		"amangupta" : {
     			"links" : {
