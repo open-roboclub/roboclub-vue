@@ -202,7 +202,7 @@
     				"interests" : [ "Robotics Design", "Mechanical Fabrication " ]
     			},
     			"rank" : 40,
-    			"thumbnails" : "https://res.cloudinary.com/amuroboclub/image/upload/v1534542859/profile_img/20180818_031954.jpg",
+    			"thumbnail" : "https://res.cloudinary.com/amuroboclub/image/upload/v1534542859/profile_img/20180818_031954.jpg",
     			"uid" : "M7yuxSvmJkZ6arLVqWcXIhF8Nts2"
     		},
     		"haiderali" : {
@@ -273,7 +273,7 @@
     		},
     		"shilpyvarshney" : {
     			"links" : {
-    				"emails" : "shilpyvarshney2000@gmail.com"
+    				"email" : "shilpyvarshney2000@gmail.com"
     			},
     			"name" : "Shilpy Varshney",
     			"position" : "Volunteer",
@@ -288,18 +288,18 @@
     			"name" : "Sonal Gupta",
     			"position" : "Volunteer",
     			"rank" : 70,
-    			"thumbnails" : "https://www.materialui.co/materialIcons/action/account_circle_grey_192x192.png",
+    			"thumbnail" : "https://www.materialui.co/materialIcons/action/account_circle_grey_192x192.png",
     			"uid" : "KPhxsOufO7VB86xatXZUe5hxoq42"
     		},
     		"vivekrajsingh" : {
     			"links" : {
-    				"emails" : "vivekrajs3999@gmail.com",
+    				"email" : "vivekrajs3999@gmail.com",
     				"linkedin" : "https://www.linkedin.com/in/vivek-raj-singh-6a83b3179/"
     			},
     			"name" : "Vivek Raj Singh",
     			"position" : "Volunteer",
     			"rank" : 70,
-    			"thumbnails" : "https://media.licdn.com/dms/image/C5103AQHVpzTghpf5qQ/profile-displayphoto-shrink_800_800/0?e=1566432000&v=beta&t=kiCSzMDQGPXXaG2vMbdu9Zx_HQVo_yv3kwWQYh3ceBs",
+    			"thumbnail" : "https://media.licdn.com/dms/image/C5103AQHVpzTghpf5qQ/profile-displayphoto-shrink_800_800/0?e=1566432000&v=beta&t=kiCSzMDQGPXXaG2vMbdu9Zx_HQVo_yv3kwWQYh3ceBs",
     			"uid" : "Hy7fUdTqAfYU1GdzWlnZRbiqx8s2"
      		},
      		"yashbhardwaj" : {
