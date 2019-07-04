@@ -31,34 +31,25 @@
                 required
               ></v-text-field>
 
+              <v-btn raised class="secondary" @click="onPickFile"
+                >Upload Image</v-btn
+              >
+              <input
+                ref="fileInput"
+                type="file"
+                style="display: none"
+                accept="image/*"
+                @change="onFilePicked"
+              />
+              <br />
+              <img :src="imageUrl" height="150" />
+
               <v-textarea
                 v-model="description"
                 :rules="descriptionRules"
                 label="Description*"
                 placeholder="Enter description so that others can know about this project."
               ></v-textarea>
-
-              <v-text-field
-                v-model="email"
-                :rules="emailRules"
-                label="E-mail"
-                required
-              ></v-text-field>
-
-              <v-select
-                v-model="select"
-                :items="items"
-                :rules="[v => !!v || 'Item is required']"
-                label="Item"
-                required
-              ></v-select>
-
-              <v-checkbox
-                v-model="checkbox"
-                :rules="[v => !!v || 'You must agree to continue!']"
-                label="Do you agree?"
-                required
-              ></v-checkbox>
 
               <v-btn :disabled="!valid" color="success" @click="validate">
                 Validate
@@ -88,6 +79,7 @@
 </template>
 
 <script>
+// import { file } from '@babel/types'
 export default {
   data: () => ({
     dialog: false,
@@ -99,16 +91,10 @@ export default {
     ],
     team: '',
     teamRules: [v => !!v || 'Team is required'],
+    imageUrl: '',
+    image: null,
     description: '',
-    descriptionRules: [v => !!v || 'Description is required'],
-    email: '',
-    emailRules: [
-      v => !!v || 'E-mail is required',
-      v => /.+@.+/.test(v) || 'E-mail must be valid'
-    ],
-    select: null,
-    items: ['Item 1', 'Item 2', 'Item 3', 'Item 4'],
-    checkbox: false
+    descriptionRules: [v => !!v || 'Description is required']
   }),
   methods: {
     validate() {
@@ -118,6 +104,8 @@ export default {
     },
     reset() {
       this.$refs.form.reset()
+      this.imageUrl = ''
+      this.image = null
     },
     resetValidation() {
       this.$refs.form.resetValidation()
@@ -126,6 +114,22 @@ export default {
       let id = title.replace(/[^a-z\d\s]+/gi, '')
       id = id.replace(/\s+/g, '-').toLowerCase()
       return id
+    },
+    onPickFile() {
+      this.$refs.fileInput.click()
+    },
+    onFilePicked(event) {
+      const files = event.target.files
+      const filename = files[0].name
+      if (filename.lastIndexOf('.') <= 0) {
+        return alert('Please upload a valid file.')
+      }
+      const fileReader = new FileReader()
+      fileReader.addEventListener('load', () => {
+        this.imageUrl = fileReader.result
+      })
+      fileReader.readAsDataURL(files[0])
+      this.image = files[0]
     }
   }
 }
