@@ -13,6 +13,7 @@
         </v-card>
       </v-flex>
     </v-layout>
+    <Admin v-if="isAdmin" />
     <v-layout row wrap>
       <v-hover
         v-for="project in completedProjects"
@@ -95,6 +96,13 @@ export default {
       title: 'Projects'
     }
   },
+  components: {
+    Admin: () =>
+      import(
+        /* webpackChunkName: "news-admin" */
+        '~/components/projects/Admin'
+      )
+  },
   data() {
     return {
       loading: true,
@@ -111,6 +119,7 @@ export default {
     projectLink() {
       return '/projects/' + this.selectedProject.id
     },
+    ...mapState(['isAdmin']),
     ...mapState('projects', ['projects']),
     ...mapGetters('projects', ['completedProjects'])
   },
