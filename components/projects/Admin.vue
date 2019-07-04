@@ -51,6 +51,14 @@
                 placeholder="Enter description so that others can know about this project."
               ></v-textarea>
 
+              <v-text-field
+                v-model="yt"
+                :counter="11"
+                :rules="ytRules"
+                label="YouTube video ID"
+                placeholder="For example: RWldvqO4AIY"
+              ></v-text-field>
+
               <v-btn :disabled="!valid" color="success" @click="validate">
                 Validate
               </v-btn>
@@ -94,7 +102,9 @@ export default {
     imageUrl: '',
     image: null,
     description: '',
-    descriptionRules: [v => !!v || 'Description is required']
+    descriptionRules: [v => !!v || 'Description is required'],
+    yt: '',
+    ytRules: [v => (v && v.length === 11) || 'Must be equal to 11 characters']
   }),
   methods: {
     validate() {
