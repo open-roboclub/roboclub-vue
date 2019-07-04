@@ -16,15 +16,15 @@
           <v-container grid-list-md>
             <v-form ref="form" v-model="valid" lazy-validation>
               <v-text-field
-                v-model="title"
+                v-model="project.name"
                 :counter="100"
-                :rules="titleRules"
-                label="Title*"
+                :rules="nameRules"
+                label="Name*"
                 required
               ></v-text-field>
 
               <v-text-field
-                v-model="team"
+                v-model="project.team"
                 :rules="teamRules"
                 label="Team*"
                 placeholder="For example: Areeb Jamal, Haider Ali"
@@ -45,14 +45,15 @@
               <img :src="imageUrl" height="150" />
 
               <v-textarea
-                v-model="description"
+                v-model="project.description"
                 :rules="descriptionRules"
                 label="Description*"
                 placeholder="Enter description so that others can know about this project."
+                required
               ></v-textarea>
 
               <v-text-field
-                v-model="yt"
+                v-model="project.youtube"
                 :counter="11"
                 :rules="ytRules"
                 label="YouTube video ID"
@@ -79,7 +80,12 @@
           <v-btn color="blue darken-1" flat @click="dialog = false"
             >Close</v-btn
           >
-          <v-btn color="blue darken-1" flat @click="dialog = false">Save</v-btn>
+          <v-btn
+            color="blue darken-1"
+            flat
+            @click="dialog = false + saveProject()"
+            >Save</v-btn
+          >
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -88,22 +94,27 @@
 
 <script>
 // import { file } from '@babel/types'
+import firebase from '@firebase/app'
+import '@firebase/storage'
 export default {
   data: () => ({
+    project: {
+      name: '',
+      team: '',
+      description: '',
+      youtube: '',
+      id: ''
+    },
     dialog: false,
     valid: true,
-    title: '',
-    titleRules: [
+    nameRules: [
       v => !!v || 'Title is required',
       v => (v && v.length <= 100) || 'Title must be less than 100 characters'
     ],
-    team: '',
     teamRules: [v => !!v || 'Team is required'],
     imageUrl: '',
     image: null,
-    description: '',
     descriptionRules: [v => !!v || 'Description is required'],
-    yt: '',
     ytRules: [v => (v && v.length === 11) || 'Must be equal to 11 characters']
   }),
   methods: {
@@ -140,6 +151,43 @@ export default {
       })
       fileReader.readAsDataURL(files[0])
       this.image = files[0]
+    },
+    saveProject() {
+      let imageUrl
+      let key
+      this.project.id = this.getID(this.project.name)
+      this.$firebase
+        .database()
+        .ref('projects')
+        .push(this.project)
+        .then(data => {
+          key = data.key
+          return key
+        })
+        .then(key => {
+          console.log(key)
+          const filename = this.image.name
+          const ext = filename.slice(filename.lastIndexOf('.'))
+          return firebase.storage().ref('projects/' + key + ext)
+        })
+        .then(fileData => {
+          console.log(fileData)
+          fileData.ref.getDownloadURL().then(downloadURL => {
+            console.log(downloadURL)
+            imageUrl = downloadURL
+          })
+          return this.$firebase
+            .database()
+            .ref('projects')
+            .child(key)
+            .update({ image: imageUrl })
+        })
+        .then(() => {
+          console.log('new project succesfully saved')
+        })
+        .catch(error => {
+          console.log(error)
+        })
     }
   }
 }
