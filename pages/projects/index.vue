@@ -13,7 +13,7 @@
         </v-card>
       </v-flex>
     </v-layout>
-    <Admin v-if="isAdmin" />
+    <Admin />
     <v-layout row wrap>
       <v-hover
         v-for="project in completedProjects"

@@ -168,7 +168,11 @@ export default {
           console.log(key)
           const filename = this.image.name
           const ext = filename.slice(filename.lastIndexOf('.'))
-          return firebase.storage().ref('projects/' + key + ext)
+          console.log(key + ext)
+          return firebase
+            .storage()
+            .ref('projects/' + key + ext)
+            .put(this.image)
         })
         .then(fileData => {
           console.log(fileData)
