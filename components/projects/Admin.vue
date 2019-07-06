@@ -11,6 +11,17 @@
       <v-card>
         <v-card-title>
           <span class="headline">Add New Project</span>
+          <v-container text-xs-center>
+            <v-flex xs-12>
+              <v-progress-circular
+                v-if="loading"
+                :size="70"
+                :width="7"
+                color="purple"
+                indeterminate
+              ></v-progress-circular>
+            </v-flex>
+          </v-container>
         </v-card-title>
         <v-card-text>
           <v-container grid-list-md>
@@ -80,12 +91,7 @@
           <v-btn color="blue darken-1" flat @click="dialog = false"
             >Close</v-btn
           >
-          <v-btn
-            color="blue darken-1"
-            flat
-            @click="dialog = false + saveProject()"
-            >Save</v-btn
-          >
+          <v-btn color="blue darken-1" flat @click="saveProject">Save</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -115,7 +121,8 @@ export default {
     imageUrl: '',
     image: null,
     descriptionRules: [v => !!v || 'Description is required'],
-    ytRules: [v => (v && v.length === 11) || 'Must be equal to 11 characters']
+    ytRules: [v => (v && v.length === 11) || 'Must be equal to 11 characters'],
+    loading: false
   }),
   methods: {
     validate() {
@@ -153,7 +160,7 @@ export default {
       this.image = files[0]
     },
     saveProject() {
-      let imageUrl = ''
+      this.loading = true
       let key
       this.project.id = this.getID(this.project.name)
       this.$firebase
@@ -165,7 +172,6 @@ export default {
           return key
         })
         .then(key => {
-          console.log(key)
           const filename = this.image.name
           const ext = filename.slice(filename.lastIndexOf('.'))
           console.log(key + ext)
@@ -175,20 +181,20 @@ export default {
             .put(this.image)
         })
         .then(fileData => {
-          console.log(fileData)
-          fileData.ref.getDownloadURL().then(downloadURL => {
-            console.log(downloadURL)
-            imageUrl = downloadURL
+          return fileData
+        })
+        .then(data => {
+          data.ref.getDownloadURL().then(downloadURL => {
+            return this.$firebase
+              .database()
+              .ref('projects')
+              .child(key)
+              .update({ image: downloadURL })
           })
         })
         .then(() => {
-          return this.$firebase
-            .database()
-            .ref('projects')
-            .child(key)
-            .update({ image: imageUrl })
-        })
-        .then(() => {
+          this.loading = false
+          this.dialog = false
           console.log('new project succesfully saved')
         })
         .catch(error => {
