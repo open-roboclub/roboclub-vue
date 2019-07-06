@@ -153,7 +153,7 @@ export default {
       this.image = files[0]
     },
     saveProject() {
-      let imageUrl
+      let imageUrl = ''
       let key
       this.project.id = this.getID(this.project.name)
       this.$firebase
@@ -180,6 +180,8 @@ export default {
             console.log(downloadURL)
             imageUrl = downloadURL
           })
+        })
+        .then(() => {
           return this.$firebase
             .database()
             .ref('projects')
