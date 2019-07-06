@@ -1,8 +1,9 @@
 export default {
-  apiKey: 'AIzaSyB375ZkbrouviVJ1YG7_3n8K3jAhIXlsOU',
-  authDomain: 'amu-roboclub.firebaseapp.com',
-  databaseURL: 'https://amu-roboclub.firebaseio.com',
-  projectId: 'amu-roboclub',
-  storageBucket: 'amu-roboclub.appspot.com',
-  messagingSenderId: '911524271284'
+  apiKey: 'AIzaSyDTuX74xp42Ia62hC49Z_tocQG0dEk-ntk',
+  authDomain: 'test-c6e9b.firebaseapp.com',
+  databaseURL: 'https://test-c6e9b.firebaseio.com',
+  projectId: 'test-c6e9b',
+  storageBucket: 'test-c6e9b.appspot.com',
+  messagingSenderId: '1067162839273',
+  appId: '1:1067162839273:web:8b97cc17c63bcf98'
 }

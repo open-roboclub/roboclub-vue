@@ -77,6 +77,42 @@
                 placeholder="For example: RWldvqO4AIY"
               ></v-text-field>
 
+              <v-checkbox
+                v-model="addDocs"
+                label="Add Documents"
+                color="secondary"
+              ></v-checkbox>
+
+              <v-form v-if="addDocs">
+                <v-container>
+                  <v-layout>
+                    <v-flex xs12 md4>
+                      <v-text-field
+                        v-model="project_report"
+                        label="Project Report Link"
+                        required
+                      ></v-text-field>
+                    </v-flex>
+
+                    <v-flex xs12 md4>
+                      <v-text-field
+                        v-model="poster"
+                        label="Poster Link"
+                        required
+                      ></v-text-field>
+                    </v-flex>
+
+                    <v-flex xs12 md4>
+                      <v-text-field
+                        v-model="presentation"
+                        label="Presentation Link"
+                        required
+                      ></v-text-field>
+                    </v-flex>
+                  </v-layout>
+                </v-container>
+              </v-form>
+
               <v-btn :disabled="!valid" color="success" @click="validate">
                 Validate
               </v-btn>
@@ -116,7 +152,21 @@ export default {
       description: '',
       youtube: '',
       id: '',
-      ongoing: false
+      ongoing: false,
+      docs: [
+        {
+          name: 'Project Report',
+          url: ''
+        },
+        {
+          name: 'Presentation',
+          url: ''
+        },
+        {
+          name: 'Poster',
+          url: ''
+        }
+      ]
     },
     dialog: false,
     valid: true,
@@ -129,7 +179,11 @@ export default {
     image: null,
     descriptionRules: [v => !!v || 'Description is required'],
     ytRules: [v => (v && v.length === 11) || 'Must be equal to 11 characters'],
-    loading: false
+    loading: false,
+    addDocs: false,
+    project_report: '',
+    presentation: '',
+    poster: ''
   }),
   methods: {
     validate() {
