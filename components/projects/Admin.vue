@@ -195,7 +195,7 @@ export default {
       return id
     },
     setDocs() {
-      if (this.project.docs === [] || this.addDocs === false) {
+      if (this.addDocs === false) {
         delete this.project.docs
       } else {
         if (this.project_report.length > 0) {
@@ -215,6 +215,9 @@ export default {
             name: 'Presentation',
             url: this.presentation
           })
+        }
+        if (this.project.docs.length === 0) {
+          delete this.project.docs
         }
       }
     },
