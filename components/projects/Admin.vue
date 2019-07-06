@@ -63,6 +63,12 @@
                 required
               ></v-textarea>
 
+              <v-checkbox
+                v-model="project.ongoing"
+                label="Ongoing"
+                color="secondary"
+              ></v-checkbox>
+
               <v-text-field
                 v-model="project.youtube"
                 :counter="11"
@@ -109,7 +115,8 @@ export default {
       team: '',
       description: '',
       youtube: '',
-      id: ''
+      id: '',
+      ongoing: false
     },
     dialog: false,
     valid: true,
