@@ -90,7 +90,7 @@
     				"-LFhN35aDtGGhLQkh6r9" : "https://www.materialui.co/materialIcons/social/person_grey_192x192.png",
     				"-LFhNW0B0sTd6Y1JrkXL" : "https://www.materialui.co/materialIcons/social/person_grey_192x192.png"
     			},
-    			"position" : "Coorinator",
+    			"position" : "Coordinator",
     			"profile_info" : {
     				"about" : "Physics loving enthusiastic with sharp inquisitive skills.",
     				"batch" : "B.tech (Electronics Engineering)\n2016-2020",
@@ -243,12 +243,6 @@
     			"rank" : 50,
     			"thumbnail" : "https://avatars0.githubusercontent.com/u/49765028?s=460&v=4"
     		},
-    		"danyaluddinahmed" : {
-    			"name" : "Danyaluddin Ahmed",
-    			"position" : "Volunteer",
-    			"rank" : 70,
-    			"thumbnail" : "https://www.materialui.co/materialIcons/action/account_circle_grey_192x192.png"
-    		},
     		"mdramzanali" : {
     			"links" : {
     				"email" : "ramzanamu807@gmail.com",
@@ -283,10 +277,14 @@
     			"thumbnail" : "https://www.materialui.co/materialIcons/action/account_circle_grey_192x192.png"
     		},
     		"priyankagupta" : {
+                "links" : {
+                    "email" : "priyankaaa3103@gmail.com",
+                    "linkedin" : "www.linkedin.com/in/priyanka-gupta-49aa76189"
+                },
     			"name" : "Priyanka Gupta",
     			"position" : "Volunteer",
     			"rank" : 70,
-    			"thumbnail" : "https://www.materialui.co/materialIcons/action/account_circle_grey_192x192.png"
+    			"thumbnail" : "https://media.licdn.com/dms/image/C5103AQEodn1hl-QAMw/profile-displayphoto-shrink_800_800/0?e=1567641600&v=beta&t=Mq7CVdfkr3Mp3ESM42gki1joACqfKYckL-kLWqk6-aM"
     		},
     		"shilpyvarshney" : {
     			"links" : {
