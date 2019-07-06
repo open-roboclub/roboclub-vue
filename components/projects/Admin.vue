@@ -153,20 +153,7 @@ export default {
       youtube: '',
       id: '',
       ongoing: false,
-      docs: [
-        {
-          name: 'Project Report',
-          url: ''
-        },
-        {
-          name: 'Presentation',
-          url: ''
-        },
-        {
-          name: 'Poster',
-          url: ''
-        }
-      ]
+      docs: []
     },
     dialog: false,
     valid: true,
@@ -195,6 +182,9 @@ export default {
       this.$refs.form.reset()
       this.imageUrl = ''
       this.image = null
+      this.project_report = ''
+      this.presentation = ''
+      this.poster = ''
     },
     resetValidation() {
       this.$refs.form.resetValidation()
@@ -203,6 +193,30 @@ export default {
       let id = title.replace(/[^a-z\d\s]+/gi, '')
       id = id.replace(/\s+/g, '-').toLowerCase()
       return id
+    },
+    setDocs() {
+      if (this.project.docs === [] || this.addDocs === false) {
+        delete this.project.docs
+      } else {
+        if (this.project_report.length > 0) {
+          this.project.docs.push({
+            name: 'Project Report',
+            url: this.project_report
+          })
+        }
+        if (this.poster.length > 0) {
+          this.project.docs.push({
+            name: 'Poster',
+            url: this.poster
+          })
+        }
+        if (this.presentation.length > 0) {
+          this.project.docs.push({
+            name: 'Presentation',
+            url: this.presentation
+          })
+        }
+      }
     },
     onPickFile() {
       this.$refs.fileInput.click()
@@ -222,6 +236,7 @@ export default {
     },
     saveProject() {
       this.loading = true
+      this.setDocs()
       let key
       this.project.id = this.getID(this.project.name)
       this.$firebase
