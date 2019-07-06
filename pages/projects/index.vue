@@ -99,7 +99,7 @@ export default {
   components: {
     Admin: () =>
       import(
-        /* webpackChunkName: "news-admin" */
+        /* webpackChunkName: "project-admin" */
         '~/components/projects/Admin'
       )
   },
