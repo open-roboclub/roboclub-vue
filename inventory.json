@@ -1,0 +1,53 @@
+"inventory" : {
+	"micro-controllers" : {
+		"arduino" : {
+			"name" : "Arduino Uno",
+			"instore" : 4,
+			"status" : "Available" 
+		},
+		"raspberrypi" : {
+			"name" : "Raspberry Pi",
+			"instore" : 2,
+			"status" : "Unavailable"
+		},
+		"gtcrl" : {
+			"name" : "GTCRL-Conroller",
+			"instore" : 3,
+			"status" : "Available"
+		}
+	},
+	"sensors" : {
+		"touchsensor" : {
+			"name" : "TTP223B Touch Sensor",
+			"instore" : 2,
+			"status" : "Available"
+		},
+		"turbidity" : {
+			"name" : "Motion Sensor",
+			"instore" : "3",
+			"status" : "Available"
+		},
+		"temperature" : {
+			"name" : "Infrared Temperature Sensor",
+			"instore" : 5,
+			"status" : "Available",
+			"details" : "GY-906 MLX90614"
+		},
+		"airquality" : {
+			"name" : "Air Quality Sensor",
+			"instore" : 3,
+			"status" : 4,
+			"details" : "MQ 135"
+		}
+	},
+	"wires" : {
+		"jumper" : {
+			"name" : "Jumper Cables",
+			"instore" : 100
+		},
+		"copperwire" : {
+			"name" : "Copper Wires",
+			"instore" : 50
+		}
+	}
+}
