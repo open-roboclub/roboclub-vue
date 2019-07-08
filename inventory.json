@@ -1,63 +1,63 @@
-"inventory" : {	
-	"microcontroller" : [{
-		"arduino" : {
+{	
+	"microcontroller" : [
+		{
 			"name" : "Arduino Uno",
 			"total" : 5,
 			"working" : 5,
 			"allotted" : 3
 		},
-		"raspberrypi" : {
+		{
 			"name" : "Raspberry Pi",
 			"total" : 4,
 			"working" : 4,
 			"allotted" : 2
 		},
-		"gtcrl" : {
+		{
 			"name" : "GTCRL-Conroller",
 			"total" : 6,
 			"working" : 6,
 			"allotted" : 3
-		},
-	}],
-	"sensors" : [{
-		"touchsensor" : {
+		}
+	],
+	"sensors" : [
+		{
 			"name" : "TTP223B Touch Sensor",
 			"total" : 5,
 			"working" : 3,
 			"allotted" : 2
 		},
-		"turbidity" : {
+		{
 			"name" : "Motion Sensor",
 			"total" : 4,
 			"working" : 4,
 			"allotted" : 3
 		},
-		"temperature" : {
+		{
 			"name" : "Infrared Temperature Sensor",
 			"total" : 6,
 			"working" : 5,
 			"allotted" : 2
 		},
-		"airquality" : {
+		{
 			"name" : "Air Quality Sensor",
 			"total" : 5,
 			"working" : 5,
 			"allotted" : 2
-		},
-	}],
-	"wires" : [{
-		"jumper" : {
+		}
+	],
+	"wires" : [
+		{
 			"name" : "Jumper Cables",
 			"total" : 9,
 			"working" : 9,
 			"allotted" : 5,
 			"available" : 4
 		},
-		"copperwire" : {
+		{
 			"name" : "Copper Wires",
 			"total" : 15,
 			"working" : 15,
 			"allotted" : 10
 		}
-	}]
+	]
 }
