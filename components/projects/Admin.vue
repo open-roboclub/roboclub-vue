@@ -54,6 +54,24 @@
               />
               <br />
               <img :src="imageUrl" height="150" />
+              <br />
+
+              <span class="text"> Gallery images</span>
+              <v-btn raised class="cyan" @click="onMultiFilePick"
+                >Upload Images</v-btn
+              >
+              <v-progress-circular
+                v-if="uploadSuccess"
+                indeterminate
+              ></v-progress-circular>
+              <input
+                ref="multiFileInput"
+                type="file"
+                style="display: none"
+                accept="image/*"
+                multiple
+                @change="onMultiFilePicked"
+              />
 
               <v-textarea
                 v-model="project.description"
@@ -133,7 +151,13 @@
           <v-btn color="blue darken-1" flat @click="dialog = false"
             >Close</v-btn
           >
-          <v-btn color="blue darken-1" flat @click="saveProject">Save</v-btn>
+          <v-btn
+            :disabled="uploadSuccess"
+            color="blue darken-1"
+            flat
+            @click="saveProject"
+            >Save</v-btn
+          >
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -153,7 +177,8 @@ export default {
       youtube: '',
       id: '',
       ongoing: false,
-      docs: []
+      docs: [],
+      images: []
     },
     dialog: false,
     valid: true,
@@ -170,7 +195,8 @@ export default {
     addDocs: false,
     project_report: '',
     presentation: '',
-    poster: ''
+    poster: '',
+    uploadSuccess: false
   }),
   methods: {
     validate() {
@@ -224,6 +250,9 @@ export default {
     onPickFile() {
       this.$refs.fileInput.click()
     },
+    onMultiFilePick() {
+      this.$refs.multiFileInput.click()
+    },
     onFilePicked(event) {
       const files = event.target.files
       const filename = files[0].name
@@ -236,6 +265,35 @@ export default {
       })
       fileReader.readAsDataURL(files[0])
       this.image = files[0]
+    },
+    onMultiFilePicked(event) {
+      if (this.project.name === '') {
+        alert('Please enter the name of the project first!')
+      } else {
+        this.uploadSuccess = true
+        const files = event.target.files
+        console.log(files)
+        for (let i = 0; i < files.length; i++) {
+          const filename = files[i].name
+          firebase
+            .storage()
+            .ref(
+              'galleryImages/' + this.getID(this.project.name) + '-' + filename
+            )
+            .put(files[i])
+            .then(data => {
+              data.ref.getDownloadURL().then(url => {
+                this.project.images.push(url)
+                if (files.length === this.project.images.length) {
+                  this.uploadSuccess = false
+                }
+              })
+            })
+            .catch(err => {
+              console.log(err)
+            })
+        }
+      }
     },
     saveProject() {
       this.loading = true
