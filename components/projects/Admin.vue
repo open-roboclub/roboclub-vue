@@ -295,48 +295,36 @@ export default {
         }
       }
     },
-    saveProject() {
-      this.loading = true
-      this.setDocs()
-      let key
-      this.project.id = this.getID(this.project.name)
-      this.$firebase
-        .database()
-        .ref('projects')
-        .push(this.project)
-        .then(data => {
-          key = data.key
-          return key
-        })
-        .then(key => {
-          const filename = this.image.name
-          const ext = filename.slice(filename.lastIndexOf('.'))
-          console.log(key + ext)
-          return firebase
-            .storage()
-            .ref('projects/' + key + ext)
-            .put(this.image)
-        })
-        .then(fileData => {
-          return fileData
-        })
-        .then(data => {
-          data.ref.getDownloadURL().then(downloadURL => {
-            return this.$firebase
-              .database()
-              .ref('projects')
-              .child(key)
-              .update({ image: downloadURL })
-          })
-        })
-        .then(() => {
+    saveProject: async function() {
+      try {
+        this.loading = true
+        const filename = this.image.name
+        const ext = filename.slice(filename.lastIndexOf('.'))
+        this.setDocs()
+        this.project.id = this.getID(this.project.name)
+        const response = await this.$firebase
+          .database()
+          .ref('projects')
+          .push(this.project)
+        const key = await response.key
+        const storageResponse = await firebase
+          .storage()
+          .ref('projects/' + key + ext)
+          .put(this.image)
+        const downloadURL = await storageResponse.ref.getDownloadURL()
+        const updateResponse = this.$firebase
+          .database()
+          .ref('projects')
+          .child(key)
+          .update({ image: downloadURL })
+        if (updateResponse) {
           this.loading = false
           this.dialog = false
           console.log('new project succesfully saved')
-        })
-        .catch(error => {
-          console.log(error)
-        })
+        }
+      } catch (err) {
+        console.log(err)
+      }
     }
   }
 }
