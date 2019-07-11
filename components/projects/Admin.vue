@@ -303,24 +303,22 @@ export default {
           .database()
           .ref('projects')
           .push(this.project)
-        const key = await response.key
+        const key = response.key
         const storageResponse = await firebase
           .storage()
           .ref('projects/' + key + ext)
           .put(this.image)
         const downloadURL = await storageResponse.ref.getDownloadURL()
-        const updateResponse = this.$firebase
+        await this.$firebase
           .database()
           .ref('projects')
           .child(key)
           .update({ image: downloadURL })
-        if (updateResponse) {
-          this.loading = false
-          this.dialog = false
-          console.log('new project succesfully saved')
-        }
+        this.loading = false
+        this.dialog = false
+        console.log('new project succesfully saved')
       } catch (err) {
-        console.log(err)
+        console.error(err)
       }
     }
   }
