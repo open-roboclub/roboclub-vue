@@ -266,33 +266,30 @@ export default {
       fileReader.readAsDataURL(files[0])
       this.image = files[0]
     },
-    onMultiFilePicked(event) {
-      if (this.project.name === '') {
-        alert('Please enter the name of the project first!')
-      } else {
-        this.uploadSuccess = true
-        const files = event.target.files
-        console.log(files)
-        for (let i = 0; i < files.length; i++) {
-          const filename = files[i].name
-          firebase
-            .storage()
-            .ref(
-              'galleryImages/' + this.getID(this.project.name) + '-' + filename
-            )
-            .put(files[i])
-            .then(data => {
-              data.ref.getDownloadURL().then(url => {
-                this.project.images.push(url)
-                if (files.length === this.project.images.length) {
-                  this.uploadSuccess = false
-                }
-              })
-            })
-            .catch(err => {
-              console.log(err)
-            })
+    onMultiFilePicked: async function(event) {
+      try {
+        if (this.project.name === '') {
+          alert('Please enter the name of the project first!')
+        } else {
+          this.uploadSuccess = true
+          const ID = this.getID(this.project.name)
+          const files = event.target.files
+          console.log(files)
+          for (let i = 0; i < files.length; i++) {
+            const filename = files[i].name
+            const response = await firebase
+              .storage()
+              .ref('galleryImages/' + ID + '-' + filename)
+              .put(files[i])
+            const downloadURL = await response.ref.getDownloadURL()
+            this.project.images.push(downloadURL)
+            if (files.length === this.project.images.length) {
+              this.uploadSuccess = false
+            }
+          }
         }
+      } catch (err) {
+        console.log(err)
       }
     },
     saveProject: async function() {
