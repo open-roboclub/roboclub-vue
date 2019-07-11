@@ -61,7 +61,7 @@
                 >Upload Images</v-btn
               >
               <v-progress-circular
-                v-if="uploadSuccess"
+                v-if="uploadRemaining"
                 indeterminate
               ></v-progress-circular>
               <input
@@ -152,7 +152,7 @@
             >Close</v-btn
           >
           <v-btn
-            :disabled="uploadSuccess"
+            :disabled="uploadRemaining"
             color="blue darken-1"
             flat
             @click="saveProject"
@@ -196,7 +196,7 @@ export default {
     project_report: '',
     presentation: '',
     poster: '',
-    uploadSuccess: false
+    uploadRemaining: false
   }),
   methods: {
     validate() {
@@ -271,7 +271,7 @@ export default {
         if (this.project.name === '') {
           alert('Please enter the name of the project first!')
         } else {
-          this.uploadSuccess = true
+          this.uploadRemaining = true
           const ID = this.getID(this.project.name)
           const files = event.target.files
           console.log(files)
@@ -283,7 +283,7 @@ export default {
               .put(files[i])
             const downloadURL = await response.ref.getDownloadURL()
             this.project.images.push(downloadURL)
-            this.uploadSuccess = files.length === this.project.images.length
+            this.uploadRemaining = files.length === this.project.images.length
           }
         }
       } catch (err) {
