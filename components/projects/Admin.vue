@@ -283,9 +283,7 @@ export default {
               .put(files[i])
             const downloadURL = await response.ref.getDownloadURL()
             this.project.images.push(downloadURL)
-            if (files.length === this.project.images.length) {
-              this.uploadSuccess = false
-            }
+            this.uploadSuccess = files.length === this.project.images.length
           }
         }
       } catch (err) {
