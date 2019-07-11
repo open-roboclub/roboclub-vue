@@ -283,7 +283,9 @@ export default {
               .put(files[i])
             const downloadURL = await response.ref.getDownloadURL()
             this.project.images.push(downloadURL)
-            this.uploadRemaining = !(files.length === this.project.images.length)
+            this.uploadRemaining = !(
+              files.length === this.project.images.length
+            )
           }
         }
       } catch (err) {
