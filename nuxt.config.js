@@ -1,6 +1,8 @@
 const VuetifyLoaderPlugin = require('vuetify-loader/lib/plugin')
 const pkg = require('./package')
 
+const isProduction = process.env.NODE_ENV === 'production'
+
 module.exports = {
   mode: 'spa',
 
@@ -27,7 +29,7 @@ module.exports = {
   /*
    ** Customize the progress-bar color
    */
-  loading: { color: '#fff' },
+  loading: { color: '#ddd' },
 
   /*
    ** Global CSS
@@ -48,6 +50,7 @@ module.exports = {
    ** Build configuration
    */
   build: {
+    extractCSS: isProduction,
     transpile: ['vuetify/lib'],
     plugins: [new VuetifyLoaderPlugin()],
     loaders: {
