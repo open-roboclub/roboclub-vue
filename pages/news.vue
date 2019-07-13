@@ -41,6 +41,7 @@
 
 <script>
 import { mapState, mapGetters, mapActions } from 'vuex'
+import Card from '~/components/news/Card'
 
 export default {
   head() {
@@ -54,11 +55,7 @@ export default {
         /* webpackChunkName: "news-admin" */
         '~/components/news/Admin'
       ),
-    NewsCard: () =>
-      import(
-        /* webpackChunkName: "news-card" */
-        '~/components/news/Card'
-      )
+    NewsCard: Card
   },
   data() {
     return {
