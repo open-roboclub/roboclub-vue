@@ -64,21 +64,35 @@
               <v-avatar :tile="false" :size="200" color="grey lighten-4 mt-3">
                 <v-img
                   :aspect-ratio="16 / 9"
-                  src="https://res.cloudinary.com/amuroboclub/image/upload/v1503337816/profile_img/pic_dp.jpg"
+                  src="https://lh6.googleusercontent.com/-Nabz6JJKsqc/AAAAAAAAAAI/AAAAAAAAAoI/biOxaDpjiec/photo.jpg"
                   alt="Avatar"
                 />
               </v-avatar>
+              <div class="headline">Aman Gupta</div>
+              <v-avatar :tile="false" :size="200" color="grey lighten-4 mt-3">
+                <v-img
+                  :aspect-ratio="16 / 9"
+                  src="https://res.cloudinary.com/amuroboclub/image/upload/v1529768915/profile_img/IMG_20180328_004220805.jpg"
+                  alt="Avatar"
+                />
+              </v-avatar>
+              <div class="headline">Harshul Gupta</div>
+              <v-avatar :tile="false" :size="200" color="grey lighten-4 mt-3">
+                <v-img
+                  :aspect-ratio="16 / 9"
+                  src="https://res.cloudinary.com/amuroboclub/image/upload/v1543928884/profile_img/FB_IMG_1543928797162.jpg"
+                  alt="Avatar"
+                />
+              </v-avatar>
+              <div class="headline">Kakul Shrivastava</div>
             </v-flex>
             <v-flex xs12 class="text-xs-center">
-              <div>
-                <span class="headline mb-0">Harshit Varshney</span>
-                <br />
-                <nuxt-link to="/team" class="iconLink">
-                  <v-icon dark x-large color="#7FFF00">
-                    mdi-arrow-right-bold-circle
-                  </v-icon>
-                </nuxt-link>
-              </div>
+              <br />
+              <nuxt-link to="/team" class="iconLink">
+                <v-icon dark x-large color="#7FFF00">
+                  mdi-arrow-right-bold-circle
+                </v-icon>
+              </nuxt-link>
             </v-flex>
           </v-container>
         </v-card>
