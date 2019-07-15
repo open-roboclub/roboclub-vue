@@ -39,6 +39,7 @@
 
 <script>
 import { mapState, mapGetters, mapActions } from 'vuex'
+import Tab from '~/components/download/Tab'
 
 export default {
   head() {
@@ -47,11 +48,7 @@ export default {
     }
   },
   components: {
-    DownloadTab: () =>
-      import(
-        /* webpackChunkName: "download-tab" */
-        '~/components/download/Tab'
-      )
+    DownloadTab: Tab
   },
   data() {
     return {

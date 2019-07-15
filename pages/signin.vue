@@ -37,7 +37,6 @@
 <style src="firebaseui/dist/firebaseui.css"></style>
 
 <script>
-import firebaseui from 'firebaseui'
 import { mapState } from 'vuex'
 
 export default {
@@ -48,6 +47,7 @@ export default {
   },
   computed: mapState(['user']),
   mounted() {
+    const firebaseui = require('firebaseui')
     const firebase = this.$firebase
     const uiConfig = {
       signInSuccessUrl: '/',
