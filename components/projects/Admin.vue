@@ -42,8 +42,9 @@
                 required
               ></v-text-field>
 
+              <span class="text">The single dedicated image:</span>
               <v-btn raised class="secondary" @click="onPickFile"
-                >Upload Image</v-btn
+                >Upload Featured Image</v-btn
               >
               <input
                 ref="fileInput"
@@ -55,10 +56,11 @@
               <br />
               <img :src="imageUrl" height="150" />
               <br />
+              <br />
 
-              <span class="text"> Gallery images</span>
+              <span class="text">Can be more than one:</span>
               <v-btn raised class="cyan" @click="onMultiFilePick"
-                >Upload Images</v-btn
+                >Upload Gallery Images</v-btn
               >
               <v-progress-circular
                 v-if="uploadRemaining"
