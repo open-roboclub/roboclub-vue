@@ -90,7 +90,6 @@
               <v-text-field
                 v-model="project.youtube"
                 :counter="11"
-                :rules="ytRules"
                 label="YouTube video ID"
                 placeholder="For example: RWldvqO4AIY"
               ></v-text-field>
@@ -190,7 +189,6 @@ export default {
     imageUrl: '',
     image: null,
     descriptionRules: [v => !!v || 'Description is required'],
-    ytRules: [v => (v && v.length === 11) || 'Must be equal to 11 characters'],
     loading: false,
     addDocs: false,
     project_report: '',
