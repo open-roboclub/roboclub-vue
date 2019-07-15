@@ -130,16 +130,8 @@
                 </v-container>
               </v-form>
 
-              <v-btn :disabled="!valid" color="success" @click="validate">
-                Validate
-              </v-btn>
-
               <v-btn color="error" @click="reset">
                 Reset Form
-              </v-btn>
-
-              <v-btn color="warning" @click="resetValidation">
-                Reset Validation
               </v-btn>
             </v-form>
           </v-container>
@@ -197,9 +189,15 @@ export default {
     uploadRemaining: false
   }),
   methods: {
-    validate() {
-      if (this.$refs.form.validate()) {
-        this.snackbar = true
+    nonValid() {
+      if (
+        this.project.name === '' ||
+        this.project.team === '' ||
+        this.project.description === ''
+      ) {
+        return true
+      } else {
+        return false
       }
     },
     reset() {
@@ -209,9 +207,6 @@ export default {
       this.project_report = ''
       this.presentation = ''
       this.poster = ''
-    },
-    resetValidation() {
-      this.$refs.form.resetValidation()
     },
     getID(title) {
       let id = title.replace(/[^a-z\d\s]+/gi, '')
@@ -292,7 +287,17 @@ export default {
     },
     saveProject: async function() {
       try {
+        if (this.nonValid()) {
+          alert('Entered details are invalid. Please try again.')
+          return
+        } else if (this.imageUrl.length <= 0) {
+          alert("Please upload your project's image.")
+          return
+        }
         this.loading = true
+        if (this.project.youtube.length <= 0) {
+          delete this.project.youtube
+        }
         const filename = this.image.name
         const ext = filename.slice(filename.lastIndexOf('.'))
         this.setDocs()
