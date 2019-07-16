@@ -63,7 +63,7 @@
             <v-layout row wrap>
               <v-card
                 v-for="item in coordinators"
-                :key="item[0]"
+                :key="item.name"
                 width="200"
                 class="mx-auto"
                 color="#458B74"
@@ -76,14 +76,14 @@
                   >
                     <v-img
                       :aspect-ratio="16 / 9"
-                      :src="item[1]"
-                      :alt="item[0]"
+                      :src="item.avatar"
+                      :alt="item.name"
                     />
                   </v-avatar>
                 </v-flex>
                 <v-card-title primary-title>
                   <v-flex xs12 class="text-xs-center">
-                    <span style="color: white">{{ item[0] }}</span>
+                    <span style="color: white">{{ item.name }}</span>
                   </v-flex>
                 </v-card-title>
               </v-card>
@@ -233,18 +233,21 @@ export default {
     return {
       loading: true,
       coordinators: [
-        [
-          'Aman Gupta',
-          'https://lh6.googleusercontent.com/-Nabz6JJKsqc/AAAAAAAAAAI/AAAAAAAAAoI/biOxaDpjiec/photo.jpg'
-        ],
-        [
-          'Harshul Gupta',
-          'https://res.cloudinary.com/amuroboclub/image/upload/v1529768915/profile_img/IMG_20180328_004220805.jpg'
-        ],
-        [
-          'Kakul Shrivastava',
-          'https://res.cloudinary.com/amuroboclub/image/upload/v1543928884/profile_img/FB_IMG_1543928797162.jpg'
-        ]
+        {
+          name: 'Aman Gupta',
+          avatar:
+            'https://lh6.googleusercontent.com/-Nabz6JJKsqc/AAAAAAAAAAI/AAAAAAAAAoI/biOxaDpjiec/photo.jpg'
+        },
+        {
+          name: 'Harshul Gupta',
+          avatar:
+            'https://res.cloudinary.com/amuroboclub/image/upload/v1529768915/profile_img/IMG_20180328_004220805.jpg'
+        },
+        {
+          name: 'Kakul Shrivastava',
+          avatar:
+            'https://res.cloudinary.com/amuroboclub/image/upload/v1543928884/profile_img/FB_IMG_1543928797162.jpg'
+        }
       ]
     }
   },
