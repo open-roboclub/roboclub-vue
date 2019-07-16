@@ -51,7 +51,7 @@
             Roboclub which helped them become what they are today.
           </v-card-title>
         </v-card>
-        <v-card color="#458B74">
+        <v-card color="#00796B">
           <v-container>
             <v-card-text class="pt-3">
               <div>
@@ -60,25 +60,75 @@
                 </h1>
               </div>
             </v-card-text>
+            <v-layout row wrap>
+              <v-card width="200" class="mx-auto" color="#458B74">
+                <v-flex xs12 class="text-xs-center">
+                  <v-avatar
+                    :tile="false"
+                    :size="150"
+                    color="grey lighten-4 mt-3"
+                  >
+                    <v-img
+                      :aspect-ratio="16 / 9"
+                      src="https://lh6.googleusercontent.com/-Nabz6JJKsqc/AAAAAAAAAAI/AAAAAAAAAoI/biOxaDpjiec/photo.jpg"
+                      alt="Avatar"
+                    />
+                  </v-avatar>
+                </v-flex>
+                <v-card-title>
+                  <v-flex xs12 class="text-xs-center">
+                    <span class="headline">Aman Gupta</span>
+                  </v-flex>
+                </v-card-title>
+              </v-card>
+              <v-card width="200" class="mx-auto" color="#458B74">
+                <v-flex xs12 class="text-xs-center">
+                  <v-avatar
+                    :tile="false"
+                    :size="150"
+                    color="grey lighten-4 mt-3"
+                  >
+                    <v-img
+                      :aspect-ratio="16 / 9"
+                      src="https://res.cloudinary.com/amuroboclub/image/upload/v1529768915/profile_img/IMG_20180328_004220805.jpg"
+                      alt="Avatar"
+                    />
+                  </v-avatar>
+                </v-flex>
+                <v-card-title>
+                  <v-flex xs12 class="text-xs-center">
+                    <span class="headline">Harshul Gupta</span>
+                  </v-flex>
+                </v-card-title>
+              </v-card>
+              <v-card width="200" class="mx-auto" color="#458B74">
+                <v-flex xs12 class="text-xs-center">
+                  <v-avatar
+                    :tile="false"
+                    :size="150"
+                    color="grey lighten-4 mt-3"
+                  >
+                    <v-img
+                      :aspect-ratio="16 / 9"
+                      src="https://res.cloudinary.com/amuroboclub/image/upload/v1543928884/profile_img/FB_IMG_1543928797162.jpg"
+                      alt="Avatar"
+                    />
+                  </v-avatar>
+                </v-flex>
+                <v-card-title>
+                  <v-flex xs12 class="text-xs-center">
+                    <span class="headline">Kakul Shrivastava</span>
+                  </v-flex>
+                </v-card-title>
+              </v-card>
+            </v-layout>
             <v-flex xs12 class="text-xs-center">
-              <v-avatar :tile="false" :size="200" color="grey lighten-4 mt-3">
-                <v-img
-                  :aspect-ratio="16 / 9"
-                  src="https://res.cloudinary.com/amuroboclub/image/upload/v1503337816/profile_img/pic_dp.jpg"
-                  alt="Avatar"
-                />
-              </v-avatar>
-            </v-flex>
-            <v-flex xs12 class="text-xs-center">
-              <div>
-                <span class="headline mb-0">Harshit Varshney</span>
-                <br />
-                <nuxt-link to="/team" class="iconLink">
-                  <v-icon dark x-large color="#7FFF00">
-                    mdi-arrow-right-bold-circle
-                  </v-icon>
-                </nuxt-link>
-              </div>
+              <br />
+              <nuxt-link to="/team" class="iconLink">
+                <v-icon dark x-large color="#7FFF00">
+                  mdi-arrow-right-bold-circle
+                </v-icon>
+              </nuxt-link>
             </v-flex>
           </v-container>
         </v-card>
