@@ -51,7 +51,7 @@
             Roboclub which helped them become what they are today.
           </v-card-title>
         </v-card>
-        <v-card color="#458B74">
+        <v-card color="#00796B">
           <v-container>
             <v-card-text class="pt-3">
               <div>
@@ -60,32 +60,68 @@
                 </h1>
               </div>
             </v-card-text>
-            <v-flex xs12 class="text-xs-center">
-              <v-avatar :tile="false" :size="200" color="grey lighten-4 mt-3">
-                <v-img
-                  :aspect-ratio="16 / 9"
-                  src="https://lh6.googleusercontent.com/-Nabz6JJKsqc/AAAAAAAAAAI/AAAAAAAAAoI/biOxaDpjiec/photo.jpg"
-                  alt="Avatar"
-                />
-              </v-avatar>
-              <div class="headline">Aman Gupta</div>
-              <v-avatar :tile="false" :size="200" color="grey lighten-4 mt-3">
-                <v-img
-                  :aspect-ratio="16 / 9"
-                  src="https://res.cloudinary.com/amuroboclub/image/upload/v1529768915/profile_img/IMG_20180328_004220805.jpg"
-                  alt="Avatar"
-                />
-              </v-avatar>
-              <div class="headline">Harshul Gupta</div>
-              <v-avatar :tile="false" :size="200" color="grey lighten-4 mt-3">
-                <v-img
-                  :aspect-ratio="16 / 9"
-                  src="https://res.cloudinary.com/amuroboclub/image/upload/v1543928884/profile_img/FB_IMG_1543928797162.jpg"
-                  alt="Avatar"
-                />
-              </v-avatar>
-              <div class="headline">Kakul Shrivastava</div>
-            </v-flex>
+            <v-layout row wrap>
+              <v-card width="200" class="mx-auto" color="#458B74">
+                <v-flex xs12 class="text-xs-center">
+                  <v-avatar
+                    :tile="false"
+                    :size="150"
+                    color="grey lighten-4 mt-3"
+                  >
+                    <v-img
+                      :aspect-ratio="16 / 9"
+                      src="https://lh6.googleusercontent.com/-Nabz6JJKsqc/AAAAAAAAAAI/AAAAAAAAAoI/biOxaDpjiec/photo.jpg"
+                      alt="Avatar"
+                    />
+                  </v-avatar>
+                </v-flex>
+                <v-card-title>
+                  <v-flex xs12 class="text-xs-center">
+                    <span class="headline">Aman Gupta</span>
+                  </v-flex>
+                </v-card-title>
+              </v-card>
+              <v-card width="200" class="mx-auto" color="#458B74">
+                <v-flex xs12 class="text-xs-center">
+                  <v-avatar
+                    :tile="false"
+                    :size="150"
+                    color="grey lighten-4 mt-3"
+                  >
+                    <v-img
+                      :aspect-ratio="16 / 9"
+                      src="https://res.cloudinary.com/amuroboclub/image/upload/v1529768915/profile_img/IMG_20180328_004220805.jpg"
+                      alt="Avatar"
+                    />
+                  </v-avatar>
+                </v-flex>
+                <v-card-title>
+                  <v-flex xs12 class="text-xs-center">
+                    <span class="headline">Harshul Gupta</span>
+                  </v-flex>
+                </v-card-title>
+              </v-card>
+              <v-card width="200" class="mx-auto" color="#458B74">
+                <v-flex xs12 class="text-xs-center">
+                  <v-avatar
+                    :tile="false"
+                    :size="150"
+                    color="grey lighten-4 mt-3"
+                  >
+                    <v-img
+                      :aspect-ratio="16 / 9"
+                      src="https://res.cloudinary.com/amuroboclub/image/upload/v1543928884/profile_img/FB_IMG_1543928797162.jpg"
+                      alt="Avatar"
+                    />
+                  </v-avatar>
+                </v-flex>
+                <v-card-title>
+                  <v-flex xs12 class="text-xs-center">
+                    <span class="headline">Kakul Shrivastava</span>
+                  </v-flex>
+                </v-card-title>
+              </v-card>
+            </v-layout>
             <v-flex xs12 class="text-xs-center">
               <br />
               <nuxt-link to="/team" class="iconLink">
