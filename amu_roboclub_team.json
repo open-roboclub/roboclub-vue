@@ -1,0 +1,350 @@
+"current" : {
+    "info" : {
+        "session" : "2019-20"
+    },
+    "members" : {
+        "asadmohammedkhan" : {
+            "name" : "Mr. Asad Mohammed Khan",
+            "position" : "Faculty Adviser",
+            "rank" : 20,
+            "thumbnail" : "https://www.amu.ac.in/empphoto/10059304.jpg"
+        },
+        "ateebahmadkhan" : {
+            "name" : "Mr. Ateeb Ahmad Khan",
+            "position" : "Faculty Adviser",
+            "rank" : 20,
+            "thumbnail" : "https://www.amu.ac.in/empphoto/10061767.jpg"
+        },
+        "ayyubkhan" : {
+            "name" : "Dr. M. Ayyub Khan",
+            "position" : "Faculty Adviser",
+            "rank" : 20,
+            "thumbnail" : "https://www.amu.ac.in/empphoto/10061814.jpg"
+        },
+        "mohdtariq" : {
+            "name" : "Dr. Mohd Tariq",
+            "position" : "Faculty Adviser",
+            "rank" : 20,
+            "thumbnail" : "https://www.amu.ac.in/empphoto/10074838.jpg"
+        },
+        "abidalikhan" : {
+            "name" : "Dr. Abid Ali Khan",
+            "position" : "Faculty Adviser",
+            "rank" : 20,
+            "thumbnail" : "https://res.cloudinary.com/amuroboclub/image/upload/old/team/DrAbidAliKhan.bmp"
+        },
+        "anwarsadat" : {
+            "links" : {
+                "email" : "anwart7039@gmail.com"
+            },
+            "name" : "Dr. Anwar Sadat",
+            "position" : "Faculty Adviser",
+            "rank" : 20,
+            "thumbnail" : "https://res.cloudinary.com/amuroboclub/image/upload/old/team/DrAnwarSadat.bmp"
+        },
+        "ekramkhan" : {
+            "links" : {
+                "email" : "ekhan.el@amu.ac.in"
+            },
+            "name" : "Prof. Ekram Khan",
+            "position" : "Teacher Incharge",
+            "rank" : 10,
+            "thumbnail" : "https://res.cloudinary.com/amuroboclub/image/upload/old/team/ProfEkramKhan.jpg"
+        },
+        "badrulhasankhan" : {
+            "name" : "Prof. Badrul Hasan Khan",
+            "old_avatars" : {
+                "-LJapR9ZV9egGv_xGKyW" : "https://res.cloudinary.com/amuroboclub/image/upload/v1493349708/profile_img/2904.jpg"
+            },
+            "position" : "Patron",
+            "rank" : 1,
+            "thumbnail" : "https://res.cloudinary.com/amuroboclub/image/upload/v1533954846/profile_img/3104.jpg"
+        },
+        "sufyanbeg" : {
+            "name" : "Prof. M. M. Sufyan Beg",
+            "position" : "Patron",
+            "rank" : 1,
+            "thumbnail" : "https://res.cloudinary.com/amuroboclub/image/upload/old/team/ProfMMSufyanBeg.jpg"
+        },
+        "mrihan" : {
+            "links" : {
+                "email" : "m.rihan.ee@amu.ac.in"
+            },
+            "name" : "Dr. M. Rihan",
+            "position" : "Faculty Adviser",
+            "rank" : 20,
+            "thumbnail" : "https://res.cloudinary.com/amuroboclub/image/upload/old/team/MrMohdRihan.jpg"
+        },
+        "izharuddin" : {
+            "links" : {
+                "email" : "izharuddinmuhammed67@gmail.com"
+            },
+            "name" : "Dr. Izharuddin",
+            "position" : "Faculty Adviser",
+            "rank" : 20,
+            "thumbnail" : "https://res.cloudinary.com/amuroboclub/image/upload/old/team/MrIzharuddin.bmp"
+        },
+        "amangupta" : {
+            "links" : {
+                "email" : "amanguptaamu2013@gmail.com",
+                "mobile" : "9456600665"
+            },
+            "name" : "Aman Gupta",
+            "old_avatars" : {
+                "-LI6cbNE_XHueRS_eTHd" : "https://www.materialui.co/materialIcons/social/person_grey_192x192.pn"
+            },
+            "position" : "Coordinator",
+            "profile_info" : {
+                "batch" : "B.Tech\nElectrical Engineering (2016-2020)"
+            },
+            "rank" : 30,
+            "thumbnail" : "https://res.cloudinary.com/amuroboclub/image/upload/v1532357660/profile_img/Screenshot_20180723-202245.png",
+            "uid" : "Sc9XZnI12TbUDr0yzhYopPuKqNf2"
+        },
+        "harshulgupta" : {
+            "links" : {
+                "email" : "guptaharshul24@rediffmail.com",
+                "facebook" : "https://www.facebook.com/harshulg1",
+                "g-plus" : "https://plus.google.com/103900005229923953771",
+                "linkedin" : "https://www.linkedin.com/in/harshul-gupta-360962126",
+                "mobile" : "+91 7895191187"
+            },
+            "name" : "Harshul Gupta",
+            "old_avatars" : {
+                "-LFhN35aDtGGhLQkh6r9" : "https://www.materialui.co/materialIcons/social/person_grey_192x192.png",
+                "-LFhNW0B0sTd6Y1JrkXL" : "https://www.materialui.co/materialIcons/social/person_grey_192x192.png"
+            },
+            "position" : "Coordinator",
+            "profile_info" : {
+                "about" : "Physics loving enthusiastic with sharp inquisitive skills.",
+                "batch" : "B.tech (Electronics Engineering)\n2016-2020",
+                "cv" : "https://drive.google.com/file/d/1_sBRA0ravYKhmtsIrpW8mW9TRNPJgZMH/view?usp=drivesdk",
+                "interests" : ["PCB layout designing", "Levitations", "Quanta"]
+            },
+            "rank" : 30,
+            "thumbnail" : "https://res.cloudinary.com/amuroboclub/image/upload/v1529768915/profile_img/IMG_20180328_004220805.jpg",
+            "uid" : "VNSHqA56CIhqgkuo9YbHYxk5z7n1"
+        },
+        "kakulsrivastava" : {
+            "links" : {
+                "email" : "kakulshrivastava.1@gmail.com",
+                "facebook" : "https://www.facebook.com/kakul.shrivastava.1",
+                "linkedin" : "https://www.linkedin.com/in/kakul-shrivastava-821310148/",
+                "mobile" : "9634747915"
+            },
+            "name" : "Kakul Shrivastava",
+            "old_avatars" : {
+                "-KmFC5EJb4hUe4G7vPav" : "https://www.materialui.co/materialIcons/social/person_grey_192x192.png",
+                "-Ks4yELT5Xom3shuFARK" : "https://res.cloudinary.com/amuroboclub/image/upload/v1497067967/profile_img/12042681_900308980065236_9069563880213364885_n.jpg",
+                "-LVP0B43CxnH48dQGgT1" : "https://res.cloudinary.com/amuroboclub/image/upload/v1503338730/profile_img/AirBrush_20170821233516.jpg"
+            },
+            "position" : "Coordinator",
+            "profile_info" : {
+                "batch" : "B.Tech (Electronics Engineering)\n2016-20",
+                "cv" : "https://drive.google.com/file/d/1--_NoGR0fWKosxmhjQgzL3HuPyB6NOsY/view?usp=drivesdk",
+                "interests" : ["Embedded Systems", "Robotics"]
+            },
+            "rank" : 30,
+            "thumbnail" : "https://res.cloudinary.com/amuroboclub/image/upload/v1543928887/profile_img/FB_IMG_1543928797162.jpg",
+            "uid" : "9urHDTTzQBZd6cMFKH7xOSIY1CN2"
+        },
+        "atuldeepyadav" : {
+            "links" : {
+                "email" : "atuldeepyadav.ady@gmail.com",
+                "facebook" : "https://m.facebook.com/atuldeepyadav.theone",
+                "linkedin" : "https://www.linkedin.com/in/atul-deep-yadav-991ab2155",
+                "mobile" : "8171587973\n8923135003"
+            },
+            "name" : "Atul Deep Yadav",
+            "old_avatars" : {
+                "-LFhcGDMWS8lRiCtnggN" : "https://www.materialui.co/materialIcons/social/person_grey_192x192.png",
+                "-LFhditWYXG0Ginof3ZP" : "https://res.cloudinary.com/amuroboclub/image/upload/v1529773875/profile_img/IMG_20171115_132049254.jpg"
+            },
+            "position" : "Joint Coordinator",
+            "profile_info" : {
+                "batch" : "Civil Engineering (2017-2021)",
+                "interests" : [ "Computer Aided Design(Solidworks)", "Programming (C and Java)", "Football (6 States 13 Regionals)", "Manufacturing and Fabrications", "Chess ( ELO Rating - 1600)" ]
+            },
+            "rank" : 40,
+            "thumbnail" : "https://res.cloudinary.com/amuroboclub/image/upload/v1529774217/profile_img/IMG_20171112_170040.jpg",
+            "uid" : "TDDsaqNw5uPxSrDnyPirmQVXKDF2"
+        },
+        "mayankgupta" : {
+            "links" : {
+                "email": "mayank.gupta052@gmail.com",
+                "facebook" : "mayank.gupta052@gmail.com",
+                "mobile" : "7500957679"
+            },
+            "name" : "Mayank Gupta",
+            "old_avatars" : {
+                "-LFhy3CjBvdmlWl7QdlL" : "https://www.materialui.co/materialIcons/social/person_grey_192x192.png"
+            },
+            "position" : "Joint Coordinator",
+            "rank" : 40,
+            "thumbnail" : "https://res.cloudinary.com/amuroboclub/image/upload/v1529779567/profile_img/IMG_20180621_094737_266.jpg",
+            "uid" : "AlEDNz37hpWqWHhjA9AoQdNJUvt1"
+        },
+        "karandeepsaluja" : {
+            "name" : "Karandeep Singh Saluja",
+            "position" : "Joint Coordinator",
+            "rank" : 40,
+            "thumbnail" : "https://www.materialui.co/materialIcons/action/account_circle_grey_192x192.png"
+        },
+        "payalkulshreshtha" : {
+            "links" : {
+                "email" : "pkul1998@gmail.com",
+                "linkedin" : "https://www.linkedin.com/in/payal-kulshreshtha-9b264a149",
+                "mobile" : "8218714856"
+            },
+            "name" : "Payal Kulshreshtha",
+            "old_avatars" : {
+                "-LFhdE1q-lFlMtm-k8JX" : "https://www.materialui.co/materialIcons/social/person_grey_192x192.png"
+            },
+            "position" : "Joint Coordinator",
+            "rank" : 40,
+            "thumbnail" : "https://res.cloudinary.com/amuroboclub/image/upload/v1529774138/profile_img/IMG_20180620_210142.jpg",
+            "uid" : "ZQ7JzwqtewcViVGhcDUe6ZmA3LB3"
+        },
+        "rajneeshsharma" : {
+            "links" : {
+                "email" : "rajneeshsharma338@gmail.com",
+                "facebook" : "https://www.facebook.com/spidey.raj.4444",
+                "linkedin" : "https://www.linkedin.com/in/rajneesh-sharma-a4912212b",
+                "mobile" : "7417739212"
+            },
+            "name" : "Rajneesh Sharma",
+            "old_avatars" : {
+                "-LFhfibbCGvsNcOurVpb" : "https://www.materialui.co/materialIcons/social/person_grey_192x192.png"
+            },
+            "position" : "Joint Coordinator",
+            "profile_info" : {
+                "about" : "Aspiring software developer \nProgrammer in making. \n",
+                "batch" : "B.Tech (Computer sciences) \n2017-2021",
+                "interests" : [ "Computer programming ", "Mechanical fabrication" ]
+            },
+            "rank" : 40,
+            "thumbnail" : "https://res.cloudinary.com/amuroboclub/image/upload/v1529774763/profile_img/PicsArt_10-19-01.24.12.jpg",
+            "uid" : "pqeRvjRGbnO4qYk54ScIoNIyNP13"
+        },
+        "sheikhsaud" : {
+            "links" : {
+                "email" : "saudredmi@gmail.com",
+                "facebook" : "sheikh.saud.90",
+                "mobile" : "+91-8267848235"
+            },
+            "name" : "Sheikh Saud",
+            "old_avatars" : {
+                "-LK8sT2l6QOp94OWMo_A" : "https://www.materialui.co/materialIcons/social/person_grey_192x192.png"
+            },
+            "position" : "Joint Coordinator",
+            "profile_info" : {
+                "batch" : "B.E. (Mechanical)\n    2017-2021",
+                "cv" : "https://drive.google.com/file/d/0BxnHP2zSJIUhaFJ5bC1FSUl1SVdQUG5wdmdVMDVJTlRwb2d3/view?usp=drivesdk",
+                "interests" : [ "Robotics Design", "Mechanical Fabrication " ]
+            },
+            "rank" : 40,
+            "thumbnail" : "https://res.cloudinary.com/amuroboclub/image/upload/v1534542859/profile_img/20180818_031954.jpg",
+            "uid" : "M7yuxSvmJkZ6arLVqWcXIhF8Nts2"
+        },
+        "haiderali" : {
+            "links" : {
+                "email" : "haider.lee23@gmail.com",
+                "mobile" : "9027517849"
+            },
+            "name" : "Haider Ali",
+            "position" : "Web Developer",
+            "rank" : 50,
+            "thumbnail" : "https://avatars2.githubusercontent.com/u/43299408?s=460&v=4"
+        },
+        "irfankhan" : {
+            "links" : {
+                "email" : "irf.khan26@gmail.com",
+                "linkedin" : "https://www.linkedin.com/in/irfan-khan-999118174/",
+                "mobile" : "8755733933"
+            },
+            "name" : "Irfan Khan",
+            "position" : "Joint Web Developer",
+            "rank" : 50,
+            "thumbnail" : "https://avatars0.githubusercontent.com/u/49765028?s=460&v=4"
+        },
+        "mdramzanali" : {
+            "links" : {
+                "email" : "ramzanamu807@gmail.com",
+                "linkedin" : "https://www.linkedin.com/in/md-ramzan-ali-ba2131174"
+            },
+            "name" : "MD Ramzan Ali",
+            "position" : "Volunteer",
+            "rank" : 70,
+            "thumbnail" : "https://res.cloudinary.com/amuroboclub/image/upload/v1554290001/profile_img/IMG_20180630_125455_789.jpg",
+            "uid" : "IHJgzo9GjmVBCSTIpHjzLsSwDAJ2"
+        },
+        "aniketyadav" : {
+            "name" : "Aniket Yadav",
+            "position" : "Volunteer",
+            "rank" : 70,
+            "thumbnail" : "https://www.materialui.co/materialIcons/action/account_circle_grey_192x192.png"
+        },
+        "laibasagheer" : {
+            "links" : {
+                "email" : "sagheerlaiba124@gmail.com"
+            },
+            "name" : "Laiba Sagheer",
+            "position" : "Volunteer",
+            "rank" : 70,
+            "thumbnail" : "https://www.materialui.co/materialIcons/action/account_circle_grey_192x192.png",
+            "uid" : "tyqPf9YQqheozZxY1LtSqjEaBYY2"
+        },
+        "mohammadanas" : {
+            "name" : "Mohammad Anas",
+            "position" : "Volunteer",
+            "rank" : 70,
+            "thumbnail" : "https://www.materialui.co/materialIcons/action/account_circle_grey_192x192.png"
+        },
+        "priyankagupta" : {
+            "links" : {
+                "email" : "priyankaaa3103@gmail.com",
+                "linkedin" : "www.linkedin.com/in/priyanka-gupta-49aa76189"
+            },
+            "name" : "Priyanka Gupta",
+            "position" : "Volunteer",
+            "rank" : 70,
+            "thumbnail" : "https://media.licdn.com/dms/image/C5103AQEodn1hl-QAMw/profile-displayphoto-shrink_800_800/0?e=1567641600&v=beta&t=Mq7CVdfkr3Mp3ESM42gki1joACqfKYckL-kLWqk6-aM"
+        },
+        "shilpyvarshney" : {
+            "links" : {
+                "email" : "shilpyvarshney2000@gmail.com"
+            },
+            "name" : "Shilpy Varshney",
+            "position" : "Volunteer",
+            "rank" : 70,
+            "thumbnail" : "https://www.materialui.co/materialIcons/action/account_circle_grey_192x192.png"
+        },
+        "sonalgupta" : {
+            "links" : {
+                "email" : "inocent2406@gmail.com",
+                "linkedin" : "http://www.linkedin.com/in/sonal-gupta-979656177"
+            },
+            "name" : "Sonal Gupta",
+            "position" : "Volunteer",
+            "rank" : 70,
+            "thumbnail" : "https://www.materialui.co/materialIcons/action/account_circle_grey_192x192.png",
+            "uid" : "KPhxsOufO7VB86xatXZUe5hxoq42"
+        },
+        "vivekrajsingh" : {
+            "links" : {
+                "email" : "vivekrajs3999@gmail.com",
+                "linkedin" : "https://www.linkedin.com/in/vivek-raj-singh-6a83b3179/"
+            },
+            "name" : "Vivek Raj Singh",
+            "position" : "Volunteer",
+            "rank" : 70,
+            "thumbnail" : "https://media.licdn.com/dms/image/C5103AQHVpzTghpf5qQ/profile-displayphoto-shrink_800_800/0?e=1566432000&v=beta&t=kiCSzMDQGPXXaG2vMbdu9Zx_HQVo_yv3kwWQYh3ceBs",
+            "uid" : "Hy7fUdTqAfYU1GdzWlnZRbiqx8s2"
+         },
+         "yashbhardwaj" : {
+             "name" : "Yash Bhardwaj",
+             "position" : "Volunteer",
+             "rank" : 70,
+             "thumbnail" : "https://www.materialui.co/materialIcons/action/account_circle_grey_192x192.png"
+         }
+    } 
