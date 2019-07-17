@@ -159,10 +159,6 @@ export default {
         {
           name: 'mdi-youtube',
           link: 'https://www.youtube.com/channel/UCKTQZXhxAWfhz1Mb8c2UKTg'
-        },
-        {
-          name: 'mdi-google-plus',
-          link: 'https://plus.google.com/117931649297311148189'
         }
       ]
     }
