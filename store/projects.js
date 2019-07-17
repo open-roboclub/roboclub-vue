@@ -33,7 +33,7 @@ export const actions = {
 
 export const getters = {
   completedProjects(state) {
-    return state.projects.filter(project => !project.ongoing)
+    return state.projects.reverse().filter(project => !project.ongoing)
   },
 
   getProjectById(state) {
