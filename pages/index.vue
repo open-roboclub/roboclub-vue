@@ -62,8 +62,8 @@
             </v-card-text>
             <v-layout row wrap>
               <v-card
-                v-for="item in coordinators"
-                :key="item.name"
+                v-for="item in members"
+                :key="item['.key']"
                 width="200"
                 class="mx-auto"
                 color="#458B74"
@@ -76,7 +76,7 @@
                   >
                     <v-img
                       :aspect-ratio="16 / 9"
-                      :src="item.avatar"
+                      :src="item.thumbnail"
                       :alt="item.name"
                     />
                   </v-avatar>
@@ -221,7 +221,7 @@
 </template>
 
 <script>
-import { mapState, mapActions } from 'vuex'
+import { mapState, mapActions, mapGetters } from 'vuex'
 
 export default {
   head() {
@@ -229,30 +229,9 @@ export default {
       title: 'Home'
     }
   },
-  data() {
-    return {
-      loading: true,
-      coordinators: [
-        {
-          name: 'Aman Gupta',
-          avatar:
-            'https://lh6.googleusercontent.com/-Nabz6JJKsqc/AAAAAAAAAAI/AAAAAAAAAoI/biOxaDpjiec/photo.jpg'
-        },
-        {
-          name: 'Harshul Gupta',
-          avatar:
-            'https://res.cloudinary.com/amuroboclub/image/upload/v1563544562/profile_img/IMG_20190227_024824.jpg'
-        },
-        {
-          name: 'Kakul Shrivastava',
-          avatar:
-            'https://res.cloudinary.com/amuroboclub/image/upload/v1543928884/profile_img/FB_IMG_1543928797162.jpg'
-        }
-      ]
-    }
-  },
   computed: {
-    ...mapState('news', ['news'])
+    ...mapState('news', ['news']),
+    ...mapGetters('team', ['members'])
   },
   created() {
     this.setNewsRef({
@@ -271,8 +250,27 @@ export default {
         }
       }
     })
+    this.setTeamRef({
+      ref: this.$firebase
+        .database()
+        .ref('team/current')
+        .orderByChild('position')
+        .equalTo('Coordinator'),
+      callbacks: {
+        readyCallback: () => {
+          this.loading = false
+        },
+        cancelCallback: error => {
+          console.error(error)
+          this.loading = false
+        }
+      }
+    })
   },
-  methods: mapActions('news', ['setNewsRef'])
+  methods: {
+    ...mapActions('news', ['setNewsRef']),
+    ...mapActions('team', ['setTeamRef'])
+  }
 }
 </script>
 
