@@ -1,6 +1,7 @@
 import firebaseConfig from '~/firebaseconfig'
 import firebase from 'firebase/app'
 import 'firebase/auth'
+import 'firebase/functions'
 
 if (!firebaseConfig) {
   throw new Error('missing firebase.json config.')
@@ -13,10 +14,18 @@ export default function({ store }, inject) {
     firebase.initializeApp(firebaseConfig)
   }
 
-  return firebase.auth().onAuthStateChanged(user => {
+  return firebase.auth().onAuthStateChanged(async user => {
     store.dispatch('isAdmin', user)
     if (user) {
       store.commit('setUser', user)
+
+      const functions = firebase.functions()
+      const setClaims = functions.httpsCallable('setClaims')
+
+      const response = await setClaims()
+      if (response.data.success) {
+        await user.getIdToken(true)
+      }
     }
   })
 }
