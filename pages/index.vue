@@ -241,7 +241,7 @@ export default {
         {
           name: 'Harshul Gupta',
           avatar:
-            'https://res.cloudinary.com/amuroboclub/image/upload/v1529768915/profile_img/IMG_20180328_004220805.jpg'
+            'https://res.cloudinary.com/amuroboclub/image/upload/v1563544562/profile_img/IMG_20190227_024824.jpg'
         },
         {
           name: 'Kakul Shrivastava',
