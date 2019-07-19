@@ -61,7 +61,13 @@
               </div>
             </v-card-text>
             <v-layout row wrap>
-              <v-card width="200" class="mx-auto" color="#458B74">
+              <v-card
+                v-for="item in coordinators"
+                :key="item.name"
+                width="200"
+                class="mx-auto"
+                color="#458B74"
+              >
                 <v-flex xs12 class="text-xs-center">
                   <v-avatar
                     :tile="false"
@@ -70,54 +76,14 @@
                   >
                     <v-img
                       :aspect-ratio="16 / 9"
-                      src="https://lh6.googleusercontent.com/-Nabz6JJKsqc/AAAAAAAAAAI/AAAAAAAAAoI/biOxaDpjiec/photo.jpg"
-                      alt="Avatar"
+                      :src="item.avatar"
+                      :alt="item.name"
                     />
                   </v-avatar>
                 </v-flex>
-                <v-card-title>
+                <v-card-title primary-title>
                   <v-flex xs12 class="text-xs-center">
-                    <span class="headline">Aman Gupta</span>
-                  </v-flex>
-                </v-card-title>
-              </v-card>
-              <v-card width="200" class="mx-auto" color="#458B74">
-                <v-flex xs12 class="text-xs-center">
-                  <v-avatar
-                    :tile="false"
-                    :size="150"
-                    color="grey lighten-4 mt-3"
-                  >
-                    <v-img
-                      :aspect-ratio="16 / 9"
-                      src="https://res.cloudinary.com/amuroboclub/image/upload/v1529768915/profile_img/IMG_20180328_004220805.jpg"
-                      alt="Avatar"
-                    />
-                  </v-avatar>
-                </v-flex>
-                <v-card-title>
-                  <v-flex xs12 class="text-xs-center">
-                    <span class="headline">Harshul Gupta</span>
-                  </v-flex>
-                </v-card-title>
-              </v-card>
-              <v-card width="200" class="mx-auto" color="#458B74">
-                <v-flex xs12 class="text-xs-center">
-                  <v-avatar
-                    :tile="false"
-                    :size="150"
-                    color="grey lighten-4 mt-3"
-                  >
-                    <v-img
-                      :aspect-ratio="16 / 9"
-                      src="https://res.cloudinary.com/amuroboclub/image/upload/v1543928884/profile_img/FB_IMG_1543928797162.jpg"
-                      alt="Avatar"
-                    />
-                  </v-avatar>
-                </v-flex>
-                <v-card-title>
-                  <v-flex xs12 class="text-xs-center">
-                    <span class="headline">Kakul Shrivastava</span>
+                    <span style="color: white">{{ item.name }}</span>
                   </v-flex>
                 </v-card-title>
               </v-card>
@@ -265,7 +231,24 @@ export default {
   },
   data() {
     return {
-      loading: true
+      loading: true,
+      coordinators: [
+        {
+          name: 'Aman Gupta',
+          avatar:
+            'https://lh6.googleusercontent.com/-Nabz6JJKsqc/AAAAAAAAAAI/AAAAAAAAAoI/biOxaDpjiec/photo.jpg'
+        },
+        {
+          name: 'Harshul Gupta',
+          avatar:
+            'https://res.cloudinary.com/amuroboclub/image/upload/v1529768915/profile_img/IMG_20180328_004220805.jpg'
+        },
+        {
+          name: 'Kakul Shrivastava',
+          avatar:
+            'https://res.cloudinary.com/amuroboclub/image/upload/v1543928884/profile_img/FB_IMG_1543928797162.jpg'
+        }
+      ]
     }
   },
   computed: {

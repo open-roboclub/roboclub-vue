@@ -709,10 +709,10 @@
     js-levenshtein "^1.1.3"
     semver "^5.5.0"
 
-"@babel/runtime-corejs2@^7.5.4":
-  version "7.5.4"
-  resolved "https://registry.yarnpkg.com/@babel/runtime-corejs2/-/runtime-corejs2-7.5.4.tgz#7111dbb344acce1f7dd601786cff40d516b27a96"
-  integrity sha512-sHv74OzyZ18d6tjHU0HmlVES3+l+lydkOMTiKsJSTGWcTBpIMfXLEgduahlJrQjknW9RCQAqLIEdLOHjBmq/hg==
+"@babel/runtime-corejs2@^7.5.5":
+  version "7.5.5"
+  resolved "https://registry.yarnpkg.com/@babel/runtime-corejs2/-/runtime-corejs2-7.5.5.tgz#c3214c08ef20341af4187f1c9fbdc357fbec96b2"
+  integrity sha512-FYATQVR00NSNi7mUfpPDp7E8RYMXDuO8gaix7u/w3GekfUinKgX1AcTxs7SoiEmoEW9mbpjrwqWSW6zCmw5h8A==
   dependencies:
     core-js "^2.6.5"
     regenerator-runtime "^0.13.2"
@@ -4693,10 +4693,10 @@ eslint-plugin-import@>=2.17.3:
     read-pkg-up "^2.0.0"
     resolve "^1.11.0"
 
-eslint-plugin-jest@>=22.8.0:
-  version "22.8.0"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-jest/-/eslint-plugin-jest-22.8.0.tgz#242ef5459e8da25d2c41438e95eb546e03d7fae1"
-  integrity sha512-2VftZMfILmlhL3VMq5ptHRIuyyXb3ShDEDb1J1UjvWNzm4l+UK/YmwNuTuJcM0gv8pJuOfiR/8ZptJ8Ou68pFw==
+eslint-plugin-jest@>=22.11.1:
+  version "22.11.1"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-jest/-/eslint-plugin-jest-22.11.1.tgz#04b586e2fddd07e55900a381255d6b3d9242ae87"
+  integrity sha512-kPF1Nmr5xMLz6DT7qEttz0TTeyx1x6SozIkNO9y4F2yxuWjHMp/e70fo742pR3y0MewgXQQMIIXeSKLB66iO7Q==
 
 eslint-plugin-node@>=9.1.0:
   version "9.1.0"
@@ -5298,10 +5298,10 @@ firebase-token-generator@^2.0.0:
   resolved "https://registry.yarnpkg.com/firebase-token-generator/-/firebase-token-generator-2.0.0.tgz#9767d759ec13abdc99ba115fd5ea99d8b93d1206"
   integrity sha1-l2fXWewTq9yZuhFf1eqZ2Lk9EgY=
 
-firebase-tools@^7.1.0:
-  version "7.1.0"
-  resolved "https://registry.yarnpkg.com/firebase-tools/-/firebase-tools-7.1.0.tgz#dcde117e70d021d163616e8bcd02abead5d5c1e1"
-  integrity sha512-8m+ukPf10GmM7zLB7V8hAgfSXt2bLhRB/t9f4AqPNDvUDxvfnIFFW55V2g6UeE7BjxdFlT5jMiwC5dWNHw6RhA==
+firebase-tools@^7.1.1:
+  version "7.1.1"
+  resolved "https://registry.yarnpkg.com/firebase-tools/-/firebase-tools-7.1.1.tgz#4e92488c2ae94eba4b39d65438964aecbd9f4f70"
+  integrity sha512-RWLr6c3YJz4/yjPg4ARucKC8GgcPqB1xhdh5VM9oDsOkxoZ/zoNpJTknczJb37W51ZEXlP2s9Fb97H7y5161xg==
   dependencies:
     JSONStream "^1.2.1"
     archiver "^3.0.0"
@@ -5325,7 +5325,7 @@ firebase-tools@^7.1.0:
     inquirer "~6.3.1"
     jsonschema "^1.0.2"
     jsonwebtoken "^8.2.1"
-    lodash "^4.17.10"
+    lodash "^4.17.14"
     minimatch "^3.0.4"
     open "^6.3.0"
     ora "0.2.3"
@@ -5359,10 +5359,10 @@ firebase@^6.3.0:
     "@firebase/storage" "0.3.5"
     "@firebase/util" "0.2.21"
 
-firebaseui@^4.0.0:
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/firebaseui/-/firebaseui-4.0.0.tgz#994547340a62da0b0e55f9f133d8986a37c542e6"
-  integrity sha512-NFlzv/pY64vkFQnGOEZH/FNbkKBFskLn7El9IxeTbyppNtYjWXHs2Ww5OaqnoiK0qfCWVuQqizsnoWpKtF57tA==
+firebaseui@^4.1.0:
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/firebaseui/-/firebaseui-4.1.0.tgz#ccd5f20291ac724d15d39217868d7291137780a1"
+  integrity sha512-jZrCv9v8+Dj1mE4yAVeXUw1lBqayFYpXfD3cEdXmx2aZxwF1kpMJuCocnsZeXaFkTcFjYRcjjxakIZmjVp58/A==
   dependencies:
     dialog-polyfill "^0.4.7"
 
@@ -7589,7 +7589,7 @@ lodash.values@^2.4.1:
   dependencies:
     lodash.keys "~2.4.1"
 
-lodash@4.x, lodash@^4.15.0, lodash@^4.17.10, lodash@^4.17.11, lodash@^4.17.3, lodash@^4.17.4, lodash@^4.17.5:
+lodash@4.x, lodash@^4.15.0, lodash@^4.17.10, lodash@^4.17.11, lodash@^4.17.14, lodash@^4.17.3, lodash@^4.17.4, lodash@^4.17.5:
   version "4.17.14"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.14.tgz#9ce487ae66c96254fe20b599f21b6816028078ba"
   integrity sha512-mmKYbW3GLuJeX+iGP+Y7Gp1AiGHGbXHCOh/jZmrawMmsE7MS4znI3RL2FsjbqOyMayHInjOeykW7PEajUk1/xw==

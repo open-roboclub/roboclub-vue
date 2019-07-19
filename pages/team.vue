@@ -128,7 +128,7 @@ export default {
         return 'mailto:' + link
       } else if (type === 'mobile') {
         return 'tel:' + link
-      } else if (!link.startsWith('http://') || !link.startsWith('https://')) {
+      } else if (!link.startsWith('http://') && !link.startsWith('https://')) {
         return '//' + link
       }
 
