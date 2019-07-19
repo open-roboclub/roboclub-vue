@@ -33,6 +33,7 @@ path /ui {
 
 path /projects {
     read() { true }
+    write() { isAdmin() }
 
     index() { ['ongoing', 'id'] }
 }
