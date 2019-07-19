@@ -33,7 +33,10 @@ path /ui {
 
 path /projects {
     read() { true }
-    write() { isAdmin() }
+    
+    path /{projects} is Projects {
+        write() { isAdmin() }
+    }
 
     index() { ['ongoing', 'id'] }
 }
