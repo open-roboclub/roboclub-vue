@@ -41,6 +41,26 @@ path /projects {
     index() { ['ongoing', 'id'] }
 }
 
+type Projects {
+    name: String,
+    image: String,
+    id: String,
+    team: String,
+    ongoing: Boolean,
+    youtube: N<String>,
+    images: N<Images[]>,
+    docs: N<Docs[]>,
+    description: N<String>
+}
+
+type Images {
+
+}
+
+type Docs {
+    
+} 
+
 path /feedback/{feedback} is String {
     create() { auth != null }
 }
