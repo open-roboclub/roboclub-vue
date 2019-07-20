@@ -23,7 +23,7 @@
     "nuxt": "^2.8.1",
     "vuetify": "^1.5.16",
     "vuetify-loader": "^1.2.1",
-    "vuexfire": "^2.3.1"
+    "vuexfire": "^3.1.0"
   },
   "devDependencies": {
     "@babel/plugin-syntax-dynamic-import": "^7.2.0",
