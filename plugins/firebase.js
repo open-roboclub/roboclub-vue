@@ -1,5 +1,5 @@
-import firebaseConfig from '~/firebaseconfig'
 import firebase from 'firebase/app'
+import firebaseConfig from '~/firebaseconfig'
 import 'firebase/auth'
 import 'firebase/functions'
 
