@@ -1,16 +1,21 @@
 import firebase from 'firebase/app'
 import 'firebase/database'
 import 'firebase/auth'
-import { firebaseMutations } from 'vuexfire'
+import { firebaseMutations, firebaseAction } from 'vuexfire'
 
 export const strict = false
 
 export const state = () => ({
   user: null,
-  isAdmin: false
+  isAdmin: false,
+  cor: {},
+  corRef: null
 })
 
 export const mutations = {
+  setCorRef: (state, corRef) => {
+    state.corRef = corRef
+  },
   setUser(state, user) {
     state.user = user
   },
@@ -24,6 +29,12 @@ export const mutations = {
 }
 
 export const actions = {
+  setCorRef: firebaseAction(
+    ({ commit, bindFirebaseRef }, { ref, callbacks }) => {
+      bindFirebaseRef('cor', ref, callbacks)
+      commit('setCorRef', ref)
+    }
+  ),
   async isAdmin({ commit }, user) {
     const ref = user ? user.uid : ''
     try {
