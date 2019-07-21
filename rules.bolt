@@ -43,10 +43,10 @@ path /projects {
 
 type Projects {
     name: String,
-    image: String,
-    id: String,
-    team: String,
     ongoing: Boolean,
+    image: N<String>,
+    id: N<String>,
+    team: N<String>,
     youtube: N<String>,
     images: N<Images[]>,
     docs: N<Docs[]>,
