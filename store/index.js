@@ -1,7 +1,7 @@
 import firebase from 'firebase/app'
 import 'firebase/database'
 import 'firebase/auth'
-import { vuexfireMutations } from 'vuexfire'
+import { firebaseMutations } from 'vuexfire'
 
 export const strict = false
 
@@ -20,7 +20,7 @@ export const mutations = {
   setAdmin(state, admin) {
     state.isAdmin = admin
   },
-  ...vuexfireMutations
+  ...firebaseMutations
 }
 
 export const actions = {
