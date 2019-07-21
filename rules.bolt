@@ -54,11 +54,12 @@ type Projects {
 }
 
 type Images {
-
+    <String>
 }
 
 type Docs {
-    
+    name: <String>,
+    url: <String>
 } 
 
 path /feedback/{feedback} is String {
