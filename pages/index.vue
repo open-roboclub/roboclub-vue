@@ -62,7 +62,7 @@
             </v-card-text>
             <v-layout row wrap>
               <v-card
-                v-for="item in members"
+                v-for="item in cor"
                 :key="item['.key']"
                 width="200"
                 class="mx-auto"
@@ -221,7 +221,7 @@
 </template>
 
 <script>
-import { mapState, mapActions, mapGetters } from 'vuex'
+import { mapState, mapActions } from 'vuex'
 
 export default {
   head() {
@@ -231,7 +231,7 @@ export default {
   },
   computed: {
     ...mapState('news', ['news']),
-    ...mapGetters('team', ['members'])
+    ...mapState('index', ['cor'])
   },
   created() {
     this.setNewsRef({
@@ -250,12 +250,12 @@ export default {
         }
       }
     })
-    this.setTeamRef({
+    this.setCorRef({
       ref: this.$firebase
         .database()
         .ref('team/current')
-        .orderByChild('position')
-        .equalTo('Coordinator'),
+        .orderByChild('rank')
+        .equalTo('30'),
       callbacks: {
         readyCallback: () => {
           this.loading = false
@@ -269,7 +269,7 @@ export default {
   },
   methods: {
     ...mapActions('news', ['setNewsRef']),
-    ...mapActions('team', ['setTeamRef'])
+    ...mapActions('index', ['setCorRef'])
   }
 }
 </script>
