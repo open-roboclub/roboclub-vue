@@ -48,19 +48,18 @@ type Projects {
     id: N<String>,
     team: N<String>,
     youtube: N<String>,
-    images: N<Images[]>,
-    docs: N<Docs[]>,
+    images: N<Image[]>,
+    docs: N<Doc[]>,
     description: N<String>
 }
 
-type Images {
-    <String>
+type Image extends String {
 }
 
-type Docs {
-    name: <String>,
-    url: <String>
-} 
+type Doc {
+    name: String,
+    url: String
+}
 
 path /feedback/{feedback} is String {
     create() { auth != null }
