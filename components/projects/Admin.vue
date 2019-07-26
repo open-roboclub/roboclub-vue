@@ -274,7 +274,7 @@ export default {
             const filename = files[i].name
             const response = await firebase
               .storage()
-              .ref('galleryImages/' + ID + '-' + filename)
+              .ref('projects/' + ID + '-' + filename)
               .put(files[i])
             const downloadURL = await response.ref.getDownloadURL()
             this.project.images.push(downloadURL)
