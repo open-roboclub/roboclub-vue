@@ -261,7 +261,7 @@ export default {
       fileReader.readAsDataURL(files[0])
       this.image = files[0]
     },
-    onMultiFilePicked: async function(event) {
+    async onMultiFilePicked(event) {
       try {
         if (this.project.name === '') {
           alert('Please enter the name of the project first!')
@@ -287,7 +287,7 @@ export default {
         console.log(err)
       }
     },
-    saveProject: async function() {
+    async saveProject() {
       try {
         if (this.nonValid()) {
           alert('Entered details are invalid. Please try again.')
