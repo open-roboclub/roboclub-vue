@@ -1,4 +1,6 @@
 # roboclub
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fopen-roboclub%2Froboclub-vue.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fopen-roboclub%2Froboclub-vue?ref=badge_shield)
+
 
 > My tremendous Nuxt.js project
 
@@ -20,3 +22,7 @@ $ yarn run generate
 ```
 
 For detailed explanation on how things work, checkout [Nuxt.js docs](https://nuxtjs.org).
+
+
+## License
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fopen-roboclub%2Froboclub-vue.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fopen-roboclub%2Froboclub-vue?ref=badge_large)
