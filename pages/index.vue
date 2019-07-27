@@ -242,16 +242,7 @@ export default {
         .database()
         .ref('news')
         .orderByChild('timestamp')
-        .limitToFirst(5),
-      callbacks: {
-        readyCallback: () => {
-          this.loading = false
-        },
-        cancelCallback: error => {
-          console.error(error)
-          this.loading = false
-        }
-      }
+        .limitToFirst(5)
     })
     this.setCoordinatorsRef()
   },

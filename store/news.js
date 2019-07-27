@@ -26,8 +26,7 @@ function copyProperties(source, destination) {
 
 export const state = () => ({
   newsItem: clearNews(),
-  news: [],
-  newsRef: null
+  news: []
 })
 
 export const mutations = {
@@ -40,12 +39,9 @@ export const mutations = {
 }
 
 export const actions = {
-  setNewsRef: firebaseAction(
-    ({ commit, bindFirebaseRef }, { ref, callbacks }) => {
-      bindFirebaseRef('news', ref, callbacks)
-      commit('setNewsRef', ref)
-    }
-  ),
+  setNewsRef: firebaseAction(({ bindFirebaseRef }, { ref }) => {
+    return bindFirebaseRef('news', ref)
+  }),
   deleteNews: ({ state }, id) => {
     state.newsRef.child(id).remove()
   },
@@ -82,5 +78,8 @@ export const actions = {
 }
 
 export const getters = {
-  news: state => state.news.slice().reverse()
+  news: state =>
+    state.news
+      .slice()
+      .reverse()
 }
