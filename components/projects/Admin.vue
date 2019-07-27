@@ -43,7 +43,7 @@
               ></v-text-field>
 
               <span class="text">The single dedicated image:</span>
-              <v-btn raised class="secondary" @click="onPickFile"
+              <v-btn raised class="cyan" @click="onPickFile"
                 >Upload Featured Image</v-btn
               >
               <input
@@ -132,7 +132,7 @@
                 </v-container>
               </v-form>
 
-              <v-btn color="error" @click="reset">
+              <v-btn color="orange" @click="reset">
                 Reset Form
               </v-btn>
             </v-form>
