@@ -193,3 +193,8 @@ type Rank extends Number {
     validate() { isAdmin() && prior(root.ui.ranks[newData.val()] != null) }
 }
 
+// --- Inventory Section ---
+
+path /inventory {
+    read() { true }
+}
