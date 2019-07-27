@@ -60,9 +60,12 @@
                 </h1>
               </div>
             </v-card-text>
+            <div v-if="!coordinators.length" class="text-xs-center">
+              <v-progress-circular indeterminate color="white" />
+            </div>
             <v-layout row wrap>
               <v-card
-                v-for="item in cor"
+                v-for="item in coordinators"
                 :key="item['.key']"
                 width="200"
                 class="mx-auto"
@@ -221,7 +224,7 @@
 </template>
 
 <script>
-import { mapState, mapActions } from 'vuex'
+import { mapState, mapActions, mapGetters } from 'vuex'
 
 export default {
   head() {
@@ -231,7 +234,7 @@ export default {
   },
   computed: {
     ...mapState('news', ['news']),
-    ...mapState('index', ['cor'])
+    ...mapGetters('team', ['coordinators'])
   },
   created() {
     this.setNewsRef({
@@ -250,26 +253,11 @@ export default {
         }
       }
     })
-    this.setCorRef({
-      ref: this.$firebase
-        .database()
-        .ref('team/current')
-        .orderByChild('rank')
-        .equalTo('30'),
-      callbacks: {
-        readyCallback: () => {
-          this.loading = false
-        },
-        cancelCallback: error => {
-          console.error(error)
-          this.loading = false
-        }
-      }
-    })
+    this.setCoordinatorsRef()
   },
   methods: {
     ...mapActions('news', ['setNewsRef']),
-    ...mapActions('index', ['setCorRef'])
+    ...mapActions('team', ['setCoordinatorsRef'])
   }
 }
 </script>
