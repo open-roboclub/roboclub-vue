@@ -273,6 +273,9 @@
         },
         ".read": "true"
       }
+    },
+    "inventory": {
+      ".read": "true"
     }
   }
 }
