@@ -11,9 +11,6 @@ export const state = () => ({
 })
 
 export const mutations = {
-  setCorRef: (state, corRef) => {
-    state.corRef = corRef
-  },
   setUser(state, user) {
     state.user = user
   },
