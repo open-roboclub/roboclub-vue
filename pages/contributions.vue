@@ -14,8 +14,8 @@
             </div>
           </v-card-title>
           <v-progress-linear
-            v-show="loading"
-            :indeterminate="loading"
+            v-show="!contributions.length"
+            indeterminate
             color="green lighten-3"
           />
         </v-card>
@@ -67,7 +67,6 @@ export default {
   },
   data() {
     return {
-      loading: true,
       selected: [],
       headers
     }
@@ -77,18 +76,7 @@ export default {
     ...mapGetters('contributions', ['contributions'])
   },
   created() {
-    this.setContributionsRef({
-      ref: this.$firebase.database().ref('contribution'),
-      callbacks: {
-        readyCallback: () => {
-          this.loading = false
-        },
-        cancelCallback: error => {
-          console.error(error)
-          this.loading = false
-        }
-      }
-    })
+    this.setContributionsRef()
   },
   methods: mapActions('contributions', ['setContributionsRef'])
 }

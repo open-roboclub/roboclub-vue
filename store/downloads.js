@@ -1,23 +1,16 @@
 import { firebaseAction } from 'vuexfire'
+import { db } from '@/plugins/firebase'
+
+const downloadsRef = db.ref('downloads')
 
 export const state = () => ({
-  downloads: [],
-  downloadsRef: null
+  downloads: []
 })
 
-export const mutations = {
-  setDownloadsRef: (state, newsRef) => {
-    state.downloadsRef = newsRef
-  }
-}
-
 export const actions = {
-  setDownloadsRef: firebaseAction(
-    ({ commit, bindFirebaseRef }, { ref, callbacks }) => {
-      bindFirebaseRef('downloads', ref, callbacks)
-      commit('setDownloadsRef', ref)
-    }
-  )
+  setDownloadsRef: firebaseAction(({ bindFirebaseRef }) => {
+    return bindFirebaseRef('downloads', downloadsRef)
+  })
 }
 
 export const getters = {

@@ -13,12 +13,6 @@ export const state = () => ({
   coordinators: []
 })
 
-export const mutations = {
-  setTeamRef: (state, teamRef) => {
-    state.teamRef = teamRef
-  }
-}
-
 export const actions = {
   setTeamRef: firebaseAction(({ bindFirebaseRef }) => {
     return bindFirebaseRef('team', teamRef)
