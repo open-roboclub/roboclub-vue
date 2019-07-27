@@ -60,9 +60,7 @@ export default {
     ...mapState('downloads', ['downloads'])
   },
   created() {
-    this.setDownloadsRef({
-      ref: this.$firebase.database().ref('downloads')
-    })
+    this.setDownloadsRef()
   },
   methods: mapActions('downloads', ['setDownloadsRef'])
 }

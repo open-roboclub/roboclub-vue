@@ -104,9 +104,7 @@ export default {
     ...mapState('robocon', ['robocon'])
   },
   created() {
-    this.setRoboconRef({
-      ref: this.$firebase.database().ref('robocon/current')
-    })
+    this.setRoboconRef()
   },
   methods: mapActions('robocon', ['setRoboconRef'])
 }

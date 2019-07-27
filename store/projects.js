@@ -1,4 +1,9 @@
 import { firebaseAction } from 'vuexfire'
+import { db } from '@/plugins/firebase'
+
+const projectsRef = db.ref('projects')
+
+const getProjectRef = id => projectsRef.orderByChild('id').equalTo(id)
 
 export const state = () => ({
   projects: [],
@@ -6,11 +11,12 @@ export const state = () => ({
 })
 
 export const actions = {
-  setProjectsRef: firebaseAction(({ bindFirebaseRef }, { ref }) => {
-    return bindFirebaseRef('projects', ref)
+  setProjectsRef: firebaseAction(({ bindFirebaseRef }) => {
+    return bindFirebaseRef('projects', projectsRef)
   }),
-  setProjectRef: firebaseAction(({ bindFirebaseRef }, { ref }) => {
-    return bindFirebaseRef('project', ref)
+  setProjectRef: firebaseAction(({ bindFirebaseRef, getters }, projectId) => {
+    if (getters.getProjectById(projectId)) return // Project found
+    return bindFirebaseRef('project', getProjectRef(projectId))
   })
 }
 

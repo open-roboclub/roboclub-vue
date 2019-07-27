@@ -1,4 +1,7 @@
 import { firebaseAction } from 'vuexfire'
+import { db } from '@/plugins/firebase'
+
+const contributionsRef = db.ref('contributions')
 
 function clearContribution(contribution) {
   if (!contribution) {
@@ -37,8 +40,8 @@ export const mutations = {
 }
 
 export const actions = {
-  setContributionsRef: firebaseAction(({ bindFirebaseRef }, { ref }) => {
-    return bindFirebaseRef('contributions', ref)
+  setContributionsRef: firebaseAction(({ bindFirebaseRef }) => {
+    return bindFirebaseRef('contributions', contributionsRef)
   }),
   deleteContribution: ({ state }, id) => {
     state.contributionsRef.child(id).remove()

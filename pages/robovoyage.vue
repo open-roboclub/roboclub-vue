@@ -49,9 +49,7 @@ export default {
     ...mapState('robovoyage', ['robovoyage'])
   },
   created() {
-    this.setRobovoyageRef({
-      ref: this.$firebase.database().ref('robovoyage')
-    })
+    this.setRobovoyageRef()
   },
   methods: mapActions('robovoyage', ['setRobovoyageRef'])
 }

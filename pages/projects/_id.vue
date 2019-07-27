@@ -66,15 +66,7 @@ export default {
     }
   },
   created() {
-    if (this.loadedProject == null) {
-      this.setProjectRef({
-        ref: this.$firebase
-          .database()
-          .ref('projects')
-          .orderByChild('id')
-          .equalTo(this.$route.params.id)
-      })
-    }
+    this.setProjectRef(this.$route.params.id)
   },
   methods: {
     ...mapActions('projects', ['setProjectRef']),

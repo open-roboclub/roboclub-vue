@@ -76,9 +76,7 @@ export default {
     ...mapGetters('contributions', ['contributions'])
   },
   created() {
-    this.setContributionsRef({
-      ref: this.$firebase.database().ref('contribution')
-    })
+    this.setContributionsRef()
   },
   methods: mapActions('contributions', ['setContributionsRef'])
 }
