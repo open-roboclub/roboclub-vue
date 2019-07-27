@@ -47,38 +47,34 @@
     </v-layout>
   </v-container>
 </template>
-
 <script>
+import { mapState, mapActions } from 'vuex'
+
 export default {
-  data() {
+  head() {
     return {
-      inventory: [
-        {
-          name: 'Arduino Uno',
-          total: 5,
-          working: 5,
-          allotted: 3,
-          thumbnail:
-            'https://www.trossenrobotics.com/shared/images/PImages/C-400-DEV-A000046-a.jpg'
-        },
-        {
-          name: 'Raspberry Pi',
-          total: 4,
-          working: 4,
-          allotted: 2,
-          thumbnail:
-            'https://images-na.ssl-images-amazon.com/images/I/4133JwedpXL._SX466_.jpg'
-        },
-        {
-          name: 'GTCRL-Conroller',
-          total: 6,
-          working: 6,
-          allotted: 3,
-          thumbnail:
-            'https://cdn.tindiemedia.com/images/resize/soCiv6E6RSsS174XSd4FinOVJsE=/p/fit-in/1032x688/filters:fill(fff)/i/16356/products/2018-03-10T04%3A10%3A28.210Z-GMSV1_1.jpg'
-        }
-      ]
+      title: 'Inventory'
     }
+  },
+  computed: {
+    ...mapState('inventory', ['inventory'])
+  },
+  created() {
+    this.setInventoryRef({
+      ref: this.$firebase.database().ref('inventory/microcontroller'),
+      callbacks: {
+        readyCallback: () => {
+          this.loading = false
+        },
+        cancelCallback: error => {
+          console.error(error)
+          this.loading = false
+        }
+      }
+    })
+  },
+  methods: {
+    ...mapActions('inventory', ['setInventoryRef'])
   }
 }
 </script>
