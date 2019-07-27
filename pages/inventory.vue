@@ -15,8 +15,68 @@
     </v-layout>
     <v-layout row wrap>
       <v-card
-        v-for="inven in inventory"
-        :key="inven.name"
+        v-for="inven in inventory.microcontroller"
+        :key="inven['.key']"
+        class="mx-auto mb-3"
+        width="400"
+      >
+        <v-flex xs12 class="text-xs-center">
+          <v-avatar :tile="false" :size="200" color="grey lighten-4 mt-3">
+            <v-img :aspect-ratio="16 / 9" :src="inven.thumbnail" alt="Avatar" />
+          </v-avatar>
+        </v-flex>
+        <v-card-title>
+          <v-flex xs12 class="text-xs-center">
+            <div>
+              <span class="headline">{{ inven.name }}</span>
+            </div>
+            <div class="d-flex">
+              <div class="ml-2 grey--text text--darken-2">
+                <span>Total: {{ inven.total }}</span>
+              </div>
+              <div class="ml-2 grey--text text--darken-2">
+                <span>Working: {{ inven.working }}</span>
+              </div>
+              <div class="ml-2 grey--text text--darken-2">
+                <span>Allotted: {{ inven.allotted }}</span>
+              </div>
+            </div>
+          </v-flex>
+        </v-card-title>
+      </v-card>
+      <v-card
+        v-for="inven in inventory.sensors"
+        :key="inven['.key']"
+        class="mx-auto mb-3"
+        width="400"
+      >
+        <v-flex xs12 class="text-xs-center">
+          <v-avatar :tile="false" :size="200" color="grey lighten-4 mt-3">
+            <v-img :aspect-ratio="16 / 9" :src="inven.thumbnail" alt="Avatar" />
+          </v-avatar>
+        </v-flex>
+        <v-card-title>
+          <v-flex xs12 class="text-xs-center">
+            <div>
+              <span class="headline">{{ inven.name }}</span>
+            </div>
+            <div class="d-flex">
+              <div class="ml-2 grey--text text--darken-2">
+                <span>Total: {{ inven.total }}</span>
+              </div>
+              <div class="ml-2 grey--text text--darken-2">
+                <span>Working: {{ inven.working }}</span>
+              </div>
+              <div class="ml-2 grey--text text--darken-2">
+                <span>Allotted: {{ inven.allotted }}</span>
+              </div>
+            </div>
+          </v-flex>
+        </v-card-title>
+      </v-card>
+      <v-card
+        v-for="inven in inventory.wires"
+        :key="inven['.key']"
         class="mx-auto mb-3"
         width="400"
       >
@@ -61,7 +121,7 @@ export default {
   },
   created() {
     this.setInventoryRef({
-      ref: this.$firebase.database().ref('inventory/microcontroller'),
+      ref: this.$firebase.database().ref('inventory'),
       callbacks: {
         readyCallback: () => {
           this.loading = false
