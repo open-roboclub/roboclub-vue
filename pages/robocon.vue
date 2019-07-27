@@ -100,26 +100,12 @@ export default {
       title: 'Robocon'
     }
   },
-  data() {
-    return {
-      loading: true
-    }
-  },
   computed: {
     ...mapState('robocon', ['robocon'])
   },
   created() {
     this.setRoboconRef({
-      ref: this.$firebase.database().ref('robocon/current'),
-      callbacks: {
-        readyCallback: () => {
-          this.loading = false
-        },
-        cancelCallback: error => {
-          console.error(error)
-          this.loading = false
-        }
-      }
+      ref: this.$firebase.database().ref('robocon/current')
     })
   },
   methods: mapActions('robocon', ['setRoboconRef'])

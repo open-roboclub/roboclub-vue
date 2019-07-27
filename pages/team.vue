@@ -74,21 +74,11 @@ export default {
       title: 'Team'
     }
   },
-  data() {
-    return {
-      loading: true
-    }
-  },
   computed: {
     ...mapGetters('team', ['members'])
   },
-  async created() {
-    try {
-      await this.setTeamRef()
-    } catch (e) {
-      console.error(e)
-    }
-    this.loading = false
+  created() {
+    this.setTeamRef()
   },
   methods: {
     iconColor(type) {

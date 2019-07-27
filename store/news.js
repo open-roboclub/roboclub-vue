@@ -32,9 +32,6 @@ export const state = () => ({
 export const mutations = {
   resetNews: state => {
     clearNews(state.newsItem)
-  },
-  setNewsRef: (state, newsRef) => {
-    state.newsRef = newsRef
   }
 }
 
@@ -78,8 +75,5 @@ export const actions = {
 }
 
 export const getters = {
-  news: state =>
-    state.news
-      .slice()
-      .reverse()
+  news: state => state.news.slice().reverse()
 }

@@ -60,11 +60,6 @@ export default {
         'Project' + (this.loadedProject ? ': ' + this.loadedProject.name : '')
     }
   },
-  data() {
-    return {
-      loading: true
-    }
-  },
   computed: {
     loadedProject() {
       return this.getProjectById()(this.$route.params.id)
@@ -77,16 +72,7 @@ export default {
           .database()
           .ref('projects')
           .orderByChild('id')
-          .equalTo(this.$route.params.id),
-        callbacks: {
-          readyCallback: () => {
-            this.loading = false
-          },
-          cancelCallback: error => {
-            console.error(error)
-            this.loading = false
-          }
-        }
+          .equalTo(this.$route.params.id)
       })
     }
   },

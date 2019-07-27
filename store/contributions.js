@@ -24,8 +24,7 @@ function copyProperties(source, destination) {
 
 export const state = () => ({
   contribution: clearContribution(),
-  contributions: [],
-  contributionsRef: null
+  contributions: []
 })
 
 export const mutations = {
@@ -34,19 +33,13 @@ export const mutations = {
   },
   setContribution: (state, contribution) => {
     state.contribution = Object.assign({}, contribution)
-  },
-  setContributionsRef: (state, contributionsRef) => {
-    state.contributionsRef = contributionsRef
   }
 }
 
 export const actions = {
-  setContributionsRef: firebaseAction(
-    ({ commit, bindFirebaseRef }, { ref, callbacks }) => {
-      bindFirebaseRef('contributions', ref, callbacks)
-      commit('setContributionsRef', ref)
-    }
-  ),
+  setContributionsRef: firebaseAction(({ bindFirebaseRef }, { ref }) => {
+    return bindFirebaseRef('contributions', ref)
+  }),
   deleteContribution: ({ state }, id) => {
     state.contributionsRef.child(id).remove()
   },

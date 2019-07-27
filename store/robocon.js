@@ -1,21 +1,11 @@
 import { firebaseAction } from 'vuexfire'
 
 export const state = () => ({
-  robocon: {},
-  roboconRef: null
+  robocon: {}
 })
 
-export const mutations = {
-  setRoboconRef: (state, roboconRef) => {
-    state.roboconRef = roboconRef
-  }
-}
-
 export const actions = {
-  setRoboconRef: firebaseAction(
-    ({ commit, bindFirebaseRef }, { ref, callbacks }) => {
-      bindFirebaseRef('robocon', ref, callbacks)
-      commit('setRoboconRef', ref)
-    }
-  )
+  setRoboconRef: firebaseAction(({ bindFirebaseRef }, { ref }) => {
+    return bindFirebaseRef('robocon', ref)
+  })
 }

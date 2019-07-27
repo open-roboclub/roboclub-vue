@@ -97,7 +97,6 @@ export default {
   },
   data() {
     return {
-      loading: true,
       dialog: false,
       selectedProject: {
         name: '',
@@ -116,16 +115,7 @@ export default {
   },
   created() {
     this.setProjectsRef({
-      ref: this.$firebase.database().ref('projects'),
-      callbacks: {
-        readyCallback: () => {
-          this.loading = false
-        },
-        cancelCallback: error => {
-          console.error(error)
-          this.loading = false
-        }
-      }
+      ref: this.$firebase.database().ref('projects')
     })
   },
   methods: {

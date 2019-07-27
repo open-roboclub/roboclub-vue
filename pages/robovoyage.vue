@@ -45,26 +45,12 @@ export default {
       title: 'RoboVoyage'
     }
   },
-  data() {
-    return {
-      loading: true
-    }
-  },
   computed: {
     ...mapState('robovoyage', ['robovoyage'])
   },
   created() {
     this.setRobovoyageRef({
-      ref: this.$firebase.database().ref('robovoyage'),
-      callbacks: {
-        readyCallback: () => {
-          this.loading = false
-        },
-        cancelCallback: error => {
-          console.error(error)
-          this.loading = false
-        }
-      }
+      ref: this.$firebase.database().ref('robovoyage')
     })
   },
   methods: mapActions('robovoyage', ['setRobovoyageRef'])
