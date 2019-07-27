@@ -129,7 +129,7 @@ export default {
     })
   },
   methods: {
-    openDialog: function(project) {
+    openDialog(project) {
       this.dialog = true
       this.selectedProject = project
     },

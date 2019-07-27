@@ -88,3 +88,26 @@ exports.saveAuthenticatedUser = functions.auth.user().onCreate(user => {
     .ref('users/' + user.uid)
     .set(userEntry)
 })
+
+exports.setClaims = functions.https.onCall(async (data, context) => {
+  if (context.auth.token) {
+    const isAdmin = (await admin
+      .database()
+      .ref('admins/')
+      .child(context.auth.uid)
+      .once('value')).val()
+
+    if (isAdmin === true) {
+      await admin.auth().setCustomUserClaims(context.auth.token.sub, {
+        admin: true
+      })
+    } else {
+      return {
+        success: false,
+        message: 'Not an admin'
+      }
+    }
+  }
+
+  return { success: true }
+})
