@@ -183,8 +183,9 @@
         </v-layout>
       </v-flex>
       <v-flex sm12 lg4>
+        <PageLoader v-show="!recentNews.length" />
         <v-card
-          v-for="item in news"
+          v-for="item in recentNews"
           :key="item['.key']"
           class="mb-3 ml-3"
           color="#F5F5DC"
@@ -205,7 +206,7 @@
             </v-layout>
           </v-container>
         </v-card>
-        <v-card color="#CDC8B1" class="mb-3 ml-3">
+        <v-card v-if="recentNews.length" color="#CDC8B1" class="mb-3 ml-3">
           <v-container>
             <v-layout row wrap>
               <v-flex xs12 class="text-xs-center">
@@ -224,7 +225,8 @@
 </template>
 
 <script>
-import { mapState, mapActions, mapGetters } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
+import PageLoader from '@/components/widgets/PageLoader.vue'
 
 export default {
   head() {
@@ -232,22 +234,17 @@ export default {
       title: 'Home'
     }
   },
+  components: { PageLoader },
   computed: {
-    ...mapState('news', ['news']),
+    ...mapGetters('news', ['recentNews']),
     ...mapGetters('team', ['coordinators'])
   },
   created() {
-    this.setNewsRef({
-      ref: this.$firebase
-        .database()
-        .ref('news')
-        .orderByChild('timestamp')
-        .limitToFirst(5)
-    })
+    this.setRecentNewsRef()
     this.setCoordinatorsRef()
   },
   methods: {
-    ...mapActions('news', ['setNewsRef']),
+    ...mapActions('news', ['setRecentNewsRef']),
     ...mapActions('team', ['setCoordinatorsRef'])
   }
 }

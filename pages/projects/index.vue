@@ -13,6 +13,7 @@
         </v-card>
       </v-flex>
     </v-layout>
+    <PageLoader v-show="!completedProjects.length" />
     <v-layout row wrap>
       <v-hover
         v-for="project in completedProjects"
@@ -88,6 +89,7 @@
 
 <script>
 import { mapState, mapActions, mapGetters } from 'vuex'
+import PageLoader from '@/components/widgets/PageLoader.vue'
 
 export default {
   head() {
@@ -95,6 +97,7 @@ export default {
       title: 'Projects'
     }
   },
+  components: { PageLoader },
   data() {
     return {
       dialog: false,

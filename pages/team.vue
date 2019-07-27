@@ -13,6 +13,7 @@
         </v-card>
       </v-flex>
     </v-layout>
+    <PageLoader v-show="!members.length" />
     <v-layout row wrap>
       <v-card
         v-for="member in members"
@@ -67,6 +68,7 @@
 
 <script>
 import { mapActions, mapGetters } from 'vuex'
+import PageLoader from '@/components/widgets/PageLoader.vue'
 
 export default {
   head() {
@@ -74,6 +76,7 @@ export default {
       title: 'Team'
     }
   },
+  components: { PageLoader },
   computed: {
     ...mapGetters('team', ['members'])
   },

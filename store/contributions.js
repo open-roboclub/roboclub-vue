@@ -1,7 +1,7 @@
 import { firebaseAction } from 'vuexfire'
 import { db } from '@/plugins/firebase'
 
-const contributionsRef = db.ref('contributions')
+const contributionsRef = db.ref('contribution')
 
 function clearContribution(contribution) {
   if (!contribution) {
