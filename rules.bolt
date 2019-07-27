@@ -143,13 +143,17 @@ path /team/{year} {
     read() { true }
     
     /info is TeamInfo;
-    /members/{member} is Member {
-        write() {
-            isAdmin() || isCurrentUser(data.child('uid').val())
-        }
-        validate() { updateOnly(this) }
-
+    /members {
+        
         index() { ['uid', 'position', 'rank'] }
+
+        /{member} is Member {
+            write() {
+                isAdmin() || isCurrentUser(data.child('uid').val())
+            }
+            validate() { updateOnly(this) }
+
+        }
     }
 }
 

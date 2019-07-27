@@ -82,19 +82,13 @@ export default {
   computed: {
     ...mapGetters('team', ['members'])
   },
-  created() {
-    this.setTeamRef({
-      ref: this.$firebase.database().ref('team/current'),
-      callbacks: {
-        readyCallback: () => {
-          this.loading = false
-        },
-        cancelCallback: error => {
-          console.error(error)
-          this.loading = false
-        }
-      }
-    })
+  async created() {
+    try {
+      await this.setTeamRef()
+    } catch (e) {
+      console.error(e)
+    }
+    this.loading = false
   },
   methods: {
     iconColor(type) {
