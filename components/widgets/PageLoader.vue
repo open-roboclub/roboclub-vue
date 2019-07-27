@@ -4,7 +4,7 @@
       <v-progress-circular
         :size="size * 10"
         :width="size"
-        color="grey"
+        :color="color"
         indeterminate
       />
     </v-container>
