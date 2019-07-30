@@ -5376,10 +5376,10 @@ firebase-token-generator@^2.0.0:
   resolved "https://registry.yarnpkg.com/firebase-token-generator/-/firebase-token-generator-2.0.0.tgz#9767d759ec13abdc99ba115fd5ea99d8b93d1206"
   integrity sha1-l2fXWewTq9yZuhFf1eqZ2Lk9EgY=
 
-firebase-tools@^7.2.1:
-  version "7.2.1"
-  resolved "https://registry.yarnpkg.com/firebase-tools/-/firebase-tools-7.2.1.tgz#bb845252bcd2e5e8eef54e08618cbdf37ccd3b1e"
-  integrity sha512-P8x9ONFyO6Q4YQA8CH+XCVUwtR8MkKliaAUSAvt0YJVKPlMBvPFnr1DkMLjQUzhheZLggw/H9/MDeWIN8rhbGA==
+firebase-tools@^7.2.2:
+  version "7.2.2"
+  resolved "https://registry.yarnpkg.com/firebase-tools/-/firebase-tools-7.2.2.tgz#15f548403e249802627eb3610a906ab0465e46d7"
+  integrity sha512-irHSMFE8HIrIUaFOVEBK5TFhKmBs9G8AWJSR6YUIeSwqEhmn9KZ0t/PwEbkC/dqqemGQoUgghL+E6hvMA1W7pQ==
   dependencies:
     JSONStream "^1.2.1"
     archiver "^3.0.0"
