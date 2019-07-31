@@ -14,9 +14,6 @@ export const mutations = {
   setUser(state, user) {
     state.user = user
   },
-  clearUser(state) {
-    state.user = null
-  },
   setAdmin(state, admin) {
     state.isAdmin = admin
   },
@@ -24,7 +21,12 @@ export const mutations = {
 }
 
 export const actions = {
-  async isAdmin({ commit }, user) {
+  async isAdmin({ state, commit }) {
+    if (!state.user) {
+      commit('setAdmin', false)
+      return
+    }
+    const user = state.user
     const ref = user ? user.uid : ''
     try {
       const snapshot = await firebase
