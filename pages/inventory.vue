@@ -14,96 +14,76 @@
       </v-flex>
     </v-layout>
     <v-layout row wrap>
-      <v-card
-        v-for="inven in inventory.microcontroller"
-        :key="inven['.key']"
-        class="mx-auto mb-3"
-        width="400"
-      >
-        <v-flex xs12 class="text-xs-center">
-          <v-avatar :tile="false" :size="200" color="grey lighten-4 mt-3">
-            <v-img :aspect-ratio="16 / 9" :src="inven.thumbnail" alt="Avatar" />
-          </v-avatar>
-        </v-flex>
-        <v-card-title>
-          <v-flex xs12 class="text-xs-center">
-            <div>
-              <span class="headline">{{ inven.name }}</span>
-            </div>
-            <div class="d-flex">
-              <div class="ml-2 grey--text text--darken-2">
-                <span>Total: {{ inven.total }}</span>
-              </div>
-              <div class="ml-2 grey--text text--darken-2">
-                <span>Working: {{ inven.working }}</span>
-              </div>
-              <div class="ml-2 grey--text text--darken-2">
-                <span>Allotted: {{ inven.allotted }}</span>
-              </div>
-            </div>
-          </v-flex>
-        </v-card-title>
-      </v-card>
-      <v-card
-        v-for="inven in inventory.sensors"
-        :key="inven['.key']"
-        class="mx-auto mb-3"
-        width="400"
-      >
-        <v-flex xs12 class="text-xs-center">
-          <v-avatar :tile="false" :size="200" color="grey lighten-4 mt-3">
-            <v-img :aspect-ratio="16 / 9" :src="inven.thumbnail" alt="Avatar" />
-          </v-avatar>
-        </v-flex>
-        <v-card-title>
-          <v-flex xs12 class="text-xs-center">
-            <div>
-              <span class="headline">{{ inven.name }}</span>
-            </div>
-            <div class="d-flex">
-              <div class="ml-2 grey--text text--darken-2">
-                <span>Total: {{ inven.total }}</span>
-              </div>
-              <div class="ml-2 grey--text text--darken-2">
-                <span>Working: {{ inven.working }}</span>
-              </div>
-              <div class="ml-2 grey--text text--darken-2">
-                <span>Allotted: {{ inven.allotted }}</span>
-              </div>
-            </div>
-          </v-flex>
-        </v-card-title>
-      </v-card>
-      <v-card
-        v-for="inven in inventory.wires"
-        :key="inven['.key']"
-        class="mx-auto mb-3"
-        width="400"
-      >
-        <v-flex xs12 class="text-xs-center">
-          <v-avatar :tile="false" :size="200" color="grey lighten-4 mt-3">
-            <v-img :aspect-ratio="16 / 9" :src="inven.thumbnail" alt="Avatar" />
-          </v-avatar>
-        </v-flex>
-        <v-card-title>
-          <v-flex xs12 class="text-xs-center">
-            <div>
-              <span class="headline">{{ inven.name }}</span>
-            </div>
-            <div class="d-flex">
-              <div class="ml-2 grey--text text--darken-2">
-                <span>Total: {{ inven.total }}</span>
-              </div>
-              <div class="ml-2 grey--text text--darken-2">
-                <span>Working: {{ inven.working }}</span>
-              </div>
-              <div class="ml-2 grey--text text--darken-2">
-                <span>Allotted: {{ inven.allotted }}</span>
-              </div>
-            </div>
-          </v-flex>
-        </v-card-title>
-      </v-card>
+      <v-flex xs12 class="text-xs-center">
+        <v-card color="#F5F5F5">
+          <v-card-title primary-title>
+            <h3 class="headline mb-0 black--text">
+              Microcontrollers
+            </h3>
+          </v-card-title>
+          <v-data-table
+            :headers="headers"
+            :items="inventory.microcontroller"
+            hide-default-footer
+            class="elevation-1 mb-2"
+          >
+            <template v-slot:items="props">
+              <td>{{ props.item.name }}</td>
+              <td>{{ props.item.total }}</td>
+              <td>{{ props.item.working }}</td>
+              <td>{{ props.item.allotted }}</td>
+            </template>
+          </v-data-table>
+        </v-card>
+      </v-flex>
+    </v-layout>
+    <v-layout row wrap>
+      <v-flex xs12 class="text-xs-center">
+        <v-card color="#F5F5F5">
+          <v-card-title primary-title>
+            <h3 class="headline mb-0 black--text">
+              Sensors
+            </h3>
+          </v-card-title>
+          <v-data-table
+            :headers="headers"
+            :items="inventory.sensors"
+            hide-default-footer
+            class="elevation-1 mb-2"
+          >
+            <template v-slot:items="props">
+              <td>{{ props.item.name }}</td>
+              <td>{{ props.item.total }}</td>
+              <td>{{ props.item.working }}</td>
+              <td>{{ props.item.allotted }}</td>
+            </template>
+          </v-data-table>
+        </v-card>
+      </v-flex>
+    </v-layout>
+    <v-layout row wrap>
+      <v-flex xs12 class="text-xs-center">
+        <v-card color="#F5F5F5">
+          <v-card-title primary-title>
+            <h3 class="headline mb-0 black--text">
+              Wires
+            </h3>
+          </v-card-title>
+          <v-data-table
+            :headers="headers"
+            :items="inventory.wires"
+            hide-default-footer
+            class="elevation-1 mb-2"
+          >
+            <template v-slot:items="props">
+              <td>{{ props.item.name }}</td>
+              <td>{{ props.item.total }}</td>
+              <td>{{ props.item.working }}</td>
+              <td>{{ props.item.allotted }}</td>
+            </template>
+          </v-data-table>
+        </v-card>
+      </v-flex>
     </v-layout>
   </v-container>
 </template>
@@ -114,6 +94,16 @@ export default {
   head() {
     return {
       title: 'Inventory'
+    }
+  },
+  data() {
+    return {
+      headers: [
+        { text: 'Name', align: 'center', value: 'name' },
+        { text: 'Total', align: 'center', value: 'total' },
+        { text: 'Working', align: 'center', value: 'working' },
+        { text: 'Allotted', align: 'center', value: 'allotted' }
+      ]
     }
   },
   computed: {
