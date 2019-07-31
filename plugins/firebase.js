@@ -18,10 +18,9 @@ export default function({ store }, inject) {
   inject('firebase', firebase)
 
   return firebase.auth().onAuthStateChanged(async user => {
-    store.dispatch('isAdmin', user)
+    store.commit('setUser', user)
+    store.dispatch('isAdmin')
     if (user) {
-      store.commit('setUser', user)
-
       const functions = firebase.functions()
       const setClaims = functions.httpsCallable('setClaims')
 
