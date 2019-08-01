@@ -10,78 +10,82 @@
               </h1>
             </div>
           </v-card-text>
+          <v-progress-linear
+            v-show="loading"
+            :indeterminate="loading"
+            color="#B9F6CA"
+            background-color="#C1FFC1"
+          />
         </v-card>
       </v-flex>
     </v-layout>
     <v-layout row wrap>
-      <v-flex xs12 class="text-xs-center">
-        <v-card color="#F5F5F5">
-          <v-card-title primary-title>
-            <h3 class="headline mb-0 black--text">
+      <v-flex xs12 class="text-xs-center mb-2">
+        <v-card v-show="!loading">
+          <v-tabs v-model="tab" color="#F5F5F5" centered>
+            <v-tabs-slider color="#616161"></v-tabs-slider>
+
+            <v-tab href="#tab-1">
               Microcontrollers
-            </h3>
-          </v-card-title>
-          <v-data-table
-            :headers="headers"
-            :items="inventory.microcontroller"
-            hide-default-footer
-            class="elevation-1 mb-2"
-          >
-            <template v-slot:items="props">
-              <td>{{ props.item.name }}</td>
-              <td>{{ props.item.total }}</td>
-              <td>{{ props.item.working }}</td>
-              <td>{{ props.item.allotted }}</td>
-            </template>
-          </v-data-table>
-        </v-card>
-      </v-flex>
-    </v-layout>
-    <v-layout row wrap>
-      <v-flex xs12 class="text-xs-center">
-        <v-card color="#F5F5F5">
-          <v-card-title primary-title>
-            <h3 class="headline mb-0 black--text">
+            </v-tab>
+
+            <v-tab href="#tab-2">
               Sensors
-            </h3>
-          </v-card-title>
-          <v-data-table
-            :headers="headers"
-            :items="inventory.sensors"
-            hide-default-footer
-            class="elevation-1 mb-2"
-          >
-            <template v-slot:items="props">
-              <td>{{ props.item.name }}</td>
-              <td>{{ props.item.total }}</td>
-              <td>{{ props.item.working }}</td>
-              <td>{{ props.item.allotted }}</td>
-            </template>
-          </v-data-table>
-        </v-card>
-      </v-flex>
-    </v-layout>
-    <v-layout row wrap>
-      <v-flex xs12 class="text-xs-center">
-        <v-card color="#F5F5F5">
-          <v-card-title primary-title>
-            <h3 class="headline mb-0 black--text">
+            </v-tab>
+
+            <v-tab href="#tab-3">
               Wires
-            </h3>
-          </v-card-title>
-          <v-data-table
-            :headers="headers"
-            :items="inventory.wires"
-            hide-default-footer
-            class="elevation-1 mb-2"
-          >
-            <template v-slot:items="props">
-              <td>{{ props.item.name }}</td>
-              <td>{{ props.item.total }}</td>
-              <td>{{ props.item.working }}</td>
-              <td>{{ props.item.allotted }}</td>
-            </template>
-          </v-data-table>
+            </v-tab>
+          </v-tabs>
+
+          <v-tabs-items v-model="tab">
+            <v-tab-item v-for="i in 3" :key="i" :value="'tab-' + i">
+              <v-card>
+                <v-data-table
+                  v-if="i == 1"
+                  :headers="headers"
+                  :items="inventory.microcontroller"
+                  hide-default-footer
+                  class="elevation-1 mb-2"
+                >
+                  <template v-slot:items="props">
+                    <td>{{ props.item.name }}</td>
+                    <td>{{ props.item.total }}</td>
+                    <td>{{ props.item.working }}</td>
+                    <td>{{ props.item.allotted }}</td>
+                  </template>
+                </v-data-table>
+                <v-data-table
+                  v-if="i == 2"
+                  :headers="headers"
+                  :items="inventory.sensors"
+                  hide-default-footer
+                  class="elevation-1 mb-2"
+                >
+                  <template v-slot:items="props">
+                    <td>{{ props.item.name }}</td>
+                    <td>{{ props.item.total }}</td>
+                    <td>{{ props.item.working }}</td>
+                    <td>{{ props.item.allotted }}</td>
+                  </template>
+                </v-data-table>
+                <v-data-table
+                  v-if="i == 3"
+                  :headers="headers"
+                  :items="inventory.wires"
+                  hide-default-footer
+                  class="elevation-1 mb-2"
+                >
+                  <template v-slot:items="props">
+                    <td>{{ props.item.name }}</td>
+                    <td>{{ props.item.total }}</td>
+                    <td>{{ props.item.working }}</td>
+                    <td>{{ props.item.allotted }}</td>
+                  </template>
+                </v-data-table>
+              </v-card>
+            </v-tab-item>
+          </v-tabs-items>
         </v-card>
       </v-flex>
     </v-layout>
@@ -98,6 +102,8 @@ export default {
   },
   data() {
     return {
+      loading: true,
+      tab: null,
       headers: [
         { text: 'Name', align: 'center', value: 'name' },
         { text: 'Total', align: 'center', value: 'total' },
