@@ -45,7 +45,6 @@
                   v-if="i == 1"
                   :headers="headers"
                   :items="inventory.microcontroller"
-                  hide-default-footer
                   class="elevation-1 mb-2"
                 >
                   <template v-slot:items="props">
@@ -53,13 +52,15 @@
                     <td>{{ props.item.total }}</td>
                     <td>{{ props.item.working }}</td>
                     <td>{{ props.item.allotted }}</td>
+                    <td>
+                      {{ props.item.working - props.item.allotted }}
+                    </td>
                   </template>
                 </v-data-table>
                 <v-data-table
                   v-if="i == 2"
                   :headers="headers"
                   :items="inventory.sensors"
-                  hide-default-footer
                   class="elevation-1 mb-2"
                 >
                   <template v-slot:items="props">
@@ -67,13 +68,15 @@
                     <td>{{ props.item.total }}</td>
                     <td>{{ props.item.working }}</td>
                     <td>{{ props.item.allotted }}</td>
+                    <td>
+                      {{ props.item.working - props.item.allotted }}
+                    </td>
                   </template>
                 </v-data-table>
                 <v-data-table
                   v-if="i == 3"
                   :headers="headers"
                   :items="inventory.wires"
-                  hide-default-footer
                   class="elevation-1 mb-2"
                 >
                   <template v-slot:items="props">
@@ -81,6 +84,9 @@
                     <td>{{ props.item.total }}</td>
                     <td>{{ props.item.working }}</td>
                     <td>{{ props.item.allotted }}</td>
+                    <td>
+                      {{ props.item.working - props.item.allotted }}
+                    </td>
                   </template>
                 </v-data-table>
               </v-card>
@@ -108,7 +114,8 @@ export default {
         { text: 'Name', align: 'center', value: 'name' },
         { text: 'Total', align: 'center', value: 'total' },
         { text: 'Working', align: 'center', value: 'working' },
-        { text: 'Allotted', align: 'center', value: 'allotted' }
+        { text: 'Allotted', align: 'center', value: 'allotted' },
+        { text: 'Remaining', align: 'center', value: 'remaining' }
       ]
     }
   },
