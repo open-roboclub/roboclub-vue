@@ -1,7 +1,7 @@
 <template>
   <v-container>
-    <v-layout wrap>
-      <v-flex xs10 sm6 offset-sm3 offset-xs1>
+    <v-row>
+      <v-col cols="10" sm="6" offset-sm="3" offset="1">
         <v-card class="mt-0 mb-4" color="#BF3EFF">
           <v-card-text>
             <div>
@@ -11,11 +11,11 @@
             </div>
           </v-card-text>
         </v-card>
-      </v-flex>
-    </v-layout>
+      </v-col>
+    </v-row>
     <Admin v-if="isAdmin" />
     <PageLoader v-show="!completedProjects.length" />
-    <v-layout row wrap>
+    <v-row>
       <v-hover
         v-for="project in completedProjects"
         :key="project.id"
@@ -30,24 +30,24 @@
           @click="openDialog(project)"
         >
           <br />
-          <v-flex xs12 class="text-xs-center">
+          <v-col cols="12" class="text-center">
             <v-avatar :tile="false" :size="250" color="grey lighten-4">
               <v-img :aspect-ratio="16 / 9" :src="project.image" alt="Avatar" />
             </v-avatar>
-          </v-flex>
+          </v-col>
           <v-card-title>
-            <v-flex xs12 class="text-xs-center">
+            <v-col cols="12" class="text-center">
               <span class="headline">{{ project.name }}</span>
               <div class="d-flex">
                 <div class="ml-2 grey--text text--darken-2">
                   <span>{{ project.team }}</span>
                 </div>
               </div>
-            </v-flex>
+            </v-col>
           </v-card-title>
         </v-card>
       </v-hover>
-      <div class="text-xs-center">
+      <div class="text-center">
         <v-dialog
           v-model="dialog"
           max-width="700"
@@ -57,7 +57,7 @@
             <v-card-title class="headline grey lighten-2" primary-title>
               {{ selectedProject.name }}
             </v-card-title>
-            <v-flex xs12 class="text-xs-center mt-2 mb-0">
+            <v-col cols="12" class="text-center mt-2 mb-0">
               <v-avatar :tile="false" :size="225" color="grey lighten-4">
                 <v-img
                   :aspect-ratio="16 / 9"
@@ -65,7 +65,7 @@
                   alt="Avatar"
                 />
               </v-avatar>
-            </v-flex>
+            </v-col>
             <v-card-text>
               <p>{{ selectedProject.description }}</p>
             </v-card-text>
@@ -73,18 +73,18 @@
             <v-card-actions>
               <v-spacer />
               <nuxt-link :to="projectLink" style="text-decoration: none">
-                <v-btn color="green darken-1" flat>
+                <v-btn color="green darken-1" text>
                   Know More
                 </v-btn>
               </nuxt-link>
-              <v-btn color="primary" flat @click="dialog = false">
+              <v-btn color="primary" text @click="dialog = false">
                 Close
               </v-btn>
             </v-card-actions>
           </v-card>
         </v-dialog>
       </div>
-    </v-layout>
+    </v-row>
   </v-container>
 </template>
 

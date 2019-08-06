@@ -1,19 +1,19 @@
 <template>
   <v-container>
-    <v-layout row wrap>
-      <v-flex sm12 lg8>
+    <v-row>
+      <v-col sm="12" lg="8">
         <v-card class="mb-3">
           <v-container>
-            <v-layout row wrap>
-              <v-flex sm12 md5 class="text-sm-center text-xs-center">
+            <v-row>
+              <v-col sm="12" md="5" class="text-sm-center text-center">
                 <iframe
                   width="250"
                   height="180"
                   allowfullscreen
                   src="https://www.youtube.com/embed/3TSxPcIJCB0?rel=0&showinfo=0&theme=light"
                 />
-              </v-flex>
-              <v-flex sm12 md7 class="text-sm-center">
+              </v-col>
+              <v-col sm="12" md="7" class="text-sm-center">
                 <v-card-title primary-title class="card-text">
                   AMU Roboclub is a student’s body which caters to the need of
                   electronics enthusiasts and hobbyists in creating an
@@ -26,8 +26,8 @@
                   prepares them for various national competitions by encouraging
                   participation.
                 </v-card-title>
-              </v-flex>
-            </v-layout>
+              </v-col>
+            </v-row>
           </v-container>
         </v-card>
         <v-card class="mb-3">
@@ -60,10 +60,10 @@
                 </h1>
               </div>
             </v-card-text>
-            <div v-if="!coordinators.length" class="text-xs-center">
+            <div v-if="!coordinators.length" class="text-center">
               <v-progress-circular indeterminate color="white" />
             </div>
-            <v-layout row wrap>
+            <v-row>
               <v-card
                 v-for="item in coordinators"
                 :key="item['.key']"
@@ -71,7 +71,7 @@
                 class="mx-auto"
                 color="#458B74"
               >
-                <v-flex xs12 class="text-xs-center">
+                <v-col cols="12" class="text-center">
                   <v-avatar
                     :tile="false"
                     :size="150"
@@ -83,26 +83,26 @@
                       :alt="item.name"
                     />
                   </v-avatar>
-                </v-flex>
+                </v-col>
                 <v-card-title primary-title>
-                  <v-flex xs12 class="text-xs-center">
+                  <v-col cols="12" class="text-center">
                     <span style="color: white">{{ item.name }}</span>
-                  </v-flex>
+                  </v-col>
                 </v-card-title>
               </v-card>
-            </v-layout>
-            <v-flex xs12 class="text-xs-center">
+            </v-row>
+            <v-col cols="12" class="text-center">
               <br />
               <nuxt-link to="/team" class="iconLink">
                 <v-icon dark x-large color="#7FFF00">
                   mdi-arrow-right-bold-circle
                 </v-icon>
               </nuxt-link>
-            </v-flex>
+            </v-col>
           </v-container>
         </v-card>
-        <v-layout row wrap>
-          <v-flex xs12 sm6>
+        <v-row>
+          <v-col cols="12" sm="6">
             <v-card class="mt-3 mr-3">
               <v-img
                 src="https://res.cloudinary.com/amuroboclub/image/upload/v1492699176/14474306_1412485605448267_5100030826549084160_n_k7hi7c.jpg"
@@ -121,12 +121,12 @@
               </v-card-title>
               <v-card-actions>
                 <a href="http://amu.ac.in/principal.jsp?did=10147">
-                  <v-btn flat color="orange">KNOW MORE</v-btn>
+                  <v-btn text color="orange">KNOW MORE</v-btn>
                 </a>
               </v-card-actions>
             </v-card>
-          </v-flex>
-          <v-flex xs12 sm6>
+          </v-col>
+          <v-col cols="12" sm="6">
             <v-card class="mt-3">
               <v-img
                 src="https://res.cloudinary.com/amuroboclub/image/upload/v1492699314/amu_ps6arw.jpg"
@@ -146,26 +146,26 @@
               </v-card-title>
               <v-card-actions>
                 <a href="http://www.amu.ac.in/">
-                  <v-btn flat color="orange">KNOW MORE</v-btn>
+                  <v-btn text color="orange">KNOW MORE</v-btn>
                 </a>
               </v-card-actions>
             </v-card>
             <v-card color="#CDC8B1" class="mt-3 mb-4">
               <v-container>
-                <v-layout row wrap>
-                  <v-flex xs2>
+                <v-row>
+                  <v-col cols="2">
                     <v-icon left x-large color="black">
                       mdi-city
                     </v-icon>
-                  </v-flex>
-                  <v-flex xs10>
+                  </v-col>
+                  <v-col cols="10">
                     WS-18, <br />Mechanical Workshop Compound, <br />Zakir
                     Husain College of Engg & Tech, <br />Aligarh Muslim
                     University, Aligarh. <br />India.
-                  </v-flex>
-                </v-layout>
-                <v-layout>
-                  <v-flex xs12 class="text-xs-center mt-1">
+                  </v-col>
+                </v-row>
+                <v-row>
+                  <v-col cols="12" class="text-center mt-1">
                     <a
                       class="iconLink"
                       href="//www.google.co.in/maps/place/AMU+Roboclub/@27.91423,78.07735,15z"
@@ -175,14 +175,14 @@
                         mdi-map-legend
                       </v-icon>
                     </a>
-                  </v-flex>
-                </v-layout>
+                  </v-col>
+                </v-row>
               </v-container>
             </v-card>
-          </v-flex>
-        </v-layout>
-      </v-flex>
-      <v-flex sm12 lg4>
+          </v-col>
+        </v-row>
+      </v-col>
+      <v-col sm="12" lg="4">
         <PageLoader v-show="!recentNews.length" />
         <v-card
           v-for="item in recentNews"
@@ -191,36 +191,36 @@
           color="#F5F5DC"
         >
           <v-container>
-            <v-layout row wrap>
-              <v-flex xs2>
+            <v-row>
+              <v-col cols="2">
                 <v-icon left x-large color="black">
                   mdi-newspaper
                 </v-icon>
-              </v-flex>
-              <v-flex xs10>
+              </v-col>
+              <v-col cols="10">
                 {{ item.notice }}
                 <br />
                 <br />
                 {{ item.date }}
-              </v-flex>
-            </v-layout>
+              </v-col>
+            </v-row>
           </v-container>
         </v-card>
         <v-card v-if="recentNews.length" color="#CDC8B1" class="mb-3 ml-3">
           <v-container>
-            <v-layout row wrap>
-              <v-flex xs12 class="text-xs-center">
+            <v-row>
+              <v-col cols="12" class="text-center">
                 <nuxt-link to="/news" class="iconLink">
                   <v-icon x-large color="primary">
                     mdi-expand-all
                   </v-icon>
                 </nuxt-link>
-              </v-flex>
-            </v-layout>
+              </v-col>
+            </v-row>
           </v-container>
         </v-card>
-      </v-flex>
-    </v-layout>
+      </v-col>
+    </v-row>
   </v-container>
 </template>
 

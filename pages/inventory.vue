@@ -1,7 +1,7 @@
 <template>
   <v-container>
-    <v-layout wrap>
-      <v-flex xs10 sm6 offset-sm3 offset-xs1>
+    <v-row>
+      <v-col cols="10" sm="6" offset-sm="3" offset="1">
         <v-card class="mt-0 mb-4" color="#C1FFC1">
           <v-card-text>
             <div>
@@ -17,10 +17,10 @@
             background-color="#C1FFC1"
           />
         </v-card>
-      </v-flex>
-    </v-layout>
-    <v-layout row wrap>
-      <v-flex xs12 class="text-xs-center mb-2">
+      </v-col>
+    </v-row>
+    <v-row>
+      <v-col cols="12" class="text-center mb-2">
         <v-card v-show="!loading">
           <v-tabs v-model="tab" color="#F5F5F5" centered>
             <v-tabs-slider color="#616161"></v-tabs-slider>
@@ -93,8 +93,8 @@
             </v-tab-item>
           </v-tabs-items>
         </v-card>
-      </v-flex>
-    </v-layout>
+      </v-col>
+    </v-row>
   </v-container>
 </template>
 <script>

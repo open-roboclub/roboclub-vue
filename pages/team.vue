@@ -1,7 +1,7 @@
 <template>
   <v-container>
-    <v-layout wrap>
-      <v-flex xs10 sm6 offset-sm3 offset-xs1>
+    <v-row>
+      <v-col cols="10" sm="6" offset-sm="3" offset="1">
         <v-card class="mt-0 mb-4" color="#C1FFC1">
           <v-card-text>
             <div>
@@ -11,17 +11,17 @@
             </div>
           </v-card-text>
         </v-card>
-      </v-flex>
-    </v-layout>
+      </v-col>
+    </v-row>
     <PageLoader v-show="!members.length" />
-    <v-layout row wrap>
+    <v-row>
       <v-card
         v-for="member in members"
         :key="member['.key']"
         class="mx-auto mb-3"
         width="400"
       >
-        <v-flex xs12 class="text-xs-center">
+        <v-col cols="12" class="text-center">
           <v-avatar :tile="false" :size="200" color="grey lighten-4 mt-3">
             <v-img
               :aspect-ratio="16 / 9"
@@ -29,9 +29,9 @@
               alt="Avatar"
             />
           </v-avatar>
-        </v-flex>
+        </v-col>
         <v-card-title>
-          <v-flex xs12 class="text-xs-center">
+          <v-col cols="12" class="text-center">
             <div>
               <span class="headline">{{ member.name }}</span>
               <div class="d-flex">
@@ -40,9 +40,9 @@
                 </div>
               </div>
             </div>
-          </v-flex>
+          </v-col>
         </v-card-title>
-        <v-flex class="grey lighten-3 text-xs-center">
+        <v-col class="grey lighten-3 text-center">
           <v-btn
             v-for="(link, type) in member.links"
             :key="type"
@@ -60,9 +60,9 @@
               <v-icon dark>{{ icon(type) }}</v-icon>
             </a>
           </v-btn>
-        </v-flex>
+        </v-col>
       </v-card>
-    </v-layout>
+    </v-row>
   </v-container>
 </template>
 

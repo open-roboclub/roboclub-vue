@@ -18,18 +18,18 @@
       <v-btn
         v-if="newsUpdate.link"
         :href="newsUpdate.link"
-        flat
+        text
         class="orange--text"
         target="_blank"
       >
         Link
       </v-btn>
-      <v-btn v-if="isAdmin" flat class="blue--text" @click.stop="$emit('edit')">
+      <v-btn v-if="isAdmin" text class="blue--text" @click.stop="$emit('edit')">
         Edit
       </v-btn>
       <v-btn
         v-if="isAdmin"
-        flat
+        text
         class="red--text"
         @click.stop="$emit('delete')"
       >

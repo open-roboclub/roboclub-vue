@@ -2,33 +2,33 @@
   <v-app light>
     <v-navigation-drawer v-model="sideNav" app temporary>
       <v-list>
-        <v-list-tile
+        <v-list-item
           v-for="item in displayedItems"
           :key="item.title"
           :to="item.link"
         >
-          <v-list-tile-action>
+          <v-list-item-action>
             <v-icon>{{ item.icon }}</v-icon>
-          </v-list-tile-action>
-          <v-list-tile-content>{{ item.title }}</v-list-tile-content>
-        </v-list-tile>
+          </v-list-item-action>
+          <v-list-item-content>{{ item.title }}</v-list-item-content>
+        </v-list-item>
         <v-subheader inset>
           More
         </v-subheader>
-        <v-list-tile
+        <v-list-item
           v-for="item in moreItems"
           :key="item.title"
           :to="item.link"
         >
-          <v-list-tile-action>
+          <v-list-item-action>
             <v-icon>{{ item.icon }}</v-icon>
-          </v-list-tile-action>
-          <v-list-tile-content>{{ item.title }}</v-list-tile-content>
-        </v-list-tile>
+          </v-list-item-action>
+          <v-list-item-content>{{ item.title }}</v-list-item-content>
+        </v-list-item>
       </v-list>
     </v-navigation-drawer>
-    <v-toolbar app>
-      <v-toolbar-side-icon
+    <v-app-bar app>
+      <v-app-bar-nav-icon
         class="hidden-sm-and-up"
         @click.stop="sideNav = !sideNav"
       />
@@ -45,7 +45,7 @@
           v-for="item in displayedItems"
           :key="item.title"
           :to="item.link"
-          flat
+          text
         >
           <v-icon left>
             {{ item.icon }}
@@ -54,26 +54,28 @@
         </v-btn>
       </v-toolbar-items>
       <v-menu bottom left class="hidden-xs-only">
-        <v-btn slot="activator" icon>
-          <v-icon>mdi-dots-vertical</v-icon>
-        </v-btn>
+        <template v-slot:activator="{ on }">
+          <v-btn icon v-on="on">
+            <v-icon>mdi-dots-vertical</v-icon>
+          </v-btn>
+        </template>
         <v-list>
-          <v-list-tile
+          <v-list-item
             v-for="item in moreItems"
             :key="item.title"
             :to="item.link"
           >
-            <v-list-tile-title>{{ item.title }}</v-list-tile-title>
-          </v-list-tile>
+            <v-list-item-title>{{ item.title }}</v-list-item-title>
+          </v-list-item>
         </v-list>
       </v-menu>
-    </v-toolbar>
+    </v-app-bar>
     <v-content>
       <main><nuxt /></main>
       <template>
         <div class="space" />
         <v-footer dark height="auto" class="footer">
-          <v-card class="flex" flat tile>
+          <v-card class="flex" text tile>
             <v-card-title class="grey lighten-1">
               <strong class="subheading">
                 <a

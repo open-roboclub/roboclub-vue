@@ -1,9 +1,17 @@
 <template>
   <v-container>
-    <v-layout row wrap class="mb-3">
-      <v-flex xs12 sm10 md8 lg6 offset-sm1 offset-md2 offset-lg3>
+    <v-row class="mb-3">
+      <v-col
+        cols="12"
+        sm="10"
+        md="8"
+        lg="6"
+        offset-sm="1"
+        offset-md="2"
+        offset-lg="3"
+      >
         <v-card class="blue-grey white--text">
-          <div class="text-xs-center headline pt-4 pb-4">
+          <div class="text-center headline pt-4 pb-4">
             News Panel
           </div>
           <v-progress-linear
@@ -13,8 +21,8 @@
             background-color="blue-grey lighten-3"
           />
         </v-card>
-      </v-flex>
-    </v-layout>
+      </v-col>
+    </v-row>
     <div class="mt-2" />
 
     <Admin
@@ -23,8 +31,16 @@
       :selected-to-delete.sync="selectedToDelete"
     />
 
-    <v-layout row>
-      <v-flex xs12 sm10 md8 lg6 offset-sm1 offset-md2 offset-lg3>
+    <v-row>
+      <v-col
+        cols="12"
+        sm="10"
+        md="8"
+        lg="6"
+        offset-sm="1"
+        offset-md="2"
+        offset-lg="3"
+      >
         <NewsCard
           v-for="newsUpdate in news"
           :key="newsUpdate.id"
@@ -34,8 +50,8 @@
           @edit="confirmEdit(newsUpdate)"
           @delete="confirmDelete(newsUpdate)"
         />
-      </v-flex>
-    </v-layout>
+      </v-col>
+    </v-row>
   </v-container>
 </template>
 

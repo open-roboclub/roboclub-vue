@@ -1,4 +1,3 @@
-const VuetifyLoaderPlugin = require('vuetify-loader/lib/plugin')
 const pkg = require('./package')
 
 const isProduction = process.env.NODE_ENV === 'production'
@@ -16,14 +15,7 @@ module.exports = {
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { hid: 'description', name: 'description', content: pkg.description }
     ],
-    link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-      {
-        rel: 'stylesheet',
-        href:
-          'https://cdn.materialdesignicons.com/3.4.93/css/materialdesignicons.min.css'
-      }
-    ]
+    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
   },
 
   /*
@@ -34,30 +26,25 @@ module.exports = {
   /*
    ** Global CSS
    */
-  css: ['~/assets/style/app.styl'],
+  css: [],
 
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: ['@/plugins/vuetify', '@/plugins/firebase'],
+  plugins: ['@/plugins/firebase'],
 
   /*
    ** Nuxt.js modules
    */
   modules: ['@nuxtjs/pwa'],
 
+  devModules: ['@nuxtjs/vuetify'],
+
   /*
    ** Build configuration
    */
   build: {
     extractCSS: isProduction,
-    transpile: ['vuetify/lib'],
-    plugins: [new VuetifyLoaderPlugin()],
-    loaders: {
-      stylus: {
-        import: ['~assets/style/variables.styl']
-      }
-    },
     /*
      ** You can extend webpack config here
      */

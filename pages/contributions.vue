@@ -1,7 +1,15 @@
 <template>
   <v-container>
-    <v-layout row wrap class="mb-3">
-      <v-flex xs12 md10 lg8 xl6 offset-md1 offset-lg2 offset-xl3>
+    <v-row class="mb-3">
+      <v-col
+        cols="12"
+        md="10"
+        lg="8"
+        xl="6"
+        offset-md="1"
+        offset-lg="2"
+        offset-xl="3"
+      >
         <v-card class="green white--text">
           <v-card-title primary-title>
             <div>
@@ -19,10 +27,18 @@
             color="green lighten-3"
           />
         </v-card>
-      </v-flex>
-    </v-layout>
-    <v-layout row>
-      <v-flex xs12 md10 lg8 xl6 offset-md1 offset-lg2 offset-xl3>
+      </v-col>
+    </v-row>
+    <v-row>
+      <v-col
+        cols="12"
+        md="10"
+        lg="8"
+        xl="6"
+        offset-md="1"
+        offset-lg="2"
+        offset-xl="3"
+      >
         <v-data-table
           v-model="selected"
           :headers="headers"
@@ -43,8 +59,8 @@
         </v-data-table>
 
         <ContributionAdmin v-if="isAdmin" :selected.sync="selected" />
-      </v-flex>
-    </v-layout>
+      </v-col>
+    </v-row>
   </v-container>
 </template>
 

@@ -1,7 +1,15 @@
 <template>
   <v-container fluid>
-    <v-layout row wrap class="mb-3">
-      <v-flex xs12 md10 lg8 xl6 offset-md1 offset-lg2 offset-xl3>
+    <v-row class="mb-3">
+      <v-col
+        cols="12"
+        md="10"
+        lg="8"
+        xl="6"
+        offset-md="1"
+        offset-lg="2"
+        offset-xl="3"
+      >
         <v-card color="cyan">
           <v-card-title primary-title>
             <h3 class="headline mb-0 white--text">
@@ -32,8 +40,8 @@
             </v-tab-item>
           </v-tabs>
         </v-card>
-      </v-flex>
-    </v-layout>
+      </v-col>
+    </v-row>
   </v-container>
 </template>
 

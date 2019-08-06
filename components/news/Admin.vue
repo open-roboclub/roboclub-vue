@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-layout row justify-center>
+    <v-row justify="center">
       <v-dialog v-model="addDialog" max-width="500">
         <v-btn slot="activator" fab dark class="cyan">
           <v-icon dark>
@@ -38,17 +38,17 @@
           </v-card-text>
           <v-card-actions>
             <v-spacer />
-            <v-btn class="blue--text darken-1" flat @click="addDialog = false">
+            <v-btn class="blue--text darken-1" text @click="addDialog = false">
               Close
             </v-btn>
-            <v-btn class="blue--text darken-1" flat @click="add">
+            <v-btn class="blue--text darken-1" text @click="add">
               Save
             </v-btn>
           </v-card-actions>
         </v-card>
       </v-dialog>
-    </v-layout>
-    <v-layout row justify-center>
+    </v-row>
+    <v-row justify="center">
       <v-dialog v-model="editDialog" max-width="500">
         <v-card>
           <v-card-title>
@@ -78,19 +78,19 @@
             <v-spacer />
             <v-btn
               class="blue--text darken-1"
-              flat
+              text
               @click="$emit('update:selectedToEdit', null)"
             >
               Close
             </v-btn>
-            <v-btn class="blue--text darken-1" flat @click="editNews">
+            <v-btn class="blue--text darken-1" text @click="editNews">
               Save
             </v-btn>
           </v-card-actions>
         </v-card>
       </v-dialog>
-    </v-layout>
-    <v-layout row justify-center>
+    </v-row>
+    <v-row justify="center">
       <v-dialog v-model="deleteDialog">
         <v-card>
           <v-card-title>
@@ -101,16 +101,16 @@
           </v-card-text>
           <v-card-actions>
             <v-spacer />
-            <v-btn class="blue--text" flat @click="deleteDialog = false">
+            <v-btn class="blue--text" text @click="deleteDialog = false">
               No
             </v-btn>
-            <v-btn class="red--text" flat @click="deleteNewsItem">
+            <v-btn class="red--text" text @click="deleteNewsItem">
               Yes
             </v-btn>
           </v-card-actions>
         </v-card>
       </v-dialog>
-    </v-layout>
+    </v-row>
   </div>
 </template>
 

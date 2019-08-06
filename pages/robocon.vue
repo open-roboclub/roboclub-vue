@@ -1,7 +1,7 @@
 <template>
   <v-container>
-    <v-layout wrap>
-      <v-flex xs10 sm6 offset-sm3 offset-xs1>
+    <v-row>
+      <v-col cols="10" sm="6" offset-sm="3" offset="1">
         <v-card class="mt-0 mb-3" color="rgb(77, 77, 255)">
           <v-card-text>
             <div>
@@ -11,10 +11,10 @@
             </div>
           </v-card-text>
         </v-card>
-      </v-flex>
-    </v-layout>
-    <v-layout row wrap>
-      <v-flex xs12 sm12 md6 class="text-sm-center text-md-left">
+      </v-col>
+    </v-row>
+    <v-row>
+      <v-col cols="12" sm="12" md="6" class="text-sm-center text-md-left">
         <v-card>
           <v-card color="success">
             <v-card-title primary-title>
@@ -59,8 +59,8 @@
             </v-carousel>
           </v-card>
         </v-card>
-      </v-flex>
-      <v-flex xs12 sm12 md6 class="text-sm-center md-right">
+      </v-col>
+      <v-col cols="12" sm="12" md="6" class="text-sm-center md-right">
         <v-card class="ml-3">
           <v-card class="mb-3">
             <v-carousel>
@@ -86,8 +86,8 @@
             </v-card-text>
           </v-card>
         </v-card>
-      </v-flex>
-    </v-layout>
+      </v-col>
+    </v-row>
   </v-container>
 </template>
 
