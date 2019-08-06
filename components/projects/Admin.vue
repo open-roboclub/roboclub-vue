@@ -36,8 +36,7 @@
 
               <v-text-field
                 v-model="project.team"
-                :rules="teamRules"
-                label="Team*"
+                label="Team"
                 placeholder="For example: Areeb Jamal, Haider Ali"
                 required
               ></v-text-field>
@@ -179,7 +178,6 @@ export default {
       v => !!v || 'Title is required',
       v => (v && v.length <= 100) || 'Title must be less than 100 characters'
     ],
-    teamRules: [v => !!v || 'Team is required'],
     imageUrl: '',
     image: null,
     descriptionRules: [v => !!v || 'Description is required'],
