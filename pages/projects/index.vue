@@ -13,7 +13,7 @@
         </v-card>
       </v-flex>
     </v-layout>
-    <Admin v-if="isAdmin" />
+    <Admin />
     <PageLoader v-show="!completedProjects.length" />
     <v-layout row wrap>
       <v-hover
@@ -99,13 +99,13 @@ export default {
     }
   },
   components: {
+    PageLoader,
     Admin: () =>
       import(
         /* webpackChunkName: "project-admin" */
         '~/components/projects/Admin'
       )
   },
-  components: { PageLoader },
   data() {
     return {
       dialog: false,
