@@ -1,9 +1,7 @@
 <template>
   <v-container>
     <v-layout row wrap>
-      <v-flex v-if="loadedProject == null" xs12 xl8 offset-xl2>
-        Loading...
-      </v-flex>
+      <PageLoader v-if="!loadedProject" />
       <v-flex v-else xs12 xl8 offset-xl2>
         <v-card>
           <v-card-title>
@@ -52,6 +50,7 @@
 
 <script>
 import { mapActions, mapGetters } from 'vuex'
+import PageLoader from '@/components/widgets/PageLoader.vue'
 
 export default {
   head() {
@@ -60,35 +59,14 @@ export default {
         'Project' + (this.loadedProject ? ': ' + this.loadedProject.name : '')
     }
   },
-  data() {
-    return {
-      loading: true
-    }
-  },
+  components: { PageLoader },
   computed: {
     loadedProject() {
       return this.getProjectById()(this.$route.params.id)
     }
   },
   created() {
-    if (this.loadedProject == null) {
-      this.setProjectRef({
-        ref: this.$firebase
-          .database()
-          .ref('projects')
-          .orderByChild('id')
-          .equalTo(this.$route.params.id),
-        callbacks: {
-          readyCallback: () => {
-            this.loading = false
-          },
-          cancelCallback: error => {
-            console.error(error)
-            this.loading = false
-          }
-        }
-      })
-    }
+    this.setProjectRef(this.$route.params.id)
   },
   methods: {
     ...mapActions('projects', ['setProjectRef']),

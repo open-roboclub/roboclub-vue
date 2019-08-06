@@ -13,6 +13,7 @@
         </v-card>
       </v-flex>
     </v-layout>
+    <PageLoader v-show="!members.length" />
     <v-layout row wrap>
       <v-card
         v-for="member in members"
@@ -67,6 +68,7 @@
 
 <script>
 import { mapActions, mapGetters } from 'vuex'
+import PageLoader from '@/components/widgets/PageLoader.vue'
 
 export default {
   head() {
@@ -74,27 +76,12 @@ export default {
       title: 'Team'
     }
   },
-  data() {
-    return {
-      loading: true
-    }
-  },
+  components: { PageLoader },
   computed: {
     ...mapGetters('team', ['members'])
   },
   created() {
-    this.setTeamRef({
-      ref: this.$firebase.database().ref('team/current'),
-      callbacks: {
-        readyCallback: () => {
-          this.loading = false
-        },
-        cancelCallback: error => {
-          console.error(error)
-          this.loading = false
-        }
-      }
-    })
+    this.setTeamRef()
   },
   methods: {
     iconColor(type) {

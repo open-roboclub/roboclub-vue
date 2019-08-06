@@ -14,6 +14,7 @@
       </v-flex>
     </v-layout>
     <Admin v-if="isAdmin" />
+    <PageLoader v-show="!completedProjects.length" />
     <v-layout row wrap>
       <v-hover
         v-for="project in completedProjects"
@@ -89,6 +90,7 @@
 
 <script>
 import { mapState, mapActions, mapGetters } from 'vuex'
+import PageLoader from '@/components/widgets/PageLoader.vue'
 
 export default {
   head() {
@@ -103,9 +105,9 @@ export default {
         '~/components/projects/Admin'
       )
   },
+  components: { PageLoader },
   data() {
     return {
-      loading: true,
       dialog: false,
       selectedProject: {
         name: '',
@@ -125,16 +127,7 @@ export default {
   },
   created() {
     this.setProjectsRef({
-      ref: this.$firebase.database().ref('projects'),
-      callbacks: {
-        readyCallback: () => {
-          this.loading = false
-        },
-        cancelCallback: error => {
-          console.error(error)
-          this.loading = false
-        }
-      }
+      ref: this.$firebase.database().ref('projects')
     })
   },
   methods: {

@@ -1,21 +1,14 @@
 import { firebaseAction } from 'vuexfire'
+import { db } from '@/plugins/firebase'
+
+const robovoyageRef = db.ref('robovoyage')
 
 export const state = () => ({
-  robovoyage: {},
-  robovoyageRef: null
+  robovoyage: {}
 })
 
-export const mutations = {
-  setRobovoyageRef: (state, robovoyageRef) => {
-    state.robovoyageRef = robovoyageRef
-  }
-}
-
 export const actions = {
-  setRobovoyageRef: firebaseAction(
-    ({ commit, bindFirebaseRef }, { ref, callbacks }) => {
-      bindFirebaseRef('robovoyage', ref, callbacks)
-      commit('setRobovoyageRef', ref)
-    }
-  )
+  setRobovoyageRef: firebaseAction(({ bindFirebaseRef }) => {
+    return bindFirebaseRef('robovoyage', robovoyageRef)
+  })
 }

@@ -60,10 +60,13 @@
                 </h1>
               </div>
             </v-card-text>
+            <div v-if="!coordinators.length" class="text-xs-center">
+              <v-progress-circular indeterminate color="white" />
+            </div>
             <v-layout row wrap>
               <v-card
                 v-for="item in coordinators"
-                :key="item.name"
+                :key="item['.key']"
                 width="200"
                 class="mx-auto"
                 color="#458B74"
@@ -76,7 +79,7 @@
                   >
                     <v-img
                       :aspect-ratio="16 / 9"
-                      :src="item.avatar"
+                      :src="item.thumbnail"
                       :alt="item.name"
                     />
                   </v-avatar>
@@ -180,8 +183,9 @@
         </v-layout>
       </v-flex>
       <v-flex sm12 lg4>
+        <PageLoader v-show="!recentNews.length" />
         <v-card
-          v-for="item in news"
+          v-for="item in recentNews"
           :key="item['.key']"
           class="mb-3 ml-3"
           color="#F5F5DC"
@@ -202,7 +206,7 @@
             </v-layout>
           </v-container>
         </v-card>
-        <v-card color="#CDC8B1" class="mb-3 ml-3">
+        <v-card v-if="recentNews.length" color="#CDC8B1" class="mb-3 ml-3">
           <v-container>
             <v-layout row wrap>
               <v-flex xs12 class="text-xs-center">
@@ -221,7 +225,8 @@
 </template>
 
 <script>
-import { mapState, mapActions } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
+import PageLoader from '@/components/widgets/PageLoader.vue'
 
 export default {
   head() {
@@ -229,50 +234,19 @@ export default {
       title: 'Home'
     }
   },
-  data() {
-    return {
-      loading: true,
-      coordinators: [
-        {
-          name: 'Aman Gupta',
-          avatar:
-            'https://lh6.googleusercontent.com/-Nabz6JJKsqc/AAAAAAAAAAI/AAAAAAAAAoI/biOxaDpjiec/photo.jpg'
-        },
-        {
-          name: 'Harshul Gupta',
-          avatar:
-            'https://res.cloudinary.com/amuroboclub/image/upload/v1529768915/profile_img/IMG_20180328_004220805.jpg'
-        },
-        {
-          name: 'Kakul Shrivastava',
-          avatar:
-            'https://res.cloudinary.com/amuroboclub/image/upload/v1543928884/profile_img/FB_IMG_1543928797162.jpg'
-        }
-      ]
-    }
-  },
+  components: { PageLoader },
   computed: {
-    ...mapState('news', ['news'])
+    ...mapGetters('news', ['recentNews']),
+    ...mapGetters('team', ['coordinators'])
   },
   created() {
-    this.setNewsRef({
-      ref: this.$firebase
-        .database()
-        .ref('news')
-        .orderByChild('timestamp')
-        .limitToFirst(5),
-      callbacks: {
-        readyCallback: () => {
-          this.loading = false
-        },
-        cancelCallback: error => {
-          console.error(error)
-          this.loading = false
-        }
-      }
-    })
+    this.setRecentNewsRef()
+    this.setCoordinatorsRef()
   },
-  methods: mapActions('news', ['setNewsRef'])
+  methods: {
+    ...mapActions('news', ['setRecentNewsRef']),
+    ...mapActions('team', ['setCoordinatorsRef'])
+  }
 }
 </script>
 

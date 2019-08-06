@@ -9,8 +9,8 @@
             </h3>
           </v-card-title>
           <v-progress-linear
-            v-show="loading"
-            :indeterminate="loading"
+            v-show="!downloads.length"
+            indeterminate
             color="cyan"
             background-color="cyan lighten-3"
           />
@@ -25,8 +25,8 @@
             </v-tab>
             <v-tab-item
               v-for="download in downloads"
-              :id="download.name"
               :key="download.name"
+              :value="download.name"
             >
               <DownloadTab :download="download" />
             </v-tab-item>
@@ -52,7 +52,6 @@ export default {
   },
   data() {
     return {
-      loading: true,
       active: null
     }
   },
@@ -61,18 +60,7 @@ export default {
     ...mapState('downloads', ['downloads'])
   },
   created() {
-    this.setDownloadsRef({
-      ref: this.$firebase.database().ref('downloads'),
-      callbacks: {
-        readyCallback: snapshot => {
-          this.loading = false
-          this.active = Object.keys(snapshot.val())[0]
-        },
-        cancelCallback: () => {
-          this.loading = false
-        }
-      }
-    })
+    this.setDownloadsRef()
   },
   methods: mapActions('downloads', ['setDownloadsRef'])
 }

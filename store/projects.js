@@ -1,34 +1,23 @@
 import { firebaseAction } from 'vuexfire'
+import { db } from '@/plugins/firebase'
+
+const projectsRef = db.ref('projects')
+
+const getProjectRef = id => projectsRef.orderByChild('id').equalTo(id)
 
 export const state = () => ({
   projects: [],
-  projectsRef: null,
-  project: [],
-  projectRef: null
+  project: []
 })
 
-export const mutations = {
-  setProjectsRef: (state, projectsRef) => {
-    state.projectsRef = projectsRef
-  },
-  setProjectRef: (state, projectRef) => {
-    state.projectRef = projectRef
-  }
-}
-
 export const actions = {
-  setProjectsRef: firebaseAction(
-    ({ commit, bindFirebaseRef }, { ref, callbacks }) => {
-      bindFirebaseRef('projects', ref, callbacks)
-      commit('setProjectsRef', ref)
-    }
-  ),
-  setProjectRef: firebaseAction(
-    ({ commit, bindFirebaseRef }, { ref, callbacks }) => {
-      bindFirebaseRef('project', ref, callbacks)
-      commit('setProjectRef', ref)
-    }
-  )
+  setProjectsRef: firebaseAction(({ bindFirebaseRef }) => {
+    return bindFirebaseRef('projects', projectsRef)
+  }),
+  setProjectRef: firebaseAction(({ bindFirebaseRef, getters }, projectId) => {
+    if (getters.getProjectById(projectId)) return // Project found
+    return bindFirebaseRef('project', getProjectRef(projectId))
+  })
 }
 
 export const getters = {

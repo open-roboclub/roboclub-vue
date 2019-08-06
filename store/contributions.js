@@ -1,4 +1,7 @@
 import { firebaseAction } from 'vuexfire'
+import { db } from '@/plugins/firebase'
+
+const contributionsRef = db.ref('contribution')
 
 function clearContribution(contribution) {
   if (!contribution) {
@@ -24,8 +27,7 @@ function copyProperties(source, destination) {
 
 export const state = () => ({
   contribution: clearContribution(),
-  contributions: [],
-  contributionsRef: null
+  contributions: []
 })
 
 export const mutations = {
@@ -34,19 +36,13 @@ export const mutations = {
   },
   setContribution: (state, contribution) => {
     state.contribution = Object.assign({}, contribution)
-  },
-  setContributionsRef: (state, contributionsRef) => {
-    state.contributionsRef = contributionsRef
   }
 }
 
 export const actions = {
-  setContributionsRef: firebaseAction(
-    ({ commit, bindFirebaseRef }, { ref, callbacks }) => {
-      bindFirebaseRef('contributions', ref, callbacks)
-      commit('setContributionsRef', ref)
-    }
-  ),
+  setContributionsRef: firebaseAction(({ bindFirebaseRef }) => {
+    return bindFirebaseRef('contributions', contributionsRef)
+  }),
   deleteContribution: ({ state }, id) => {
     state.contributionsRef.child(id).remove()
   },

@@ -7,8 +7,8 @@
             News Panel
           </div>
           <v-progress-linear
-            v-show="loading"
-            :indeterminate="loading"
+            v-show="!news.length"
+            indeterminate
             color="blue-grey"
             background-color="blue-grey lighten-3"
           />
@@ -59,7 +59,6 @@ export default {
   },
   data() {
     return {
-      loading: true,
       selectedToEdit: null,
       selectedToDelete: null
     }
@@ -70,16 +69,7 @@ export default {
   },
   created() {
     this.setNewsRef({
-      ref: this.$firebase.database().ref('news'),
-      callbacks: {
-        readyCallback: () => {
-          this.loading = false
-        },
-        cancelCallback: error => {
-          console.error(error)
-          this.loading = false
-        }
-      }
+      ref: this.$firebase.database().ref('news')
     })
   },
   methods: {
