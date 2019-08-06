@@ -140,7 +140,7 @@
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn color="blue darken-1" flat @click="dialog = false"
+          <v-btn color="blue darken-1" flat @click="dialog = false + reset()"
             >Close</v-btn
           >
           <v-btn
@@ -186,7 +186,8 @@ export default {
     project_report: '',
     presentation: '',
     poster: '',
-    uploadRemaining: false
+    uploadRemaining: false,
+    galleryImages: []
   }),
   methods: {
     nonValid() {
@@ -203,6 +204,9 @@ export default {
       this.project_report = ''
       this.presentation = ''
       this.poster = ''
+      this.uploadRemaining = false
+      this.galleryImages = []
+      this.project.ongoing = false
     },
     getID(title) {
       let id = title.replace(/[^a-z\d\s]+/gi, '')
@@ -271,10 +275,11 @@ export default {
               .ref('projects/' + ID + '/' + filename)
               .put(files[i])
             const downloadURL = await response.ref.getDownloadURL()
-            this.project.images.push(downloadURL)
-            this.uploadRemaining = !(
-              files.length === this.project.images.length
-            )
+            this.galleryImages.push(downloadURL)
+            this.uploadRemaining = !(files.length === this.galleryImages.length)
+            if (this.uploadRemaining === false) {
+              break
+            }
           }
         }
       } catch (err) {
@@ -298,6 +303,11 @@ export default {
           'https://res.cloudinary.com/amuroboclub/image/upload/old/robo.jpg'
         this.setDocs()
         this.project.id = this.getID(this.project.name)
+        if (this.galleryImages.length > 0) {
+          this.project.images = this.galleryImages
+        } else {
+          delete this.project.images
+        }
         const response = await this.$firebase
           .database()
           .ref('projects')
