@@ -1,6 +1,6 @@
 <template>
-  <v-layout row wrap>
-    <v-container class="text-xs-center">
+  <v-row>
+    <v-container class="text-center">
       <v-progress-circular
         :size="size * 10"
         :width="size"
@@ -8,7 +8,7 @@
         indeterminate
       />
     </v-container>
-  </v-layout>
+  </v-row>
 </template>
 
 <script>

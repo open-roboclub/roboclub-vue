@@ -1,7 +1,9 @@
 import Vue from 'vue'
-import Vuetify from 'vuetify'
+import Vuetify from 'vuetify/lib'
 
 Vue.use(Vuetify, {
-  iconfont: 'mdi',
-  theme: false
+  icons: {
+    iconfont: 'mdi'
+  },
+  theme: { disable: true }
 })

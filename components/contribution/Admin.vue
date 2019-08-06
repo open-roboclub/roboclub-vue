@@ -1,5 +1,5 @@
 <template>
-  <div class="text-xs-center">
+  <div class="text-center">
     <v-btn
       v-show="selected.length > 0"
       fab
@@ -27,35 +27,35 @@
     <h5 class="grey--text text--darken-3 mt-4">
       Add a contribution
     </h5>
-    <v-layout row wrap justify-space-between>
-      <v-flex xs12 md4 xl2>
+    <v-row justify="space-between">
+      <v-col cols="12" md="4" xl="2">
         <v-text-field
           v-model="contribution.contributor"
           :rules="[rules.required]"
           label="Contributor"
         />
-      </v-flex>
-      <v-flex xs12 md4 xl2>
+      </v-col>
+      <v-col cols="12" md="4" xl="2">
         <v-text-field
           v-model="contribution.amount"
           :rules="[rules.required]"
           label="Amount"
         />
-      </v-flex>
-      <v-flex xs12 md4 xl2>
+      </v-col>
+      <v-col cols="12" md="4" xl="2">
         <v-text-field v-model="contribution.purpose" label="Purpose" />
-      </v-flex>
-      <v-flex xs12 md4 xl2>
+      </v-col>
+      <v-col cols="12" md="4" xl="2">
         <v-text-field v-model="contribution.remark" label="Remark" />
-      </v-flex>
-      <v-flex xs12 md4 xl2>
+      </v-col>
+      <v-col cols="12" md="4" xl="2">
         <v-btn fab dark class="cyan" @click="save">
           <v-icon dark>
             {{ editing ? 'mdi-content-save' : 'mdi-plus' }}
           </v-icon>
         </v-btn>
-      </v-flex>
-    </v-layout>
+      </v-col>
+    </v-row>
     <v-snackbar
       v-model="snackbar.show"
       :timeout="snackbar.timeout"
@@ -69,7 +69,7 @@
       :vertical="snackbar.mode === 'vertical'"
     >
       {{ snackbar.text }}
-      <v-btn dark flat @click="snackbar.show = false">
+      <v-btn dark text @click="snackbar.show = false">
         Close
       </v-btn>
     </v-snackbar>

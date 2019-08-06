@@ -1,5 +1,5 @@
 <template>
-  <v-layout row justify-center>
+  <v-row justify="center">
     <v-dialog v-model="dialog" persistent max-width="600px">
       <template v-slot:activator="{ on }">
         <v-btn dark fab class="cyan" v-on="on">
@@ -11,8 +11,8 @@
       <v-card>
         <v-card-title>
           <span class="headline">Add New Project</span>
-          <v-container text-xs-center>
-            <v-flex xs-12>
+          <v-container class="text-center">
+            <v-col class="xs-12">
               <v-progress-circular
                 v-if="loading"
                 :size="70"
@@ -20,11 +20,11 @@
                 color="purple"
                 indeterminate
               ></v-progress-circular>
-            </v-flex>
+            </v-col>
           </v-container>
         </v-card-title>
         <v-card-text>
-          <v-container grid-list-md>
+          <v-container>
             <v-form ref="form" v-model="valid" lazy-validation>
               <v-text-field
                 v-model="project.name"
@@ -73,16 +73,15 @@
                 multiple
                 @change="onMultiFilePicked"
               />
-              <v-flex v-if="galleryImages.length > 0" lg12 class="mt-2 mb-2">
+              <v-col v-if="galleryImages.length > 0" lg="12" class="mt-2 mb-2">
                 <v-card>
-                  <v-container grid-list-sm fluid>
-                    <v-layout wrap>
-                      <v-flex
+                  <v-container fluid>
+                    <v-row>
+                      <v-col
                         v-for="image in galleryImages"
                         :key="image"
-                        xs4
-                        d-flex
-                        child-flex
+                        class="d-flex child-flex"
+                        cols="4"
                       >
                         <v-card flat tile class="d-flex">
                           <v-img
@@ -92,25 +91,24 @@
                             class="grey lighten-2"
                           >
                             <template v-slot:placeholder>
-                              <v-layout
-                                fill-height
-                                align-center
-                                justify-center
-                                ma-0
+                              <v-row
+                                class="fill-height ma-0"
+                                align="center"
+                                justify="center"
                               >
                                 <v-progress-circular
                                   indeterminate
                                   color="grey lighten-5"
                                 ></v-progress-circular>
-                              </v-layout>
+                              </v-row>
                             </template>
                           </v-img>
                         </v-card>
-                      </v-flex>
-                    </v-layout>
+                      </v-col>
+                    </v-row>
                   </v-container>
                 </v-card>
-              </v-flex>
+              </v-col>
 
               <v-textarea
                 v-model="project.description"
@@ -141,31 +139,31 @@
 
               <v-form v-if="addDocs">
                 <v-container>
-                  <v-layout>
-                    <v-flex xs12 md4>
+                  <v-row>
+                    <v-col cols="12" md="4">
                       <v-text-field
                         v-model="project_report"
                         label="Project Report Link"
                         required
                       ></v-text-field>
-                    </v-flex>
+                    </v-col>
 
-                    <v-flex xs12 md4>
+                    <v-col cols="12" md="4">
                       <v-text-field
                         v-model="poster"
                         label="Poster Link"
                         required
                       ></v-text-field>
-                    </v-flex>
+                    </v-col>
 
-                    <v-flex xs12 md4>
+                    <v-col cols="12" md="4">
                       <v-text-field
                         v-model="presentation"
                         label="Presentation Link"
                         required
                       ></v-text-field>
-                    </v-flex>
-                  </v-layout>
+                    </v-col>
+                  </v-row>
                 </v-container>
               </v-form>
 
@@ -191,7 +189,7 @@
         </v-card-actions>
       </v-card>
     </v-dialog>
-  </v-layout>
+  </v-row>
 </template>
 
 <script>

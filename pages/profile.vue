@@ -1,54 +1,54 @@
 <template>
   <v-container>
-    <v-layout row wrap>
-      <v-flex xs12 md4 xl3>
+    <v-row>
+      <v-col cols="12" md="4" xl="3">
         <v-card v-if="user">
           <v-list>
-            <v-list-tile avatar>
-              <v-list-tile-avatar>
+            <v-list-item>
+              <v-list-item-avatar>
                 <img :src="user.photoURL" alt="Profile Picture" />
-              </v-list-tile-avatar>
-              <v-list-tile-content>
-                <v-list-tile-title>{{ user.displayName }}</v-list-tile-title>
-              </v-list-tile-content>
-            </v-list-tile>
+              </v-list-item-avatar>
+              <v-list-item-content>
+                <v-list-item-title>{{ user.displayName }}</v-list-item-title>
+              </v-list-item-content>
+            </v-list-item>
 
             <v-divider />
 
-            <v-list-tile>
-              <v-list-tile-action>
+            <v-list-item>
+              <v-list-item-action>
                 <v-icon>mdi-email</v-icon>
-              </v-list-tile-action>
+              </v-list-item-action>
 
-              <v-list-tile-content>
-                <v-list-tile-title>{{ user.email }}</v-list-tile-title>
-              </v-list-tile-content>
+              <v-list-item-content>
+                <v-list-item-title>{{ user.email }}</v-list-item-title>
+              </v-list-item-content>
 
-              <v-list-tile-action v-if="user.emailVerified">
+              <v-list-item-action v-if="user.emailVerified">
                 <v-icon color="green">mdi-check-decagram</v-icon>
-              </v-list-tile-action>
-            </v-list-tile>
+              </v-list-item-action>
+            </v-list-item>
 
             <v-divider />
 
-            <v-list-tile ripple @click="logoutAndRedirect">
-              <v-list-tile-action>
+            <v-list-item ripple @click="logoutAndRedirect">
+              <v-list-item-action>
                 <v-icon>mdi-logout</v-icon>
-              </v-list-tile-action>
+              </v-list-item-action>
 
-              <v-list-tile-content>
-                <v-list-tile-title>Logout</v-list-tile-title>
-              </v-list-tile-content>
-            </v-list-tile>
+              <v-list-item-content>
+                <v-list-item-title>Logout</v-list-item-title>
+              </v-list-item-content>
+            </v-list-item>
           </v-list>
         </v-card>
-      </v-flex>
-      <v-flex xs12 md8 xl9 text-xs-center>
+      </v-col>
+      <v-col class="text-center" cols="12" md="8" xl="9">
         <v-card :class="['profile-card', profileCardMargin]">
           <h2 class="grey--text">Coming Soon</h2>
         </v-card>
-      </v-flex>
-    </v-layout>
+      </v-col>
+    </v-row>
   </v-container>
 </template>
 

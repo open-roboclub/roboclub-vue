@@ -1,36 +1,52 @@
 <template lang="html">
   <v-container>
-    <v-layout v-if="user" row>
-      <v-flex xs12 sm8 lg6 xl4 offset-sm2 offset-lg3 offset-xl4>
+    <v-row v-if="user">
+      <v-col
+        cols="12"
+        sm="8"
+        lg="6"
+        xl="4"
+        offset-sm="2"
+        offset-lg="3"
+        offset-xl="4"
+      >
         <v-card>
-          <div class="display-1 text-xs-center pt-3">
+          <div class="display-1 text-center pt-3">
             You are already logged in!
           </div>
-          <v-layout row wrap class="mt-2 pb-2">
-            <v-flex xs12 sm6 class="text-xs-center text-sm-right">
+          <v-row class="mt-2 pb-2">
+            <v-col cols="12" sm="6" class="text-center text-sm-right">
               <v-btn info large to="/profile" class="purple">
                 Profile
               </v-btn>
-            </v-flex>
-            <v-flex xs12 sm6 class="text-xs-center text-sm-left">
+            </v-col>
+            <v-col cols="12" sm="6" class="text-center text-sm-left">
               <v-btn error large @click="logout">
                 Logout
               </v-btn>
-            </v-flex>
-          </v-layout>
+            </v-col>
+          </v-row>
         </v-card>
-      </v-flex>
-    </v-layout>
-    <v-layout v-show="!user" row>
-      <v-flex xs12 sm8 lg6 xl4 offset-sm2 offset-lg3 offset-xl4>
+      </v-col>
+    </v-row>
+    <v-row v-show="!user">
+      <v-col
+        cols="12"
+        sm="8"
+        lg="6"
+        xl="4"
+        offset-sm="2"
+        offset-lg="3"
+        offset-xl="4"
+      >
         <v-card>
-          <div class="display-1 text-xs-center pt-3">
+          <div class="display-1 text-center pt-3">
             Sign In or Register
           </div>
           <div id="firebaseui-auth-container" class="pt-3 pb-3" />
         </v-card>
-      </v-flex>
-    </v-layout>
+      </v-col>
+    </v-row>
   </v-container>
 </template>
 

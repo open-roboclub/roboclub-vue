@@ -1,8 +1,8 @@
 <template>
   <v-container>
-    <v-layout row wrap>
+    <v-row>
       <PageLoader v-if="!loadedProject" />
-      <v-flex v-else xs12 xl8 offset-xl2>
+      <v-col v-else cols="12" xl="8" offset-xl="2">
         <v-card>
           <v-card-title>
             <div>
@@ -14,7 +14,7 @@
               </div>
             </div>
           </v-card-title>
-          <v-flex xs12 class="text-xs-center mt-2 mb-0">
+          <v-col cols="12" class="text-center mt-2 mb-0">
             <v-avatar
               v-if="!loadedProject.images"
               :tile="false"
@@ -34,7 +34,7 @@
                 :src="image"
               />
             </v-carousel>
-          </v-flex>
+          </v-col>
           <v-card-text>
             <div>
               <p style="font-size: 18px;">
@@ -43,8 +43,8 @@
             </div>
           </v-card-text>
         </v-card>
-      </v-flex>
-    </v-layout>
+      </v-col>
+    </v-row>
   </v-container>
 </template>
 

@@ -16,12 +16,15 @@ module.exports = {
   ],
   // required to lint *.vue files
   plugins: [
-    'prettier'
+    'prettier',
+    'vuetify'
   ],
   // add your custom rules here
   rules: {
     'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
     'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
-    'nuxt/no-cjs-in-config': 'off'
+    'nuxt/no-cjs-in-config': 'off',
+    'vuetify/grid-unknown-attributes': 'error',
+    'vuetify/no-legacy-grid': 'error'
   }
 }
