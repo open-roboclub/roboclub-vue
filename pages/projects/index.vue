@@ -13,7 +13,7 @@
         </v-card>
       </v-flex>
     </v-layout>
-    <Admin />
+    <Admin v-if="isAdmin" />
     <PageLoader v-show="!completedProjects.length" />
     <v-layout row wrap>
       <v-hover

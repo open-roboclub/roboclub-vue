@@ -144,7 +144,7 @@
             >Close</v-btn
           >
           <v-btn
-            :disabled="uploadRemaining"
+            :disabled="uploadRemaining || !valid"
             color="blue darken-1"
             flat
             @click="saveProject"
@@ -190,10 +190,12 @@ export default {
     galleryImages: []
   }),
   methods: {
-    nonValid() {
-      if (this.project.name === '' || this.project.description === '') {
+    validate() {
+      if (this.$refs.form.validate()) {
+        this.valid = true
         return true
       } else {
+        this.valid = false
         return false
       }
     },
@@ -287,55 +289,54 @@ export default {
       }
     },
     async saveProject() {
+      const valid = this.validate()
       try {
-        if (this.nonValid()) {
-          alert('Entered details are invalid. Please try again.')
-          return
-        }
-        this.loading = true
-        if (this.project.youtube.length <= 0) {
-          delete this.project.youtube
-        }
-        if (this.project.team.length <= 0) {
-          delete this.project.team
-        }
-        const defaultURL =
-          'https://res.cloudinary.com/amuroboclub/image/upload/old/robo.jpg'
-        this.setDocs()
-        this.project.id = this.getID(this.project.name)
-        if (this.galleryImages.length > 0) {
-          this.project.images = this.galleryImages
-        } else {
-          delete this.project.images
-        }
-        const response = await this.$firebase
-          .database()
-          .ref('projects')
-          .push(this.project)
-        const key = response.key
-        if (this.imageUrl.length > 0) {
-          const filename = this.image.name
-          const ext = filename.slice(filename.lastIndexOf('.'))
-          const storageResponse = await firebase
-            .storage()
-            .ref('projects/' + this.project.id + '/' + key + ext)
-            .put(this.image)
-          const downloadURL = await storageResponse.ref.getDownloadURL()
-          await this.$firebase
+        if (valid) {
+          this.loading = true
+          if (this.project.youtube.length <= 0) {
+            delete this.project.youtube
+          }
+          if (this.project.team.length <= 0) {
+            delete this.project.team
+          }
+          const defaultURL =
+            'https://res.cloudinary.com/amuroboclub/image/upload/old/robo.jpg'
+          this.setDocs()
+          this.project.id = this.getID(this.project.name)
+          if (this.galleryImages.length > 0) {
+            this.project.images = this.galleryImages
+          } else {
+            delete this.project.images
+          }
+          const response = await this.$firebase
             .database()
             .ref('projects')
-            .child(key)
-            .update({ image: downloadURL })
-        } else {
-          await this.$firebase
-            .database()
-            .ref('projects')
-            .child(key)
-            .update({ image: defaultURL })
+            .push(this.project)
+          const key = response.key
+          if (this.imageUrl.length > 0) {
+            const filename = this.image.name
+            const ext = filename.slice(filename.lastIndexOf('.'))
+            const storageResponse = await firebase
+              .storage()
+              .ref('projects/' + this.project.id + '/' + key + ext)
+              .put(this.image)
+            const downloadURL = await storageResponse.ref.getDownloadURL()
+            await this.$firebase
+              .database()
+              .ref('projects')
+              .child(key)
+              .update({ image: downloadURL })
+          } else {
+            await this.$firebase
+              .database()
+              .ref('projects')
+              .child(key)
+              .update({ image: defaultURL })
+          }
+          this.loading = false
+          this.dialog = false
+          console.log('new project succesfully saved')
         }
-        this.loading = false
-        this.dialog = false
-        console.log('new project succesfully saved')
       } catch (err) {
         console.error(err)
       }
