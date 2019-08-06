@@ -192,11 +192,7 @@ export default {
   }),
   methods: {
     nonValid() {
-      if (
-        this.project.name === '' ||
-        this.project.team === '' ||
-        this.project.description === ''
-      ) {
+      if (this.project.name === '' || this.project.description === '') {
         return true
       } else {
         return false
@@ -292,16 +288,16 @@ export default {
         if (this.nonValid()) {
           alert('Entered details are invalid. Please try again.')
           return
-        } else if (this.imageUrl.length <= 0) {
-          alert("Please upload your project's image.")
-          return
         }
         this.loading = true
         if (this.project.youtube.length <= 0) {
           delete this.project.youtube
         }
-        const filename = this.image.name
-        const ext = filename.slice(filename.lastIndexOf('.'))
+        if (this.project.team.length <= 0) {
+          delete this.project.team
+        }
+        const defaultURL =
+          'https://res.cloudinary.com/amuroboclub/image/upload/old/robo.jpg'
         this.setDocs()
         this.project.id = this.getID(this.project.name)
         const response = await this.$firebase
@@ -309,16 +305,26 @@ export default {
           .ref('projects')
           .push(this.project)
         const key = response.key
-        const storageResponse = await firebase
-          .storage()
-          .ref('projects/' + this.project.id + '/' + key + ext)
-          .put(this.image)
-        const downloadURL = await storageResponse.ref.getDownloadURL()
-        await this.$firebase
-          .database()
-          .ref('projects')
-          .child(key)
-          .update({ image: downloadURL })
+        if (this.imageUrl.length > 0) {
+          const filename = this.image.name
+          const ext = filename.slice(filename.lastIndexOf('.'))
+          const storageResponse = await firebase
+            .storage()
+            .ref('projects/' + this.project.id + '/' + key + ext)
+            .put(this.image)
+          const downloadURL = await storageResponse.ref.getDownloadURL()
+          await this.$firebase
+            .database()
+            .ref('projects')
+            .child(key)
+            .update({ image: downloadURL })
+        } else {
+          await this.$firebase
+            .database()
+            .ref('projects')
+            .child(key)
+            .update({ image: defaultURL })
+        }
         this.loading = false
         this.dialog = false
         console.log('new project succesfully saved')
