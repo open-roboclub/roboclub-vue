@@ -157,7 +157,7 @@
 </template>
 
 <script>
-// import { file } from '@babel/types'
+import { mapGetters } from 'vuex'
 import firebase from '@firebase/app'
 import '@firebase/storage'
 export default {
@@ -190,6 +190,7 @@ export default {
     galleryImages: []
   }),
   methods: {
+    ...mapGetters('projects', ['projectIsUnique']),
     validate() {
       if (this.$refs.form.validate()) {
         this.valid = true
@@ -213,7 +214,11 @@ export default {
     getID(title) {
       let id = title.replace(/[^a-z\d\s]+/gi, '')
       id = id.replace(/\s+/g, '-').toLowerCase()
-      return id
+      if (this.projectIsUnique()(id)) {
+        return id
+      } else {
+        return id + '-' + Math.floor(Math.random() * Math.floor(10000))
+      }
     },
     setDocs() {
       if (this.addDocs === false) {
