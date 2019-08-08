@@ -73,6 +73,44 @@
                 multiple
                 @change="onMultiFilePicked"
               />
+              <v-flex v-if="galleryImages.length > 0" lg12 class="mt-2 mb-2">
+                <v-card>
+                  <v-container grid-list-sm fluid>
+                    <v-layout wrap>
+                      <v-flex
+                        v-for="image in galleryImages"
+                        :key="image"
+                        xs4
+                        d-flex
+                        child-flex
+                      >
+                        <v-card flat tile class="d-flex">
+                          <v-img
+                            :src="image"
+                            :lazy-src="image"
+                            aspect-ratio="1"
+                            class="grey lighten-2"
+                          >
+                            <template v-slot:placeholder>
+                              <v-layout
+                                fill-height
+                                align-center
+                                justify-center
+                                ma-0
+                              >
+                                <v-progress-circular
+                                  indeterminate
+                                  color="grey lighten-5"
+                                ></v-progress-circular>
+                              </v-layout>
+                            </template>
+                          </v-img>
+                        </v-card>
+                      </v-flex>
+                    </v-layout>
+                  </v-container>
+                </v-card>
+              </v-flex>
 
               <v-textarea
                 v-model="project.description"
