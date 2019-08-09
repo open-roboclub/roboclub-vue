@@ -21,6 +21,7 @@ jobs:
       - run: yarn test
       # build
       - run: yarn build
+      - run: yarn build-storybook
       # deploy
       - run: bash .circleci/deploy.sh
       - store_artifacts:
