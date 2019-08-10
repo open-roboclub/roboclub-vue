@@ -33,8 +33,32 @@ path /ui {
 
 path /projects {
     read() { true }
+    
+    path /{projects} is Projects {
+        write() { isAdmin() }
+    }
 
     index() { ['ongoing', 'id'] }
+}
+
+type Projects {
+    name: String,
+    ongoing: Boolean,
+    image: N<String>,
+    id: N<String>,
+    team: N<String>,
+    youtube: N<String>,
+    images: N<Image[]>,
+    docs: N<Doc[]>,
+    description: N<String>
+}
+
+type Image extends String {
+}
+
+type Doc {
+    name: String,
+    url: String
 }
 
 path /feedback/{feedback} is String {

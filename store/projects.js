@@ -37,5 +37,16 @@ export const getters = {
         return null
       }
     }
+  },
+
+  projectIsUnique(state) {
+    return id => {
+      for (let i = 0; i < state.projects.length; i++) {
+        if (state.projects[i].id === id) {
+          return false
+        }
+      }
+      return true
+    }
   }
 }

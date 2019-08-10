@@ -13,6 +13,7 @@
         </v-card>
       </v-flex>
     </v-layout>
+    <Admin v-if="isAdmin" />
     <PageLoader v-show="!completedProjects.length" />
     <v-layout row wrap>
       <v-hover
@@ -97,7 +98,14 @@ export default {
       title: 'Projects'
     }
   },
-  components: { PageLoader },
+  components: {
+    PageLoader,
+    Admin: () =>
+      import(
+        /* webpackChunkName: "project-admin" */
+        '~/components/projects/Admin'
+      )
+  },
   data() {
     return {
       dialog: false,
@@ -113,6 +121,7 @@ export default {
     projectLink() {
       return '/projects/' + this.selectedProject.id
     },
+    ...mapState(['isAdmin']),
     ...mapState('projects', ['projects']),
     ...mapGetters('projects', ['completedProjects'])
   },
