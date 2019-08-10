@@ -248,6 +248,9 @@ export default {
       this.uploadRemaining = false
       this.galleryImages = []
       this.project.ongoing = false
+      this.loading = false
+      this.addDocs = false
+      this.valid = true
     },
     getID(title) {
       let id = title.replace(/[^a-z\d\s]+/gi, '')
@@ -312,7 +315,6 @@ export default {
           this.uploadRemaining = true
           const ID = this.getID(this.project.name)
           const files = event.target.files
-          console.log(files)
           for (let i = 0; i < files.length; i++) {
             const filename = files[i].name
             const response = await firebase
@@ -333,20 +335,24 @@ export default {
     },
     async saveProject() {
       const valid = this.validate()
+      const project = this.project
       try {
         if (valid) {
           this.loading = true
-          if (this.project.youtube.length <= 0) {
+          if (
+            this.project.youtube == null ||
+            this.project.youtube.length <= 0
+          ) {
             delete this.project.youtube
           }
-          if (this.project.team.length <= 0) {
+          if (this.project.team == null || this.project.team.length <= 0) {
             delete this.project.team
           }
           const defaultURL =
             'https://res.cloudinary.com/amuroboclub/image/upload/old/robo.jpg'
           this.setDocs()
           this.project.id = this.getID(this.project.name)
-          if (this.galleryImages.length > 0) {
+          if (this.galleryImages && this.galleryImages.length > 0) {
             this.project.images = this.galleryImages
           } else {
             delete this.project.images
@@ -356,7 +362,7 @@ export default {
             .ref('projects')
             .push(this.project)
           const key = response.key
-          if (this.imageUrl.length > 0) {
+          if (this.imageUrl && this.imageUrl.length > 0) {
             const filename = this.image.name
             const ext = filename.slice(filename.lastIndexOf('.'))
             const storageResponse = await firebase
@@ -379,9 +385,13 @@ export default {
           this.loading = false
           this.dialog = false
           console.log('new project succesfully saved')
+          this.reset()
+          this.project = project
         }
       } catch (err) {
         console.error(err)
+        this.reset()
+        this.project = project
       }
     }
   }
