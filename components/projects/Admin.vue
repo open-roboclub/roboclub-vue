@@ -213,8 +213,8 @@ export default {
     dialog: false,
     valid: true,
     nameRules: [
-      v => !!v || 'Title is required',
-      v => (v && v.length <= 100) || 'Title must be less than 100 characters'
+      v => !!v || 'Name is required',
+      v => (v && v.length <= 100) || 'Name must be less than 100 characters'
     ],
     imageUrl: '',
     image: null,
@@ -310,6 +310,8 @@ export default {
     async onMultiFilePicked(event) {
       try {
         if (this.project.name === '') {
+          this.galleryImages = []
+          this.project.images = []
           alert('Please enter the name of the project first!')
         } else {
           this.uploadRemaining = true
@@ -397,3 +399,9 @@ export default {
   }
 }
 </script>
+
+<style>
+.theme--light.v-messages {
+  color: red;
+}
+</style>
