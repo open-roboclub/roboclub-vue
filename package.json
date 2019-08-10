@@ -13,12 +13,14 @@
     "precommit": "npm run lint",
     "generate-rules": "firebase-bolt < rules.bolt > database.rules.json",
     "deploy-rules": "firebase deploy --only database --token $FIREBASE_TOKEN",
-    "test": "jest"
+    "test": "jest",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "dependencies": {
     "@nuxtjs/pwa": "^v3.0.0-beta.16",
     "cross-env": "^5.2.0",
-    "firebase": "^6.3.4",
+    "firebase": "^6.3.5",
     "firebaseui": "^4.1.0",
     "nuxt": "^2.8.1",
     "vuetify": "^1.5.16",
@@ -26,13 +28,21 @@
     "vuexfire": "^2.3.1"
   },
   "devDependencies": {
+    "@babel/core": "^7.5.5",
     "@babel/plugin-syntax-dynamic-import": "^7.2.0",
     "@babel/runtime-corejs2": "^7.5.5",
     "@nuxtjs/eslint-config": "^1.0.1",
+    "@storybook/addon-actions": "^5.1.10",
+    "@storybook/addon-knobs": "^5.1.10",
+    "@storybook/addon-links": "^5.1.10",
+    "@storybook/addons": "^5.1.10",
+    "@storybook/vue": "^5.1.10",
     "@vue/test-utils": "^1.0.0-beta.27",
     "babel-core": "7.0.0-bridge.0",
     "babel-eslint": "^10.0.2",
     "babel-jest": "^24.1.0",
+    "babel-loader": "^8.0.6",
+    "babel-preset-vue": "^2.0.2",
     "core-js": "2",
     "eslint": "^5.16.0",
     "eslint-config-prettier": "^6.0.0",
