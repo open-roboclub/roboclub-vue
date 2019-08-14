@@ -1,16 +1,25 @@
-import { configure, addDecorator } from '@storybook/vue';
-import "@/plugins/vuetify";
-import 'vuetify/dist/vuetify.css';
+import { configure, addDecorator } from '@storybook/vue'
+import Vue from 'vue'
+import Vuetify from 'vuetify'
+import 'vuetify/dist/vuetify.min.css'
+
+
+Vue.use(Vuetify)
+
+const vuetifyConfig = new Vuetify()
 
 // Ensures every story is wrapped in a v-app tag
 addDecorator(() => ({
-  template: `
+  vuetify: vuetifyConfig,
+  template: /* html */ `
   <v-app>
-    <v-container fluid>
-      <v-layout row wrap>
-        <story/>
-      </v-layout>
-    </v-container>
+    <v-content>
+      <v-container fluid>
+        <v-row wrap>
+          <story />
+        </v-row>
+      </v-container>
+    </v-content>
   </v-app>`
 }));
 
