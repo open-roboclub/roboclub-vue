@@ -40,6 +40,10 @@ module.exports = {
 
   devModules: ['@nuxtjs/vuetify'],
 
+  vuetify: {
+    customVariables: ['~/assets/variables.scss']
+  },
+
   /*
    ** Build configuration
    */
