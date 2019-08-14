@@ -35,9 +35,9 @@ stories.add('default', () => {
       }
     },
     template: `
-      <v-flex xs4>
+      <v-col md="4">
         <NewsCard :newsUpdate='news' />
-      </v-flex>
+      </v-col>
       `
   }
 })
