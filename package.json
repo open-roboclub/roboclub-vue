@@ -20,7 +20,7 @@
   "dependencies": {
     "@nuxtjs/pwa": "^v3.0.0-beta.16",
     "cross-env": "^5.2.0",
-    "firebase": "^6.3.5",
+    "firebase": "^6.4.0",
     "firebaseui": "^4.1.0",
     "nuxt": "^2.8.1",
     "vuetify": "^2.0.7",
