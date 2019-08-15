@@ -397,9 +397,3 @@ export default {
   }
 }
 </script>
-
-<style>
-.theme--light.v-messages {
-  color: red;
-}
-</style>
