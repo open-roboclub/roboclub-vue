@@ -1,20 +1,16 @@
 <template>
   <v-container>
-    <v-row>
-      <v-col cols="10" sm="6" offset-sm="3" offset="1">
-        <v-card class="mt-0 mb-4" color="#C1FFC1">
-          <v-card-text>
-            <div>
-              <h1 class="team-header">
-                Team
-              </h1>
-            </div>
+    <v-row justify="center">
+      <v-col cols="10" sm="6">
+        <v-card color="green accent-2">
+          <v-card-text class="text-center headline black--text">
+            Team
           </v-card-text>
         </v-card>
       </v-col>
     </v-row>
     <PageLoader v-show="!members.length" />
-    <v-row>
+    <v-row class="mt-2">
       <v-card
         v-for="member in members"
         :key="member['.key']"
@@ -34,20 +30,18 @@
           <v-col cols="12" class="text-center">
             <div>
               <span class="headline">{{ member.name }}</span>
-              <div class="d-flex">
-                <div class="ml-2 grey--text text--darken-2">
-                  <span>{{ member.position }}</span>
-                </div>
+              <div class="ml-2 body-2 grey--text text--darken-2">
+                <span>{{ member.position }}</span>
               </div>
             </div>
           </v-col>
         </v-card-title>
-        <v-col class="grey lighten-3 text-center">
+        <v-col class="grey lighten-3 text-center pa-0">
           <v-btn
             v-for="(link, type) in member.links"
             :key="type"
             :color="iconColor(type)"
-            class="mx-3"
+            class="mx-3 my-2"
             fab
             dark
             small
@@ -55,9 +49,10 @@
             <a
               :href="getLink(link, type)"
               target="_blank"
+              rel="noopener"
               style="text-decoration: none; color: inherit"
             >
-              <v-icon dark>{{ icon(type) }}</v-icon>
+              <v-icon dark size="18">{{ icon(type) }}</v-icon>
             </a>
           </v-btn>
         </v-col>
@@ -127,10 +122,6 @@ export default {
 </script>
 
 <style scoped>
-.team-header {
-  color: black;
-  text-align: center;
-}
 .contact {
   font-size: 35px;
 }
