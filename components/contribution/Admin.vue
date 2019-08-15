@@ -1,29 +1,18 @@
 <template>
   <div class="text-center">
-    <v-btn
-      v-show="selected.length > 0"
-      fab
-      dark
-      large
-      class="red mt-3"
-      @click="deleteContributions"
-    >
-      <v-icon dark>
-        mdi-delete
-      </v-icon>
-    </v-btn>
-    <v-btn
-      v-show="selected.length == 1"
-      fab
-      dark
-      large
-      class="blue mt-3"
-      @click="editContribution"
-    >
-      <v-icon dark>
-        mdi-pencil
-      </v-icon>
-    </v-btn>
+    <div v-show="selected.length > 0" class="mt-3">
+      <v-btn fab dark class="red" @click="deleteContributions">
+        <v-icon dark>
+          mdi-delete
+        </v-icon>
+      </v-btn>
+      <v-btn fab dark class="blue ml-3" @click="editContribution">
+        <v-icon dark>
+          mdi-pencil
+        </v-icon>
+      </v-btn>
+    </div>
+
     <h5 class="grey--text text--darken-3 mt-4">
       Add a contribution
     </h5>
@@ -56,18 +45,7 @@
         </v-btn>
       </v-col>
     </v-row>
-    <v-snackbar
-      v-model="snackbar.show"
-      :timeout="snackbar.timeout"
-      :success="snackbar.context === 'success'"
-      :info="snackbar.context === 'info'"
-      :warning="snackbar.context === 'warning'"
-      :error="snackbar.context === 'error'"
-      :primary="snackbar.context === 'primary'"
-      :secondary="snackbar.context === 'secondary'"
-      :multi-line="snackbar.mode === 'multi-line'"
-      :vertical="snackbar.mode === 'vertical'"
-    >
+    <v-snackbar v-model="snackbar.show" :color="snackbar.context">
       {{ snackbar.text }}
       <v-btn dark text @click="snackbar.show = false">
         Close
@@ -95,14 +73,26 @@ export default {
       snackbar: {
         show: false,
         context: '',
-        mode: '',
-        timeout: 6000,
         text: "Hello, I'm a snackbar"
       }
     }
   },
   computed: mapState('contributions', ['contribution']),
   methods: {
+    showSnackbar(context, message) {
+      this.snackbar.context = context
+      this.snackbar.text = message
+      this.snackbar.show = true
+    },
+
+    showSuccess(message) {
+      this.showSnackbar('success', message)
+    },
+
+    showError(message) {
+      this.showSnackbar('error', message)
+    },
+
     deleteContributions() {
       if (this.selected.length > 0) {
         this.selected.forEach(contribution => {
@@ -110,11 +100,10 @@ export default {
         })
         this.$emit('update:selected', [])
       } else {
-        this.snackbar.context = 'error'
-        this.snackbar.text = 'No contributions selected'
-        this.snackbar.show = true
+        this.showError('No contribution selected')
       }
     },
+
     save() {
       if (
         this.contribution.contributor === '' ||
@@ -129,7 +118,10 @@ export default {
       } else {
         this.addContribution()
       }
+
+      this.showSuccess('Contribution Saved')
     },
+
     editContribution() {
       this.editing = true
       this.setContribution(this.selected[0])
