@@ -3,29 +3,34 @@
     :headers="headers"
     :items="download.items"
     item-key="name"
-    class="elevation-1"
+    class="downloads-table elevation-1"
   >
-    <template slot="headers">
-      <tr>
-        <th v-for="header in headers" :key="header.text" class="text-xs-left">
-          {{ header.text }}
-        </th>
-      </tr>
+    <template v-slot:item.size="{ item }">
+      <v-chip v-if="item.size" color="success caption">
+        {{ fileSizeSI(item.size) }}
+      </v-chip>
     </template>
-    <template slot="items" slot-scope="props">
-      <DownloadItem :item="props.item" />
+
+    <template v-slot:item.url="{ item }">
+      <a
+        v-if="item.url"
+        class="download-link"
+        :href="item.url"
+        target="_blank"
+        rel="noopener"
+      >
+        <v-btn color="pink" dark small fab>
+          <v-icon size="18">mdi-cloud-download</v-icon>
+        </v-btn>
+      </a>
     </template>
   </v-data-table>
 </template>
 
 <script>
-import DownloadItem from './Item'
 import headers from './headers'
 
 export default {
-  components: {
-    DownloadItem
-  },
   props: {
     download: {
       type: Object,
@@ -36,6 +41,31 @@ export default {
     return {
       headers
     }
+  },
+  methods: {
+    fileSizeSI(a, b, c, d, e) {
+      a = parseInt(a)
+      return (
+        +((b = Math),
+        (c = b.log),
+        (d = 1e3),
+        (e = (c(a) / c(d)) | 0),
+        a / b.pow(d, e)).toFixed(2) +
+        ' ' +
+        (e ? 'kMGTPEZY'[--e] + 'B' : 'B')
+      )
+    }
   }
 }
 </script>
+
+<style lang="stylus" scoped>
+.download-link
+  text-decoration none
+</style>
+
+<style>
+.downloads-tab--size {
+  min-width: 100px;
+}
+</style>

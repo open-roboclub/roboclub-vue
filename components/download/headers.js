@@ -9,7 +9,8 @@ export default [
   },
   {
     text: 'File Size',
-    value: 'size'
+    value: 'size',
+    class: 'downloads-tab--size'
   },
   {
     text: 'URL',

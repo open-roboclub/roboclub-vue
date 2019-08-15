@@ -1,20 +1,10 @@
 <template>
   <v-container fluid>
-    <v-row class="mb-3">
-      <v-col
-        cols="12"
-        md="10"
-        lg="8"
-        xl="6"
-        offset-md="1"
-        offset-lg="2"
-        offset-xl="3"
-      >
+    <v-row justify="center">
+      <v-col cols="12" md="10" lg="8" xl="6">
         <v-card color="cyan">
-          <v-card-title primary-title>
-            <h3 class="headline mb-0 white--text">
-              Downloads
-            </h3>
+          <v-card-title class="text-center headline white--text">
+            Downloads
           </v-card-title>
           <v-progress-linear
             v-show="!downloads.length"
@@ -22,12 +12,19 @@
             color="cyan"
             background-color="cyan lighten-3"
           />
-          <v-tabs v-model="active" color="cyan" dark slider-color="yellow">
+          <v-tabs
+            v-model="active"
+            background-color="cyan"
+            dark
+            slider-color="yellow"
+            show-arrows
+          >
             <v-tab
               v-for="tab in downloadTypes"
               :key="tab"
               :href="'#' + tab"
               ripple
+              class="white--text"
             >
               {{ tab }}
             </v-tab>
