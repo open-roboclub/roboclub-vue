@@ -1,50 +1,40 @@
 <template>
   <v-container>
-    <v-row>
-      <v-col cols="10" sm="6" offset-sm="3" offset="1">
-        <v-card class="mt-0 mb-4" color="#BF3EFF">
-          <v-card-text>
-            <div>
-              <h1 class="projects-header">
-                Completed Projects
-              </h1>
-            </div>
-          </v-card-text>
+    <v-row justify="center">
+      <v-col cols="12" sm="10" md="8" lg="6">
+        <v-card class="purple white--text">
+          <div class="text-center headline pt-4 pb-4">
+            Completed Projects
+          </div>
         </v-card>
       </v-col>
     </v-row>
     <Admin v-if="isAdmin" />
     <PageLoader v-show="!completedProjects.length" />
-    <v-row>
+    <v-row class="mb-3">
       <v-hover
         v-for="project in completedProjects"
         :key="project.id"
-        class="mb-3"
+        class="mt-3"
       >
         <v-card
           slot-scope="{ hover }"
-          :class="`elevation-${hover ? 12 : 2}`"
+          :class="`elevation-${hover ? 12 : 2} text-center`"
           style="cursor: pointer"
           class="mx-auto"
           width="450"
           @click="openDialog(project)"
         >
           <br />
-          <v-col cols="12" class="text-center">
-            <v-avatar :tile="false" :size="250" color="grey lighten-4">
-              <v-img :aspect-ratio="16 / 9" :src="project.image" alt="Avatar" />
-            </v-avatar>
-          </v-col>
-          <v-card-title>
-            <v-col cols="12" class="text-center">
-              <span class="headline">{{ project.name }}</span>
-              <div class="d-flex">
-                <div class="ml-2 grey--text text--darken-2">
-                  <span>{{ project.team }}</span>
-                </div>
-              </div>
-            </v-col>
-          </v-card-title>
+          <v-avatar :tile="false" :size="250" color="grey lighten-4">
+            <v-img :aspect-ratio="16 / 9" :src="project.image" alt="Avatar" />
+          </v-avatar>
+          <div class="mt-3 headline text-center">
+            {{ project.name }}
+          </div>
+          <v-card-text class="mx-2 grey--text text--darken-2">
+            {{ project.team }}
+          </v-card-text>
         </v-card>
       </v-hover>
       <div class="text-center">
@@ -54,7 +44,7 @@
           transition="dialog-bottom-transition"
         >
           <v-card>
-            <v-card-title class="headline grey lighten-2" primary-title>
+            <v-card-title class="headline grey lighten-2">
               {{ selectedProject.name }}
             </v-card-title>
             <v-col cols="12" class="text-center mt-2 mb-0">
@@ -66,8 +56,8 @@
                 />
               </v-avatar>
             </v-col>
-            <v-card-text>
-              <p>{{ selectedProject.description }}</p>
+            <v-card-text class="body-1 black--text font-weight-regular">
+              {{ selectedProject.description }}
             </v-card-text>
             <v-divider />
             <v-card-actions>
