@@ -35,7 +35,7 @@
       <v-toolbar-title>
         <nuxt-link to="/" tag="span" style="cursor: pointer">
           <div class="logo">
-            <span class="amu">amu</span> <span class="roboclub">roboclub</span>
+            <span class="amu">amu</span><span class="roboclub">roboclub</span>
           </div>
         </nuxt-link>
       </v-toolbar-title>
@@ -47,7 +47,7 @@
           :to="item.link"
           text
         >
-          <v-icon left>
+          <v-icon class="mr-3">
             {{ item.icon }}
           </v-icon>
           {{ item.title }}
@@ -89,12 +89,18 @@
               <a
                 href="https://github.com/iamareebjamal"
                 target="_blank"
+                rel="noopener"
                 class="dev"
               >
                 Areeb Jamal
               </a>
               <span class="dev"> | </span>
-              <a href="https://github.com/Haider8" target="_blank" class="dev">
+              <a
+                href="https://github.com/Haider8"
+                target="_blank"
+                rel="noopener"
+                class="dev"
+              >
                 Haider Ali
               </a>
               <v-spacer />
@@ -108,6 +114,7 @@
                 <a
                   :href="icon.link"
                   target="_blank"
+                  rel="noopener"
                   style="text-decoration: none; color: black"
                 >
                   <v-icon size="24px">{{ icon.name }}</v-icon>
@@ -190,6 +197,8 @@ export default {
 .logo
   border-radius 5px
   overflow hidden
+  background-color rgba(0, 0, 0, 0.07)
+  font-weight 500
 
 .logo > .amu, .logo > .roboclub
   padding 5px
@@ -197,9 +206,6 @@ export default {
 .logo > .amu
   background-color black
   color white
-
-.logo
-  background-color rgba(0, 0, 0, 0.07)
 
 .footer
   position absolute

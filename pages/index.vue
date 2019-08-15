@@ -84,11 +84,9 @@
                     />
                   </v-avatar>
                 </v-col>
-                <v-card-title primary-title>
-                  <v-col cols="12" class="text-center">
-                    <span style="color: white">{{ item.name }}</span>
-                  </v-col>
-                </v-card-title>
+                <v-col cols="12" class="text-center">
+                  <span style="color: white">{{ item.name }}</span>
+                </v-col>
               </v-card>
             </v-row>
             <v-col cols="12" class="text-center">
@@ -153,7 +151,7 @@
             <v-card color="#CDC8B1" class="mt-3 mb-4">
               <v-container>
                 <v-row>
-                  <v-col cols="2">
+                  <v-col cols="2" class="text-center">
                     <v-icon left x-large color="black">
                       mdi-city
                     </v-icon>
@@ -170,8 +168,9 @@
                       class="iconLink"
                       href="//www.google.co.in/maps/place/AMU+Roboclub/@27.91423,78.07735,15z"
                       target="_blank"
+                      rel="noopener"
                     >
-                      <v-icon light x-large color="primary">
+                      <v-icon light x-large>
                         mdi-map-legend
                       </v-icon>
                     </a>
@@ -187,17 +186,17 @@
         <v-card
           v-for="item in recentNews"
           :key="item['.key']"
-          class="mb-3 ml-3"
+          class="mb-3"
           color="#F5F5DC"
         >
           <v-container>
-            <v-row>
-              <v-col cols="2">
+            <v-row style="padding-right: 10px">
+              <v-col cols="1" lg="2" xl="1" style="min-width: 40px">
                 <v-icon left x-large color="black">
                   mdi-newspaper
                 </v-icon>
               </v-col>
-              <v-col cols="10">
+              <v-col cols="11" lg="10" xl="11">
                 {{ item.notice }}
                 <br />
                 <br />
@@ -206,12 +205,12 @@
             </v-row>
           </v-container>
         </v-card>
-        <v-card v-if="recentNews.length" color="#CDC8B1" class="mb-3 ml-3">
+        <v-card v-if="recentNews.length" color="#CDC8B1" class="mb-3">
           <v-container>
             <v-row>
               <v-col cols="12" class="text-center">
                 <nuxt-link to="/news" class="iconLink">
-                  <v-icon x-large color="primary">
+                  <v-icon x-large>
                     mdi-expand-all
                   </v-icon>
                 </nuxt-link>

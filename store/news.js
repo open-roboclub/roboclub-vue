@@ -12,7 +12,7 @@ function clearNews(news) {
   news.title = ''
   news.notice = ''
   news.link = ''
-  news.timestamp = -Date.now() / 1000
+  news.timestamp = -Date.now()
   news.date = 'XX/YY/ZZ'
   news.notification = 'no'
 
@@ -50,8 +50,8 @@ export const actions = {
     return bindFirebaseRef('news', recentNewsRef)
   }),
 
-  deleteNews: ({ state }, id) => {
-    state.newsRef.child(id).remove()
+  deleteNews: (_, id) => {
+    newsRef.ref.child(id).remove()
   },
 
   addNews: ({ state, commit }) => {
@@ -68,14 +68,14 @@ export const actions = {
     const today = new Date()
     const date = today.toLocaleDateString('en-US', options)
 
-    state.newsItem.timestamp = -today / 1000
+    state.newsItem.timestamp = -today
     state.newsItem.date = date
 
-    state.newsRef.push(state.newsItem)
+    newsRef.ref.push(state.newsItem)
     commit('resetNews')
   },
 
-  saveNews: ({ state }, newsUpdate) => {
+  saveNews: (_, newsUpdate) => {
     const news = copyProperties(newsUpdate, clearNews())
     news.notification = 'no'
 
@@ -83,7 +83,7 @@ export const actions = {
       delete news.link
     }
 
-    state.newsRef.child(newsUpdate['.key']).set(news)
+    newsRef.ref.child(newsUpdate['.key']).set(news)
   }
 }
 

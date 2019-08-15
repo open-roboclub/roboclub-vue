@@ -7,12 +7,12 @@
         </div>
       </div>
     </v-card-title>
-    <div class="pr-3 pl-3 pb-3">
-      <div class="grey--text text--darken-3">
+    <div class="pa-4 pt-0">
+      <div class="body-2 grey--text text--darken-3">
         {{ newsUpdate.date }}
       </div>
       <br />
-      <xmp>{{ newsUpdate.notice }}</xmp>
+      <xmp class="body-2">{{ newsUpdate.notice }}</xmp>
     </div>
     <v-card-actions>
       <v-btn
@@ -21,6 +21,7 @@
         text
         class="orange--text"
         target="_blank"
+        rel="noopener"
       >
         Link
       </v-btn>

@@ -1,15 +1,7 @@
 <template>
   <v-container>
-    <v-row class="mb-3">
-      <v-col
-        cols="12"
-        sm="10"
-        md="8"
-        lg="6"
-        offset-sm="1"
-        offset-md="2"
-        offset-lg="3"
-      >
+    <v-row justify="center">
+      <v-col cols="12" sm="10" md="8" lg="6">
         <v-card class="blue-grey white--text">
           <div class="text-center headline pt-4 pb-4">
             News Panel
@@ -23,24 +15,16 @@
         </v-card>
       </v-col>
     </v-row>
-    <div class="mt-2" />
 
     <Admin
       v-if="isAdmin"
+      class="mt-2"
       :selected-to-edit.sync="selectedToEdit"
       :selected-to-delete.sync="selectedToDelete"
     />
 
-    <v-row>
-      <v-col
-        cols="12"
-        sm="10"
-        md="8"
-        lg="6"
-        offset-sm="1"
-        offset-md="2"
-        offset-lg="3"
-      >
+    <v-row justify="center">
+      <v-col cols="12" sm="10" md="8" lg="6">
         <NewsCard
           v-for="newsUpdate in news"
           :key="newsUpdate.id"
