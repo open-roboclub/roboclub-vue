@@ -2,11 +2,13 @@
   <div>
     <v-row justify="center">
       <v-dialog v-model="addDialog" max-width="500">
-        <v-btn slot="activator" fab dark class="cyan">
-          <v-icon dark>
-            mdi-plus
-          </v-icon>
-        </v-btn>
+        <template v-slot:activator="{ on }">
+          <v-btn fab dark class="cyan" v-on="on">
+            <v-icon dark>
+              mdi-plus
+            </v-icon>
+          </v-btn>
+        </template>
         <v-card>
           <v-card-title>
             <span class="headline">Add News Update</span>
@@ -91,7 +93,7 @@
       </v-dialog>
     </v-row>
     <v-row justify="center">
-      <v-dialog v-model="deleteDialog">
+      <v-dialog v-model="deleteDialog" max-width="500">
         <v-card>
           <v-card-title>
             <span class="headline">Delete News</span>
