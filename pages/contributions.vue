@@ -1,26 +1,14 @@
 <template>
   <v-container>
-    <v-row class="mb-3">
-      <v-col
-        cols="12"
-        md="10"
-        lg="8"
-        xl="6"
-        offset-md="1"
-        offset-lg="2"
-        offset-xl="3"
-      >
+    <v-row justify="center">
+      <v-col cols="12" md="10" lg="8" xl="6">
         <v-card class="green white--text">
-          <v-card-title primary-title>
-            <div>
-              <div class="headline">
-                Thanks for contributing!
-              </div>
-              <span class="grey--text text--lighten-3">
-                You made us what we are today
-              </span>
-            </div>
+          <v-card-title class="headline">
+            Thanks for contributing!
           </v-card-title>
+          <v-card-text class="grey--text text--lighten-3">
+            You made us what we are today
+          </v-card-text>
           <v-progress-linear
             v-show="!contributions.length"
             indeterminate
@@ -29,33 +17,16 @@
         </v-card>
       </v-col>
     </v-row>
-    <v-row>
-      <v-col
-        cols="12"
-        md="10"
-        lg="8"
-        xl="6"
-        offset-md="1"
-        offset-lg="2"
-        offset-xl="3"
-      >
+    <v-row justify="center">
+      <v-col cols="12" md="10" lg="8" xl="6">
         <v-data-table
           v-model="selected"
           :headers="headers"
           :items="contributions"
           item-key="contributor"
-          select-all
+          show-select
           class="elevation-1"
         >
-          <template slot="items" slot-scope="props">
-            <td>
-              <v-checkbox v-model="props.selected" primary hide-details />
-            </td>
-            <td>{{ props.item.contributor }}</td>
-            <td>{{ props.item.amount }}</td>
-            <td>{{ props.item.purpose }}</td>
-            <td>{{ props.item.remark }}</td>
-          </template>
         </v-data-table>
 
         <ContributionAdmin v-if="isAdmin" :selected.sync="selected" />

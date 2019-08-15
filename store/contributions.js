@@ -43,15 +43,15 @@ export const actions = {
   setContributionsRef: firebaseAction(({ bindFirebaseRef }) => {
     return bindFirebaseRef('contributions', contributionsRef)
   }),
-  deleteContribution: ({ state }, id) => {
-    state.contributionsRef.child(id).remove()
+  deleteContribution: (_, id) => {
+    contributionsRef.child(id).remove()
   },
   addContribution: ({ state, commit }) => {
-    state.contributionsRef.push(state.contribution)
+    contributionsRef.push(state.contribution)
     commit('resetContribution')
   },
   saveContribution: ({ state, commit }) => {
-    state.contributionsRef
+    contributionsRef
       .child(state.contribution['.key'])
       .set(copyProperties(state.contribution, clearContribution()))
     commit('resetContribution')
