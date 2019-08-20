@@ -22,7 +22,7 @@
     "cross-env": "^5.2.0",
     "firebase": "^6.4.0",
     "firebaseui": "^4.1.0",
-    "nuxt": "^2.8.1",
+    "nuxt": "^2.9.1",
     "vuetify": "^2.0.7",
     "vuexfire": "^2.3.1"
   },
