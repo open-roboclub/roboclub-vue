@@ -1794,15 +1794,15 @@
     "@nuxtjs/pwa-utils" "3.0.0-beta.16"
     "@nuxtjs/workbox" "3.0.0-beta.16"
 
-"@nuxtjs/vuetify@^1.2.2":
-  version "1.2.2"
-  resolved "https://registry.yarnpkg.com/@nuxtjs/vuetify/-/vuetify-1.2.2.tgz#56a7045b984a193450aabb1ee6bb660b96a5f52f"
-  integrity sha512-kMac9ea3FcSnxuYXlWKfYrSLYYhZdANrZzvdm5it9IgJrKJfwnCysL6sCq0zomhaYRjHUOLkrwhAEbnvxXJFjw==
+"@nuxtjs/vuetify@^1.3.0":
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/@nuxtjs/vuetify/-/vuetify-1.3.0.tgz#ba2a63b83fca434da5528f52a2926a77f893cfff"
+  integrity sha512-OwpOdVA57ifARk5LwGj5GT47Pj5lq+gZMgqjT45n/VRkApk8uhHrgMIyAO7enZmjZmtDsPYxJtDJd+CN2HTqIA==
   dependencies:
     consola "^2.10.1"
     deepmerge "^4.0.0"
     fibers "^4.0.1"
-    sass "^1.22.9"
+    sass "^1.22.10"
     sass-loader "^7.2.0"
     vuetify "^2.0.7"
     vuetify-loader "^1.3.0"
@@ -12332,10 +12332,10 @@ sass-loader@^7.2.0:
     pify "^4.0.1"
     semver "^5.5.0"
 
-sass@^1.22.9:
-  version "1.22.9"
-  resolved "https://registry.yarnpkg.com/sass/-/sass-1.22.9.tgz#41a2ed6038027f58be2bd5041293452a29c2cb84"
-  integrity sha512-FzU1X2V8DlnqabrL4u7OBwD2vcOzNMongEJEx3xMEhWY/v26FFR3aG0hyeu2T965sfR0E9ufJwmG+Qjz78vFPQ==
+sass@^1.22.10:
+  version "1.22.10"
+  resolved "https://registry.yarnpkg.com/sass/-/sass-1.22.10.tgz#b9f01440352ba0be5d99fa64a2040b035cc6e5ff"
+  integrity sha512-DUpS1tVMGCH6gr/N9cXCoemrjoNdOLhAHfQ37fJw2A5ZM4gSI9ej/8Xi95Xwus03RqZ2zdSnKZGULL7oS+jfMA==
   dependencies:
     chokidar ">=2.0.0 <4.0.0"
 
