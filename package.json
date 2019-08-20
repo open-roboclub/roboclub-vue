@@ -61,7 +61,7 @@
     "node-fetch": "2.6.0",
     "nodemon": "^1.19.1",
     "prettier": "1.18.2",
-    "stylus": "^0.54.5",
+    "stylus": "^0.54.6",
     "stylus-loader": "^3.0.2",
     "targaryen": "3",
     "vue-jest": "^3.0.3"
