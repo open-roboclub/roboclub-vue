@@ -19,9 +19,10 @@
       >
         <v-col cols="12" class="text-center">
           <v-avatar :tile="false" :size="200" color="grey lighten-4 mt-3">
-            <v-img
+            <resize-img
               :aspect-ratio="16 / 9"
               :src="member.thumbnail"
+              :width="250"
               alt="Avatar"
             />
           </v-avatar>
@@ -64,6 +65,7 @@
 <script>
 import { mapActions, mapGetters } from 'vuex'
 import PageLoader from '@/components/widgets/PageLoader.vue'
+import ResizeImg from '@/components/widgets/ResizeImg.vue'
 
 export default {
   head() {
@@ -71,7 +73,7 @@ export default {
       title: 'Team'
     }
   },
-  components: { PageLoader },
+  components: { PageLoader, ResizeImg },
   computed: {
     ...mapGetters('team', ['members'])
   },

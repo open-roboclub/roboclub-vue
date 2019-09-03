@@ -77,10 +77,11 @@
                     :size="150"
                     color="grey lighten-4 mt-3"
                   >
-                    <v-img
+                    <resize-img
                       :aspect-ratio="16 / 9"
                       :src="item.thumbnail"
                       :alt="item.name"
+                      :width="250"
                     />
                   </v-avatar>
                 </v-col>
@@ -103,7 +104,7 @@
           <v-col cols="12" sm="6">
             <v-card class="mt-3 mr-3">
               <v-img
-                src="https://res.cloudinary.com/amuroboclub/image/upload/v1492699176/14474306_1412485605448267_5100030826549084160_n_k7hi7c.jpg"
+                src="https://res.cloudinary.com/amuroboclub/image/upload/v1492699176/14474306_1412485605448267_5100030826549084160_n_k7hi7c.webp"
               />
               <v-card-title primary-title>
                 <div class="card-text">
@@ -127,7 +128,7 @@
           <v-col cols="12" sm="6">
             <v-card class="mt-3">
               <v-img
-                src="https://res.cloudinary.com/amuroboclub/image/upload/v1492699314/amu_ps6arw.jpg"
+                src="https://res.cloudinary.com/amuroboclub/image/upload/v1492699314/amu_ps6arw.webp"
               />
               <v-card-title primary-title>
                 <div class="card-text">
@@ -226,6 +227,7 @@
 <script>
 import { mapActions, mapGetters } from 'vuex'
 import PageLoader from '@/components/widgets/PageLoader.vue'
+import ResizeImg from '@/components/widgets/ResizeImg.vue'
 
 export default {
   head() {
@@ -233,7 +235,7 @@ export default {
       title: 'Home'
     }
   },
-  components: { PageLoader },
+  components: { PageLoader, ResizeImg },
   computed: {
     ...mapGetters('news', ['recentNews']),
     ...mapGetters('team', ['coordinators'])
