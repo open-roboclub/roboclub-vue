@@ -18,7 +18,7 @@
     "build-storybook": "build-storybook"
   },
   "dependencies": {
-    "@nuxtjs/pwa": "^v3.0.0-beta.16",
+    "@nuxtjs/pwa": "^v3.0.0-beta.17",
     "cross-env": "^5.2.1",
     "firebase": "^6.5.0",
     "firebaseui": "^4.1.0",
