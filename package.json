@@ -21,7 +21,7 @@
     "@nuxtjs/pwa": "^v3.0.0-beta.17",
     "cross-env": "^5.2.1",
     "firebase": "^6.6.0",
-    "firebaseui": "^4.1.0",
+    "firebaseui": "^4.2.0",
     "nuxt": "^2.9.2",
     "vuetify": "^2.0.15",
     "vuexfire": "^2.3.1"
