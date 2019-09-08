@@ -64,6 +64,6 @@
     "stylus": "^0.54.7",
     "stylus-loader": "^3.0.2",
     "targaryen": "3",
-    "vue-jest": "^3.0.3"
+    "vue-jest": "^3.0.5"
   }
 }
