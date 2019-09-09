@@ -1507,10 +1507,10 @@
     lodash.template "^4.5.0"
     workbox-cdn "^4.3.1"
 
-"@nuxtjs/vuetify@^1.8.0":
-  version "1.8.0"
-  resolved "https://registry.yarnpkg.com/@nuxtjs/vuetify/-/vuetify-1.8.0.tgz#41330fdbcc4f49cd5a5655d517020cb8d73983f1"
-  integrity sha512-8pbfcPf20lfpoH5O1O4gsDRymJYzrfjY5eSgB3V+WGC4pFIalKNRpDhjFuMroW4PKO0HtX+4VkfxUlVzRykRHQ==
+"@nuxtjs/vuetify@^1.8.2":
+  version "1.8.2"
+  resolved "https://registry.yarnpkg.com/@nuxtjs/vuetify/-/vuetify-1.8.2.tgz#15a6b7c884efc09f0afa60021c5de37ca460f198"
+  integrity sha512-uj6++916i+n0ZFGsKSsDEkWWVV9UAFR7yzBlSGLd/rrWntTnoT3uw2HzBCLz6rTabHKpD6ZCh2rhVbwSrzRdkQ==
   dependencies:
     deepmerge "^4.0.0"
     fibers "^4.0.1"
