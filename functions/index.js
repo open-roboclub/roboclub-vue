@@ -1,5 +1,6 @@
 const functions = require('firebase-functions')
 const admin = require('firebase-admin')
+const cloudinary = require('cloudinary').v2
 
 admin.initializeApp()
 
@@ -89,25 +90,56 @@ exports.saveAuthenticatedUser = functions.auth.user().onCreate(user => {
     .set(userEntry)
 })
 
-exports.setClaims = functions.https.onCall(async (data, context) => {
-  if (context.auth.token) {
-    const isAdmin = (await admin
+async function isAdmin(uid) {
+  return (
+    (await admin
       .database()
       .ref('admins/')
-      .child(context.auth.uid)
-      .once('value')).val()
+      .child(uid)
+      .once('value')).val() === true
+  )
+}
 
-    if (isAdmin === true) {
+exports.setClaims = functions.https.onCall(async (data, context) => {
+  if (context.auth && context.auth.token) {
+    if (await isAdmin(context.auth.uid)) {
       await admin.auth().setCustomUserClaims(context.auth.token.sub, {
         admin: true
       })
+
+      return { success: true }
     } else {
       return {
         success: false,
-        message: 'Not an admin'
+        code: 'unauthorized'
       }
     }
   }
 
-  return { success: true }
+  return { success: false, code: 'unauthenticated' }
 })
+
+exports.signCloudinaryRequest = functions.https.onCall(
+  async (data, context) => {
+    if (context.auth && context.auth.token) {
+      if (!(await isAdmin(context.auth.uid))) {
+        return { success: false, code: 'unauthorized' }
+      }
+
+      data.timestamp = Date.now() / 1000
+
+      const config = functions.config()
+      const options = {
+        api_key: config.cloudinary.key,
+        api_secret: config.cloudinary.secret
+      }
+
+      return {
+        success: true,
+        data: cloudinary.utils.sign_request(data, options)
+      }
+    }
+
+    return { success: false, code: 'unauthenticated' }
+  }
+)
