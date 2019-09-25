@@ -23,7 +23,7 @@
     "firebase": "^6.6.2",
     "firebaseui": "^4.2.0",
     "nuxt": "^2.9.2",
-    "vuetify": "^2.0.18",
+    "vuetify": "^2.0.19",
     "vuexfire": "^2.3.1"
   },
   "devDependencies": {
