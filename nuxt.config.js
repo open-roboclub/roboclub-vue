@@ -38,11 +38,7 @@ module.exports = {
    */
   modules: ['@nuxtjs/pwa'],
 
-  devModules: ['@nuxtjs/vuetify'],
-
-  vuetify: {
-    customVariables: ['~/assets/variables.scss']
-  },
+  buildModules: ['@nuxtjs/vuetify'],
 
   /*
    ** Build configuration
