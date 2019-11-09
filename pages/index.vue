@@ -184,42 +184,22 @@
         </v-row>
       </v-col>
       <v-col sm="12" lg="4">
-        <PageLoader v-show="!recentNews.length" />
-        <v-card
+        <div v-if="newsLoading">
+          <v-skeleton-loader
+            v-for="i in 10"
+            :key="i"
+            class="mb-3"
+            elevation="1"
+            type="list-item-avatar-three-line"
+            :tile="true"
+          />
+        </div>
+        <SmallNewsCard
           v-for="item in recentNews"
           :key="item['.key']"
-          class="mb-3"
-          color="#F5F5DC"
-        >
-          <v-container>
-            <v-row style="padding-right: 10px">
-              <v-col cols="1" lg="2" xl="1" style="min-width: 40px">
-                <v-icon left x-large color="black">
-                  mdi-newspaper
-                </v-icon>
-              </v-col>
-              <v-col cols="11" lg="10" xl="11">
-                {{ item.notice }}
-                <br />
-                <br />
-                {{ item.date }}
-              </v-col>
-            </v-row>
-          </v-container>
-        </v-card>
-        <v-card v-if="recentNews.length" color="#CDC8B1" class="mb-3">
-          <v-container>
-            <v-row>
-              <v-col cols="12" class="text-center">
-                <nuxt-link to="/news" class="iconLink">
-                  <v-icon x-large>
-                    mdi-expand-all
-                  </v-icon>
-                </nuxt-link>
-              </v-col>
-            </v-row>
-          </v-container>
-        </v-card>
+          :news="item"
+        />
+        <MoreNewsLink v-if="!newsLoading" />
       </v-col>
     </v-row>
   </v-container>
@@ -227,7 +207,8 @@
 
 <script>
 import { mapActions, mapGetters } from 'vuex'
-import PageLoader from '@/components/widgets/PageLoader.vue'
+import SmallNewsCard from '@/components/news/SmallCard.vue'
+import MoreNewsLink from '@/components/news/MoreNewsLink.vue'
 import ResizeImg from '@/components/widgets/ResizeImg.vue'
 
 export default {
@@ -236,10 +217,18 @@ export default {
       title: 'Home'
     }
   },
-  components: { PageLoader, ResizeImg },
+  components: {
+    ResizeImg,
+    SmallNewsCard,
+    MoreNewsLink
+  },
   computed: {
     ...mapGetters('news', ['recentNews']),
-    ...mapGetters('team', ['coordinators'])
+    ...mapGetters('team', ['coordinators']),
+
+    newsLoading() {
+      return !this.recentNews.length
+    }
   },
   created() {
     this.setRecentNewsRef()
@@ -252,7 +241,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
 .card-text {
   font-size: 17px;
 }
