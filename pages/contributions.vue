@@ -40,11 +40,6 @@ import { mapGetters, mapState, mapActions } from 'vuex'
 import headers from '~/components/contribution/headers'
 
 export default {
-  head() {
-    return {
-      title: 'Contributions'
-    }
-  },
   components: {
     ContributionAdmin: () =>
       import(
@@ -56,6 +51,11 @@ export default {
     return {
       selected: [],
       headers
+    }
+  },
+  head() {
+    return {
+      title: 'Contributions'
     }
   },
   computed: {

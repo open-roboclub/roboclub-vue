@@ -68,12 +68,12 @@ import PageLoader from '@/components/widgets/PageLoader.vue'
 import ResizeImg from '@/components/widgets/ResizeImg.vue'
 
 export default {
+  components: { PageLoader, ResizeImg },
   head() {
     return {
       title: 'Team'
     }
   },
-  components: { PageLoader, ResizeImg },
   computed: {
     ...mapGetters('team', ['members'])
   },

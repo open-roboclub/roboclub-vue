@@ -42,12 +42,6 @@ import { mapActions, mapGetters } from 'vuex'
 import PageLoader from '@/components/widgets/PageLoader.vue'
 
 export default {
-  head() {
-    return {
-      title:
-        'Project' + (this.loadedProject ? ': ' + this.loadedProject.name : '')
-    }
-  },
   components: { PageLoader },
   computed: {
     loadedProject() {
@@ -56,6 +50,12 @@ export default {
   },
   created() {
     this.setProjectRef(this.$route.params.id)
+  },
+  head() {
+    return {
+      title:
+        'Project' + (this.loadedProject ? ': ' + this.loadedProject.name : '')
+    }
   },
   methods: {
     ...mapActions('projects', ['setProjectRef']),

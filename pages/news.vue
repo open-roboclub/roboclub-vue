@@ -44,11 +44,6 @@ import { mapState, mapGetters, mapActions } from 'vuex'
 import Card from '~/components/news/Card'
 
 export default {
-  head() {
-    return {
-      title: 'News'
-    }
-  },
   components: {
     Admin: () =>
       import(
@@ -61,6 +56,11 @@ export default {
     return {
       selectedToEdit: null,
       selectedToDelete: null
+    }
+  },
+  head() {
+    return {
+      title: 'News'
     }
   },
   computed: {

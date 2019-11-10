@@ -47,17 +47,17 @@ import { mapState, mapGetters, mapActions } from 'vuex'
 import Tab from '~/components/download/Tab'
 
 export default {
-  head() {
-    return {
-      title: 'Downloads'
-    }
-  },
   components: {
     DownloadTab: Tab
   },
   data() {
     return {
       active: null
+    }
+  },
+  head() {
+    return {
+      title: 'Downloads'
     }
   },
   computed: {

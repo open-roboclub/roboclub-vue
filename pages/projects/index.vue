@@ -83,11 +83,6 @@ import { mapState, mapActions, mapGetters } from 'vuex'
 import PageLoader from '@/components/widgets/PageLoader.vue'
 
 export default {
-  head() {
-    return {
-      title: 'Projects'
-    }
-  },
   components: {
     PageLoader,
     Admin: () =>
@@ -105,6 +100,11 @@ export default {
         image: '',
         id: ''
       }
+    }
+  },
+  head() {
+    return {
+      title: 'Projects'
     }
   },
   computed: {

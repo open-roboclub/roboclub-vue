@@ -40,10 +40,9 @@ describe('Admin Access Tests', function() {
   })
 
   it('should not allow un/authenticated user to write users', function() {
-    expect(database.as(targaryen.users.unauthenticated)).not.toAllowWrite(
-      '/users',
-      { xyz: { name: 'Bada' } }
-    )
+    expect(
+      database.as(targaryen.users.unauthenticated)
+    ).not.toAllowWrite('/users', { xyz: { name: 'Bada' } })
     expect(database.as({ uid: 'test' })).not.toAllowWrite(
       '/users/admin/name',
       'Bhau'

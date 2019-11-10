@@ -101,11 +101,6 @@
 import { mapState, mapActions } from 'vuex'
 
 export default {
-  head() {
-    return {
-      title: 'Inventory'
-    }
-  },
   data() {
     return {
       loading: true,
@@ -117,6 +112,11 @@ export default {
         { text: 'Allotted', align: 'center', value: 'allotted' },
         { text: 'Remaining', align: 'center', value: 'remaining' }
       ]
+    }
+  },
+  head() {
+    return {
+      title: 'Inventory'
     }
   },
   computed: {
