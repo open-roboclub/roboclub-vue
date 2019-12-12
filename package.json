@@ -56,7 +56,7 @@
     "eslint-plugin-vue": "^6.0.1",
     "eslint-plugin-vuetify": "^1.0.0-beta.3",
     "firebase-bolt": "^0.8.4",
-    "firebase-tools": "^7.9.0",
+    "firebase-tools": "^7.10.0",
     "jest": "^24.9.0",
     "node-fetch": "2.6.0",
     "nodemon": "^2.0.1",
