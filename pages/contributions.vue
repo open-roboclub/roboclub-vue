@@ -53,11 +53,6 @@ export default {
       headers
     }
   },
-  head() {
-    return {
-      title: 'Contributions'
-    }
-  },
   computed: {
     ...mapState(['isAdmin']),
     ...mapGetters('contributions', ['contributions'])
@@ -65,6 +60,11 @@ export default {
   created() {
     this.setContributionsRef()
   },
-  methods: mapActions('contributions', ['setContributionsRef'])
+  methods: mapActions('contributions', ['setContributionsRef']),
+  head() {
+    return {
+      title: 'Contributions'
+    }
+  }
 }
 </script>

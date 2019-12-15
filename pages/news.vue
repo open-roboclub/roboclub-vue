@@ -58,11 +58,6 @@ export default {
       selectedToDelete: null
     }
   },
-  head() {
-    return {
-      title: 'News'
-    }
-  },
   computed: {
     ...mapState(['isAdmin']),
     ...mapGetters('news', ['news'])
@@ -80,6 +75,11 @@ export default {
       this.selectedToDelete = newsUpdate
     },
     ...mapActions('news', ['setNewsRef'])
+  },
+  head() {
+    return {
+      title: 'News'
+    }
   }
 }
 </script>

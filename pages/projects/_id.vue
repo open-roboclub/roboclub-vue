@@ -51,15 +51,15 @@ export default {
   created() {
     this.setProjectRef(this.$route.params.id)
   },
+  methods: {
+    ...mapActions('projects', ['setProjectRef']),
+    ...mapGetters('projects', ['getProjectById'])
+  },
   head() {
     return {
       title:
         'Project' + (this.loadedProject ? ': ' + this.loadedProject.name : '')
     }
-  },
-  methods: {
-    ...mapActions('projects', ['setProjectRef']),
-    ...mapGetters('projects', ['getProjectById'])
   }
 }
 </script>
