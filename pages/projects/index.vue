@@ -102,11 +102,6 @@ export default {
       }
     }
   },
-  head() {
-    return {
-      title: 'Projects'
-    }
-  },
   computed: {
     projectLink() {
       return '/projects/' + this.selectedProject.id
@@ -126,6 +121,11 @@ export default {
       this.selectedProject = project
     },
     ...mapActions('projects', ['setProjectsRef'])
+  },
+  head() {
+    return {
+      title: 'Projects'
+    }
   }
 }
 </script>

@@ -56,11 +56,6 @@
 import { mapState } from 'vuex'
 
 export default {
-  head() {
-    return {
-      title: 'Sign In'
-    }
-  },
   computed: mapState(['user']),
   mounted() {
     const firebaseui = require('firebaseui')
@@ -84,6 +79,11 @@ export default {
   methods: {
     logout() {
       this.$store.dispatch('logout')
+    }
+  },
+  head() {
+    return {
+      title: 'Sign In'
     }
   }
 }

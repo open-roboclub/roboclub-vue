@@ -114,11 +114,6 @@ export default {
       ]
     }
   },
-  head() {
-    return {
-      title: 'Inventory'
-    }
-  },
   computed: {
     ...mapState('inventory', ['inventory'])
   },
@@ -138,6 +133,11 @@ export default {
   },
   methods: {
     ...mapActions('inventory', ['setInventoryRef'])
+  },
+  head() {
+    return {
+      title: 'Inventory'
+    }
   }
 }
 </script>

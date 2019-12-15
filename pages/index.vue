@@ -232,11 +232,6 @@ import ResizeImg from '@/components/widgets/ResizeImg.vue'
 
 export default {
   components: { PageLoader, ResizeImg },
-  head() {
-    return {
-      title: 'Home'
-    }
-  },
   computed: {
     ...mapGetters('news', ['recentNews']),
     ...mapGetters('team', ['coordinators'])
@@ -248,6 +243,11 @@ export default {
   methods: {
     ...mapActions('news', ['setRecentNewsRef']),
     ...mapActions('team', ['setCoordinatorsRef'])
+  },
+  head() {
+    return {
+      title: 'Home'
+    }
   }
 }
 </script>

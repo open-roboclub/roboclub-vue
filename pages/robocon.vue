@@ -74,18 +74,18 @@
 import { mapState, mapActions } from 'vuex'
 
 export default {
-  head() {
-    return {
-      title: 'Robocon'
-    }
-  },
   computed: {
     ...mapState('robocon', ['robocon'])
   },
   created() {
     this.setRoboconRef()
   },
-  methods: mapActions('robocon', ['setRoboconRef'])
+  methods: mapActions('robocon', ['setRoboconRef']),
+  head() {
+    return {
+      title: 'Robocon'
+    }
+  }
 }
 </script>
 
