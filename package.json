@@ -30,7 +30,7 @@
     "@babel/plugin-syntax-dynamic-import": "^7.8.3",
     "@nuxtjs/eslint-config": "^2.0.0",
     "@nuxtjs/vuetify": "^1.10.2",
-    "@storybook/addon-actions": "^5.2.7",
+    "@storybook/addon-actions": "^5.3.6",
     "@storybook/addon-knobs": "^5.2.7",
     "@storybook/addon-links": "^5.2.7",
     "@storybook/addons": "^5.2.7",
