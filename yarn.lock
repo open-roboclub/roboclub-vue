@@ -1872,16 +1872,16 @@
     jimp-compact "^0.8.0"
     workbox-cdn "^4.3.1"
 
-"@nuxtjs/vuetify@1.10.2":
-  version "1.10.2"
-  resolved "https://registry.yarnpkg.com/@nuxtjs/vuetify/-/vuetify-1.10.2.tgz#79d1f35ad76aa412985c4e83593e5d33a11b65ad"
-  integrity sha512-C8bCvk5UBAZVRlF+L2XhZPO790VZiXJcqZcbwf2Pa2QAgfE6H01tAQe9AnFEThpQADoAEGT8QoIaPciz0cFhFA==
+"@nuxtjs/vuetify@1.10.3":
+  version "1.10.3"
+  resolved "https://registry.yarnpkg.com/@nuxtjs/vuetify/-/vuetify-1.10.3.tgz#5ec7f0afd4959ab80e3ab43521f15eb5ceac5d55"
+  integrity sha512-9/1EWY4U8pC7gcSTsWugxkr4Sfx/h6L6a+a2ZgyJhZLBMF7DZVJpP9/rPkz0/1032bWC68QwXtgQWECNm5w/Iw==
   dependencies:
     deepmerge "^4.2.2"
     fibers "^4.0.2"
-    sass "^1.24.5"
+    sass "^1.25.0"
     sass-loader "^8.0.2"
-    vuetify "^2.2.4"
+    vuetify "^2.2.8"
     vuetify-loader "^1.4.3"
 
 "@nuxtjs/youch@^4.2.3":
@@ -13192,10 +13192,10 @@ sass-loader@^8.0.2:
     schema-utils "^2.6.1"
     semver "^6.3.0"
 
-sass@^1.24.5:
-  version "1.24.5"
-  resolved "https://registry.yarnpkg.com/sass/-/sass-1.24.5.tgz#7fecab3c4db486c584fecb1a79fbc156e52c6c44"
-  integrity sha512-vVtXAVGAcR2ZSwxi8poB1+sj8yQo6GfB1gNHeBRJtxpT7JqN8uXWpJorC1yGQN8ScBbcccGENwyfEwIBGudV3w==
+sass@^1.25.0:
+  version "1.25.0"
+  resolved "https://registry.yarnpkg.com/sass/-/sass-1.25.0.tgz#f8bd7dfbb39d6b0305e27704a8ebe637820693f3"
+  integrity sha512-uQMjye0Y70SEDGO56n0j91tauqS9E1BmpKHtiYNQScXDHeaE9uHwNEqQNFf4Bes/3DHMNinB6u79JsG10XWNyw==
   dependencies:
     chokidar ">=2.0.0 <4.0.0"
 
@@ -15063,7 +15063,7 @@ vuetify-loader@^1.4.3:
   dependencies:
     loader-utils "^1.2.0"
 
-vuetify@2.2.8, vuetify@^2.2.4:
+vuetify@2.2.8, vuetify@^2.2.8:
   version "2.2.8"
   resolved "https://registry.yarnpkg.com/vuetify/-/vuetify-2.2.8.tgz#9e9105503d38e66c0fad27aba08de5e65ff6ba99"
   integrity sha512-qeN+X/6L1Xi3Mmog9PMDUKYjC2ZOk3trl7/vDMuP0gcH1QReKb9tqpLjAyP8niOgnvZcUQw4jSc7e4Esju8Seg==
