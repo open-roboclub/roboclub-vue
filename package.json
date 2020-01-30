@@ -24,7 +24,7 @@
     "firebaseui": "4.4.0",
     "nuxt": "2.11.0",
     "vuetify": "2.2.8",
-    "vuexfire": "2.3.1"
+    "vuexfire": "3.2.1"
   },
   "devDependencies": {
     "@babel/plugin-syntax-dynamic-import": "7.8.3",
