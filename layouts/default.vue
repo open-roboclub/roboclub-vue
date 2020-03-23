@@ -35,7 +35,13 @@
       <v-toolbar-title>
         <nuxt-link to="/" tag="span" style="cursor: pointer">
           <div class="logo">
-            <span class="amu">amu</span><span class="roboclub">roboclub</span>
+            <span
+              class="
+              amu
+              mr-auto"
+            >
+              amu</span
+            ><span class="roboclub">roboclub</span>
           </div>
         </nuxt-link>
       </v-toolbar-title>
@@ -123,6 +129,7 @@ export default {
         { icon: 'mdi-wrench', title: 'Projects', link: '/projects' },
         { icon: 'mdi-bell', title: 'News', link: '/news' },
         { icon: 'mdi-account', title: 'Profile', link: '/profile', auth: true },
+        { icon: 'mdi-book', title: 'Blogs', link: '/blogs' },
         {
           icon: 'mdi-lock-open',
           title: 'Sign In',

@@ -79,8 +79,8 @@
 </template>
 
 <script>
-import { mapState, mapActions, mapGetters } from 'vuex'
 import PageLoader from '@/components/widgets/PageLoader.vue'
+import { mapState, mapActions, mapGetters } from 'vuex'
 
 export default {
   components: {
@@ -103,7 +103,7 @@ export default {
     }
   },
   computed: {
-    projectLink() {
+    project() {
       return '/projects/' + this.selectedProject.id
     },
     ...mapState(['isAdmin']),

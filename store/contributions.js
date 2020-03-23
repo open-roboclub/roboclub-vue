@@ -1,5 +1,5 @@
-import { firebaseAction } from 'vuexfire'
 import { db } from '@/plugins/firebase'
+import { firebaseAction } from 'vuexfire'
 
 const contributionsRef = db.ref('contribution')
 

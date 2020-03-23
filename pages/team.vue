@@ -63,9 +63,9 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from 'vuex'
 import PageLoader from '@/components/widgets/PageLoader.vue'
 import ResizeImg from '@/components/widgets/ResizeImg.vue'
+import { mapActions, mapGetters } from 'vuex'
 
 export default {
   components: { PageLoader, ResizeImg },

@@ -1,5 +1,5 @@
-import { firebaseAction } from 'vuexfire'
 import { db } from '@/plugins/firebase'
+import { firebaseAction } from 'vuexfire'
 
 const RECENT_NEWS_SIZE = 5
 const newsRef = db.ref('news').orderByChild('timestamp')

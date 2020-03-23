@@ -13,6 +13,7 @@ if (!firebase.apps.length) {
 }
 
 export const db = firebase.database()
+export const auth = firebase.auth()
 
 export default function({ store }, inject) {
   inject('firebase', firebase)

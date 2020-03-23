@@ -38,8 +38,8 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from 'vuex'
 import PageLoader from '@/components/widgets/PageLoader.vue'
+import { mapActions, mapGetters } from 'vuex'
 
 export default {
   components: { PageLoader },
