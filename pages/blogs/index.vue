@@ -11,12 +11,8 @@
     </v-row>
     <PageLoader v-show="!blogs.length" />
     <v-row justify="center">
-      <nuxt-link
-        :to="addLink()"
-        style="text-decoration: none"
-        v-if="bloggers.includes(user.uid)"
-      >
-        <v-btn fab dark class="cyan" v-on="on">
+      <nuxt-link :to="addLink()" style="text-decoration: none" v-if="userUid()">
+        <v-btn fab dark class="cyan">
           <v-icon dark>
             mdi-plus
           </v-icon>
@@ -24,7 +20,7 @@
       </nuxt-link>
     </v-row>
     <v-row justify="center">
-      <v-col v-for="blog in blogs" v-bind:key="blog.id" cols="12" lg="7">
+      <v-col v-for="blog in blogs" v-bind:key="blog['.key']" cols="12" lg="7">
         <v-card width="100%">
           <v-row>
             <v-col cols="7">
@@ -34,7 +30,7 @@
               }}</v-card-subtitle>
               <v-card-text>{{ blog.name }}</v-card-text>
               <nuxt-link
-                :to="blogLink(blog.id)"
+                :to="blogLink(blog['.key'])"
                 class="mb-0"
                 style="text-decoration: none"
               >
@@ -42,19 +38,17 @@
                   Open
                 </v-btn>
               </nuxt-link>
-              <nuxt-link style="text-decoration: nonne" to="/team">
-                <v-btn
-                  class="red--text"
-                  text
-                  v-if="user.uid === blog.uid"
-                  @click="deleteBlog(blog.id)"
-                >
-                  Delete
-                </v-btn>
-              </nuxt-link>
+              <v-btn
+                class="red--text"
+                text
+                v-if="user.uid === blog.uid"
+                @click="deleteBlog(blog['.key'])"
+              >
+                Delete
+              </v-btn>
             </v-col>
             <v-col cols="4">
-              <v-img :src="blog.image" />
+              <v-img :src="blog.link" />
             </v-col>
           </v-row>
         </v-card>
@@ -66,40 +60,28 @@
 <script>
 import PageLoader from '@/components/widgets/PageLoader.vue'
 import { db } from '@/plugins/firebase'
-import { auth } from '@/plugins/firebase'
-import { mapState } from 'vuex'
+import { mapState, mapActions } from 'vuex'
 
 export default {
   /* eslint-disable */
     components: {
       PageLoader
     },
-    data(){
-        return{
-            image: "", 
-            title: null,
-            name: null,
-            content: null,
-            id: null,
-            blogs: [],
-            bloggers: [],
-            isBlogger: false,
-            key: 0,
-            auth: auth
-        }
+    created(){
+      this.setBlogsRef(),
+      this.setBloggersRef()
     },
     computed:{
-      ...mapState(['user'])
-    },
-    mounted(){
-        this.getBlogs()
-        this.check()
+      ...mapState(['user']),
+      ...mapState('blogs', ['blogs']),
+      ...mapState('blogs', ['bloggers'])
     },
     methods:{
+        ...mapActions('blogs', ['setBlogsRef']),
+        ...mapActions('blogs', ['setBloggersRef']),
         deleteBlog(id)
         {
           db.ref(`blogs/main/${id}`).remove()
-          location.reload(true)
         },
         addLink()
         {
@@ -109,42 +91,16 @@ export default {
         {
             return `/blogs/${id}`
         },
-        async check()
+        async userUid()
         {
-            /* eslint-disable */
-            const bloggerRef = await db.ref('blogs/bloggers');
-            let bloggers = [];
-            let p = 0;
-            bloggerRef.on('value', function(snapshot){
-              for(const i in snapshot.val())
-              {
-                bloggers.push(i)
-              }
-            })
-            this.bloggers = bloggers
-            console.log(this.bloggers)
-        },
-        async getBlogs()
-        {
-            /* eslint-disable */
-            const blogsRef = await db.ref('blogs/main');
-            let blog = [];
-            blogsRef.on('value', function(snapshot){
-                for(const i in snapshot.val())
-                  {
-                    blog.push({
-                        id: i,
-                        name: snapshot.val()[i].name,
-                        title: snapshot.val()[i].title,
-                        subtitle: snapshot.val()[i].subtitle,
-                        date: snapshot.val()[i].date,
-                        image: snapshot.val()[i].link,
-                        uid: snapshot.val()[i].uid}
-                        );
-                }
-            });
-            this.blogs = blog;
-    }
+          const User = await this.user
+          this.bloggers.forEach(blogger => {
+            if(blogger['.key'] === User.uid)
+            {
+              return true
+            }
+          })   
+        }
 }
 }
 </script>

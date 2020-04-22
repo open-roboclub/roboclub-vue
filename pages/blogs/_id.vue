@@ -1,61 +1,67 @@
 <template>
   <v-row justify="center" dense>
-    <v-col cols="6">
-      <h1 class="font-weight-medium title-font">{{ title }}</h1>
-      <p class="subtitle-font">{{ subtitle }}</p>
-      <p class="font-weight-normal">{{ name }}</p>
-      <v-img :src="image" />
+    <PageLoader v-if="!blogs.length" />
+    <v-col cols="6" v-if="blogs.length">
+      <h1 class="font-weight-medium title-font">
+        {{ blog.title }}
+      </h1>
+      <p class="subtitle-font">{{ blog.subtitle }}</p>
+      <p class="font-weight-normal">
+        {{ blog.name }}
+      </p>
+      <v-img :src="blog.link" />
       <div class="content-font">
-        <span v-html="content"></span>
+        <span v-html="blog.content"></span>
       </div>
     </v-col>
   </v-row>
 </template>
 
 <script>
-import { db } from '@/plugins/firebase.js'
+import PageLoader from '@/components/widgets/PageLoader.vue'
+import { mapActions, mapState } from 'vuex'
 
 export default {
 /* eslint-disable */
+    components: {
+      PageLoader
+    },
     data(){
         return{
-            title: "",
-            subtitle: "",
-            name: "",
-            content: "",
-            image: "https://cdn.vuetifyjs.com/images/cards/house.jpg"
+            blog: {}
         }
     },
-    mounted(){
-        this.getItems()
+    created(){
+        this.setBlogsRef()
+    },
+    updated(){
+      this.tst()
+    },
+    computed:{
+        ...mapState('blogs', ['blogs'])
     },
     methods:{
-    blogLink(id)
-     {
-         return `/blogs/${id}`
-     },
-     async getItems()
-     {
-        /* eslint-disable */
-        const blogRef = await db.ref(`blogs/main/${this.$route.params.id}`);
-        let name = null;
-        let title = null;
-        let content = null;
-        let subtitle = null;
-        let image = null;
-        blogRef.on('value', function(snapshot){
-            name = snapshot.val().name;
-            title = snapshot.val().title;
-            content = snapshot.val().content;
-            subtitle = snapshot.val().subtitle;
-            image = snapshot.val().link;
-        });
-        this.name = name;
-        this.title = title;
-        this.content = content;
-        this.subtitle = subtitle;
-        this.image = image;
-     }
+    blogLoaded()
+    {
+      if(this.blog)
+      {
+        return false
+      }
+      else
+      {
+        return true
+      }
+    },
+    ...mapActions('blogs', ['setBlogsRef']),
+    async tst()
+    {
+        this.blogs.forEach(blog => {
+          if(blog['.key'] === this.$route.params.id)
+          {
+            this.blog = blog
+          }
+        })
+    }
 }
 }
 </script>

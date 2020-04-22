@@ -14,12 +14,12 @@
           hint="Click Styling in order to know the styles"
           v-model="content"
         ></v-textarea>
-        <v-btn text @click="preview = true">Next</v-btn>
+        <v-btn text @click="setUser()" v-if="team.length">Next</v-btn>
         <v-btn text @click="value = true">Styling</v-btn>
       </v-col>
     </v-row>
     <v-overlay :absolute="true" :opacity="0.5" :value="value">
-      <v-card color="white" class="black--text">
+      <v-card color="white" class="black--text help">
         <v-card-title>Guide for styling your Blog</v-card-title>
         <ul>
           <li>
@@ -80,7 +80,7 @@
       <v-col cols="6">
         <h1 class="font-weight-medium title-font">{{ title }}</h1>
         <p class="subtitle-font">{{ subtitle }}</p>
-        <p class="font-weight-normal">{{ name }}</p>
+        <p class="font-weight-normal">{{ this.user.name }}</p>
         <v-img :src="link" />
         <div class="content-font">
           <span v-html="content"></span>
@@ -96,10 +96,14 @@
 </template>
 
 <script>
+import PageLoader from '@/components/widgets/PageLoader.vue'
 import { db } from '@/plugins/firebase'
-import { mapState } from 'vuex'
+import { mapState, mapActions } from 'vuex'
 export default {
   /* eslint-disable */
+  components: {
+      PageLoader
+    },
 	data(){
 		return{
       image: '<img src="https://yourImage.jpg" width="100%"/>',
@@ -122,59 +126,41 @@ export default {
 			title: "",
 			subtitle: "",
       content: "",
-      name: "",
       count: 0,
       preview: false,
-      uid: "",
-      link: ""
+      link: "",
 		}
   },
   computed: {
-    ...mapState(['user'])
+    ...mapState(['user']),
+    ...mapState('blogs', ['blogs']),
+    ...mapState('blogs', ['team'])
   },
   created() {
-    this.getCount()
-    this.getUser()
+    this.setBlogsRef()
+    this.setTeamRef()
   },
 	methods:{
-      async getCount()
-      {
-        console.log(this.user.uid)
-        const countRef = await db.ref('blogs/main');
-        let counts = 0;
-        countRef.on('value', function(snapshot){
-          counts = Object.keys(snapshot.val()).length
-        })
-        this.count = counts;
-      },
-      async getUser()
-      {
-        const userRef = await db.ref('team/current/members')
+      ...mapActions('blogs', ['setBlogsRef', 'setTeamRef']),
+      setUser(){
         let p = this.user.uid
-        let names = "";
-        userRef.on('value', function(snapshot){
-          for(const i in snapshot.val())
+        this.team.forEach(user => {
+          if(p === user.uid)
           {
-            if(p === snapshot.val()[i].uid)
-            {
-              names = snapshot.val()[i].name;
-            }
+            this.user.name = user.name
+            this.user.uid = user.uid
           }
-        });
-        this.name = names
-        this.uid = p
+        })
+        this.preview = true
       },
 			writeBlog() {
-        db.ref(`blogs/main/${this.count}`).set({
+        db.ref(`blogs/main/${this.blogs.length}`).set({
             title: this.title,
             subtitle: this.subtitle,
             content: this.content,
-            name: this.name,
-            uid: this.uid,
+            name: this.user.name,
+            uid: this.user.uid,
             link: this.link
-        });
-        db.ref('blogs/blogsCount').set({
-            count: ++this.count
         });
     }
 	}
@@ -182,6 +168,9 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
+.help
+    height 500px;
+    overflow scroll;
 img
     width 100%;
 .title-font
