@@ -11,69 +11,11 @@
         <v-textarea
           name="input-7-1"
           label="Enter Blog"
-          hint="Click Styling in order to know the styles"
           v-model="content"
         ></v-textarea>
         <v-btn text @click="setUser()" v-if="team.length">Next</v-btn>
-        <v-btn text @click="value = true">Styling</v-btn>
       </v-col>
     </v-row>
-    <v-overlay :absolute="true" :opacity="0.5" :value="value">
-      <v-card color="white" class="black--text help">
-        <v-card-title>Guide for styling your Blog</v-card-title>
-        <ul>
-          <li>
-            In order to add an image in between the content, add these wherever
-            you want the image to be added.<br />
-            If https://yourImage.jpg is the image link(for example)<br />
-            then add {{ image }} wherever you need that image to be added.
-          </li>
-          <li>
-            In order to make a list of points, add ul tags and the li tags, in
-            this way:-
-            <pre>
-            {{ list }}
-            </pre>
-          </li>
-          <li>
-            <p>
-              In order to add a heading, add h1 tags in this way:- {{ heading }}
-              <br />
-              <span class="green--text">
-                Hint:- You can use h1 to h6 in order of varying sizes, h1 being
-                the largest and h6 being the smallest.
-              </span>
-            </p>
-          </li>
-          <li>
-            <p>
-              In order to make bold an inline content, add b tags in this way:-
-              {{ bold }}
-            </p>
-          </li>
-          <li>
-            <p>
-              In order to go to a new line, add br tag in the end of the line in
-              this manner:-
-              {{ brea }}
-            </p>
-          </li>
-          <li>
-            <p>
-              In order to create a new paragraph, add p tag in the beginning and
-              the end of the paragraph in this way:-<br />
-              {{ paragraph }}.<br />
-              <span class="red--text">
-                Warning:- Don't use nested p tags, i.e., one p tag in another.
-              </span>
-            </p>
-          </li>
-        </ul>
-        <v-btn @click="value = false" color="white" class="black--text"
-          >Back
-        </v-btn>
-      </v-card>
-    </v-overlay>
   </div>
   <div v-else>
     <v-row justify="center" dense>
@@ -83,7 +25,7 @@
         <p class="font-weight-normal">{{ this.user.name }}</p>
         <v-img :src="link" />
         <div class="content-font">
-          <span v-html="content"></span>
+          <p>{{ content }}</p>
         </div>
         <br />
         <nuxt-link to="/blogs" style="text-decoration: none">
@@ -106,22 +48,6 @@ export default {
     },
 	data(){
 		return{
-      image: '<img src="https://yourImage.jpg" width="100%"/>',
-      heading: '<h1>Heading</h1> Normal text',
-      brea: 'Whole Line <br/> Normal text',
-      paragraph: '<p>Paragraph</p> Normal text',
-      bold: '<b>Bold Text</b> Normal text',
-      list: `<ul>
-              <li>
-                list item 1
-              </li>
-              <li>
-                list item 2
-              </li>
-              <li>
-                list item 3
-              </li>
-            </ul>`,
       value: false,
 			title: "",
 			subtitle: "",
