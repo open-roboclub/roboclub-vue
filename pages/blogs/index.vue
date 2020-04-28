@@ -11,16 +11,22 @@
     </v-row>
     <PageLoader v-show="!blogs.length" />
     <v-row justify="center">
-      <nuxt-link :to="addLink()" style="text-decoration: none" v-if="userUid()">
-        <v-btn fab dark class="cyan">
-          <v-icon dark>
-            mdi-plus
-          </v-icon>
-        </v-btn>
-      </nuxt-link>
+      <div v-if="bloggers.length">
+        <nuxt-link
+          v-if="userUid()"
+          :to="addLink()"
+          style="text-decoration: none"
+        >
+          <v-btn v-if="buttonShow" fab dark class="cyan">
+            <v-icon dark>
+              mdi-plus
+            </v-icon>
+          </v-btn>
+        </nuxt-link>
+      </div>
     </v-row>
     <v-row justify="center">
-      <v-col v-for="blog in blogs" v-bind:key="blog['.key']" cols="12" lg="7">
+      <v-col v-for="blog in blogs" :key="blog['.key']" cols="12" lg="7">
         <v-card width="100%">
           <v-row>
             <v-col cols="7">
@@ -39,9 +45,9 @@
                 </v-btn>
               </nuxt-link>
               <v-btn
+                v-if="ifBlogOwner(blog.uid)"
                 class="red--text"
                 text
-                v-if="user.uid === blog.uid"
                 @click="deleteBlog(blog['.key'])"
               >
                 Delete
@@ -63,45 +69,63 @@ import { db } from '@/plugins/firebase'
 import { mapState, mapActions } from 'vuex'
 
 export default {
-  /* eslint-disable */
-    components: {
-      PageLoader
+  components: {
+    PageLoader
+  },
+  data() {
+    return {
+      buttonShow: false
+    }
+  },
+  computed: {
+    ...mapState(['user']),
+    ...mapState('blogs', ['blogs']),
+    ...mapState('blogs', ['bloggers'])
+  },
+  created() {
+    this.setBlogsRef()
+    this.setBloggersRef()
+    this.userUid()
+  },
+  updated() {
+    this.userUid()
+  },
+  methods: {
+    ...mapActions('blogs', ['setBlogsRef']),
+    ...mapActions('blogs', ['setBloggersRef']),
+    deleteBlog(id) {
+      db.ref(`blogs/main/${id}`).remove()
     },
-    created(){
-      this.setBlogsRef(),
-      this.setBloggersRef()
+    addLink() {
+      return '/blogs/add'
     },
-    computed:{
-      ...mapState(['user']),
-      ...mapState('blogs', ['blogs']),
-      ...mapState('blogs', ['bloggers'])
+    blogLink(id) {
+      return `/blogs/${id}`
     },
-    methods:{
-        ...mapActions('blogs', ['setBlogsRef']),
-        ...mapActions('blogs', ['setBloggersRef']),
-        deleteBlog(id)
-        {
-          db.ref(`blogs/main/${id}`).remove()
-        },
-        addLink()
-        {
-          return '/blogs/add'
-        },
-        blogLink(id)
-        {
-            return `/blogs/${id}`
-        },
-        async userUid()
-        {
-          const User = await this.user
-          this.bloggers.forEach(blogger => {
-            if(blogger['.key'] === User.uid)
-            {
-              return true
-            }
-          })   
+    async userUid() {
+      const User = await this.user
+      const Bloggers = await this.bloggers
+      if (User) {
+        Bloggers.forEach(blogger => {
+          if (blogger['.key'] === User.uid) {
+            this.buttonShow = true
+            return true
+          }
+        })
+      } else {
+        this.buttonShow = false
+        return false
+      }
+    },
+    ifBlogOwner(id) {
+      if (this.user) {
+        if (this.user.uid === id) {
+          return true
         }
-}
+      }
+      return false
+    }
+  }
 }
 </script>
 

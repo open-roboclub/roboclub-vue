@@ -3,17 +3,17 @@
     <v-row>
       <v-col cols="6" class="mx-auto">
         <v-text-field
-          label="Enter Title of your blog"
           v-model="title"
+          label="Enter Title of your blog"
         ></v-text-field>
-        <v-text-field label="Enter Subtitle" v-model="subtitle"></v-text-field>
-        <v-text-field label="Enter Image Link" v-model="link"></v-text-field>
+        <v-text-field v-model="subtitle" label="Enter Subtitle"></v-text-field>
+        <v-text-field v-model="link" label="Enter Image Link"></v-text-field>
         <v-textarea
+          v-model="content"
           name="input-7-1"
           label="Enter Blog"
-          v-model="content"
         ></v-textarea>
-        <v-btn text @click="setUser()" v-if="team.length">Next</v-btn>
+        <v-btn v-if="team.length" text @click="setUser()">Next</v-btn>
       </v-col>
     </v-row>
   </div>
@@ -22,7 +22,7 @@
       <v-col cols="6">
         <h1 class="font-weight-medium title-font">{{ title }}</h1>
         <p class="subtitle-font">{{ subtitle }}</p>
-        <p class="font-weight-normal">{{ this.user.name }}</p>
+        <p class="font-weight-normal">{{ user.name }}</p>
         <v-img :src="link" />
         <div class="content-font">
           <p>{{ content }}</p>
@@ -38,24 +38,20 @@
 </template>
 
 <script>
-import PageLoader from '@/components/widgets/PageLoader.vue'
 import { db } from '@/plugins/firebase'
 import { mapState, mapActions } from 'vuex'
 export default {
-  /* eslint-disable */
-  components: {
-      PageLoader
-    },
-	data(){
-		return{
+  data() {
+    return {
       value: false,
-			title: "",
-			subtitle: "",
-      content: "",
+      title: '',
+      subtitle: '',
+      content: '',
       count: 0,
       preview: false,
-      link: "",
-		}
+      link: '',
+      currentUser: {}
+    }
   },
   computed: {
     ...mapState(['user']),
@@ -66,30 +62,29 @@ export default {
     this.setBlogsRef()
     this.setTeamRef()
   },
-	methods:{
-      ...mapActions('blogs', ['setBlogsRef', 'setTeamRef']),
-      setUser(){
-        let p = this.user.uid
-        this.team.forEach(user => {
-          if(p === user.uid)
-          {
-            this.user.name = user.name
-            this.user.uid = user.uid
-          }
-        })
-        this.preview = true
-      },
-			writeBlog() {
-        db.ref(`blogs/main/${this.blogs.length}`).set({
-            title: this.title,
-            subtitle: this.subtitle,
-            content: this.content,
-            name: this.user.name,
-            uid: this.user.uid,
-            link: this.link
-        });
+  methods: {
+    ...mapActions('blogs', ['setBlogsRef', 'setTeamRef']),
+    setUser() {
+      const p = this.user.uid
+      this.team.forEach(user => {
+        if (p === user.uid) {
+          this.currentUser.name = user.name
+          this.currentUser.uid = user.uid
+        }
+      })
+      this.preview = true
+    },
+    writeBlog() {
+      db.ref(`blogs/main/${this.blogs.length}`).set({
+        title: this.title,
+        subtitle: this.subtitle,
+        content: this.content,
+        name: this.user.name,
+        uid: this.user.uid,
+        link: this.link
+      })
     }
-	}
+  }
 }
 </script>
 

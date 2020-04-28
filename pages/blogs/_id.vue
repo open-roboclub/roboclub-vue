@@ -1,7 +1,7 @@
 <template>
   <v-row justify="center" dense>
     <PageLoader v-if="!blogs.length" />
-    <v-col cols="6" v-if="blogs.length">
+    <v-col v-if="blogs.length" cols="6">
       <h1 class="font-weight-medium title-font">
         {{ blog.title }}
       </h1>
@@ -11,7 +11,7 @@
       </p>
       <v-img :src="blog.link" />
       <div class="content-font">
-        <span v-html="blog.content"></span>
+        {{ blog.content }}
       </div>
     </v-col>
   </v-row>
@@ -22,52 +22,45 @@ import PageLoader from '@/components/widgets/PageLoader.vue'
 import { mapActions, mapState } from 'vuex'
 
 export default {
-/* eslint-disable */
-    components: {
-      PageLoader
-    },
-    data(){
-        return{
-            blog: {}
-        }
-    },
-    created(){
-        this.setBlogsRef()
-    },
-    updated(){
-      this.tst()
-    },
-    computed:{
-        ...mapState('blogs', ['blogs'])
-    },
-    methods:{
-    blogLoaded()
-    {
-      if(this.blog)
-      {
+  components: {
+    PageLoader
+  },
+  data() {
+    return {
+      blog: {}
+    }
+  },
+  computed: {
+    ...mapState('blogs', ['blogs'])
+  },
+  created() {
+    this.setBlogsRef()
+  },
+  updated() {
+    this.select()
+  },
+  methods: {
+    blogLoaded() {
+      if (this.blog) {
         return false
-      }
-      else
-      {
+      } else {
         return true
       }
     },
     ...mapActions('blogs', ['setBlogsRef']),
-    async tst()
-    {
-        this.blogs.forEach(blog => {
-          if(blog['.key'] === this.$route.params.id)
-          {
-            this.blog = blog
-          }
-        })
+    select() {
+      this.blogs.forEach(blog => {
+        if (blog['.key'] === this.$route.params.id) {
+          this.blog = blog
+        }
+      })
     }
-}
+  }
 }
 </script>
 
 <style lang="stylus" scoped>
-img 
+img
     width 100%;
 .title-font
     font-size 40px;
@@ -79,5 +72,5 @@ img
 .content-font
     font-size 23px;
     font-family 'Times New Roman', Times, serif
-    width 100% 
+    width 100%
 </style>
