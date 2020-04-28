@@ -125,6 +125,11 @@ export default {
       }
       return false
     }
+  },
+  head() {
+    return {
+      title: 'Blogs'
+    }
   }
 }
 </script>

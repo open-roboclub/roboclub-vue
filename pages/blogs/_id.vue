@@ -55,6 +55,11 @@ export default {
         }
       })
     }
+  },
+  head() {
+    return {
+      title: `Blog -- ${this.blog.title}`
+    }
   }
 }
 </script>
