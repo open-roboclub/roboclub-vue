@@ -61,7 +61,6 @@ export const actions = {
     const user = await rootState.user
     const today = new Date()
     const date = today.toLocaleDateString('en-US', options)
-    console.log(state.blogs[1])
 
     state.blogItem.name = user.displayName
     state.blogItem.uid = user.uid
@@ -76,27 +75,16 @@ export const actions = {
   },
   async isBlogger({ state, commit, rootState }) {
     const user = await rootState.user
-
-    console.log('Hashie')
-    console.log(
-      Object.values(state.blogs).find(
-        ({ key }) => key === '-M86xPQxlwuYGU6O45mk'
-      )
-    )
     if (!user) {
       commit('setBloggers', false)
       return
     }
-    console.log('Hello')
-    const ref = user ? user.uid : ''
+    const ref = user.uid
     try {
       const snapshot = await bloggersRef.child(ref).once('value')
-      console.log(snapshot.val())
       commit('setBloggers', snapshot.val())
-      console.log(state.blogger)
       return true
     } catch {
-      console.log('Hiiiaa')
       commit('setBloggers', false)
       return false
     }
