@@ -103,7 +103,7 @@ export default {
     }
   },
   computed: {
-    project() {
+    projectLink() {
       return '/projects/' + this.selectedProject.id
     },
     ...mapState(['isAdmin']),

@@ -3,33 +3,39 @@
     <v-row>
       <v-col cols="6" class="mx-auto">
         <v-text-field
-          v-model="title"
+          v-model="blogItem.title"
           label="Enter Title of your blog"
         ></v-text-field>
-        <v-text-field v-model="subtitle" label="Enter Subtitle"></v-text-field>
-        <v-text-field v-model="link" label="Enter Image Link"></v-text-field>
+        <v-text-field
+          v-model="blogItem.subtitle"
+          label="Enter Subtitle"
+        ></v-text-field>
+        <v-text-field
+          v-model="blogItem.link"
+          label="Enter Image Link"
+        ></v-text-field>
         <v-textarea
-          v-model="content"
+          v-model="blogItem.content"
           name="input-7-1"
           label="Enter Blog"
         ></v-textarea>
-        <v-btn v-if="team.length" text @click="setUser()">Next</v-btn>
+        <v-btn v-if="user != null" text @click="preview = true">Next</v-btn>
       </v-col>
     </v-row>
   </div>
   <div v-else>
     <v-row justify="center" dense>
       <v-col cols="6">
-        <h1 class="font-weight-medium title-font">{{ title }}</h1>
-        <p class="subtitle-font">{{ subtitle }}</p>
-        <p class="font-weight-normal">{{ user.name }}</p>
-        <v-img :src="link" />
+        <h1 class="font-weight-medium title-font">{{ blogItem.title }}</h1>
+        <p class="subtitle-font">{{ blogItem.subtitle }}</p>
+        <p class="font-weight-normal">{{ user['displayName'] }}</p>
+        <v-img :src="blogItem.link" />
         <div class="content-font">
-          <p>{{ content }}</p>
+          <p>{{ blogItem.content }}</p>
         </div>
         <br />
         <nuxt-link to="/blogs" style="text-decoration: none">
-          <v-btn text @click="writeBlog()">Proceed</v-btn>
+          <v-btn text @click="addBlog()">Proceed</v-btn>
         </nuxt-link>
         <v-btn text @click="preview = false">Make Changes</v-btn>
       </v-col>
@@ -38,52 +44,22 @@
 </template>
 
 <script>
-import { db } from '@/plugins/firebase'
-import { mapState, mapActions } from 'vuex'
+import { mapState, mapActions, mapGetters } from 'vuex'
 export default {
   data() {
     return {
       value: false,
-      title: '',
-      subtitle: '',
-      content: '',
-      count: 0,
-      preview: false,
-      link: '',
-      currentUser: {}
+      preview: false
     }
   },
   computed: {
     ...mapState(['user']),
-    ...mapState('blogs', ['blogs']),
-    ...mapState('blogs', ['team'])
+    ...mapGetters('blogs', ['blogs']),
+    ...mapState('blogs', ['blogItem'])
   },
-  created() {
-    this.setBlogsRef()
-    this.setTeamRef()
-  },
+  created() {},
   methods: {
-    ...mapActions('blogs', ['setBlogsRef', 'setTeamRef']),
-    setUser() {
-      const p = this.user.uid
-      this.team.forEach(user => {
-        if (p === user.uid) {
-          this.currentUser.name = user.name
-          this.currentUser.uid = user.uid
-        }
-      })
-      this.preview = true
-    },
-    writeBlog() {
-      db.ref(`blogs/main/${this.blogs.length}`).set({
-        title: this.title,
-        subtitle: this.subtitle,
-        content: this.content,
-        name: this.user.name,
-        uid: this.user.uid,
-        link: this.link
-      })
-    }
+    ...mapActions('blogs', ['addBlog'])
   }
 }
 </script>

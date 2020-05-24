@@ -3,15 +3,17 @@
     <PageLoader v-if="!blogs.length" />
     <v-col v-if="blogs.length" cols="6">
       <h1 class="font-weight-medium title-font">
-        {{ blog.title }}
+        {{ selectedBlog.title }}
       </h1>
-      <p class="subtitle-font">{{ blog.subtitle }}</p>
-      <p class="font-weight-normal">
-        {{ blog.name }}
+      <p class="subtitle-font">
+        {{ selectedBlog.subtitle }}
       </p>
-      <v-img :src="blog.link" />
+      <p class="font-weight-normal">
+        {{ selectedBlog.name }}
+      </p>
+      <v-img :src="selectedBlog.link" />
       <div class="content-font">
-        {{ blog.content }}
+        {{ selectedBlog.content }}
       </div>
     </v-col>
   </v-row>
@@ -19,46 +21,24 @@
 
 <script>
 import PageLoader from '@/components/widgets/PageLoader.vue'
-import { mapActions, mapState } from 'vuex'
+import { mapState, mapActions } from 'vuex'
 
 export default {
   components: {
     PageLoader
   },
-  data() {
-    return {
-      blog: {}
-    }
-  },
   computed: {
-    ...mapState('blogs', ['blogs'])
+    ...mapState('blogs', ['selectedBlog', 'blogs'])
   },
   created() {
     this.setBlogsRef()
   },
-  updated() {
-    this.select()
-  },
   methods: {
-    blogLoaded() {
-      if (this.blog) {
-        return false
-      } else {
-        return true
-      }
-    },
-    ...mapActions('blogs', ['setBlogsRef']),
-    select() {
-      this.blogs.forEach(blog => {
-        if (blog['.key'] === this.$route.params.id) {
-          this.blog = blog
-        }
-      })
-    }
+    ...mapActions('blogs', ['setBlogsRef'])
   },
   head() {
     return {
-      title: `Blog -- ${this.blog.title}`
+      // title: `Blog -- ${this.selectedBlog.title}`
     }
   }
 }
