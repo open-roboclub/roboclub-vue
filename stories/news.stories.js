@@ -1,6 +1,5 @@
-import { withKnobs, text } from '@storybook/addon-knobs'
-import NewsCard from '../components/news/Card.vue'
 import { storiesOf } from '@storybook/vue'
+import { withKnobs, text } from '@storybook/addon-knobs'
 
 const stories = storiesOf('News Card', module)
 
@@ -8,7 +7,7 @@ stories.addDecorator(withKnobs)
 
 stories.add('default', () => {
   return {
-    components: { NewsCard },
+    components: { NewsCard: () => import('../components/news/Card.vue') },
     props: {
       title: {
         default: text('Title', 'This is a news')
