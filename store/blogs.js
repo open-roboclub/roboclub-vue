@@ -1,7 +1,6 @@
 import { db } from '@/plugins/firebase'
 import { firebaseAction } from 'vuexfire'
 
-const bloggersRef = db.ref('blogs/bloggers')
 const blogsRef = db.ref('blogs/main')
 
 const clearBlog = blog => {
@@ -75,17 +74,25 @@ export const actions = {
   },
   async isBlogger({ state, commit, rootState }) {
     const user = await rootState.user
+    console.log('Came Here')
+    console.log(user)
     if (!user) {
       commit('setBloggers', false)
       return
     }
     const ref = user.uid
+    console.log(ref)
     try {
-      const snapshot = await bloggersRef.child(ref).once('value')
+      console.log('TRUE')
+      const snapshot = await db.ref(`blogs/bloggers/${ref}`).once('value')
+      console.log(snapshot.val())
       commit('setBloggers', snapshot.val())
+      console.log('TRUE')
       return true
-    } catch {
+    } catch (err) {
+      console.log(err)
       commit('setBloggers', false)
+      console.log('FALSE')
       return false
     }
   }
