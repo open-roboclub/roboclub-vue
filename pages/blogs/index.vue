@@ -23,46 +23,21 @@
     </v-row>
     <v-row justify="center">
       <v-col v-for="blog in blogs" :key="blog['.key']" cols="12" lg="7">
-        <v-card width="100%">
-          <v-row>
-            <v-col cols="7">
-              <v-card-title class="title">{{ blog.title }}</v-card-title>
-              <v-card-subtitle id="content">{{
-                blog.subtitle
-              }}</v-card-subtitle>
-              <v-card-text>{{ blog.name }}</v-card-text>
-              <nuxt-link
-                :to="blogLink(blog['.key'])"
-                class="mb-0"
-                style="text-decoration: none"
-              >
-                <v-btn color="green darken-1" text @click="getBlog(blog)">
-                  Open
-                </v-btn>
-              </nuxt-link>
-              <div>
-                <v-btn class="red--text" text @click="deleteBlog(blog['.key'])">
-                  Delete
-                </v-btn>
-              </div>
-            </v-col>
-            <v-col cols="4">
-              <v-img :src="blog.link" />
-            </v-col>
-          </v-row>
-        </v-card>
+        <singleBlog :blog="blog" />
       </v-col>
     </v-row>
   </div>
 </template>
 
 <script>
+import singleBlog from '@/components/blogs/singleBlog.vue'
 import PageLoader from '@/components/widgets/PageLoader.vue'
 import { mapState, mapActions } from 'vuex'
 
 export default {
   components: {
-    PageLoader
+    PageLoader,
+    singleBlog
   },
   data() {
     return {
@@ -72,23 +47,14 @@ export default {
   computed: {
     ...mapState(['user']),
     ...mapState('blogs', ['blogger']),
-    ...mapState('blogs', ['blogs']),
-    ...mapState('blogs', ['owner'])
+    ...mapState('blogs', ['blogs'])
   },
   created() {
     this.setBlogsRef()
     this.isBlogger()
   },
   methods: {
-    ...mapActions('blogs', [
-      'setBlogsRef',
-      'deleteBlog',
-      'addBlog',
-      'isBlogger',
-      'getBlogId',
-      'isOwner',
-      'getBlog'
-    ]),
+    ...mapActions('blogs', ['setBlogsRef', 'isBlogger']),
     blogLink(id) {
       return `/blogs/${id}`
     }
