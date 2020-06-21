@@ -1,6 +1,6 @@
+import { withKnobs, text } from '@storybook/addon-knobs'
 import NewsCard from '../components/news/Card.vue'
 import { storiesOf } from '@storybook/vue'
-import { withKnobs, text } from '@storybook/addon-knobs'
 
 const stories = storiesOf('News Card', module)
 
