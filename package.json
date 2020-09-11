@@ -58,7 +58,7 @@
     "firebase-bolt": "0.8.4",
     "firebase-tools": "7.13.1",
     "jest": "25.1.0",
-    "node-fetch": "2.6.0",
+    "node-fetch": "2.6.1",
     "nodemon": "2.0.2",
     "prettier": "1.19.1",
     "stylus": "0.54.7",
