@@ -134,7 +134,7 @@ export default {
         { icon: 'mdi-android', title: 'Robocon', link: '/robocon' },
         { icon: 'mdi-robot', title: 'RoboVoyage', link: '/robovoyage' },
         { icon: 'mdi-cloud-download', title: 'Downloads', link: '/downloads' },
-        { icon: 'mdi-store', title: 'Inventory', link: '/inventory'},
+        { icon: 'mdi-store', title: 'Inventory', link: '/inventory' },
         {
           icon: 'mdi-coin',
           title: 'Contributions',
