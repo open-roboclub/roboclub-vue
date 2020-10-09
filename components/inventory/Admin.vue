@@ -100,8 +100,8 @@ export default {
   methods: {
     save() {
       if (
-        this.entry.total < this.entry.working ||
-        this.entry.total < this.entry.allotted
+        parseInt(this.entry.total) < parseInt(this.entry.working) ||
+        parseInt(this.entry.total) < parseInt(this.entry.allotted)
       )
         return
       this.saveEntry([this.$props.item, this.$props.typeId, this.entry])
