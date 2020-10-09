@@ -135,8 +135,5 @@ export const getters = {
   inventory: state => state.inventory,
   entry: state => state.entry,
   requests: state => state.requests,
-  inventoryTypes: state => {
-    const x = state.inventory.map(item => item.name)
-    return x
-  }
+  inventoryTypes: state => state.inventory.map(item => item.name)
 }
