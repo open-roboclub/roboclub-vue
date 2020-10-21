@@ -40,20 +40,28 @@
           <v-container>
             <v-row>
               <v-col cols="12">
-                <v-text-field v-model="entry.name" label="Name" required>
-                </v-text-field>
-              </v-col>
-              <v-col cols="4">
-                <v-text-field v-model="entry.working" label="Working" required>
-                </v-text-field>
-              </v-col>
-              <v-col cols="4">
-                <v-text-field v-model="entry.total" label="Total" required>
+                <v-text-field v-model="entrySelect.name" label="Name" required>
                 </v-text-field>
               </v-col>
               <v-col cols="4">
                 <v-text-field
-                  v-model="entry.allotted"
+                  v-model="entrySelect.working"
+                  label="Working"
+                  required
+                >
+                </v-text-field>
+              </v-col>
+              <v-col cols="4">
+                <v-text-field
+                  v-model="entrySelect.total"
+                  label="Total"
+                  required
+                >
+                </v-text-field>
+              </v-col>
+              <v-col cols="4">
+                <v-text-field
+                  v-model="entrySelect.allotted"
                   label="Allotted"
                   required
                 >
@@ -95,16 +103,16 @@ export default {
     deleteDialog: false
   }),
   computed: {
-    ...mapGetters('inventory', ['entry'])
+    ...mapGetters('inventory', ['entrySelect'])
   },
   methods: {
     save() {
       if (
-        parseInt(this.entry.total) < parseInt(this.entry.working) ||
-        parseInt(this.entry.total) < parseInt(this.entry.allotted)
+        parseInt(this.entrySelect.total) < parseInt(this.entrySelect.working) ||
+        parseInt(this.entrySelect.total) < parseInt(this.entrySelect.allotted)
       )
         return
-      this.saveEntry([this.$props.item, this.$props.typeId, this.entry])
+      this.saveEntry([this.$props.item, this.$props.typeId, this.entrySelect])
       this.editDialog = false
     },
     confirmDelete() {

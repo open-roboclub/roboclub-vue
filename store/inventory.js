@@ -56,16 +56,18 @@ function getItemIndex(type, name) {
 
 export const state = () => ({
   inventory: [],
-  entry: clearEntry(),
+  entrySelect: clearEntry(),
+  entryAdd: clearEntry(),
   requests: []
 })
 
 export const mutations = {
   resetEntry: state => {
-    clearEntry(state.entry)
+    clearEntry(state.entryAdd)
+    clearEntry(state.entrySelect)
   },
   setEntry: (state, payload) => {
-    state.entry = payload
+    state.entrySelect = payload
   }
 }
 
@@ -91,15 +93,15 @@ export const actions = {
 
   saveEntry: ({ state }, payload) => {
     const itemIndex = getItemIndex(payload[1], payload[0].name)
-    let entry = []
-    entry = copyEntry(state.entry, entry)
+    let entrySelect = []
+    entrySelect = copyEntry(state.entrySelect, entrySelect)
     inventoryRef
       .child(payload[1])
       .child('items')
       .orderByChild('name')
       .equalTo(payload[0].name)
       .ref.child(itemIndex)
-      .set(entry)
+      .set(entrySelect)
   },
 
   addEntry: ({ state, commit }, payload) => {
@@ -107,7 +109,7 @@ export const actions = {
     inventoryRef
       .child(typeIndex)
       .child('items')
-      .push(state.entry)
+      .push(state.entryAdd)
     commit('resetEntry')
   },
 
@@ -133,7 +135,8 @@ export const actions = {
 
 export const getters = {
   inventory: state => state.inventory,
-  entry: state => state.entry,
+  entrySelect: state => state.entrySelect,
+  entryAdd: state => state.entryAdd,
   requests: state => state.requests,
   inventoryTypes: state => state.inventory.map(item => item.name)
 }

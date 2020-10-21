@@ -17,7 +17,7 @@
             <v-row>
               <v-col cols="6">
                 <v-text-field
-                  v-model="entry.name"
+                  v-model="entryAdd.name"
                   label="Name"
                   prepend-icon="mdi-book"
                   required
@@ -32,16 +32,20 @@
                 ></v-select>
               </v-col>
               <v-col cols="4">
-                <v-text-field v-model="entry.working" label="Working" required>
+                <v-text-field
+                  v-model="entryAdd.working"
+                  label="Working"
+                  required
+                >
                 </v-text-field>
               </v-col>
               <v-col cols="4">
-                <v-text-field v-model="entry.total" label="Total" required>
+                <v-text-field v-model="entryAdd.total" label="Total" required>
                 </v-text-field>
               </v-col>
               <v-col cols="4">
                 <v-text-field
-                  v-model="entry.allotted"
+                  v-model="entryAdd.allotted"
                   label="Allotted"
                   required
                 >
@@ -80,13 +84,13 @@ export default {
     type: ''
   }),
   computed: {
-    ...mapGetters('inventory', ['entry'])
+    ...mapGetters('inventory', ['entryAdd'])
   },
   methods: {
     add() {
       if (
-        parseInt(this.entry.total) < parseInt(this.entry.working) ||
-        parseInt(this.entry.total) < parseInt(this.entry.allotted)
+        parseInt(this.entryAdd.total) < parseInt(this.entryAdd.working) ||
+        parseInt(this.entryAdd.total) < parseInt(this.entryAdd.allotted)
       )
         return
       this.addEntry(this.type)
