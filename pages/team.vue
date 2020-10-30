@@ -11,53 +11,55 @@
     </v-row>
     <PageLoader v-show="!members.length" />
     <v-row class="mt-2">
-      <v-card
-        v-for="member in members"
-        :key="member['.key']"
-        class="mx-auto mb-3"
-        width="400"
-      >
-        <v-col cols="12" class="text-center">
-          <v-avatar :tile="false" :size="200" color="grey lighten-4 mt-3">
-            <resize-img
-              :aspect-ratio="16 / 9"
-              :src="member.thumbnail"
-              :width="250"
-              alt="Avatar"
-            />
-          </v-avatar>
-        </v-col>
-        <v-card-title>
+      <v-hover v-for="member in members" :key="member['.key']" class="mt-3">
+        <v-card
+          slot-scope="{ hover }"
+          :class="`elevation-${hover ? 12 : 2} text-center mx-auto mb-3`"
+          style="cursor: pointer"
+          width="400"
+        >
           <v-col cols="12" class="text-center">
-            <div>
-              <span class="headline">{{ member.name }}</span>
-              <div class="ml-2 body-2 grey--text text--darken-2">
-                <span>{{ member.position }}</span>
-              </div>
-            </div>
+            <v-avatar :tile="false" :size="200" color="grey lighten-4 mt-3">
+              <resize-img
+                :aspect-ratio="16 / 9"
+                :src="member.thumbnail"
+                :width="250"
+                alt="Avatar"
+              />
+            </v-avatar>
           </v-col>
-        </v-card-title>
-        <v-col class="grey lighten-3 text-center pa-0">
-          <v-btn
-            v-for="(link, type) in member.links"
-            :key="type"
-            :color="iconColor(type)"
-            class="mx-3 my-2"
-            fab
-            dark
-            small
-          >
-            <a
-              :href="getLink(link, type)"
-              target="_blank"
-              rel="noopener"
-              style="text-decoration: none; color: inherit"
+          <v-card-title>
+            <v-col cols="12" class="text-center">
+              <div>
+                <span class="headline">{{ member.name }}</span>
+                <div class="ml-2 body-2 grey--text text--darken-2">
+                  <span>{{ member.position }}</span>
+                </div>
+              </div>
+            </v-col>
+          </v-card-title>
+          <v-col class="grey lighten-3 text-center pa-0">
+            <v-btn
+              v-for="(link, type) in member.links"
+              :key="type"
+              :color="iconColor(type)"
+              class="mx-3 my-2"
+              fab
+              dark
+              small
             >
-              <v-icon dark size="18">{{ icon(type) }}</v-icon>
-            </a>
-          </v-btn>
-        </v-col>
-      </v-card>
+              <a
+                :href="getLink(link, type)"
+                target="_blank"
+                rel="noopener"
+                style="text-decoration: none; color: inherit"
+              >
+                <v-icon dark size="18">{{ icon(type) }}</v-icon>
+              </a>
+            </v-btn>
+          </v-col>
+        </v-card>
+      </v-hover>
     </v-row>
   </v-container>
 </template>
