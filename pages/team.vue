@@ -99,14 +99,14 @@
                   </v-card-text>
                 </v-card>
                 <v-list-item>
-                  <v-list-item-content class="pb-0">
+                  <v-list-item-content class="pb-0 mt-2">
                     <p>
                       {{ selectedMember.profile_info.about }}
                     </p>
                   </v-list-item-content>
                 </v-list-item>
-                <v-card color="red accent-1">
-                  <v-card-text class="text-center title black--text py-2">
+                <v-card color="red accent-1 mt-3">
+                  <v-card-text class="text-center title black--text py-2 ">
                     Interests
                   </v-card-text>
                 </v-card>
