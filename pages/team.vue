@@ -156,12 +156,7 @@ export default {
   data() {
     return {
       dialog: false,
-      selectedMember: {
-        name: null,
-        profile_info: null,
-        thumbnail: null,
-        uid: null
-      }
+      selectedMember: {}
     }
   },
   computed: {
