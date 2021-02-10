@@ -91,9 +91,9 @@
                 {{ selectedMember.profile_info.batch }}
               </v-card-text>
             </v-col>
-            <v-col cols="12" class="text-center pt-0">
+            <v-col cols="12" class="text-center pt-0 ">
               <v-card class="mx-auto" max-width="400" tile>
-                <v-card color="light-blue accent-1">
+                <v-card color="light-blue accent-1 mt-2">
                   <v-card-text class="text-center title black--text py-2">
                     About
                   </v-card-text>
@@ -105,7 +105,7 @@
                     </p>
                   </v-list-item-content>
                 </v-list-item>
-                <v-card color="red accent-1 mt-4">
+                <v-card color="red accent-1 mb-4 mt-8">
                   <v-card-text class="text-center title black--text py-2">
                     Interests
                   </v-card-text>
@@ -115,7 +115,7 @@
                     <li
                       v-for="item in selectedMember.profile_info.interests"
                       :key="item.id"
-                      class="mt-1"
+                      class="mb-2"
                     >
                       {{ item }}
                     </li>
