@@ -105,8 +105,8 @@
                     </p>
                   </v-list-item-content>
                 </v-list-item>
-                <v-card color="red accent-1 mt-3">
-                  <v-card-text class="text-center title black--text py-2 ">
+                <v-card color="red accent-1 mt-4">
+                  <v-card-text class="text-center title black--text py-2">
                     Interests
                   </v-card-text>
                 </v-card>
@@ -125,7 +125,7 @@
               <v-btn
                 :href="selectedMember.profile_info.cv"
                 color="purple"
-                class="mt-3 py-6 px-9 white--text title"
+                class="mt-4 py-6 px-9 white--text title"
                 target="_blank"
               >
                 CV/Resume
