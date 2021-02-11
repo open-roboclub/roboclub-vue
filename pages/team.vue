@@ -94,7 +94,7 @@
             <v-col cols="12" class="text-center pt-0 ">
               <v-card class="mx-auto" max-width="400" tile>
                 <v-card color="light-blue accent-1 mt-2">
-                  <v-card-text class="text-center title black--text py-3">
+                  <v-card-text class="text-center title black--text py-5">
                     About
                   </v-card-text>
                 </v-card>
@@ -106,7 +106,7 @@
                   </v-list-item-content>
                 </v-list-item>
                 <v-card color="red accent-1 mb-4 mt-7">
-                  <v-card-text class="text-center title black--text pb-2 pt-4">
+                  <v-card-text class="text-center title black--text py-5">
                     Interests
                   </v-card-text>
                 </v-card>
