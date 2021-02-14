@@ -85,16 +85,16 @@
               <span class="green accent-3 px-8 py-3 mx-5 round">
                 {{ selectedMember.position }}
               </span>
-              <v-card-text
-                class="subtitle-1 black--text font-weight-regular mt-2 pb-0"
-              >
-                {{ selectedMember.profile_info.batch }}
+              <v-card-text class="subtitle-1 black--text mt-2 pb-0">
+                <p class="batch">
+                  {{ selectedMember.profile_info.batch }}
+                </p>
               </v-card-text>
             </v-col>
-            <v-col cols="12" class="text-center pt-0 ">
+            <v-col cols="12" class="text-center pt-0">
               <v-card class="mx-auto" max-width="400" tile>
-                <v-card color="light-blue accent-1 mt-2">
-                  <v-card-text class="text-center title black--text py-5">
+                <v-card color="light-blue accent-1">
+                  <v-card-text class="text-center title black--text py-3">
                     About
                   </v-card-text>
                 </v-card>
@@ -105,8 +105,10 @@
                     </p>
                   </v-list-item-content>
                 </v-list-item>
-                <v-card color="red accent-1 mb-4 mt-7">
-                  <v-card-text class="text-center title black--text py-5">
+              </v-card>
+              <v-card class="mx-auto" max-width="400" tile>
+                <v-card color="red accent-1 mb-4 mt-8">
+                  <v-card-text class="text-center title black--text py-3">
                     Interests
                   </v-card-text>
                 </v-card>
@@ -125,7 +127,7 @@
               <v-btn
                 :href="selectedMember.profile_info.cv"
                 color="purple"
-                class="mt-4 py-6 px-9 white--text title"
+                class="mt-5 py-6 px-9 white--text title"
                 target="_blank"
               >
                 CV/Resume
@@ -224,5 +226,8 @@ export default {
 .round {
   border-radius: 30px;
   color: darkslategrey;
+}
+.batch {
+  font-size: 1.15rem;
 }
 </style>
