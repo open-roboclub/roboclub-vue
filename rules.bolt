@@ -226,3 +226,8 @@ type Rank extends Number {
 path /inventory {
     read() { true }
 }
+
+path /members {
+    read() { isAdmin() }
+    write() { true }
+}
