@@ -233,12 +233,12 @@ path /members {
     read() {
         isAdmin() || isCurrentUser(data.child('uid').val())
     }
-    path /{members} is Members {
+    path /{members} is ClubMember {
         write() { true }
     }
 }
 
-type Members {
+type ClubMember {
     timestamp: OldTimestamp,
     course: String,
     email: String,
