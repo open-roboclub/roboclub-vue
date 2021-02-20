@@ -48,7 +48,6 @@ module.exports = {
    ** Build configuration
    */
   build: {
-    extractCSS: isProduction,
     /*
      ** You can extend webpack config here
      */
