@@ -48,12 +48,15 @@ export const actions = {
 
     commit('setMemberToEdit', entry)
   },
-  addMember: ({ state, commit }, paymentStatus) => {
-    state.memberToBeAdded.timestamp = Date.now()
+  addMember: async ({ state, commit }, paymentStatus) => {
+    const date = new Date()
+
+    state.memberToBeAdded.timestamp = -(-date)
     state.memberToBeAdded.paymentStatus = paymentStatus
     state.memberToBeAdded.facultyNumber = state.memberToBeAdded.facultyNumber.toUpperCase()
     state.memberToBeAdded.enrollmentNumber = state.memberToBeAdded.enrollmentNumber.toUpperCase()
-    membersRef.ref.push(state.memberToBeAdded)
+    console.log(state.memberToBeAdded)
+    await membersRef.ref.push(state.memberToBeAdded)
     commit('resetMember')
   },
   deleteMember: (_, id) => {

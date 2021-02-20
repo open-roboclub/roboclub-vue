@@ -116,7 +116,7 @@ export default {
       this.error = ''
       await this.$refs.form.validate()
       if (this.valid) {
-        this.addMember(false)
+        await this.addMember(false)
         this.$refs.form.reset()
         this.success = true
       } else {
