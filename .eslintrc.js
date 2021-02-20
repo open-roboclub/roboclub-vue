@@ -15,10 +15,7 @@ module.exports = {
     'prettier/vue'
   ],
   // required to lint *.vue files
-  plugins: [
-    'prettier',
-    'vuetify'
-  ],
+  plugins: ['prettier', 'vuetify'],
   // add your custom rules here
   rules: {
     'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',

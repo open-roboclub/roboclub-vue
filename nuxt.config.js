@@ -48,14 +48,14 @@ module.exports = {
    ** Build configuration
    */
   build: {
-    extractCSS: true,
+    extractCSS: isProduction,
     optimization: {
       splitChunks: {
         cacheGroups: {
           commons: {
-              test: /[\\/]node_modules[\\/]/,
-              name: "vendors",
-              chunks: "all"
+            test: /[\\/]node_modules[\\/]/,
+            name: 'vendors',
+            chunks: 'all'
           }
         }
       }
