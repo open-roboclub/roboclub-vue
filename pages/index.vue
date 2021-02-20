@@ -5,16 +5,18 @@
         <v-card class="mb-3">
           <v-container>
             <v-row>
-              <v-col sm="12" md="5" class="text-sm-center text-center">
+              <v-col sm="12" class="text-sm-center text-center xs">
                 <iframe
-                  width="250"
-                  height="180"
+                  width="480"
+                  height="300"
                   allowfullscreen
                   src="https://www.youtube.com/embed/3TSxPcIJCB0?rel=0&showinfo=0&theme=light"
                   loading="lazy"
                 />
               </v-col>
-              <v-col sm="12" md="7" class="text-sm-center">
+            </v-row>
+            <v-row>
+              <v-col sm="12" class="text-sm-center">
                 <v-card-title primary-title class="card-text">
                   AMU Roboclub is a student’s body which caters to the need of
                   electronics enthusiasts and hobbyists in creating an
@@ -56,8 +58,8 @@
           <v-container>
             <v-card-text class="pt-3">
               <div>
-                <h1 class="team-header">
-                  Team - Coordinators
+                <h1 class="team-header pb-2">
+                  Team Co-ordinators
                 </h1>
               </div>
             </v-card-text>
