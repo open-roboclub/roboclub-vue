@@ -170,7 +170,7 @@
                   <v-col cols="12" class="text-center mt-1">
                     <a
                       class="iconLink"
-                      href="//www.google.co.in/maps/place/AMU+Roboclub/@27.91423,78.07735,15z"
+                      href="https://goo.gl/maps/YBC4ujGLVJts5Ln4A"
                       target="_blank"
                       rel="noopener"
                     >
@@ -190,8 +190,9 @@
         <v-card
           v-for="item in recentNews"
           :key="item['.key']"
-          class="mb-3"
+          class="mb-3 scroll"
           color="#F5F5DC"
+          max-height="460px"
         >
           <v-container>
             <v-row style="padding-right: 10px">
@@ -268,5 +269,8 @@ export default {
 }
 .iconLink {
   text-decoration: none;
+}
+.scroll {
+  overflow-y: scroll;
 }
 </style>
