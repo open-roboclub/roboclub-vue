@@ -55,7 +55,6 @@ export const actions = {
     state.memberToBeAdded.paymentStatus = paymentStatus
     state.memberToBeAdded.facultyNumber = state.memberToBeAdded.facultyNumber.toUpperCase()
     state.memberToBeAdded.enrollmentNumber = state.memberToBeAdded.enrollmentNumber.toUpperCase()
-    console.log(state.memberToBeAdded)
     await membersRef.ref.push(state.memberToBeAdded)
     commit('resetMember')
   },

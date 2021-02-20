@@ -227,7 +227,36 @@ path /inventory {
     read() { true }
 }
 
+// --- New Members Section ---
+
 path /members {
-    read() { isAdmin() }
-    write() { true }
+    read() {
+        isAdmin() || isCurrentUser(data.child('uid').val())
+    }
+    path /{members} is Members {
+        write() { true }
+    }
+}
+
+type Members {
+    timestamp: OldTimestamp,
+    course: String,
+    email: String,
+    paymentStatus: Boolean,
+    enrollmentNumber: EnrollmentNumber,
+    facultyNumber: FacultyNumber,
+    mobile: Mobile,
+    name: String
+}
+
+type EnrollmentNumber extends String {
+    validate() {this.length == 6}
+}
+
+type FacultyNumber extends String {
+    validate() {this.length == 8}
+}
+
+type Mobile extends String {
+    validate() {this.length == 10}
 }
