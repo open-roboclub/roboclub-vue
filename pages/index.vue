@@ -264,9 +264,6 @@ export default {
   text-align: center;
   font-size: 33px;
 }
-.news-item {
-  font-size: 16px;
-}
 .iconLink {
   text-decoration: none;
 }
