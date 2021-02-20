@@ -48,7 +48,18 @@ module.exports = {
    ** Build configuration
    */
   build: {
-    extractCSS: isProduction,
+    extractCSS: true,
+    optimization: {
+      splitChunks: {
+        cacheGroups: {
+          commons: {
+              test: /[\\/]node_modules[\\/]/,
+              name: "vendors",
+              chunks: "all"
+          }
+        }
+      }
+    },
     /*
      ** You can extend webpack config here
      */
