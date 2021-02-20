@@ -276,6 +276,37 @@
     },
     "inventory": {
       ".read": "true"
+    },
+    "members": {
+      ".read":"((auth != null && root.child('admins').child(auth.uid).val() != null) || (auth != null && auth.uid == data.child('uid').val()))",
+      "$members": {
+        ".validate": "newData.hasChildren(['course', 'email', 'enrollmentNumber', 'facultyNumber', 'mobile', 'name', 'paymentStatus', 'timestamp'])",
+        "timestamp": {
+        ".validate": "(newData.isNumber() && newData.val() <= now)"
+      },
+      "course": {
+        ".validate": "newData.isString()"
+      },
+      "email": {
+        ".validate": "newData.isString()"
+      },
+      "paymentStatus": {
+        ".validate": "newData.isBoolean()"
+      },
+      "enrollmentNumber": {
+        ".validate": "(newData.isString() && newData.val().length == 6)" 
+      },
+      "facultyNumber": {
+        ".validate": "(newData.isString() && newData.val().length == 8)" 
+      },
+      "mobile": {
+        ".validate":"(newData.isString() && newData.val().length == 10)"
+      },
+      "name": {
+        ".validate": "newData.isString()"
+      },
+      ".write": "true"
+    }
     }
   }
 }

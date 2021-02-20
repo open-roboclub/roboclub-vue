@@ -119,6 +119,12 @@ export default {
     return {
       sideNav: false,
       menuItems: [
+        {
+          icon: 'mdi-account-check',
+          title: 'Apply',
+          link: '/apply',
+          auth: false
+        },
         { icon: 'mdi-account-multiple', title: 'Team', link: '/team' },
         { icon: 'mdi-wrench', title: 'Projects', link: '/projects' },
         { icon: 'mdi-bell', title: 'News', link: '/news' },
@@ -128,6 +134,12 @@ export default {
           title: 'Sign In',
           link: '/signin',
           auth: false
+        },
+        {
+          icon: 'mdi-account-group',
+          title: 'Members',
+          link: '/apply',
+          auth: true
         }
       ],
       moreItems: [

@@ -226,3 +226,37 @@ type Rank extends Number {
 path /inventory {
     read() { true }
 }
+
+// --- New Members Section ---
+
+path /members {
+    read() {
+        isAdmin() || isCurrentUser(data.child('uid').val())
+    }
+    path /{members} is ClubMember {
+        write() { true }
+    }
+}
+
+type ClubMember {
+    timestamp: OldTimestamp,
+    course: String,
+    email: String,
+    paymentStatus: Boolean,
+    enrollmentNumber: EnrollmentNumber,
+    facultyNumber: FacultyNumber,
+    mobile: Mobile,
+    name: String
+}
+
+type EnrollmentNumber extends String {
+    validate() {this.length == 6}
+}
+
+type FacultyNumber extends String {
+    validate() {this.length == 8}
+}
+
+type Mobile extends String {
+    validate() {this.length == 10}
+}
