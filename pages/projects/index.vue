@@ -3,9 +3,7 @@
     <v-row justify="center">
       <v-col cols="12" sm="10" md="8" lg="6">
         <v-card class="purple white--text">
-          <div class="text-center headline pt-4 pb-4">
-            Completed Projects
-          </div>
+          <div class="text-center headline pt-4 pb-4">Completed Projects</div>
         </v-card>
       </v-col>
     </v-row>
@@ -63,9 +61,7 @@
             <v-card-actions>
               <v-spacer />
               <nuxt-link :to="projectLink" style="text-decoration: none">
-                <v-btn color="green darken-1" text>
-                  Know More
-                </v-btn>
+                <v-btn color="green darken-1" text> Know More </v-btn>
               </nuxt-link>
               <v-btn color="primary" text @click="dialog = false">
                 Close
@@ -102,6 +98,11 @@ export default {
       }
     }
   },
+  head() {
+    return {
+      title: 'Projects'
+    }
+  },
   computed: {
     projectLink() {
       return '/projects/' + this.selectedProject.id
@@ -121,11 +122,6 @@ export default {
       this.selectedProject = project
     },
     ...mapActions('projects', ['setProjectsRef'])
-  },
-  head() {
-    return {
-      title: 'Projects'
-    }
   }
 }
 </script>

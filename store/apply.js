@@ -20,11 +20,11 @@ const clearMember = member => {
   return member
 }
 
-export const state = {
+export const state = () => ({
   members: [],
   memberToBeAdded: clearMember(),
   memberToBeEdited: clearMember()
-}
+})
 
 export const mutations = {
   resetMember: state => clearMember(state.memberToBeAdded),

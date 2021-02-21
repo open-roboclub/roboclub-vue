@@ -13,6 +13,55 @@
       ".read": "true"
     },
     "projects": {
+      "$projects": {
+        ".validate": "newData.hasChildren(['name', 'ongoing'])",
+        "name": {
+          ".validate": "newData.isString()"
+        },
+        "ongoing": {
+          ".validate": "newData.isBoolean()"
+        },
+        "image": {
+          ".validate": "newData.isString()"
+        },
+        "id": {
+          ".validate": "newData.isString()"
+        },
+        "team": {
+          ".validate": "newData.isString()"
+        },
+        "youtube": {
+          ".validate": "newData.isString()"
+        },
+        "images": {
+          "$key1": {
+            ".validate": "newData.isString()"
+          },
+          ".validate": "newData.hasChildren()"
+        },
+        "docs": {
+          "$key2": {
+            ".validate": "(newData.hasChildren() && newData.hasChildren(['name', 'url']))",
+            "name": {
+              ".validate": "newData.isString()"
+            },
+            "url": {
+              ".validate": "newData.isString()"
+            },
+            "$other": {
+              ".validate": "false"
+            }
+          },
+          ".validate": "newData.hasChildren()"
+        },
+        "description": {
+          ".validate": "newData.isString()"
+        },
+        "$other": {
+          ".validate": "false"
+        },
+        ".write": "(auth != null && root.child('admins').child(auth.uid).val() != null)"
+      },
       ".read": "true",
       ".indexOn": [
         "ongoing",
@@ -49,7 +98,7 @@
           ".validate": "newData.isString()"
         },
         "providerData": {
-          "$key1": {
+          "$key3": {
             ".validate": "newData.hasChildren(['displayName', 'email', 'photoURL', 'providerId', 'uid'])",
             "displayName": {
               ".validate": "newData.isString()"
@@ -230,13 +279,13 @@
                 ".validate": "newData.isString()"
               },
               "interests": {
-                "$key2": {
+                "$key4": {
                   ".validate": "newData.isString()"
                 },
                 ".validate": "newData.hasChildren()"
               },
               "projects": {
-                "$key3": {
+                "$key5": {
                   ".validate": "(newData.hasChildren() && newData.hasChildren(['id', 'name']))",
                   "id": {
                     ".validate": "newData.isString()"
@@ -255,7 +304,7 @@
               }
             },
             "old_avatars": {
-              "$key2": {
+              "$key4": {
                 ".validate": "newData.isString()"
               },
               ".validate": "newData.hasChildren()"
@@ -278,35 +327,38 @@
       ".read": "true"
     },
     "members": {
-      ".read":"((auth != null && root.child('admins').child(auth.uid).val() != null) || (auth != null && auth.uid == data.child('uid').val()))",
       "$members": {
-        ".validate": "newData.hasChildren(['course', 'email', 'enrollmentNumber', 'facultyNumber', 'mobile', 'name', 'paymentStatus', 'timestamp'])",
+        ".validate": "newData.hasChildren(['timestamp', 'course', 'email', 'paymentStatus', 'enrollmentNumber', 'facultyNumber', 'mobile', 'name'])",
         "timestamp": {
-        ".validate": "(newData.isNumber() && newData.val() <= now)"
+          ".validate": "(newData.isNumber() && newData.val() <= now)"
+        },
+        "course": {
+          ".validate": "newData.isString()"
+        },
+        "email": {
+          ".validate": "newData.isString()"
+        },
+        "paymentStatus": {
+          ".validate": "newData.isBoolean()"
+        },
+        "enrollmentNumber": {
+          ".validate": "(newData.isString() && newData.val().length == 6)"
+        },
+        "facultyNumber": {
+          ".validate": "(newData.isString() && newData.val().length == 8)"
+        },
+        "mobile": {
+          ".validate": "(newData.isString() && newData.val().length == 10)"
+        },
+        "name": {
+          ".validate": "newData.isString()"
+        },
+        "$other": {
+          ".validate": "false"
+        },
+        ".write": "true"
       },
-      "course": {
-        ".validate": "newData.isString()"
-      },
-      "email": {
-        ".validate": "newData.isString()"
-      },
-      "paymentStatus": {
-        ".validate": "newData.isBoolean()"
-      },
-      "enrollmentNumber": {
-        ".validate": "(newData.isString() && newData.val().length == 6)" 
-      },
-      "facultyNumber": {
-        ".validate": "(newData.isString() && newData.val().length == 8)" 
-      },
-      "mobile": {
-        ".validate":"(newData.isString() && newData.val().length == 10)"
-      },
-      "name": {
-        ".validate": "newData.isString()"
-      },
-      ".write": "true"
-    }
+      ".read": "((auth != null && root.child('admins').child(auth.uid).val() != null) || (auth != null && auth.uid == data.child('uid').val()))"
     }
   }
 }

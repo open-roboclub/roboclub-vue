@@ -14,7 +14,7 @@ if (!firebase.apps.length) {
 
 export const db = firebase.database()
 
-export default function({ store }, inject) {
+export default function ({ store }, inject) {
   inject('firebase', firebase)
 
   return firebase.auth().onAuthStateChanged(async user => {

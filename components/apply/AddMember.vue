@@ -1,14 +1,10 @@
 <template>
   <v-dialog v-model="addDialog" width="500">
-    <template v-slot:activator="{ on }">
-      <v-icon medium color="green darken-2" v-on="on">
-        mdi-plus
-      </v-icon>
+    <template #activator="{ on }">
+      <v-icon medium color="green darken-2" v-on="on"> mdi-plus </v-icon>
     </template>
     <v-card>
-      <v-card-title>
-        Add Member
-      </v-card-title>
+      <v-card-title> Add Member </v-card-title>
       <v-card-text>
         <v-container>
           <v-form ref="form" v-model="valid" lazy-validation>

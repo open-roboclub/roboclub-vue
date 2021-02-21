@@ -1,10 +1,8 @@
 <template>
   <v-container>
     <v-dialog v-model="deleteDialog" width="500">
-      <template v-slot:activator="{ on }">
-        <v-icon medium color="red darken-2" v-on="on">
-          mdi-delete
-        </v-icon>
+      <template #activator="{ on }">
+        <v-icon medium color="red darken-2" v-on="on"> mdi-delete </v-icon>
       </template>
       <v-card>
         <v-card-title>
@@ -26,7 +24,7 @@
       </v-card>
     </v-dialog>
     <v-dialog v-model="editDialog" width="500">
-      <template v-slot:activator="{ on }">
+      <template #activator="{ on }">
         <v-icon
           medium
           color="green darken-2"
@@ -37,9 +35,7 @@
         </v-icon>
       </template>
       <v-card>
-        <v-card-title>
-          Edit this Member
-        </v-card-title>
+        <v-card-title> Edit this Member </v-card-title>
         <v-card-text>
           <v-container>
             <v-row>

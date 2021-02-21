@@ -3,9 +3,7 @@
     <v-row justify="center">
       <v-col cols="12" sm="10" md="8" lg="6">
         <v-card class="blue-grey white--text">
-          <div class="text-center headline pt-4 pb-4">
-            News Panel
-          </div>
+          <div class="text-center headline pt-4 pb-4">News Panel</div>
           <v-progress-linear
             v-show="!news.length"
             indeterminate
@@ -58,6 +56,11 @@ export default {
       selectedToDelete: null
     }
   },
+  head() {
+    return {
+      title: 'News'
+    }
+  },
   computed: {
     ...mapState(['isAdmin']),
     ...mapGetters('news', ['news'])
@@ -75,11 +78,6 @@ export default {
       this.selectedToDelete = newsUpdate
     },
     ...mapActions('news', ['setNewsRef'])
-  },
-  head() {
-    return {
-      title: 'News'
-    }
   }
 }
 </script>

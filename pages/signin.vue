@@ -16,14 +16,10 @@
           </div>
           <v-row class="mt-2 pb-2">
             <v-col cols="12" sm="6" class="text-center text-sm-right">
-              <v-btn info large to="/profile" class="purple">
-                Profile
-              </v-btn>
+              <v-btn info large to="/profile" class="purple"> Profile </v-btn>
             </v-col>
             <v-col cols="12" sm="6" class="text-center text-sm-left">
-              <v-btn error large @click="logout">
-                Logout
-              </v-btn>
+              <v-btn error large @click="logout"> Logout </v-btn>
             </v-col>
           </v-row>
         </v-card>
@@ -40,9 +36,7 @@
         offset-xl="4"
       >
         <v-card>
-          <div class="display-1 text-center pt-3">
-            Sign In or Register
-          </div>
+          <div class="display-1 text-center pt-3">Sign In or Register</div>
           <div id="firebaseui-auth-container" class="pt-3 pb-3" />
         </v-card>
       </v-col>
@@ -50,12 +44,15 @@
   </v-container>
 </template>
 
-<style src="firebaseui/dist/firebaseui.css"></style>
-
 <script>
 import { mapState } from 'vuex'
 
 export default {
+  head() {
+    return {
+      title: 'Sign In'
+    }
+  },
   computed: mapState(['user']),
   mounted() {
     const firebaseui = require('firebaseui')
@@ -80,11 +77,8 @@ export default {
     logout() {
       this.$store.dispatch('logout')
     }
-  },
-  head() {
-    return {
-      title: 'Sign In'
-    }
   }
 }
 </script>
+
+<style src="firebaseui/dist/firebaseui.css"></style>

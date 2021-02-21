@@ -43,6 +43,12 @@ import PageLoader from '@/components/widgets/PageLoader.vue'
 
 export default {
   components: { PageLoader },
+  head() {
+    return {
+      title:
+        'Project' + (this.loadedProject ? ': ' + this.loadedProject.name : '')
+    }
+  },
   computed: {
     loadedProject() {
       return this.getProjectById()(this.$route.params.id)
@@ -54,12 +60,6 @@ export default {
   methods: {
     ...mapActions('projects', ['setProjectRef']),
     ...mapGetters('projects', ['getProjectById'])
-  },
-  head() {
-    return {
-      title:
-        'Project' + (this.loadedProject ? ': ' + this.loadedProject.name : '')
-    }
   }
 }
 </script>

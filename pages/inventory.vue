@@ -76,6 +76,11 @@ export default {
     AddEntry,
     ViewRequest
   },
+  head() {
+    return {
+      title: 'Inventory'
+    }
+  },
   computed: {
     ...mapState(['isAdmin']),
     ...mapGetters('inventory', ['inventoryTypes']),
@@ -87,11 +92,6 @@ export default {
   },
   methods: {
     ...mapActions('inventory', ['setInventoryRef', 'setRequestsRef'])
-  },
-  head() {
-    return {
-      title: 'Inventory'
-    }
   }
 }
 </script>

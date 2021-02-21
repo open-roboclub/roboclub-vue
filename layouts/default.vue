@@ -12,9 +12,7 @@
           </v-list-item-action>
           <v-list-item-content>{{ item.title }}</v-list-item-content>
         </v-list-item>
-        <v-subheader inset>
-          More
-        </v-subheader>
+        <v-subheader inset> More </v-subheader>
         <v-list-item
           v-for="item in moreItems"
           :key="item.title"
@@ -54,7 +52,7 @@
         </v-btn>
       </v-toolbar-items>
       <v-menu bottom left class="hidden-xs-only">
-        <template v-slot:activator="{ on }">
+        <template #activator="{ on }">
           <v-btn icon v-on="on">
             <v-icon>mdi-dots-vertical</v-icon>
           </v-btn>
@@ -70,44 +68,42 @@
         </v-list>
       </v-menu>
     </v-app-bar>
-    <v-content>
+    <v-main>
       <main><nuxt /></main>
-      <template>
-        <div class="space" />
-        <v-footer dark height="auto" class="footer pa-0 grey lighten-1">
-          <div class="px-3 py-2">
-            <v-btn
-              text
-              light
-              href="https://github.com/open-roboclub/roboclub-vue/graphs/contributors"
-              target="_blank"
-              rel="noopener"
-            >
-              <v-icon left>mdi-worker</v-icon>
-              Developers
-            </v-btn>
-          </div>
-          <v-spacer />
-          <div class="mr-2">
-            <v-btn
-              v-for="icon in icons"
-              :key="icon.name"
-              light
-              icon
-              :href="icon.link"
-              target="_blank"
-              rel="noopener"
-              style="text-decoration: none; color: black"
-            >
-              <v-icon size="24px">{{ icon.name }}</v-icon>
-            </v-btn>
-          </div>
-          <div class="pa-1 text-center grey darken-2 copyright">
-            &copy;{{ getDate }} — <strong>AMURoboclub</strong>
-          </div>
-        </v-footer>
-      </template>
-    </v-content>
+      <div class="space" />
+      <v-footer dark height="auto" class="footer pa-0 grey lighten-1">
+        <div class="px-3 py-2">
+          <v-btn
+            text
+            light
+            href="https://github.com/open-roboclub/roboclub-vue/graphs/contributors"
+            target="_blank"
+            rel="noopener"
+          >
+            <v-icon left>mdi-worker</v-icon>
+            Developers
+          </v-btn>
+        </div>
+        <v-spacer />
+        <div class="mr-2">
+          <v-btn
+            v-for="icon in icons"
+            :key="icon.name"
+            light
+            icon
+            :href="icon.link"
+            target="_blank"
+            rel="noopener"
+            style="text-decoration: none; color: black"
+          >
+            <v-icon size="24px">{{ icon.name }}</v-icon>
+          </v-btn>
+        </div>
+        <div class="pa-1 text-center grey darken-2 copyright">
+          &copy;{{ getDate }} — <strong>AMURoboclub</strong>
+        </div>
+      </v-footer>
+    </v-main>
   </v-app>
 </template>
 
@@ -186,37 +182,47 @@ export default {
 }
 </script>
 
-<style lang="stylus" scoped>
-.logo
-  border-radius 5px
-  overflow hidden
-  background-color rgba(0, 0, 0, 0.07)
-  font-weight 500
+<style scoped>
+.logo {
+  border-radius: 5px;
+  overflow: hidden;
+  background-color: rgba(0, 0, 0, 0.07);
+  font-weight: 500;
+}
 
-.logo > .amu, .logo > .roboclub
-  padding 5px
+.logo > .amu,
+.logo > .roboclub {
+  padding: 5px;
+}
 
-.logo > .amu
-  background-color black
-  color white
+.logo > .amu {
+  background-color: #000;
+  color: #fff;
+}
 
-.footer
-  position absolute
-  bottom 0px
-  width 100%
+.footer {
+  position: absolute;
+  bottom: 0px;
+  width: 100%;
+}
 
-.space
-  margin-top 100px
+.space {
+  margin-top: 100px;
+}
 
-.dev
-  font-size 13px
-  text-decoration none
-  color black
+.dev {
+  font-size: 13px;
+  text-decoration: none;
+  color: #000;
+}
 
-@media(max-width: 539px)
-	.space
-		margin-top 145px
+@media (max-width: 539px) {
+  .space {
+    margin-top: 145px;
+  }
+}
 
-.copyright
-  width 100%
+.copyright {
+  width: 100%;
+}
 </style>
