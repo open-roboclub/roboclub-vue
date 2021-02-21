@@ -52,6 +52,13 @@ export default {
     customVariables: ['~/assets/variables.scss']
   },
 
+  storybook: {
+    decorators: [
+      // VApp decorator for Vuetify
+      '<v-app><story/></v-app>'
+    ]
+  },
+
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
     extractCSS: isProduction,
