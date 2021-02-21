@@ -55,8 +55,9 @@ export default {
 }
 </script>
 
-<style lang="stylus" scoped>
-xmp
-  white-space pre-wrap
-  word-wrap break-word
+<style scoped>
+xmp {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
 </style>

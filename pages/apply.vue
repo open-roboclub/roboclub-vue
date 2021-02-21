@@ -78,9 +78,7 @@
                 required
               ></v-text-field>
             </v-col>
-            <v-btn depressed color="primary" @click="apply">
-              Submit
-            </v-btn>
+            <v-btn depressed color="primary" @click="apply"> Submit </v-btn>
           </v-row>
         </v-container>
       </v-form>
@@ -104,6 +102,16 @@ export default {
     success: false,
     error: false
   }),
+  head() {
+    if (!this.isAdmin)
+      return {
+        title: 'Join Us'
+      }
+    else
+      return {
+        title: 'Members'
+      }
+  },
 
   computed: {
     ...mapState(['isAdmin']),
@@ -124,17 +132,6 @@ export default {
       }
     },
     ...mapActions('apply', ['addMember'])
-  },
-
-  head() {
-    if (!this.isAdmin)
-      return {
-        title: 'Join Us'
-      }
-    else
-      return {
-        title: 'Members'
-      }
   }
 }
 </script>

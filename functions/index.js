@@ -92,13 +92,8 @@ exports.saveAuthenticatedUser = functions.auth.user().onCreate(user => {
 
 async function isAdmin(uid) {
   return (
-    (
-      await admin
-        .database()
-        .ref('admins/')
-        .child(uid)
-        .once('value')
-    ).val() === true
+    (await admin.database().ref('admins/').child(uid).once('value')).val() ===
+    true
   )
 }
 

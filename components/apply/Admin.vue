@@ -16,30 +16,16 @@
     </v-row>
 
     <v-simple-table>
-      <template v-slot:default>
+      <template #default>
         <thead>
           <tr>
-            <th class="text-left">
-              Name
-            </th>
-            <th class="text-left">
-              Mobile
-            </th>
-            <th class="text-left">
-              Email
-            </th>
-            <th class="text-left">
-              Date Applied
-            </th>
-            <th class="text-left">
-              Faculty Number
-            </th>
-            <th class="text-left">
-              Paid
-            </th>
-            <th class="text-left">
-              Actions
-            </th>
+            <th class="text-left">Name</th>
+            <th class="text-left">Mobile</th>
+            <th class="text-left">Email</th>
+            <th class="text-left">Date Applied</th>
+            <th class="text-left">Faculty Number</th>
+            <th class="text-left">Paid</th>
+            <th class="text-left">Actions</th>
           </tr>
         </thead>
         <tbody>

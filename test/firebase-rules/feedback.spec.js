@@ -8,7 +8,7 @@ expect.extend({
   toAllowWrite: targaryen.toAllowWrite
 })
 
-describe('Feedback Access Tests', function() {
+describe('Feedback Access Tests', function () {
   const database = targaryen.getDatabase(rules, {
     users: {
       test: {
@@ -26,7 +26,7 @@ describe('Feedback Access Tests', function() {
     }
   })
 
-  it('should not allow un/authenticated user to read feedback', function() {
+  it('should not allow un/authenticated user to read feedback', function () {
     expect(database.as(targaryen.users.unauthenticated)).not.toAllowRead(
       '/feedback'
     )
@@ -38,7 +38,7 @@ describe('Feedback Access Tests', function() {
     expect(database.as({ uid: 'test' })).not.toAllowRead('/feedback/xu3gb3')
   })
 
-  it('should not allow un/authenticated user to write feedbacks', function() {
+  it('should not allow un/authenticated user to write feedbacks', function () {
     const feedbacks = { jhnl: 'Good', dedhjlh: 'Bad' }
 
     expect(database.as(targaryen.users.unauthenticated)).not.toAllowWrite(
@@ -66,7 +66,7 @@ describe('Feedback Access Tests', function() {
     )
   })
 
-  it('should allow authenticated user to write feedback', function() {
+  it('should allow authenticated user to write feedback', function () {
     expect(database.as({ uid: 'test' })).toAllowWrite(
       '/feedback/new',
       'feedback'

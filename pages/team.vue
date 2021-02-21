@@ -161,6 +161,11 @@ export default {
       selectedMember: {}
     }
   },
+  head() {
+    return {
+      title: 'Team'
+    }
+  },
   computed: {
     ...mapGetters('team', ['members'])
   },
@@ -210,11 +215,6 @@ export default {
       return link
     },
     ...mapActions('team', ['setTeamRef'])
-  },
-  head() {
-    return {
-      title: 'Team'
-    }
   }
 }
 </script>

@@ -32,17 +32,17 @@
 import { mapState, mapActions } from 'vuex'
 
 export default {
+  head() {
+    return {
+      title: 'RoboVoyage'
+    }
+  },
   computed: {
     ...mapState('robovoyage', ['robovoyage'])
   },
   created() {
     this.setRobovoyageRef()
   },
-  methods: mapActions('robovoyage', ['setRobovoyageRef']),
-  head() {
-    return {
-      title: 'RoboVoyage'
-    }
-  }
+  methods: mapActions('robovoyage', ['setRobovoyageRef'])
 }
 </script>

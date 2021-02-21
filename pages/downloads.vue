@@ -55,6 +55,11 @@ export default {
       active: null
     }
   },
+  head() {
+    return {
+      title: 'Downloads'
+    }
+  },
   computed: {
     ...mapGetters('downloads', ['downloadTypes']),
     ...mapState('downloads', ['downloads'])
@@ -62,11 +67,6 @@ export default {
   created() {
     this.setDownloadsRef()
   },
-  methods: mapActions('downloads', ['setDownloadsRef']),
-  head() {
-    return {
-      title: 'Downloads'
-    }
-  }
+  methods: mapActions('downloads', ['setDownloadsRef'])
 }
 </script>
