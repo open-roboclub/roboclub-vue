@@ -10,6 +10,17 @@
       </v-col>
     </v-row>
     <Admin v-if="isAdmin" />
+    <v-row justify="center">
+      <v-col cols="12" sm="10" md="8" lg="6">
+        <v-text-field
+          v-model="search"
+          placeholder="search here"
+          label="Search here"
+          outlined
+        >
+        </v-text-field>
+      </v-col>
+    </v-row>
     <PageLoader v-show="!completedProjects.length" />
     <v-row class="mb-3">
       <v-hover
@@ -18,13 +29,18 @@
         class="mt-3"
       >
         <v-card
+          v-if="searchproject(project)"
           slot-scope="{ hover }"
           :class="`elevation-${hover ? 12 : 2} text-center`"
           style="cursor: pointer"
           class="mx-auto"
           width="450"
-          @click="openDialog(project)"
         >
+          <v-row justify="center"
+            ><v-icon color="blue" @click="openDialog(project)">
+              mdi-information
+            </v-icon>
+          </v-row>
           <br />
           <v-avatar :tile="false" :size="250" color="grey lighten-4">
             <v-img :aspect-ratio="16 / 9" :src="project.image" alt="Avatar" />
@@ -35,6 +51,13 @@
           <v-card-text class="mx-2 grey--text text--darken-2">
             {{ project.team }}
           </v-card-text>
+          <v-col v-if="isAdmin">
+            <v-btn dark fab color="red" @click="deleteproject(project)">
+              <v-icon dark>
+                mdi-minus
+              </v-icon>
+            </v-btn>
+          </v-col>
         </v-card>
       </v-hover>
       <div class="text-center">
@@ -93,6 +116,7 @@ export default {
   },
   data() {
     return {
+      search: '',
       dialog: false,
       selectedProject: {
         name: '',
@@ -116,6 +140,25 @@ export default {
     })
   },
   methods: {
+    deleteproject(project) {
+      if (confirm('Are you sure?You want to delete this project.')) {
+        this.$firebase
+          .database()
+          .ref('projects')
+          .child(project['.key'])
+          .remove()
+          .then(() => {
+            console.log('Document successfully deleted!')
+          })
+      }
+    },
+    searchproject(project) {
+      return project.name
+        .toLowerCase()
+        .includes(
+          this.search || this.search.toUpperCase() || this.search.toLowerCase()
+        )
+    },
     openDialog(project) {
       this.dialog = true
       this.selectedProject = project
