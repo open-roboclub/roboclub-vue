@@ -116,6 +116,7 @@
                 label="Description*"
                 placeholder="Enter description so that others can know about this project."
                 required
+                @keydown.space="preventLeadingSpace"
               ></v-textarea>
 
               <v-checkbox
@@ -216,7 +217,12 @@ export default {
     ],
     imageUrl: '',
     image: null,
-    descriptionRules: [v => !!v || 'Description is required'],
+    descriptionRules: [
+      v => !!v || 'Description is required',
+      v =>
+        (v && v.length >= 20) ||
+        'Description must be greater than 20 characters'
+    ],
     loading: false,
     addDocs: false,
     project_report: '',
@@ -227,6 +233,13 @@ export default {
   }),
   methods: {
     ...mapGetters('projects', ['projectIsUnique']),
+    preventLeadingSpace(e) {
+      if (!e.target.value) {
+        e.preventDefault()
+      } else if (e.target.value[0] === ' ') {
+        alert('Please enter valid description')
+      }
+    },
     validate() {
       if (this.$refs.form.validate()) {
         this.valid = true
