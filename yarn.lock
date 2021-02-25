@@ -7222,6 +7222,23 @@ es6-weak-map@^2.0.3:
     es6-iterator "^2.0.3"
     es6-symbol "^3.1.1"
 
+esbuild-loader@^2.9.2:
+  version "2.9.2"
+  resolved "https://registry.yarnpkg.com/esbuild-loader/-/esbuild-loader-2.9.2.tgz#ae16721aeb05018396395a95f528c778ba7361d0"
+  integrity sha512-HpF+r/ES2aC40VDOIFsP8OIOM2y2vj8LyLwJ4G8DCMOi8Kov68TwCtxiMMTuSuxR/xKDu/ykgVyCEgps6BXpYw==
+  dependencies:
+    esbuild "^0.8.42"
+    joycon "^2.2.5"
+    json5 "^2.2.0"
+    loader-utils "^2.0.0"
+    type-fest "^0.20.2"
+    webpack-sources "^2.2.0"
+
+esbuild@^0.8.42:
+  version "0.8.52"
+  resolved "https://registry.yarnpkg.com/esbuild/-/esbuild-0.8.52.tgz#6dabf11c517af449a96d66da20dfc204ee7b5294"
+  integrity sha512-b5KzFweLLXoXQwdC/e2+Z80c8uo2M5MgP7yQEEebkFw6In4T9CvYcNoM2ElvJt8ByO04zAZUV0fZkXmXoi2s9A==
+
 escalade@^3.1.1:
   version "3.1.1"
   resolved "https://registry.yarnpkg.com/escalade/-/escalade-3.1.1.tgz#d8cfdc7000965c5a0174b4a82eaa5c0552742e40"
@@ -10581,6 +10598,11 @@ join-path@^1.1.1:
     url-join "0.0.1"
     valid-url "^1"
 
+joycon@^2.2.5:
+  version "2.2.5"
+  resolved "https://registry.yarnpkg.com/joycon/-/joycon-2.2.5.tgz#8d4cf4cbb2544d7b7583c216fcdfec19f6be1615"
+  integrity sha512-YqvUxoOcVPnCp0VU1/56f+iKSdvIRJYPznH22BdXV3xMk75SFXhWeJkZ8C9XxUWt1b5x2X1SxuFygW1U0FmkEQ==
+
 js-beautify@^1.6.12, js-beautify@^1.6.14:
   version "1.13.5"
   resolved "https://registry.yarnpkg.com/js-beautify/-/js-beautify-1.13.5.tgz#a08a97890cae55daf1d758d3f6577bd4a64d7014"
@@ -10764,7 +10786,7 @@ json5@^1.0.1:
   dependencies:
     minimist "^1.2.0"
 
-json5@^2.1.1, json5@^2.1.2:
+json5@^2.1.1, json5@^2.1.2, json5@^2.2.0:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/json5/-/json5-2.2.0.tgz#2dfefe720c6ba525d9ebd909950f0515316c89a3"
   integrity sha512-f+8cldu7X/y7RAJurMEJmdoKXGB/X550w2Nr3tTbezL6RwEE/iMcm+tZnXeoZtKuOq6ft8+CqzEkrIgx1fPoQA==
@@ -12220,6 +12242,17 @@ number-is-nan@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/number-is-nan/-/number-is-nan-1.0.1.tgz#097b602b53422a522c1afb8790318336941a011d"
   integrity sha1-CXtgK1NCKlIsGvuHkDGDNpQaAR0=
+
+nuxt-build-optimisations@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/nuxt-build-optimisations/-/nuxt-build-optimisations-1.0.1.tgz#fbc7de597dd1f0224e6e673c8310506a2e6f0de4"
+  integrity sha512-w903ue5x0oBcO/COQwW43T5GboctKfcTKpGmyVks3FNBACd/gV+0xAcYmfyWvKPotdhSngLlARlQac/+ECzA5g==
+  dependencies:
+    esbuild-loader "^2.9.2"
+    rimraf "^3.0.2"
+    semver "^7.3.4"
+    speed-measure-webpack-plugin "^1.4.2"
+    upath "^2.0.1"
 
 nuxt@^2.15.2:
   version "2.15.2"
@@ -15428,7 +15461,7 @@ sort-keys@^2.0.0:
   dependencies:
     is-plain-obj "^1.0.0"
 
-source-list-map@^2.0.0:
+source-list-map@^2.0.0, source-list-map@^2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/source-list-map/-/source-list-map-2.0.1.tgz#3993bd873bfc48479cca9ea3a547835c7c154b34"
   integrity sha512-qnQ7gVMxGNxsiL4lEuJwe/To8UnK7fAnmbGEEH8RpLouuKbeEm0lhbQVFIrNSuB+G7tVrAlVsZgETT5nljf+Iw==
@@ -15512,6 +15545,13 @@ spdx-license-ids@^3.0.0:
   version "3.0.7"
   resolved "https://registry.yarnpkg.com/spdx-license-ids/-/spdx-license-ids-3.0.7.tgz#e9c18a410e5ed7e12442a549fbd8afa767038d65"
   integrity sha512-U+MTEOO0AiDzxwFvoa4JVnMV6mZlJKk2sBLt90s7G0Gd0Mlknc7kxEn3nuDPNZRta7O2uy8oLcZLVT+4sqNZHQ==
+
+speed-measure-webpack-plugin@^1.4.2:
+  version "1.4.2"
+  resolved "https://registry.yarnpkg.com/speed-measure-webpack-plugin/-/speed-measure-webpack-plugin-1.4.2.tgz#1608e62d3bdb45f01810010e1b5bfedefedfa58f"
+  integrity sha512-AtVzD0bnIy2/B0fWqJpJgmhcrfWFhBlduzSo0uwplr/QvB33ZNZj2NEth3NONgdnZJqicK0W0mSxnLSbsVCDbw==
+  dependencies:
+    chalk "^4.1.0"
 
 split-on-first@^1.0.0:
   version "1.1.0"
@@ -17328,6 +17368,14 @@ webpack-sources@^1.0.1, webpack-sources@^1.1.0, webpack-sources@^1.4.0, webpack-
   dependencies:
     source-list-map "^2.0.0"
     source-map "~0.6.1"
+
+webpack-sources@^2.2.0:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/webpack-sources/-/webpack-sources-2.2.0.tgz#058926f39e3d443193b6c31547229806ffd02bac"
+  integrity sha512-bQsA24JLwcnWGArOKUxYKhX3Mz/nK1Xf6hxullKERyktjNMC4x8koOeaDNTA2fEJ09BdWLbM/iTW0ithREUP0w==
+  dependencies:
+    source-list-map "^2.0.1"
+    source-map "^0.6.1"
 
 webpack-virtual-modules@^0.2.2:
   version "0.2.2"
