@@ -84,48 +84,58 @@
                 <v-card-title> Pay </v-card-title>
                 <v-row justify="center">
                   <v-img
-                    src="https://firebasestorage.googleapis.com/v0/b/amu-roboclub.appspot.com/o/QR.png?alt=media&token=28f4c9b2-d6b0-4a3e-8467-991216e9607a"
+                    src="https://firebasestorage.googleapis.com/v0/b/amu-roboclub.appspot.com/o/QR.png?alt=media&token=621bf3f7-624c-48be-bcf1-23bfb9c89125"
                     cols="12"
                     max-width="300"
                   />
                 </v-row>
-                <v-card-text>
-                  <v-container>
+                <v-row justify="center">
+                  <v-card color="#ffffba" max-width="75%">
                     <v-container>
                       <v-list-item>
-                        <v-list-item-content>
-                          <div>UPI ID = prafullvarshney2000@oksbi</div>
-                        </v-list-item-content>
-                      </v-list-item>
-                      <v-list-item>
-                        <v-list-item-content>
-                          <h2>Things to keep in mind while Paying:-</h2>
-                        </v-list-item-content>
-                      </v-list-item>
-                      <v-list-item>
                         <div>
-                          <v-icon> mdi-arrow-right </v-icon>
-                          During your payment, clearly mention your name and
-                          faculty number in note attached with it.
+                          <div class="font-weight-medium">
+                            Problem scanning QR?
+                          </div>
+                          Pay to
+                          <span class="font-weight-medium">
+                            UPI ID:
+                            <span class="font-italic"
+                              >prafullvarshney2000@oksbi</span
+                            >
+                          </span>
                         </div>
                       </v-list-item>
-                      <v-list-item>
-                        <div>
-                          <v-icon> mdi-arrow-right </v-icon>
-                          If you face any difficulty with regards to payment,
-                          contact (+91) 99974 23637.
-                        </div>
-                      </v-list-item>
-                      <v-list-item>
-                        <div>
-                          <v-icon> mdi-arrow-right </v-icon>
-                          Once your transaction is succesfull, we will reach you
-                          shortly.
-                        </div>
-                      </v-list-item>
+
+                      <ul>
+                        <li>
+                          <div>Registration Fees:- ₹200</div>
+                        </li>
+                        <li>
+                          <div>Registration Validity:- 2 years</div>
+                        </li>
+                        <li>
+                          <div>
+                            During your payment, clearly mention your name and
+                            faculty number in note attached with it.
+                          </div>
+                        </li>
+                        <li>
+                          <div>
+                            If you face any difficulty with regards to payment,
+                            contact (+91) 99974 23637.
+                          </div>
+                        </li>
+                        <li>
+                          <div>
+                            Once your transaction is succesfull, we will reach
+                            you shortly.
+                          </div>
+                        </li>
+                      </ul>
                     </v-container>
-                  </v-container>
-                </v-card-text>
+                  </v-card>
+                </v-row>
                 <v-card-actions>
                   <v-spacer></v-spacer>
                   <v-btn color="green darken-1" text @click="dialog = false">
