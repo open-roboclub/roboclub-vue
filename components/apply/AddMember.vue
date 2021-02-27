@@ -7,9 +7,12 @@
       <v-card-title> Add Member </v-card-title>
       <v-card-text>
         <v-container>
+          <v-alert v-if="error.length" text type="error">
+            {{ error }}
+          </v-alert>
           <v-form ref="form" v-model="valid" lazy-validation>
             <v-row v-if="member != undefined">
-              <v-col lg="6" md="6" sm="12">
+              <v-col lg="6" md="6" sm="12" cols="12">
                 <v-text-field
                   v-model="member.name"
                   label="Name"
@@ -17,7 +20,7 @@
                   required
                 ></v-text-field>
               </v-col>
-              <v-col lg="6" md="6" sm="12">
+              <v-col lg="6" md="6" sm="12" cols="12">
                 <v-text-field
                   v-model="member.email"
                   label="Email Address"
@@ -25,7 +28,7 @@
                   required
                 ></v-text-field>
               </v-col>
-              <v-col lg="3" md="3" sm="9">
+              <v-col lg="3" md="3" sm="9" cols="12">
                 <v-text-field
                   v-model="member.mobile"
                   :counter="10"
@@ -34,7 +37,7 @@
                   required
                 ></v-text-field>
               </v-col>
-              <v-col lg="3" md="3" sm="3">
+              <v-col lg="3" md="3" sm="3" cols="12">
                 <v-container fluid>
                   <v-checkbox
                     v-model="member.paymentStatus"
@@ -42,7 +45,7 @@
                   ></v-checkbox>
                 </v-container>
               </v-col>
-              <v-col lg="6" md="6" sm="12">
+              <v-col lg="6" md="6" sm="12" cols="12">
                 <v-select
                   v-model="member.course"
                   :items="[
@@ -55,7 +58,7 @@
                   label="Course"
                 ></v-select>
               </v-col>
-              <v-col lg="6" md="6" sm="12">
+              <v-col lg="6" md="6" sm="12" cols="12">
                 <v-text-field
                   v-model="member.facultyNumber"
                   :rules="rules.facultyNumberRules"
@@ -64,7 +67,7 @@
                   required
                 ></v-text-field>
               </v-col>
-              <v-col lg="6" md="6" sm="12">
+              <v-col lg="6" md="6" sm="12" cols="12">
                 <v-text-field
                   v-model="member.enrollmentNumber"
                   :rules="rules.enrollmentNumberRules"
@@ -97,7 +100,8 @@ import { rules } from './rules'
 export default {
   data: () => ({
     addDialog: false,
-    validate: false,
+    valid: false,
+    error: '',
     rules
   }),
   computed: {
@@ -109,12 +113,15 @@ export default {
       this.error = ''
       await this.$refs.form.validate()
       if (this.valid) {
-        this.addMember(this.validate)
+        this.error = await this.checkDuplicates(this.member.facultyNumber)
+        if (this.error === undefined || this.error === null) this.error = ''
+        if (this.error !== '') return
+        await this.addMember(this.member.paymentStatus)
         this.$refs.form.reset()
-        this.success = true
+        this.addDialog = false
       }
     },
-    ...mapActions('apply', ['addMember'])
+    ...mapActions('apply', ['addMember', 'checkDuplicates'])
   }
 }
 </script>

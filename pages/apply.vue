@@ -14,15 +14,15 @@
           <v-alert v-if="success" text type="success">
             Your application has been submitted
           </v-alert>
-          <v-alert v-if="error" text type="error">
-            Please fill up the form correctly before submitting
+          <v-alert v-if="error.length" text type="error">
+            {{ error }}
           </v-alert>
         </v-col>
       </v-row>
       <v-form ref="form" v-model="valid" lazy-validation>
         <v-container>
           <v-row>
-            <v-col lg="6" md="6" sm="12">
+            <v-col lg="6" md="6" sm="12" cols="12">
               <v-text-field
                 v-model="memberToBeAdded.name"
                 label="Name"
@@ -30,7 +30,7 @@
                 required
               ></v-text-field>
             </v-col>
-            <v-col lg="6" md="6" sm="12">
+            <v-col lg="6" md="6" sm="12" cols="12">
               <v-text-field
                 v-model="memberToBeAdded.email"
                 label="Email Address"
@@ -38,7 +38,7 @@
                 required
               ></v-text-field>
             </v-col>
-            <v-col lg="6" md="6" sm="12">
+            <v-col lg="6" md="6" sm="12" cols="12">
               <v-text-field
                 v-model="memberToBeAdded.mobile"
                 :counter="10"
@@ -47,7 +47,7 @@
                 required
               ></v-text-field>
             </v-col>
-            <v-col lg="6" md="6" sm="12">
+            <v-col lg="6" md="6" sm="12" cols="12">
               <v-select
                 v-model="memberToBeAdded.course"
                 :items="[
@@ -60,7 +60,7 @@
                 :rules="rules.notNullRules"
               ></v-select>
             </v-col>
-            <v-col lg="6" md="6" sm="12">
+            <v-col lg="6" md="6" sm="12" cols="12">
               <v-text-field
                 v-model="memberToBeAdded.facultyNumber"
                 :counter="8"
@@ -69,7 +69,7 @@
                 required
               ></v-text-field>
             </v-col>
-            <v-col lg="6" md="6" sm="12">
+            <v-col lg="6" md="6" sm="12" cols="12">
               <v-text-field
                 v-model="memberToBeAdded.enrollmentNumber"
                 :counter="6"
@@ -100,7 +100,7 @@ export default {
     valid: false,
     rules,
     success: false,
-    error: false
+    error: ''
   }),
   head() {
     if (!this.isAdmin)
@@ -121,17 +121,21 @@ export default {
   methods: {
     async apply() {
       this.success = false
-      this.error = ''
       await this.$refs.form.validate()
       if (this.valid) {
+        this.error = await this.checkDuplicates(
+          this.memberToBeAdded.facultyNumber
+        )
+        if (this.error === undefined || this.error === null) this.error = ''
+        if (this.error !== '') return
         await this.addMember(false)
         this.$refs.form.reset()
         this.success = true
-      } else {
-        this.error = true
+      } else if (this.error === '') {
+        this.error = 'Please fill up the form correctly before submitting.'
       }
     },
-    ...mapActions('apply', ['addMember'])
+    ...mapActions('apply', ['addMember', 'checkDuplicates'])
   }
 }
 </script>

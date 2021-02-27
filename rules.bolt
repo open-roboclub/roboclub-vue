@@ -230,11 +230,16 @@ path /inventory {
 // --- New Members Section ---
 
 path /members {
+    write() { true }
+    path /registrationNumbers/{registrationNumber} {
+        read() { true }
+    }
+    path /memberList {
+        path /{members} is ClubMember {
+    }
     read() {
         isAdmin() || isCurrentUser(data.child('uid').val())
     }
-    path /{members} is ClubMember {
-        write() { true }
     }
 }
 
@@ -246,7 +251,12 @@ type ClubMember {
     enrollmentNumber: EnrollmentNumber,
     facultyNumber: FacultyNumber,
     mobile: Mobile,
-    name: String
+    name: String,
+    registrationNumber: RegistrationNumber
+}
+
+type RegistrationNumber extends String {
+    validate() {this.length == 7}
 }
 
 type EnrollmentNumber extends String {

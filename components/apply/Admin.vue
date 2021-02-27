@@ -23,18 +23,18 @@
             <th class="text-left">Mobile</th>
             <th class="text-left">Email</th>
             <th class="text-left">Date Applied</th>
-            <th class="text-left">Faculty Number</th>
+            <th class="text-left">Registration Number</th>
             <th class="text-left">Paid</th>
             <th class="text-left">Actions</th>
           </tr>
         </thead>
         <tbody>
-          <tr v-for="member in members" :key="member.enrollmentNumber">
+          <tr v-for="member in members" :key="member.registrationNumber">
             <td>{{ member.name }}</td>
             <td>{{ member.mobile }}</td>
             <td>{{ member.email }}</td>
             <td>{{ new Date(member.timestamp).toDateString() }}</td>
-            <td>{{ member.facultyNumber }}</td>
+            <td>{{ member.registrationNumber }}</td>
             <td v-if="member.paymentStatus === false">
               <v-icon medium color="red darken-2" v-on="on">
                 mdi-window-close
