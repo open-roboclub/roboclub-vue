@@ -84,7 +84,7 @@
                 <v-card-title> Pay </v-card-title>
                 <v-row justify="center">
                   <v-img
-                    src="https://firebasestorage.googleapis.com/v0/b/amu-roboclub.appspot.com/o/QR.png?alt=media&token=3cf6c4a5-7d8d-44a7-b9c4-02380a276a9b"
+                    src="https://firebasestorage.googleapis.com/v0/b/amu-roboclub.appspot.com/o/QR.png?alt=media&token=28f4c9b2-d6b0-4a3e-8467-991216e9607a"
                     cols="12"
                     max-width="300"
                   />
@@ -153,7 +153,7 @@ export default {
 
   data: () => ({
     valid: false,
-    dialog: false,
+    dialog: true,
     rules,
     success: false,
     error: ''
