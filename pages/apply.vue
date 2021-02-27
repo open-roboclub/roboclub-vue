@@ -153,7 +153,7 @@ export default {
 
   data: () => ({
     valid: false,
-    dialog: true,
+    dialog: false,
     rules,
     success: false,
     error: ''
