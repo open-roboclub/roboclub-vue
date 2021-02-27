@@ -16,7 +16,9 @@
           <v-btn
             color="red darken-2"
             text
-            @click="deleteEventHandler(member['.key'])"
+            @click="
+              deleteEventHandler(member['.key'], member.registrationNumber)
+            "
           >
             Delete
           </v-btn>
@@ -39,39 +41,39 @@
         <v-card-text>
           <v-container>
             <v-row>
-              <v-col lg="6" md="6" sm="12">
+              <v-col lg="6" md="6" sm="12" cols="12">
                 <v-text-field
-                  v-model="memberEdit.name"
+                  v-model="memberToBeEdited.name"
                   label="Name"
                   required
                 ></v-text-field>
               </v-col>
-              <v-col lg="6" md="6" sm="12">
+              <v-col lg="6" md="6" sm="12" cols="12">
                 <v-text-field
-                  v-model="memberEdit.email"
+                  v-model="memberToBeEdited.email"
                   label="Email Address"
                   required
                 ></v-text-field>
               </v-col>
-              <v-col lg="3" md="3" sm="9">
+              <v-col lg="3" md="3" sm="9" cols="12">
                 <v-text-field
-                  v-model="memberEdit.mobile"
+                  v-model="memberToBeEdited.mobile"
                   :counter="10"
                   label="Mobile Number (WhatsApp)"
                   required
                 ></v-text-field>
               </v-col>
-              <v-col lg="3" md="3" sm="3">
+              <v-col lg="3" md="3" sm="3" cols="12">
                 <v-container fluid>
                   <v-checkbox
-                    v-model="memberEdit.paymentStatus"
+                    v-model="memberToBeEdited.paymentStatus"
                     label="Paid"
                   ></v-checkbox>
                 </v-container>
               </v-col>
-              <v-col lg="6" md="6" sm="12">
+              <v-col lg="6" md="6" sm="12" cols="12">
                 <v-select
-                  v-model="memberEdit.course"
+                  v-model="memberToBeEdited.course"
                   :items="[
                     { text: 'Bachelor in Technology', value: 'btech' },
                     { text: 'Diploma Engineering', value: 'diploma' }
@@ -81,17 +83,17 @@
                   label="Course"
                 ></v-select>
               </v-col>
-              <v-col lg="6" md="6" sm="12">
+              <v-col lg="6" md="6" sm="12" cols="12">
                 <v-text-field
-                  v-model="memberEdit.facultyNumber"
+                  v-model="memberToBeEdited.facultyNumber"
                   :counter="8"
                   label="Faculty Number"
                   required
                 ></v-text-field>
               </v-col>
-              <v-col lg="6" md="6" sm="12">
+              <v-col lg="6" md="6" sm="12" cols="12">
                 <v-text-field
-                  v-model="memberEdit.enrollmentNumber"
+                  v-model="memberToBeEdited.enrollmentNumber"
                   :counter="6"
                   label="Enrollment Number"
                   required
@@ -119,7 +121,7 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex'
+import { mapState, mapActions } from 'vuex'
 
 export default {
   props: {
@@ -133,15 +135,15 @@ export default {
     deleteDialog: false
   }),
   computed: {
-    ...mapGetters('apply', ['memberEdit'])
+    ...mapState('apply', ['memberToBeEdited'])
   },
   methods: {
-    editEventHandler(id) {
-      this.editMember(id)
+    async editEventHandler(id) {
+      await this.editMember(id)
       this.editDialog = false
     },
-    deleteEventHandler(id) {
-      this.deleteMember(id)
+    deleteEventHandler(id, registrationNumber) {
+      this.deleteMember([id, registrationNumber])
       this.deleteDialog = false
     },
     ...mapActions('apply', ['editMember', 'deleteMember', 'setMemberToEdit'])

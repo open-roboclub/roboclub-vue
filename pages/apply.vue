@@ -14,15 +14,15 @@
           <v-alert v-if="success" text type="success">
             Your application has been submitted
           </v-alert>
-          <v-alert v-if="error" text type="error">
-            Please fill up the form correctly before submitting
+          <v-alert v-if="error.length" text type="error">
+            {{ error }}
           </v-alert>
         </v-col>
       </v-row>
       <v-form ref="form" v-model="valid" lazy-validation>
         <v-container>
           <v-row>
-            <v-col lg="6" md="6" sm="12">
+            <v-col lg="6" md="6" sm="12" cols="12">
               <v-text-field
                 v-model="memberToBeAdded.name"
                 label="Name"
@@ -30,7 +30,7 @@
                 required
               ></v-text-field>
             </v-col>
-            <v-col lg="6" md="6" sm="12">
+            <v-col lg="6" md="6" sm="12" cols="12">
               <v-text-field
                 v-model="memberToBeAdded.email"
                 label="Email Address"
@@ -38,7 +38,7 @@
                 required
               ></v-text-field>
             </v-col>
-            <v-col lg="6" md="6" sm="12">
+            <v-col lg="6" md="6" sm="12" cols="12">
               <v-text-field
                 v-model="memberToBeAdded.mobile"
                 :counter="10"
@@ -47,7 +47,7 @@
                 required
               ></v-text-field>
             </v-col>
-            <v-col lg="6" md="6" sm="12">
+            <v-col lg="6" md="6" sm="12" cols="12">
               <v-select
                 v-model="memberToBeAdded.course"
                 :items="[
@@ -60,7 +60,7 @@
                 :rules="rules.notNullRules"
               ></v-select>
             </v-col>
-            <v-col lg="6" md="6" sm="12">
+            <v-col lg="6" md="6" sm="12" cols="12">
               <v-text-field
                 v-model="memberToBeAdded.facultyNumber"
                 :counter="8"
@@ -69,7 +69,7 @@
                 required
               ></v-text-field>
             </v-col>
-            <v-col lg="6" md="6" sm="12">
+            <v-col lg="6" md="6" sm="12" cols="12">
               <v-text-field
                 v-model="memberToBeAdded.enrollmentNumber"
                 :counter="6"
@@ -79,6 +79,61 @@
               ></v-text-field>
             </v-col>
             <v-btn depressed color="primary" @click="apply"> Submit </v-btn>
+            <v-dialog v-model="dialog" max-width="650">
+              <v-card>
+                <v-card-title> Pay </v-card-title>
+                <v-row justify="center">
+                  <v-img
+                    src="https://firebasestorage.googleapis.com/v0/b/amu-roboclub.appspot.com/o/QR.png?alt=media&token=3cf6c4a5-7d8d-44a7-b9c4-02380a276a9b"
+                    cols="12"
+                    max-width="300"
+                  />
+                </v-row>
+                <v-card-text>
+                  <v-container>
+                    <v-container>
+                      <v-list-item>
+                        <v-list-item-content>
+                          <div>UPI ID = prafullvarshney2000@oksbi</div>
+                        </v-list-item-content>
+                      </v-list-item>
+                      <v-list-item>
+                        <v-list-item-content>
+                          <h2>Things to keep in mind while Paying:-</h2>
+                        </v-list-item-content>
+                      </v-list-item>
+                      <v-list-item>
+                        <div>
+                          <v-icon> mdi-arrow-right </v-icon>
+                          During your payment, clearly mention your name and
+                          faculty number in note attached with it.
+                        </div>
+                      </v-list-item>
+                      <v-list-item>
+                        <div>
+                          <v-icon> mdi-arrow-right </v-icon>
+                          If you face any difficulty with regards to payment,
+                          contact (+91) 99974 23637.
+                        </div>
+                      </v-list-item>
+                      <v-list-item>
+                        <div>
+                          <v-icon> mdi-arrow-right </v-icon>
+                          Once your transaction is succesfull, we will reach you
+                          shortly.
+                        </div>
+                      </v-list-item>
+                    </v-container>
+                  </v-container>
+                </v-card-text>
+                <v-card-actions>
+                  <v-spacer></v-spacer>
+                  <v-btn color="green darken-1" text @click="dialog = false">
+                    Done
+                  </v-btn>
+                </v-card-actions>
+              </v-card>
+            </v-dialog>
           </v-row>
         </v-container>
       </v-form>
@@ -98,9 +153,10 @@ export default {
 
   data: () => ({
     valid: false,
+    dialog: false,
     rules,
     success: false,
-    error: false
+    error: ''
   }),
   head() {
     if (!this.isAdmin)
@@ -121,17 +177,22 @@ export default {
   methods: {
     async apply() {
       this.success = false
-      this.error = ''
       await this.$refs.form.validate()
       if (this.valid) {
+        this.error = await this.checkDuplicates(
+          this.memberToBeAdded.facultyNumber
+        )
+        if (this.error === undefined || this.error === null) this.error = ''
+        if (this.error !== '') return
         await this.addMember(false)
         this.$refs.form.reset()
         this.success = true
-      } else {
-        this.error = true
+        this.dialog = true
+      } else if (this.error === '') {
+        this.error = 'Please fill up the form correctly before submitting.'
       }
     },
-    ...mapActions('apply', ['addMember'])
+    ...mapActions('apply', ['addMember', 'checkDuplicates'])
   }
 }
 </script>
