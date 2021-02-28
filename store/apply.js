@@ -73,9 +73,9 @@ export const actions = {
   setMembersRef: firebaseAction(({ bindFirebaseRef }) => {
     return bindFirebaseRef('members', membersRef)
   }),
-  checkDuplicates: async ({ state }, payload) => {
+  checkDuplicates: async ({ state }, ...payload) => {
     const snapshot = await registrationNumbersRef
-      .child(getRegistrationNumber(payload[0], payload[1]))
+      .child(getRegistrationNumber(payload))
       .once('value')
     try {
       if (snapshot.val() === true)
