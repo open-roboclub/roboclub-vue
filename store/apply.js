@@ -22,17 +22,31 @@ const clearMember = member => {
   return member
 }
 
-const getRegistrationNumber = number => {
+const getRegistrationNumber = (number, course) => {
   const date = new Date()
   const currentMonth = date.getUTCMonth() + 1
   const currentYear = date.getUTCFullYear()
   const admissionYear = parseInt('20' + number[0] + number[1])
+
+  let coursePrefix
+  switch (course) {
+    case 'btech':
+      coursePrefix = 'T'
+      break
+    case 'be':
+      coursePrefix = 'E'
+      break
+    case 'diploma':
+      coursePrefix = 'D'
+      break
+  }
 
   let year = currentYear - admissionYear
   if (currentMonth > 8) year += 1
 
   return (
     'R' +
+    coursePrefix +
     (currentYear % 100).toString() +
     year.toString() +
     number[5] +
