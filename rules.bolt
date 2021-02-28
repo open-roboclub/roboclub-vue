@@ -256,7 +256,7 @@ type ClubMember {
 }
 
 type RegistrationNumber extends String {
-    validate() {this.length == 7}
+    validate() {this.length == 8}
 }
 
 type EnrollmentNumber extends String {
