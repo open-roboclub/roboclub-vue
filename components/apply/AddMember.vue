@@ -114,7 +114,7 @@ export default {
       this.error = ''
       await this.$refs.form.validate()
       if (this.valid) {
-        this.error = await this.checkDuplicates(this.member.facultyNumber)
+        this.error = await this.checkDuplicates(this.member.facultyNumber, this.member.course)
         if (this.error === undefined || this.error === null) this.error = ''
         if (this.error !== '') return
         await this.addMember(this.member.paymentStatus)
