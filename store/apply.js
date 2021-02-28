@@ -73,9 +73,9 @@ export const actions = {
   setMembersRef: firebaseAction(({ bindFirebaseRef }) => {
     return bindFirebaseRef('members', membersRef)
   }),
-  checkDuplicates: async ({ state }, facultyNumber) => {
+  checkDuplicates: async ({ state }, ...payload) => {
     const snapshot = await registrationNumbersRef
-      .child(getRegistrationNumber(facultyNumber))
+      .child(getRegistrationNumber(payload))
       .once('value')
     try {
       if (snapshot.val() === true)
@@ -104,7 +104,8 @@ export const actions = {
     state.memberToBeAdded.facultyNumber = state.memberToBeAdded.facultyNumber.toUpperCase()
     state.memberToBeAdded.enrollmentNumber = state.memberToBeAdded.enrollmentNumber.toUpperCase()
     state.memberToBeAdded.registrationNumber = getRegistrationNumber(
-      state.memberToBeAdded.facultyNumber
+      state.memberToBeAdded.facultyNumber,
+      state.memberToBeAdded.course
     )
 
     await registrationNumbersRef.ref
@@ -122,7 +123,8 @@ export const actions = {
 
     state.memberToBeEdited.timestamp = -(-date)
     state.memberToBeEdited.registrationNumber = getRegistrationNumber(
-      state.memberToBeEdited.facultyNumber
+      state.memberToBeEdited.facultyNumber,
+      state.memberToBeAdded.course
     )
     await registrationNumbersRef.ref
       .child(state.memberToBeEdited.registrationNumber)
