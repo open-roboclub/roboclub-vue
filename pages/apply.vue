@@ -51,8 +51,9 @@
               <v-select
                 v-model="memberToBeAdded.course"
                 :items="[
-                  { text: 'Bachelor in Technology', value: 'btech' },
-                  { text: 'Diploma Engineering', value: 'diploma' }
+                  { text: 'Bachelor of Technology', value: 'btech' },
+                  { text: 'Diploma Engineering', value: 'diploma' },
+                  { text: 'Bachelor of Engineeing', value: 'be' }
                 ]"
                 item-text="text"
                 item-value="value"
