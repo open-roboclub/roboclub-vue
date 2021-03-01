@@ -15,7 +15,7 @@
   },
   "dependencies": {
     "@nuxtjs/pwa": "^3.3.5",
-    "core-js": "^3.8.3",
+    "core-js": "^3.9.1",
     "firebase": "^8.2.9",
     "firebaseui": "^4.7.3",
     "nuxt": "^2.15.2",
