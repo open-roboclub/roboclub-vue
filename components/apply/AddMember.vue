@@ -51,7 +51,9 @@
                   :items="[
                     { text: 'Bachelor of Technology', value: 'btech' },
                     { text: 'Diploma Engineering', value: 'diploma' },
-                    { text: 'Bachelor of Engineeing', value: 'be' }
+                    { text: 'Bachelor of Engineeing', value: 'be' },
+                    { text: 'Masters of Technology', value: 'mtech' },
+                    { text: 'Not a University Student', value: 'na' }
                   ]"
                   item-text="text"
                   item-value="value"

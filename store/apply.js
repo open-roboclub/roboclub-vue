@@ -39,6 +39,12 @@ const getRegistrationNumber = (number, course) => {
     case 'diploma':
       coursePrefix = 'D'
       break
+    case 'mtech':
+      coursePrefix = 'M'
+      break
+    case 'na':
+      coursePrefix = 'N'
+      break
   }
 
   let year = currentYear - admissionYear
@@ -93,6 +99,7 @@ export const actions = {
     entry.facultyNumber = payload.facultyNumber
     entry.enrollmentNumber = payload.enrollmentNumber
     entry.paymentStatus = payload.paymentStatus
+    entry.registrationNumber = payload.registrationNumber
 
     commit('setMemberToEdit', entry)
   },
@@ -103,11 +110,15 @@ export const actions = {
     state.memberToBeAdded.paymentStatus = paymentStatus
     state.memberToBeAdded.facultyNumber = state.memberToBeAdded.facultyNumber.toUpperCase()
     state.memberToBeAdded.enrollmentNumber = state.memberToBeAdded.enrollmentNumber.toUpperCase()
+
+    const oldRegistrationNumber = state.memberToBeEdited.registrationNumber
+
     state.memberToBeAdded.registrationNumber = getRegistrationNumber(
       state.memberToBeAdded.facultyNumber,
       state.memberToBeAdded.course
     )
 
+    await registrationNumbersRef.ref.child(oldRegistrationNumber).remove()
     await registrationNumbersRef.ref
       .child(state.memberToBeAdded.registrationNumber)
       .set(true)
@@ -124,7 +135,7 @@ export const actions = {
     state.memberToBeEdited.timestamp = -(-date)
     state.memberToBeEdited.registrationNumber = getRegistrationNumber(
       state.memberToBeEdited.facultyNumber,
-      state.memberToBeAdded.course
+      state.memberToBeEdited.course
     )
     await registrationNumbersRef.ref
       .child(state.memberToBeEdited.registrationNumber)
