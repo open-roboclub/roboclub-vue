@@ -111,14 +111,11 @@ export const actions = {
     state.memberToBeAdded.facultyNumber = state.memberToBeAdded.facultyNumber.toUpperCase()
     state.memberToBeAdded.enrollmentNumber = state.memberToBeAdded.enrollmentNumber.toUpperCase()
 
-    const oldRegistrationNumber = state.memberToBeEdited.registrationNumber
-
     state.memberToBeAdded.registrationNumber = getRegistrationNumber(
       state.memberToBeAdded.facultyNumber,
       state.memberToBeAdded.course
     )
 
-    await registrationNumbersRef.ref.child(oldRegistrationNumber).remove()
     await registrationNumbersRef.ref
       .child(state.memberToBeAdded.registrationNumber)
       .set(true)
@@ -133,10 +130,14 @@ export const actions = {
     const date = new Date()
 
     state.memberToBeEdited.timestamp = -(-date)
+
+    const oldRegistrationNumber = state.memberToBeEdited.registrationNumber
+
     state.memberToBeEdited.registrationNumber = getRegistrationNumber(
       state.memberToBeEdited.facultyNumber,
       state.memberToBeEdited.course
     )
+    await registrationNumbersRef.ref.child(oldRegistrationNumber).remove()
     await registrationNumbersRef.ref
       .child(state.memberToBeEdited.registrationNumber)
       .set(true)
@@ -146,7 +147,14 @@ export const actions = {
 }
 
 export const getters = {
-  members: state => state.members,
+  members: (state, getters) => search => {
+    return state.members.filter(member => {
+      return (
+        member.name.toUpperCase().includes(search.toUpperCase()) ||
+        member.facultyNumber.toUpperCase().includes(search.toUpperCase())
+      )
+    })
+  },
   member: state => state.memberToBeAdded,
   memberEdit: state => state.memberToBeEdited
 }

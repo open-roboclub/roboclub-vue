@@ -14,7 +14,12 @@
     <v-row justify="center">
       <AddMember />
     </v-row>
-
+    <v-container>
+      <v-text-field
+        v-model="search"
+        label="Search by name or enrollment number"
+      ></v-text-field>
+    </v-container>
     <v-simple-table>
       <template #default>
         <thead>
@@ -29,7 +34,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="member in members" :key="member.registrationNumber">
+          <tr v-for="member in filteredMembers" :key="member['.key']">
             <td>{{ member.name }}</td>
             <td>{{ member.mobile }}</td>
             <td>{{ member.email }}</td>
@@ -63,8 +68,14 @@ export default {
     Actions,
     AddMember
   },
+  data: () => ({
+    search: ''
+  }),
   computed: {
-    ...mapGetters('apply', ['members'])
+    ...mapGetters('apply', ['members']),
+    filteredMembers() {
+      return this.members(this.search)
+    }
   },
   created() {
     this.setMembersRef()
