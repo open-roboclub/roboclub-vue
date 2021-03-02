@@ -24,11 +24,9 @@
         </v-card>
 
         <v-card>
-          <v-card-title class="cyan accent-2">
-            Our Sponsors
-          </v-card-title>
+          <v-card-title class="cyan accent-2"> Our Sponsors </v-card-title>
 
-          <v-card-text class="cyan  accent-2 black--text">
+          <v-card-text class="cyan accent-2 black--text">
             Thanks for your support!
           </v-card-text>
 
@@ -74,18 +72,18 @@
 import { mapState, mapActions } from 'vuex'
 
 export default {
+  head() {
+    return {
+      title: 'Robocon'
+    }
+  },
   computed: {
     ...mapState('robocon', ['robocon'])
   },
   created() {
     this.setRoboconRef()
   },
-  methods: mapActions('robocon', ['setRoboconRef']),
-  head() {
-    return {
-      title: 'Robocon'
-    }
-  }
+  methods: mapActions('robocon', ['setRoboconRef'])
 }
 </script>
 

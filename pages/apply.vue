@@ -14,15 +14,15 @@
           <v-alert v-if="success" text type="success">
             Your application has been submitted
           </v-alert>
-          <v-alert v-if="error" text type="error">
-            Please fill up the form correctly before submitting
+          <v-alert v-if="error.length" text type="error">
+            {{ error }}
           </v-alert>
         </v-col>
       </v-row>
       <v-form ref="form" v-model="valid" lazy-validation>
         <v-container>
           <v-row>
-            <v-col lg="6" md="6" sm="12">
+            <v-col lg="6" md="6" sm="12" cols="12">
               <v-text-field
                 v-model="memberToBeAdded.name"
                 label="Name"
@@ -30,7 +30,7 @@
                 required
               ></v-text-field>
             </v-col>
-            <v-col lg="6" md="6" sm="12">
+            <v-col lg="6" md="6" sm="12" cols="12">
               <v-text-field
                 v-model="memberToBeAdded.email"
                 label="Email Address"
@@ -38,7 +38,7 @@
                 required
               ></v-text-field>
             </v-col>
-            <v-col lg="6" md="6" sm="12">
+            <v-col lg="6" md="6" sm="12" cols="12">
               <v-text-field
                 v-model="memberToBeAdded.mobile"
                 :counter="10"
@@ -47,12 +47,15 @@
                 required
               ></v-text-field>
             </v-col>
-            <v-col lg="6" md="6" sm="12">
+            <v-col lg="6" md="6" sm="12" cols="12">
               <v-select
                 v-model="memberToBeAdded.course"
                 :items="[
-                  { text: 'Bachelor in Technology', value: 'btech' },
-                  { text: 'Diploma Engineering', value: 'diploma' }
+                  { text: 'Bachelor of Technology', value: 'btech' },
+                  { text: 'Diploma Engineering', value: 'diploma' },
+                  { text: 'Bachelor of Engineeing', value: 'be' },
+                  { text: 'Masters of Technology', value: 'mtech' },
+                  { text: 'Not a University Student', value: 'na' }
                 ]"
                 item-text="text"
                 item-value="value"
@@ -60,7 +63,7 @@
                 :rules="rules.notNullRules"
               ></v-select>
             </v-col>
-            <v-col lg="6" md="6" sm="12">
+            <v-col lg="6" md="6" sm="12" cols="12">
               <v-text-field
                 v-model="memberToBeAdded.facultyNumber"
                 :counter="8"
@@ -69,7 +72,7 @@
                 required
               ></v-text-field>
             </v-col>
-            <v-col lg="6" md="6" sm="12">
+            <v-col lg="6" md="6" sm="12" cols="12">
               <v-text-field
                 v-model="memberToBeAdded.enrollmentNumber"
                 :counter="6"
@@ -78,9 +81,7 @@
                 required
               ></v-text-field>
             </v-col>
-            <v-btn depressed color="primary" @click="apply">
-              Submit
-            </v-btn>
+            <v-btn depressed color="primary" @click="apply"> Submit </v-btn>
           </v-row>
         </v-container>
       </v-form>
@@ -102,30 +103,8 @@ export default {
     valid: false,
     rules,
     success: false,
-    error: false
+    error: ''
   }),
-
-  computed: {
-    ...mapState(['isAdmin']),
-    ...mapState('apply', ['memberToBeAdded'])
-  },
-
-  methods: {
-    async apply() {
-      this.success = false
-      this.error = ''
-      await this.$refs.form.validate()
-      if (this.valid) {
-        await this.addMember(false)
-        this.$refs.form.reset()
-        this.success = true
-      } else {
-        this.error = true
-      }
-    },
-    ...mapActions('apply', ['addMember'])
-  },
-
   head() {
     if (!this.isAdmin)
       return {
@@ -135,6 +114,32 @@ export default {
       return {
         title: 'Members'
       }
+  },
+
+  computed: {
+    ...mapState(['isAdmin']),
+    ...mapState('apply', ['memberToBeAdded'])
+  },
+
+  methods: {
+    async apply() {
+      this.success = false
+      await this.$refs.form.validate()
+      if (this.valid) {
+        this.error = await this.checkDuplicates(
+          this.memberToBeAdded.facultyNumber,
+          this.memberToBeAdded.course
+        )
+        if (this.error === undefined || this.error === null) this.error = ''
+        if (this.error !== '') return
+        await this.addMember(false)
+        this.$refs.form.reset()
+        this.success = true
+      } else if (this.error === '') {
+        this.error = 'Please fill up the form correctly before submitting.'
+      }
+    },
+    ...mapActions('apply', ['addMember', 'checkDuplicates'])
   }
 }
 </script>

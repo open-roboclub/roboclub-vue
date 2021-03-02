@@ -58,9 +58,7 @@
           <v-container>
             <v-card-text class="pt-3">
               <div>
-                <h1 class="team-header pb-2">
-                  Team Co-ordinators
-                </h1>
+                <h1 class="team-header pb-2">Team Co-ordinators</h1>
               </div>
             </v-card-text>
             <div v-if="!coordinators.length" class="text-center">
@@ -156,9 +154,7 @@
               <v-container>
                 <v-row>
                   <v-col cols="2" class="text-center">
-                    <v-icon left x-large color="black">
-                      mdi-city
-                    </v-icon>
+                    <v-icon left x-large color="black"> mdi-city </v-icon>
                   </v-col>
                   <v-col cols="10">
                     WS-18, <br />Mechanical Workshop Compound, <br />Zakir
@@ -174,9 +170,7 @@
                       target="_blank"
                       rel="noopener"
                     >
-                      <v-icon light x-large>
-                        mdi-map-legend
-                      </v-icon>
+                      <v-icon light x-large> mdi-map-legend </v-icon>
                     </a>
                   </v-col>
                 </v-row>
@@ -197,9 +191,7 @@
           <v-container>
             <v-row style="padding-right: 10px">
               <v-col cols="1" lg="2" xl="1" style="min-width: 40px">
-                <v-icon left x-large color="black">
-                  mdi-newspaper
-                </v-icon>
+                <v-icon left x-large color="black"> mdi-newspaper </v-icon>
               </v-col>
               <v-col cols="11" lg="10" xl="11">
                 {{ replaceString(item.notice) }}
@@ -215,9 +207,7 @@
             <v-row>
               <v-col cols="12" class="text-center">
                 <nuxt-link to="/news" class="iconLink">
-                  <v-icon x-large>
-                    mdi-expand-all
-                  </v-icon>
+                  <v-icon x-large> mdi-expand-all </v-icon>
                 </nuxt-link>
               </v-col>
             </v-row>
@@ -235,6 +225,11 @@ import ResizeImg from '@/components/widgets/ResizeImg.vue'
 
 export default {
   components: { PageLoader, ResizeImg },
+  head() {
+    return {
+      title: 'Home'
+    }
+  },
   computed: {
     ...mapGetters('news', ['recentNews']),
     ...mapGetters('team', ['coordinators'])
@@ -256,6 +251,7 @@ export default {
     return {
       title: 'Home'
     }
+
   }
 }
 </script>

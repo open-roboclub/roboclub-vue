@@ -5,18 +5,16 @@
     item-key="name"
     :items-per-page="5"
   >
-    <template v-slot:item.remaining="{ item }">
+    <template #[`item.remaining`]="{ item }">
       {{ item.total - item.allotted }}
     </template>
-    <template v-if="isAdmin" v-slot:item.actions="{ item }">
+    <template v-if="isAdmin" #[`item.actions`]="{ item }">
       <Admin :item="item" :type-id="typeId" />
     </template>
-    <template v-else-if="user" v-slot:item.actions="{ item }">
+    <template v-else-if="user" #[`item.actions`]="{ item }">
       <User :item="item" :type-id="typeId" />
     </template>
-    <template v-else v-slot:item.actions>
-      ---
-    </template>
+    <template v-else #[`item.actions`]> --- </template>
   </v-data-table>
 </template>
 

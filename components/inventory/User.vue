@@ -1,15 +1,11 @@
 <template>
   <v-container>
     <v-dialog v-model="dialog" max-width="500">
-      <template v-slot:activator="{ on }">
-        <v-icon medium color="blue darken-2" v-on="on">
-          mdi-anchor
-        </v-icon>
+      <template #activator="{ on }">
+        <v-icon medium color="blue darken-2" v-on="on"> mdi-anchor </v-icon>
       </template>
       <v-card>
-        <v-card-title>
-          Book this item
-        </v-card-title>
+        <v-card-title> Book this item </v-card-title>
         <v-card-text>
           <v-container>
             <v-text-field v-model="quantity" label="Quantity" required>

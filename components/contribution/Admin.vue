@@ -2,20 +2,14 @@
   <div class="text-center">
     <div v-show="selected.length > 0" class="mt-3">
       <v-btn fab dark class="red" @click="deleteContributions">
-        <v-icon dark>
-          mdi-delete
-        </v-icon>
+        <v-icon dark> mdi-delete </v-icon>
       </v-btn>
       <v-btn fab dark class="blue ml-3" @click="editContribution">
-        <v-icon dark>
-          mdi-pencil
-        </v-icon>
+        <v-icon dark> mdi-pencil </v-icon>
       </v-btn>
     </div>
 
-    <h5 class="grey--text text--darken-3 mt-4">
-      Add a contribution
-    </h5>
+    <h5 class="grey--text text--darken-3 mt-4">Add a contribution</h5>
     <v-row justify="space-between">
       <v-col cols="12" md="4" xl="2">
         <v-text-field
@@ -47,9 +41,7 @@
     </v-row>
     <v-snackbar v-model="snackbar.show" :color="snackbar.context">
       {{ snackbar.text }}
-      <v-btn dark text @click="snackbar.show = false">
-        Close
-      </v-btn>
+      <v-btn dark text @click="snackbar.show = false"> Close </v-btn>
     </v-snackbar>
   </div>
 </template>

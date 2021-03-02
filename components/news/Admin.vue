@@ -2,11 +2,9 @@
   <div>
     <v-row justify="center">
       <v-dialog v-model="addDialog" max-width="500">
-        <template v-slot:activator="{ on }">
+        <template #activator="{ on }">
           <v-btn fab dark class="cyan" v-on="on">
-            <v-icon dark>
-              mdi-plus
-            </v-icon>
+            <v-icon dark> mdi-plus </v-icon>
           </v-btn>
         </template>
         <v-card>
@@ -43,9 +41,7 @@
             <v-btn class="blue--text darken-1" text @click="addDialog = false">
               Close
             </v-btn>
-            <v-btn class="blue--text darken-1" text @click="add">
-              Save
-            </v-btn>
+            <v-btn class="blue--text darken-1" text @click="add"> Save </v-btn>
           </v-card-actions>
         </v-card>
       </v-dialog>
@@ -106,9 +102,7 @@
             <v-btn class="blue--text" text @click="deleteDialog = false">
               No
             </v-btn>
-            <v-btn class="red--text" text @click="deleteNewsItem">
-              Yes
-            </v-btn>
+            <v-btn class="red--text" text @click="deleteNewsItem"> Yes </v-btn>
           </v-card-actions>
         </v-card>
       </v-dialog>

@@ -1,17 +1,13 @@
 <template>
   <v-container>
     <v-dialog v-model="dialog" max-width="500">
-      <template v-slot:activator="{ on }">
+      <template #activator="{ on }">
         <v-btn fab dark class="cyan" v-on="on">
-          <v-icon dark>
-            mdi-bell
-          </v-icon>
+          <v-icon dark> mdi-bell </v-icon>
         </v-btn>
       </template>
       <v-card>
-        <v-card-title>
-          Issue Requests
-        </v-card-title>
+        <v-card-title> Issue Requests </v-card-title>
         <v-divider></v-divider>
         <v-card-text>
           <v-row>

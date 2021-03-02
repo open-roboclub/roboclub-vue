@@ -14,41 +14,32 @@
     <v-row justify="center">
       <AddMember />
     </v-row>
-
+    <v-container>
+      <v-text-field
+        v-model="search"
+        label="Search by name or enrollment number"
+      ></v-text-field>
+    </v-container>
     <v-simple-table>
-      <template v-slot:default>
+      <template #default>
         <thead>
           <tr>
-            <th class="text-left">
-              Name
-            </th>
-            <th class="text-left">
-              Mobile
-            </th>
-            <th class="text-left">
-              Email
-            </th>
-            <th class="text-left">
-              Date Applied
-            </th>
-            <th class="text-left">
-              Faculty Number
-            </th>
-            <th class="text-left">
-              Paid
-            </th>
-            <th class="text-left">
-              Actions
-            </th>
+            <th class="text-left">Name</th>
+            <th class="text-left">Mobile</th>
+            <th class="text-left">Email</th>
+            <th class="text-left">Date Applied</th>
+            <th class="text-left">Registration Number</th>
+            <th class="text-left">Paid</th>
+            <th class="text-left">Actions</th>
           </tr>
         </thead>
         <tbody>
-          <tr v-for="member in members" :key="member.enrollmentNumber">
+          <tr v-for="member in filteredMembers" :key="member['.key']">
             <td>{{ member.name }}</td>
             <td>{{ member.mobile }}</td>
             <td>{{ member.email }}</td>
             <td>{{ new Date(member.timestamp).toDateString() }}</td>
-            <td>{{ member.facultyNumber }}</td>
+            <td>{{ member.registrationNumber }}</td>
             <td v-if="member.paymentStatus === false">
               <v-icon medium color="red darken-2" v-on="on">
                 mdi-window-close
@@ -77,8 +68,14 @@ export default {
     Actions,
     AddMember
   },
+  data: () => ({
+    search: ''
+  }),
   computed: {
-    ...mapGetters('apply', ['members'])
+    ...mapGetters('apply', ['members']),
+    filteredMembers() {
+      return this.members(this.search)
+    }
   },
   created() {
     this.setMembersRef()
