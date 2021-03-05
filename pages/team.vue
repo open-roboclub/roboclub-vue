@@ -23,7 +23,7 @@
             <v-avatar :tile="false" :size="200" color="grey lighten-4 mt-3">
               <resize-img
                 :aspect-ratio="16 / 9"
-                :src="member.thumbnail"
+                :src="member.profileImageUrl"
                 :width="250"
                 alt="Avatar"
               />
@@ -161,12 +161,23 @@ export default {
       selectedMember: {}
     }
   },
+  head() {
+    return {
+      title: 'Team'
+    }
+  },
   computed: {
     ...mapGetters('team', ['members'])
   },
   created() {
-    this.setTeamRef()
+    this.setCoreTeamRef()
+    this.setFacultyTeamRef()
   },
+  mounted() {
+    this.setCoreTeamRef()
+    this.setFacultyTeamRef()
+  },
+
   methods: {
     openDialog(member) {
       this.dialog = true
@@ -209,12 +220,8 @@ export default {
 
       return link
     },
-    ...mapActions('team', ['setTeamRef'])
-  },
-  head() {
-    return {
-      title: 'Team'
-    }
+    ...mapActions('team', ['setCoreTeamRef']),
+    ...mapActions('team', ['setFacultyTeamRef'])
   }
 }
 </script>
