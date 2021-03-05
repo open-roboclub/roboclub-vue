@@ -224,11 +224,6 @@ import ResizeImg from '@/components/widgets/ResizeImg.vue'
 
 export default {
   components: { PageLoader, ResizeImg },
-  head() {
-    return {
-      title: 'Home'
-    }
-  },
   computed: {
     ...mapGetters('news', ['recentNews']),
     ...mapGetters('team', ['coordinators'])
@@ -243,6 +238,11 @@ export default {
     replaceString(str) {
       const regex = /[*_#`~?:[\u2700-\u27BF]|(?:\uD83C[\uDDE6-\uDDFF]){2}|[\uD800-\udbFF][\uDC00-\uDFFF]|[\u0023-\u0039]\uFE0F?\u20E3|\u3299|\u3297|\u303D|\u3030|\u24C2|\uD83C[\uDD70-\uDD71]|\uD83C[\uDD7E-\uDD7f]|\uD83C\uDD8E|\uD83C[\uDD91-\uDD9A]|\uD83C[\uDDE6-\uDDFF]|\uD83C[\uDE01-\uDE02]|\uD83C\uDE1A|\uD83C\uDE2F|\uD83C[\uDE32-\uDE3A]|\uD83C[\uDE50-\uDE51]|\u203C|\u2049|[\u25AA-\u25AB]|\u25B6|\u25C0|[\u25FB-\u25FE]|\u00A9|\u00AE|\u2122|\u2139|\ud83C\uDC04|[\u2600-\u26FF]|\u2B05|\u2B06|\u2B07|\u2B1B|\u2B1C|\u2B50|\u2B55|\u231A|\u231B|\u2328|\u23CF|[\u23E9-\u23F3]|[\u23F8-\u23FA]|\uD83C\uDCCF|\u2934|\u2935|[\u2190-\u21FF]]/g
       return str.replace(regex, '')
+    }
+  },
+  head() {
+    return {
+      title: 'Home'
     }
   }
 }
