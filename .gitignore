@@ -82,4 +82,5 @@ dist
 
 sw.*
 
-storybook-static/
+.nuxt-storybook
+storybook-static

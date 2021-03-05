@@ -8,14 +8,14 @@ expect.extend({
   toAllowWrite: targaryen.toAllowWrite
 })
 
-describe('Public Routes Access Tests', function() {
+describe('Public Routes Access Tests', function () {
   const database = targaryen.getDatabase(rules, {
     admins: {
       admin: true
     }
   })
 
-  it('should allow un/authenticated user to read public routes', function() {
+  it('should allow un/authenticated user to read public routes', function () {
     const routes = [
       '/news',
       '/projects',

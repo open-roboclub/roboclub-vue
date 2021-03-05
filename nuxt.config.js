@@ -2,12 +2,11 @@ const pkg = require('./package')
 
 const isProduction = process.env.NODE_ENV === 'production'
 
-module.exports = {
-  mode: 'spa',
+export default {
+  // Target: https://go.nuxtjs.dev/config-target
+  target: 'static',
 
-  /*
-   ** Headers of the page
-   */
+  // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     title: 'AMU RoboClub',
     meta: [
@@ -18,49 +17,61 @@ module.exports = {
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
   },
 
-  /*
-   ** Customize the progress-bar color
-   */
-  loading: { color: '#ddd' },
-
-  /*
-   ** Global CSS
-   */
+  // Global CSS: https://go.nuxtjs.dev/config-css
   css: [],
 
-  /*
-   ** Plugins to load before mounting the App
-   */
+  // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: ['@/plugins/firebase'],
 
-  /*
-   ** Nuxt.js modules
-   */
-  modules: ['@nuxtjs/pwa'],
+  // Auto import components: https://go.nuxtjs.dev/config-components
+  components: true,
 
-  buildModules: ['@nuxtjs/vuetify'],
+  // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
+  buildModules: [
+    'nuxt-build-optimisations',
+    // https://go.nuxtjs.dev/eslint
+    '@nuxtjs/eslint-module',
+    // https://go.nuxtjs.dev/vuetify
+    '@nuxtjs/vuetify'
+  ],
 
+  // Modules: https://go.nuxtjs.dev/config-modules
+  modules: [
+    // https://go.nuxtjs.dev/pwa
+    '@nuxtjs/pwa'
+  ],
+
+  // PWA module configuration: https://go.nuxtjs.dev/pwa
+  pwa: {
+    manifest: {
+      lang: 'en'
+    }
+  },
+
+  // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify
   vuetify: {
     customVariables: ['~/assets/variables.scss']
   },
 
-  /*
-   ** Build configuration
-   */
+  storybook: {
+    decorators: [
+      // VApp decorator for Vuetify
+      '<v-app><story/></v-app>'
+    ]
+  },
+
+  // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
     extractCSS: isProduction,
-    /*
-     ** You can extend webpack config here
-     */
-    extend(config, ctx) {
-      // Run ESLint on save
-      if (ctx.isDev && ctx.isClient) {
-        config.module.rules.push({
-          enforce: 'pre',
-          test: /\.(js|vue)$/,
-          loader: 'eslint-loader',
-          exclude: /(node_modules)/
-        })
+    optimization: {
+      splitChunks: {
+        cacheGroups: {
+          commons: {
+            test: /[\\/]node_modules[\\/]/,
+            name: 'vendors',
+            chunks: 'all'
+          }
+        }
       }
     }
   }

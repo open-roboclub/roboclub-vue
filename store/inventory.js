@@ -31,7 +31,7 @@ function getIndex(name) {
   inventoryRef
     .orderByChild('name')
     .equalTo(name)
-    .on('value', function(snapshot) {
+    .on('value', function (snapshot) {
       snapshot.forEach(item => {
         index = item.key
       })
@@ -46,7 +46,7 @@ function getItemIndex(type, name) {
     .child('items')
     .orderByChild('name')
     .equalTo(name)
-    .on('value', function(snapshot) {
+    .on('value', function (snapshot) {
       snapshot.forEach(item => {
         index = item.key
       })
@@ -106,10 +106,7 @@ export const actions = {
 
   addEntry: ({ state, commit }, payload) => {
     const typeIndex = getIndex(payload)
-    inventoryRef
-      .child(typeIndex)
-      .child('items')
-      .push(state.entryAdd)
+    inventoryRef.child(typeIndex).child('items').push(state.entryAdd)
     commit('resetEntry')
   },
 

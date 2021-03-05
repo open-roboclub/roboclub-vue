@@ -8,7 +8,7 @@ expect.extend({
   toAllowWrite: targaryen.toAllowWrite
 })
 
-describe('News Access Tests', function() {
+describe('News Access Tests', function () {
   const database = targaryen.getDatabase(rules, {
     users: {
       test: {
@@ -28,7 +28,7 @@ describe('News Access Tests', function() {
     }
   })
 
-  it('should allow un/authenticated user to read all news', function() {
+  it('should allow un/authenticated user to read all news', function () {
     expect(database.as(targaryen.users.unauthenticated)).toAllowRead('/news')
     expect(database.as(targaryen.users.unauthenticated)).toAllowRead(
       '/news/qwf323efhif'
@@ -43,28 +43,28 @@ describe('News Access Tests', function() {
     timestamp: new Date().getTime()
   }
 
-  it('should not allow unauthenticated person to create news', function() {
+  it('should not allow unauthenticated person to create news', function () {
     expect(database.as(targaryen.users.unauthenticated)).not.toAllowWrite(
       '/news/new',
       validNotification
     )
   })
 
-  it('should not allow non-admin to create news', function() {
+  it('should not allow non-admin to create news', function () {
     expect(database.as({ uid: 'test' })).not.toAllowWrite(
       '/news/new',
       validNotification
     )
   })
 
-  it('should not allow non-admin to patch news', function() {
+  it('should not allow non-admin to patch news', function () {
     expect(database.as({ uid: 'test' })).not.toAllowUpdate(
       '/news/qwf323efhif',
       validNotification
     )
   })
 
-  it('should allow admin to create news', function() {
+  it('should allow admin to create news', function () {
     expect(database.as({ uid: 'admin' })).toAllowWrite(
       '/news/new',
       validNotification
@@ -92,11 +92,11 @@ describe('News Access Tests', function() {
     }) // Smaller than 5 characters
   }
 
-  it('should not allow admin to create invalid news', function() {
+  it('should not allow admin to create invalid news', function () {
     adminNewsAction('toAllowWrite', 'new')
   })
 
-  it('should not allow admin to patch invalid news', function() {
+  it('should not allow admin to patch invalid news', function () {
     adminNewsAction('toAllowUpdate', 'qwf323efhif')
   })
 })

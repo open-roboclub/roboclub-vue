@@ -9,22 +9,16 @@ module.exports = {
   },
   extends: [
     '@nuxtjs',
-    'plugin:nuxt/recommended',
+    'prettier',
+    'prettier/vue',
     'plugin:prettier/recommended',
-    'prettier',
-    'prettier/vue'
+    'plugin:nuxt/recommended'
   ],
-  // required to lint *.vue files
-  plugins: [
-    'prettier',
-    'vuetify'
-  ],
+  plugins: ['prettier', 'vuetify'],
   // add your custom rules here
   rules: {
     'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
     'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
-    'nuxt/no-cjs-in-config': 'off',
-    'vuetify/grid-unknown-attributes': 'error',
-    'vuetify/no-legacy-grid': 'error'
+    'nuxt/no-cjs-in-config': 'off'
   }
 }

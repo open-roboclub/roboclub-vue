@@ -5,13 +5,13 @@
     item-key="name"
     class="downloads-table elevation-1"
   >
-    <template v-slot:item.size="{ item }">
+    <template #[`item.size`]="{ item }">
       <v-chip v-if="item.size" color="success caption">
         {{ fileSizeSI(item.size) }}
       </v-chip>
     </template>
 
-    <template v-slot:item.url="{ item }">
+    <template #[`item.url`]="{ item }">
       <a
         v-if="item.url"
         class="download-link"
@@ -59,9 +59,10 @@ export default {
 }
 </script>
 
-<style lang="stylus" scoped>
-.download-link
-  text-decoration none
+<style scoped>
+.download-link {
+  text-decoration: none;
+}
 </style>
 
 <style>

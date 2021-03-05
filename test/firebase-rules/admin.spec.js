@@ -8,7 +8,7 @@ expect.extend({
   toAllowWrite: targaryen.toAllowWrite
 })
 
-describe('Admin Access Tests', function() {
+describe('Admin Access Tests', function () {
   const database = targaryen.getDatabase(rules, {
     users: {
       test: {
@@ -23,7 +23,7 @@ describe('Admin Access Tests', function() {
     }
   })
 
-  it('should not allow un/authenticated user to read admins', function() {
+  it('should not allow un/authenticated user to read admins', function () {
     expect(database.as(targaryen.users.unauthenticated)).not.toAllowRead(
       '/admins'
     )
@@ -35,7 +35,7 @@ describe('Admin Access Tests', function() {
     expect(database.as({ uid: 'test' })).not.toAllowRead('/admins/admin')
   })
 
-  it('should not allow un/authenticated user to write admins', function() {
+  it('should not allow un/authenticated user to write admins', function () {
     expect(database.as(targaryen.users.unauthenticated)).not.toAllowWrite(
       '/admins/test',
       true
@@ -43,15 +43,15 @@ describe('Admin Access Tests', function() {
     expect(database.as({ uid: 'test' })).not.toAllowWrite('/admins/test', true)
   })
 
-  it('should not allow admin user to read admins', function() {
+  it('should not allow admin user to read admins', function () {
     expect(database.as({ uid: 'admin' })).not.toAllowRead('/admins')
   })
 
-  it('should allow admin user to read itself', function() {
+  it('should allow admin user to read itself', function () {
     expect(database.as({ uid: 'admin' })).toAllowRead('/admins/admin')
   })
 
-  it('should not allow admin user to write admins', function() {
+  it('should not allow admin user to write admins', function () {
     expect(database.as({ uid: 'admin' })).not.toAllowWrite('/admins', {})
     expect(database.as({ uid: 'admin' })).not.toAllowWrite('/admins/test', true)
     expect(database.as({ uid: 'admin' })).not.toAllowWrite(

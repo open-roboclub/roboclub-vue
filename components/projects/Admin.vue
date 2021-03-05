@@ -1,11 +1,9 @@
 <template>
   <v-row justify="center">
     <v-dialog v-model="dialog" persistent max-width="600px">
-      <template v-slot:activator="{ on }">
+      <template #activator="{ on }">
         <v-btn dark fab class="cyan" v-on="on">
-          <v-icon dark>
-            mdi-plus
-          </v-icon>
+          <v-icon dark> mdi-plus </v-icon>
         </v-btn>
       </template>
       <v-card>
@@ -78,19 +76,19 @@
                   <v-container fluid>
                     <v-row>
                       <v-col
-                        v-for="image in galleryImages"
-                        :key="image"
+                        v-for="img in galleryImages"
+                        :key="img"
                         class="d-flex child-flex"
                         cols="4"
                       >
                         <v-card flat tile class="d-flex">
                           <v-img
-                            :src="image"
-                            :lazy-src="image"
+                            :src="img"
+                            :lazy-src="img"
                             aspect-ratio="1"
                             class="grey lighten-2"
                           >
-                            <template v-slot:placeholder>
+                            <template #placeholder>
                               <v-row
                                 class="fill-height ma-0"
                                 align="center"
@@ -167,9 +165,7 @@
                 </v-container>
               </v-form>
 
-              <v-btn color="orange" @click="reset">
-                Reset Form
-              </v-btn>
+              <v-btn color="orange" @click="reset"> Reset Form </v-btn>
             </v-form>
           </v-container>
           <small>*indicates required field</small>
