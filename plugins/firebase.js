@@ -3,6 +3,7 @@ import firebaseConfig from '~/firebaseconfig'
 import 'firebase/auth'
 import 'firebase/database'
 import 'firebase/functions'
+import 'firebase/firestore'
 
 if (!firebaseConfig) {
   throw new Error('missing firebase.json config.')
@@ -13,6 +14,7 @@ if (!firebase.apps.length) {
 }
 
 export const db = firebase.database()
+export const firestoreDb = firebase.firestore()
 
 export default function ({ store }, inject) {
   inject('firebase', firebase)
