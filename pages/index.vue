@@ -193,7 +193,7 @@
                 <v-icon left x-large color="black"> mdi-newspaper </v-icon>
               </v-col>
               <v-col cols="11" lg="10" xl="11">
-                {{ item.notice }}
+                {{ replaceString(item.notice) }}
                 <br />
                 <br />
                 {{ item.date }}
