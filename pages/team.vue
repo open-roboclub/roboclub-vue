@@ -173,11 +173,6 @@ export default {
     this.setCoreTeamRef()
     this.setFacultyTeamRef()
   },
-  mounted() {
-    this.setCoreTeamRef()
-    this.setFacultyTeamRef()
-  },
-
   methods: {
     openDialog(member) {
       this.dialog = true

@@ -14,7 +14,6 @@
     "test": "jest"
   },
   "dependencies": {
-    "cross-env": "7.0.1",
     "vuetify": "2.2.14",
     "vuexfire": "^3.2.5",
     "@nuxtjs/pwa": "^3.3.5",
