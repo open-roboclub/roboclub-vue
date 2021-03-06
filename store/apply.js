@@ -1,8 +1,8 @@
-import { firebaseAction } from 'vuexfire'
-import { db } from '@/plugins/firebase'
+import { firestoreAction } from 'vuexfire'
+import { DB } from '@/plugins/firebase'
 
-const membersRef = db.ref('members/memberList')
-const registrationNumbersRef = db.ref('members/registrationNumbers')
+const membersRef = DB.collection('members')
+const facultyNumbersRef = DB.collection('facultyNumbers')
 
 const clearMember = member => {
   if (!member) {
@@ -62,7 +62,7 @@ const getRegistrationNumber = (number, course) => {
 }
 
 export const state = () => ({
-  members: [],
+  members: {},
   memberToBeAdded: clearMember(),
   memberToBeEdited: clearMember()
 })
@@ -76,15 +76,13 @@ export const mutations = {
 }
 
 export const actions = {
-  setMembersRef: firebaseAction(({ bindFirebaseRef }) => {
-    return bindFirebaseRef('members', membersRef)
+  setMembersRef: firestoreAction(({ bindFirestoreRef }) => {
+    return bindFirestoreRef('members', membersRef)
   }),
-  checkDuplicates: async ({ state }, ...payload) => {
-    const snapshot = await registrationNumbersRef
-      .child(getRegistrationNumber(payload))
-      .once('value')
+  checkDuplicates: async ({ state }, facultyNumber) => {
+    const snapshot = await facultyNumbersRef.doc(facultyNumber).get()
     try {
-      if (snapshot.val() === true)
+      if (snapshot.data().value === true)
         return 'This faculty number is used by another person'
     } catch (err) {
       return ''
@@ -105,6 +103,7 @@ export const actions = {
   },
   addMember: async ({ state, commit }, paymentStatus) => {
     const date = new Date()
+    const batch = DB.batch()
 
     state.memberToBeAdded.timestamp = -(-date)
     state.memberToBeAdded.paymentStatus = paymentStatus
@@ -116,39 +115,43 @@ export const actions = {
       state.memberToBeAdded.course
     )
 
-    await registrationNumbersRef.ref
-      .child(state.memberToBeAdded.registrationNumber)
-      .set(true)
-    await membersRef.ref.push(state.memberToBeAdded)
-    commit('resetMember')
+    batch.set(facultyNumbersRef.doc(state.memberToBeAdded.facultyNumber), {
+      value: true
+    })
+    batch.set(membersRef.doc(), state.memberToBeAdded)
+    await batch.commit()
   },
-  deleteMember: (_, payload) => {
-    registrationNumbersRef.ref.child(payload[1]).remove()
-    membersRef.ref.child(payload[0]).remove()
+  deleteMember: async (_, payload) => {
+    const batch = DB.batch()
+    batch.delete(facultyNumbersRef.doc(payload[1]))
+    batch.delete(membersRef.doc(payload[0]))
+    await batch.commit()
   },
-  editMember: async ({ state, commit }, id) => {
+  editMember: async ({ state, commit }, payload) => {
     const date = new Date()
+    const batch = DB.batch()
 
     state.memberToBeEdited.timestamp = -(-date)
-
-    const oldRegistrationNumber = state.memberToBeEdited.registrationNumber
 
     state.memberToBeEdited.registrationNumber = getRegistrationNumber(
       state.memberToBeEdited.facultyNumber,
       state.memberToBeEdited.course
     )
-    await registrationNumbersRef.ref.child(oldRegistrationNumber).remove()
-    await registrationNumbersRef.ref
-      .child(state.memberToBeEdited.registrationNumber)
-      .set(true)
-    await membersRef.ref.child(id).set(state.memberToBeEdited)
+
+    if (payload[1] !== state.memberToBeEdited.facultyNumber)
+      batch.delete(facultyNumbersRef.doc(payload[1]))
+    batch.set(facultyNumbersRef.doc(state.memberToBeEdited.facultyNumber), {
+      value: true
+    })
+    batch.set(membersRef.doc(payload[0]), state.memberToBeEdited)
+    await batch.commit()
     commit('resetMemberEdit')
   }
 }
 
 export const getters = {
   members: (state, getters) => search => {
-    return state.members.filter(member => {
+    return Object.values(state.members).filter(member => {
       return (
         member.name.toUpperCase().includes(search.toUpperCase()) ||
         member.facultyNumber.toUpperCase().includes(search.toUpperCase())
