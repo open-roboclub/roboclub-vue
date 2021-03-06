@@ -99,7 +99,11 @@
           </v-card-text>
           <v-card-actions>
             <v-spacer />
-            <v-btn class="blue--text" text @click="deleteDialog = false">
+            <v-btn
+              class="blue--text"
+              text
+              @click="$emit('update:selectedToDelete', null)"
+            >
               No
             </v-btn>
             <v-btn class="red--text" text @click="deleteNewsItem"> Yes </v-btn>
@@ -164,7 +168,7 @@ export default {
       this.$emit('update:selectedToEdit', null)
     },
     deleteNewsItem() {
-      this.deleteNews(this.selectedToDelete['.key'])
+      this.deleteNews(this.selectedToDelete.id)
       this.$emit('update:selectedToDelete', null)
     },
     ...mapActions('news', ['addNews', 'saveNews', 'deleteNews'])

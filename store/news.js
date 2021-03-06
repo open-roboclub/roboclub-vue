@@ -1,9 +1,9 @@
-import { firebaseAction } from 'vuexfire'
-import { db } from '@/plugins/firebase'
+import { firestoreAction } from 'vuexfire'
+import { DB } from '@/plugins/firebase'
 
 const RECENT_NEWS_SIZE = 5
-const newsRef = db.ref('news').orderByChild('timestamp')
-const recentNewsRef = newsRef.limitToFirst(5)
+const newsCollection = DB.collection('news')
+const recentNewsCollection = newsCollection.orderBy('timestamp').limit(5)
 
 function clearNews(news) {
   if (!news) {
@@ -41,17 +41,17 @@ export const mutations = {
 }
 
 export const actions = {
-  setNewsRef: firebaseAction(({ bindFirebaseRef }) => {
-    return bindFirebaseRef('news', newsRef)
+  setNewsRef: firestoreAction(({ bindFirestoreRef }) => {
+    return bindFirestoreRef('news', newsCollection.orderBy('timestamp'))
   }),
 
-  setRecentNewsRef: firebaseAction(({ state, bindFirebaseRef }) => {
+  setRecentNewsRef: firestoreAction(({ state, bindFirestoreRef }) => {
     if (state.news.length) return // news found
-    return bindFirebaseRef('news', recentNewsRef)
+    return bindFirestoreRef('news', recentNewsCollection)
   }),
 
   deleteNews: (_, id) => {
-    newsRef.ref.child(id).remove()
+    newsCollection.doc(id).delete()
   },
 
   addNews: ({ state, commit }) => {
@@ -71,7 +71,7 @@ export const actions = {
     state.newsItem.timestamp = -today
     state.newsItem.date = date
 
-    newsRef.ref.push(state.newsItem)
+    newsCollection.doc(state.newsItem.id).set(state.newsItem)
     commit('resetNews')
   },
 
@@ -82,11 +82,9 @@ export const actions = {
     if (news.link === '') {
       delete news.link
     }
-
-    newsRef.ref.child(newsUpdate['.key']).set(news)
+    newsCollection.doc(newsUpdate.id).update(news)
   }
 }
-
 export const getters = {
   news: state => state.news,
 
