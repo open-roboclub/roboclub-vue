@@ -16,9 +16,7 @@
           <v-btn
             color="red darken-2"
             text
-            @click="
-              deleteEventHandler(member['.key'], member.registrationNumber)
-            "
+            @click="deleteEventHandler(member.id, member.facultyNumber)"
           >
             Delete
           </v-btn>
@@ -113,7 +111,7 @@
           <v-btn
             color="green darken-1"
             text
-            @click="editEventHandler(member['.key'])"
+            @click="editEventHandler(member.id, member.facultyNumber)"
           >
             Save
           </v-btn>
@@ -141,12 +139,12 @@ export default {
     ...mapState('apply', ['memberToBeEdited'])
   },
   methods: {
-    async editEventHandler(id) {
-      await this.editMember(id)
+    async editEventHandler(id, facultyNumber) {
+      await this.editMember([id, facultyNumber])
       this.editDialog = false
     },
-    deleteEventHandler(id, registrationNumber) {
-      this.deleteMember([id, registrationNumber])
+    deleteEventHandler(id, facultyNumber) {
+      this.deleteMember([id, facultyNumber])
       this.deleteDialog = false
     },
     ...mapActions('apply', ['editMember', 'deleteMember', 'setMemberToEdit'])
