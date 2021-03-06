@@ -220,8 +220,7 @@ export default {
 
       return link
     },
-    ...mapActions('team', ['setCoreTeamRef']),
-    ...mapActions('team', ['setFacultyTeamRef'])
+    ...mapActions('team', ['setFacultyTeamRef', 'setCoreTeamRef'])
   }
 }
 </script>
