@@ -17,7 +17,7 @@
     "@nuxtjs/pwa": "^3.3.5",
     "core-js": "^3.9.1",
     "firebase": "^8.2.10",
-    "firebaseui": "^4.7.3",
+    "firebaseui": "^4.8.0",
     "nuxt": "^2.15.2",
     "vuexfire": "2.3.1"
   },
