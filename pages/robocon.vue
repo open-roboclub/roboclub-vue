@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+  <v-container v-if="robocon !== null">
     <v-row justify="center">
       <v-col cols="10" sm="6">
         <v-card color="blue darken-2">
