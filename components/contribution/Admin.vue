@@ -13,7 +13,7 @@
     <v-row justify="space-between">
       <v-col cols="12" md="4" xl="2">
         <v-text-field
-          v-model="contribution.contributor"
+          v-model="contribution.name"
           :rules="[rules.required]"
           label="Contributor"
         />
@@ -26,7 +26,7 @@
         />
       </v-col>
       <v-col cols="12" md="4" xl="2">
-        <v-text-field v-model="contribution.purpose" label="Purpose" />
+        <v-text-field v-model="contribution.description" label="Purpose" />
       </v-col>
       <v-col cols="12" md="4" xl="2">
         <v-text-field v-model="contribution.remark" label="Remark" />
@@ -88,7 +88,7 @@ export default {
     deleteContributions() {
       if (this.selected.length > 0) {
         this.selected.forEach(contribution => {
-          this.deleteContribution(contribution['.key'])
+          this.deleteContribution(contribution.id)
         })
         this.$emit('update:selected', [])
       } else {
@@ -97,10 +97,7 @@ export default {
     },
 
     save() {
-      if (
-        this.contribution.contributor === '' ||
-        this.contribution.amount === ''
-      ) {
+      if (this.contribution.name === '' || this.contribution.amount === '') {
         return
       }
 
@@ -116,6 +113,7 @@ export default {
 
     editContribution() {
       this.editing = true
+
       this.setContribution(this.selected[0])
       this.$emit('update:selected', [])
     },

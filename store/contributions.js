@@ -1,15 +1,15 @@
-import { firebaseAction } from 'vuexfire'
-import { db } from '@/plugins/firebase'
+import { firestoreAction } from 'vuexfire'
+import { DB } from '@/plugins/firebase'
 
-const contributionsRef = db.ref('contribution')
-
+const contributionsRef = DB.collection('contributors')
+var _id = null
 function clearContribution(contribution) {
   if (!contribution) {
     contribution = {}
   }
-  contribution.contributor = ''
+  contribution.name = ''
   contribution.amount = ''
-  contribution.purpose = ''
+  contribution.description = ''
   contribution.remark = ''
 
   return contribution
@@ -36,24 +36,25 @@ export const mutations = {
   },
   setContribution: (state, contribution) => {
     state.contribution = Object.assign({}, contribution)
+    _id = contribution.id
   }
 }
 
 export const actions = {
-  setContributionsRef: firebaseAction(({ bindFirebaseRef }) => {
-    return bindFirebaseRef('contributions', contributionsRef)
+  setContributionsRef: firestoreAction(({ bindFirestoreRef }) => {
+    return bindFirestoreRef('contributions', contributionsRef)
   }),
   deleteContribution: (_, id) => {
-    contributionsRef.child(id).remove()
+    contributionsRef.doc(id).delete()
   },
   addContribution: ({ state, commit }) => {
-    contributionsRef.push(state.contribution)
+    contributionsRef.add(state.contribution)
     commit('resetContribution')
   },
   saveContribution: ({ state, commit }) => {
     contributionsRef
-      .child(state.contribution['.key'])
-      .set(copyProperties(state.contribution, clearContribution()))
+      .doc(_id)
+      .update(copyProperties(state.contribution, clearContribution()))
     commit('resetContribution')
   }
 }
