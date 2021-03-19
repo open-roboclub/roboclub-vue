@@ -264,7 +264,7 @@ type EnrollmentNumber extends String {
 }
 
 type FacultyNumber extends String {
-    validate() {this.length == 8}
+    validate() {this.length == 8 || this.length == 9}
 }
 
 type Mobile extends String {
