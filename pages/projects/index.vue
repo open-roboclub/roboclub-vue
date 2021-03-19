@@ -25,13 +25,13 @@
         >
           <br />
           <v-avatar :tile="false" :size="250" color="grey lighten-4">
-            <v-img :aspect-ratio="16 / 9" :src="project.image" alt="Avatar" />
+            <v-img :aspect-ratio="16 / 9" :src="project.projectImg[0]" alt="Avatar" />
           </v-avatar>
           <div class="mt-3 headline text-center">
             {{ project.name }}
           </div>
           <v-card-text class="mx-2 grey--text text--darken-2">
-            {{ project.team }}
+            {{ project.teamMembers[0].member }}
           </v-card-text>
         </v-card>
       </v-hover>
@@ -45,11 +45,11 @@
             <v-card-title class="headline grey lighten-2">
               {{ selectedProject.name }}
             </v-card-title>
-            <v-col cols="12" class="text-center mt-2 mb-0">
+            <v-col v-if="selectedProject.projectImg" cols="12" class="text-center mt-2 mb-0">
               <v-avatar :tile="false" :size="225" color="grey lighten-4">
                 <v-img
                   :aspect-ratio="16 / 9"
-                  :src="selectedProject.image"
+                  :src="selectedProject.projectImg[0]"
                   alt="Avatar"
                 />
               </v-avatar>

@@ -1,9 +1,9 @@
-import { firebaseAction } from 'vuexfire'
-import { db } from '@/plugins/firebase'
+import { firestoreAction } from 'vuexfire'
+import { DB } from '@/plugins/firebase'
 
-const projectsRef = db.ref('projects')
+const projectsRef = DB.collection('projects')
 
-const getProjectRef = id => projectsRef.orderByChild('id').equalTo(id)
+const getProjectRef = id => projectsRef.doc(id)
 
 export const state = () => ({
   projects: [],
@@ -11,12 +11,12 @@ export const state = () => ({
 })
 
 export const actions = {
-  setProjectsRef: firebaseAction(({ bindFirebaseRef }) => {
-    return bindFirebaseRef('projects', projectsRef)
+  setProjectsRef: firestoreAction(({ bindFirestoreRef }) => {
+    return bindFirestoreRef('projects', projectsRef)
   }),
-  setProjectRef: firebaseAction(({ bindFirebaseRef, getters }, projectId) => {
+  setProjectRef: firestoreAction(({ bindFirestoreRef, getters }, projectId) => {
     if (getters.getProjectById(projectId)) return // Project found
-    return bindFirebaseRef('project', getProjectRef(projectId))
+    return bindFirestoreRef('project', getProjectRef(projectId))
   })
 }
 
@@ -28,14 +28,7 @@ export const getters = {
   getProjectById(state) {
     return id => {
       const projects = state.projects.find(project => project.id === id)
-
-      if (projects && projects.length) {
-        return projects[0]
-      } else if (state.project.length && state.project[0].id === id) {
-        return state.project[0]
-      } else {
-        return null
-      }
+      return projects
     }
   },
 
