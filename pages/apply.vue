@@ -68,9 +68,13 @@
             <v-col lg="6" md="6" sm="12" cols="12">
               <v-text-field
                 v-model="memberToBeAdded.facultyNumber"
-                :counter="(memberToBeAdded.course === 'mtech' ? 9 : 8)"
+                :counter="memberToBeAdded.course === 'mtech' ? 9 : 8"
                 label="Faculty Number"
-                :rules="(memberToBeAdded.course === 'mtech' ? rules.facultyNumberMtechRules : rules.facultyNumberRules)"
+                :rules="
+                  memberToBeAdded.course === 'mtech'
+                    ? rules.facultyNumberMtechRules
+                    : rules.facultyNumberRules
+                "
                 required
               ></v-text-field>
             </v-col>

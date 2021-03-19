@@ -44,10 +44,10 @@ const getRegistrationNumber = (number, course) => {
       break
     case 'bca':
       coursePrefix = 'C'
-      break;
+      break
     case 'mca':
       coursePrefix = 'A'
-      break;
+      break
     case 'na':
       coursePrefix = 'N'
       break
@@ -56,18 +56,26 @@ const getRegistrationNumber = (number, course) => {
   let year = currentYear - admissionYear
   if (currentMonth > 8) year += 1
 
-  if(course === 'mtech') return (
-    'R' + coursePrefix + (currentYear % 100).toString() + year.toString() + number[6] + number[7] + number[8]
-  )
-  else return (
-    'R' +
-    coursePrefix +
-    (currentYear % 100).toString() +
-    year.toString() +
-    number[5] +
-    number[6] +
-    number[7]
-  )
+  if (course === 'mtech')
+    return (
+      'R' +
+      coursePrefix +
+      (currentYear % 100).toString() +
+      year.toString() +
+      number[6] +
+      number[7] +
+      number[8]
+    )
+  else
+    return (
+      'R' +
+      coursePrefix +
+      (currentYear % 100).toString() +
+      year.toString() +
+      number[5] +
+      number[6] +
+      number[7]
+    )
 }
 
 export const state = () => ({
