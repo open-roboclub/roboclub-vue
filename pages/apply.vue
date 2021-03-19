@@ -55,6 +55,8 @@
                   { text: 'Diploma Engineering', value: 'diploma' },
                   { text: 'Bachelor of Engineeing', value: 'be' },
                   { text: 'Masters of Technology', value: 'mtech' },
+                  { text: 'Bachelor of Computer Applications', value: 'bca' },
+                  { text: 'Masters of Computer Applications', value: 'mca' },
                   { text: 'Not a University Student', value: 'na' }
                 ]"
                 item-text="text"
@@ -66,9 +68,9 @@
             <v-col lg="6" md="6" sm="12" cols="12">
               <v-text-field
                 v-model="memberToBeAdded.facultyNumber"
-                :counter="8"
+                :counter="(memberToBeAdded.course === 'mtech' ? 9 : 8)"
                 label="Faculty Number"
-                :rules="rules.facultyNumberRules"
+                :rules="(memberToBeAdded.course === 'mtech' ? rules.facultyNumberMtechRules : rules.facultyNumberRules)"
                 required
               ></v-text-field>
             </v-col>
