@@ -1,15 +1,15 @@
-import { firebaseAction } from 'vuexfire'
-import { db } from '@/plugins/firebase'
+import { firestoreAction } from 'vuexfire'
+import { DB } from '@/plugins/firebase'
 
-const downloadsRef = db.ref('downloads')
+const downloadsRef = DB.collection('downloads')
 
 export const state = () => ({
   downloads: []
 })
 
 export const actions = {
-  setDownloadsRef: firebaseAction(({ bindFirebaseRef }) => {
-    return bindFirebaseRef('downloads', downloadsRef)
+  setDownloadsRef: firestoreAction(({ bindFirestoreRef }) => {
+    return bindFirestoreRef('downloads', downloadsRef)
   })
 }
 

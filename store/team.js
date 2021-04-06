@@ -1,47 +1,43 @@
-import { firebaseAction } from 'vuexfire'
-import { db } from '@/plugins/firebase'
+import { firestoreAction } from 'vuexfire'
+import { DB } from '@/plugins/firebase'
 
-const COORDINATORS_RANK = 30
-const teamRef = db.ref('team/current')
-const coordinatorsRef = teamRef
-  .child('members')
-  .orderByChild('rank')
-  .equalTo(COORDINATORS_RANK)
+const COORDINATORS_RANK = 1
+const coreTeamRef = DB.collection('teams').doc('seZ00zSB7oAhwCc6rtGN')
+const facultyTeamRef = DB.collection('teams').doc('oBN3RWaWFRu9JCMe5TDO')
 
 export const state = () => ({
   team: {},
-  coordinators: []
+  faculty: {}
 })
 
 export const actions = {
-  setTeamRef: firebaseAction(({ bindFirebaseRef }) => {
-    return bindFirebaseRef('team', teamRef)
+  setTeamRef: firestoreAction(({ bindFirestoreRef }) => {
+    return bindFirestoreRef('team', coreTeamRef)
   }),
-
-  setCoordinatorsRef: firebaseAction(({ getters, bindFirebaseRef }) => {
-    if (getters.coordinators.length)
-      // Already loaded. Ignore
-      return
-    return bindFirebaseRef('coordinators', coordinatorsRef)
+  setFacultyRef: firestoreAction(({ bindFirestoreRef }) => {
+    return bindFirestoreRef('faculty', facultyTeamRef)
   })
 }
 
 export const getters = {
   members: state => {
-    if (!state.team.members) {
-      return []
-    }
-    return Object.values(state.team.members).sort((memberA, memberB) => {
-      return memberA.rank - memberB.rank
-    })
+    if (!state.team || !state.faculty) return []
+    else if (!state.team.members || !state.faculty.members) return []
+    return [
+      ...Object.values(state.faculty.members).sort((memberA, memberB) => {
+        return memberA.rank - memberB.rank
+      }),
+      ...Object.values(state.team.members).sort((memberA, memberB) => {
+        return memberA.rank - memberB.rank
+      })
+    ]
   },
 
   coordinators: state => {
-    if (state.coordinators.length) {
-      return state.coordinators
-    } else if (state.team.members) {
+    if (!state.team) return []
+    else if (state.team.members) {
       return Object.values(state.team.members).filter(
-        member => parseInt(member.rank) === 30
+        member => parseInt(member.rank) === COORDINATORS_RANK
       )
     } else {
       return []

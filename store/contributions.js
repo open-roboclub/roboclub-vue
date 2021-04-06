@@ -2,7 +2,7 @@ import { firestoreAction } from 'vuexfire'
 import { DB } from '@/plugins/firebase'
 
 const contributionsRef = DB.collection('contributors')
-var _id = null
+let _id = null
 function clearContribution(contribution) {
   if (!contribution) {
     contribution = {}

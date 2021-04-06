@@ -80,7 +80,7 @@
                   >
                     <resize-img
                       :aspect-ratio="16 / 9"
-                      :src="item.thumbnail"
+                      :src="item.profileImageUrl"
                       :alt="item.name"
                       :width="250"
                     />
@@ -235,11 +235,11 @@ export default {
   },
   created() {
     this.setRecentNewsRef()
-    this.setCoordinatorsRef()
+    this.setTeamRef()
   },
   methods: {
     ...mapActions('news', ['setRecentNewsRef']),
-    ...mapActions('team', ['setCoordinatorsRef'])
+    ...mapActions('team', ['setTeamRef'])
   }
 }
 </script>

@@ -25,7 +25,11 @@
         >
           <br />
           <v-avatar :tile="false" :size="250" color="grey lighten-4">
-            <v-img :aspect-ratio="16 / 9" :src="project.projectImg[0]" alt="Avatar" />
+            <v-img
+              :aspect-ratio="16 / 9"
+              :src="project.projectImg[0]"
+              alt="Avatar"
+            />
           </v-avatar>
           <div class="mt-3 headline text-center">
             {{ project.name }}
@@ -45,7 +49,11 @@
             <v-card-title class="headline grey lighten-2">
               {{ selectedProject.name }}
             </v-card-title>
-            <v-col v-if="selectedProject.projectImg" cols="12" class="text-center mt-2 mb-0">
+            <v-col
+              v-if="selectedProject.projectImg"
+              cols="12"
+              class="text-center mt-2 mb-0"
+            >
               <v-avatar :tile="false" :size="225" color="grey lighten-4">
                 <v-img
                   :aspect-ratio="16 / 9"
