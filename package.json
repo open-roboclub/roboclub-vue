@@ -40,7 +40,7 @@
     "firebase-tools": "^9.10.0",
     "jest": "^26.6.3",
     "nuxt-build-optimisations": "^1.0.3",
-    "prettier": "^2.2.1",
+    "prettier": "^2.3.1",
     "targaryen": "^3.1.0",
     "vue-jest": "^3.0.4"
   }
