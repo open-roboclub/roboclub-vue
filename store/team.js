@@ -2,7 +2,7 @@ import { firestoreAction } from 'vuexfire'
 import { DB } from '@/plugins/firebase'
 
 const COORDINATORS_RANK = 1
-const coreTeamRef = DB.collection('teams').doc('seZ00zSB7oAhwCc6rtGN')
+const coreTeamRef = DB.collection('teams').doc('team_2021-22')
 const facultyTeamRef = DB.collection('teams').doc('oBN3RWaWFRu9JCMe5TDO')
 
 export const state = () => ({
