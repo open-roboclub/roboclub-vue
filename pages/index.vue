@@ -185,10 +185,10 @@
           class="mb-3"
           color="#F5F5DC"
         >
-          <v-container>
+          <v-container class="text-justify">
             <v-row style="padding-right: 10px">
               <v-col cols="1" lg="2" xl="1" style="min-width: 40px">
-                <v-icon left x-large color="black"> mdi-newspaper </v-icon>
+                <v-icon left large color="black"> mdi-newspaper </v-icon>
               </v-col>
               <v-col cols="11" lg="10" xl="11">
                 {{ item.notice }}
@@ -204,7 +204,7 @@
             <v-row>
               <v-col cols="12" class="text-center">
                 <nuxt-link to="/news" class="iconLink">
-                  <v-icon x-large> mdi-expand-all </v-icon>
+                  <v-icon large> mdi-expand-all </v-icon>
                 </nuxt-link>
               </v-col>
             </v-row>

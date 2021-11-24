@@ -1,9 +1,9 @@
 import { firestoreAction } from 'vuexfire'
 import { DB } from '@/plugins/firebase'
 
-const RECENT_NEWS_SIZE = 5
+const RECENT_NEWS_SIZE = 4
 const newsCollection = DB.collection('news')
-const recentNewsCollection = newsCollection.orderBy('timestamp').limit(5)
+const recentNewsCollection = newsCollection.orderBy('timestamp').limit(4)
 
 function clearNews(news) {
   if (!news) {
