@@ -72,7 +72,7 @@
       <main><nuxt /></main>
       <div class="space" />
       <v-footer dark height="auto" class="footer pa-0 grey lighten-1">
-        <div class="px-3 py-2">
+        <div class="px-2 py-2">
           <v-btn
             text
             light
@@ -80,12 +80,12 @@
             target="_blank"
             rel="noopener"
           >
-            <v-icon left>mdi-worker</v-icon>
+            <v-icon >mdi-worker</v-icon>
             Developers
           </v-btn>
         </div>
         <v-spacer />
-        <div class="mr-2">
+        <div class="">
           <v-btn
             v-for="icon in icons"
             :key="icon.name"
@@ -95,8 +95,9 @@
             target="_blank"
             rel="noopener"
             style="text-decoration: none; color: black"
+            class="mx-2"
           >
-            <v-icon size="24px">{{ icon.name }}</v-icon>
+            <v-icon size="28px">{{ icon.name }}</v-icon>
           </v-btn>
         </div>
         <div class="pa-1 text-center grey darken-2 copyright">
@@ -151,13 +152,22 @@ export default {
       ],
       icons: [
         {
+          name: 'mdi-instagram',
+          link: 'https://www.instagram.com/amuroboclub/'
+        },
+        {
           name: 'mdi-facebook',
           link: 'https://www.facebook.com/groups/amuroboculb/'
         },
         {
           name: 'mdi-youtube',
           link: 'https://www.youtube.com/channel/UCKTQZXhxAWfhz1Mb8c2UKTg'
+        },
+        {
+          name: 'mdi-github',
+          link: 'https://github.com/open-roboclub/roboclub-vue/graphs/contributors'
         }
+
       ]
     }
   },
