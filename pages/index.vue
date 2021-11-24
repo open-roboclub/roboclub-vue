@@ -7,8 +7,8 @@
             <v-row>
               <v-col sm="12" class="text-sm-center text-center xs">
                 <iframe
-                  width="480"
-                  height="300"
+                  width="90%"
+                  height="350px"
                   allowfullscreen
                   src="https://www.youtube.com/embed/3TSxPcIJCB0?rel=0&showinfo=0&theme=light"
                   loading="lazy"
@@ -18,11 +18,11 @@
             <v-row>
               <v-col sm="12" class="text-sm-center">
                 <v-card-title primary-title class="card-text">
-                  AMU Roboclub is a student’s body which caters to the need of
+                  AMURoboclub is a student’s body which caters to the need of
                   electronics enthusiasts and hobbyists in creating an
                   environment which is driven by innovation and implementation.
                   Run under the able guidance and supervision of faculty
-                  advisors from various branches of engineering, AMU Roboclub
+                  advisors from various branches of engineering, AMURoboclub
                   stands as an epitome of marvel. It not only acts as a platform
                   for zealous students to hone their skills in the field of
                   Electrical, Electronics, Computers and Mechanical but also
@@ -35,11 +35,11 @@
         </v-card>
         <v-card class="mb-3">
           <v-card-title class="card-text">
-            In the last couple of years, students from AMU Roboclub have won
+            In the last couple of years, students from AMURoboclub have won
             many awards in various competitions which speak of its testimony.
             Regular Classes, Annual Workshop, Guest Lectures, Project
             Exhibition, Student Competitions etc are some of the main functions
-            of the club. Robonics, the annual workshop of AMU Roboclub has
+            of the club. Robonics, the annual workshop of AMURoboclub has
             earned a name in itself. The highlights of the club which
             differentiates it from the peers are its adherence to the
             curriculum, its student-student interaction and importantly project
@@ -48,8 +48,8 @@
             in its Student members, it is them who has given a high repute to
             the club. The members who complete at least one project under AMU
             Roboclub are felicitated and they earn for themselves a separate
-            webpage in the AMU Roboclub website which is dedicated for their
-            description and achievements. AMU Roboclub alumni always attribute a
+            webpage in the AMURoboclub website which is dedicated for their
+            description and achievements. AMURoboclub alumni always attribute a
             portion of their successes to the time and effort they spent at AMU
             Roboclub which helped them become what they are today.
           </v-card-title>
