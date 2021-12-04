@@ -50,6 +50,8 @@
             <v-carousel-item
               v-for="item in robocon.gallery"
               :key="item['.key']"
+              height="100%"
+              width="100%"
               :src="item"
             />
           </v-carousel>

@@ -45,7 +45,13 @@
       </v-col>
       <v-col class="text-center" cols="12" md="8" xl="9">
         <v-card :class="['profile-card', profileCardMargin]">
-          <h2 class="grey--text">Coming Soon</h2>
+          <h2 class="grey--text">
+            Coming Soon
+            <form>
+              <label>Email</label>
+              <input type="email" required />
+            </form>
+          </h2>
         </v-card>
       </v-col>
     </v-row>
@@ -79,5 +85,14 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+label {
+  color: #aaa;
+  display: inline-block;
+  margin: 25px 0 15px;
+  font-size: 0.6em;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: bold;
 }
 </style>

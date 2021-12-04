@@ -25,14 +25,15 @@ export const getters = {
     else if (!state.team.members || !state.faculty.members) return []
     return [
       ...Object.values(state.faculty.members).sort((memberA, memberB) => {
+        console.log('I am a member of faculty')
         return memberA.rank - memberB.rank
       }),
       ...Object.values(state.team.members).sort((memberA, memberB) => {
+        console.log('I am a member of team')
         return memberA.rank - memberB.rank
       })
     ]
   },
-
   coordinators: state => {
     if (!state.team) return []
     else if (state.team.members) {

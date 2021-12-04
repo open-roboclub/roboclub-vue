@@ -159,7 +159,7 @@ import { DB } from '@/plugins/firebase'
 
 export default {
   components: { PageLoader, ResizeImg },
-  
+
   data() {
     return {
       dialog: false,
@@ -172,18 +172,22 @@ export default {
     }
   },
   computed: {
-    ...mapGetters('team', ['members'])
+    ...mapGetters('team', ['members']),
+    ...mapGetters('team', ['users'])
   },
   created() {
     this.setTeamRef()
     this.setFacultyRef()
   },
-  methods: {       
+  methods: {
     openDialog(member) {
       this.dialog = true
-      DB.collection('users').doc(member.uid).get().then((snap) => {
-        this.selectedMember = snap.data();
-      });
+      DB.collection('users')
+        .doc(member.uid)
+        .get()
+        .then(snap => {
+          this.selectedMember = snap.data()
+        })
       // this.selectedMember = member
     },
     iconColor(type) {

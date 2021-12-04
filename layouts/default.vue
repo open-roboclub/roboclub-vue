@@ -80,7 +80,7 @@
             target="_blank"
             rel="noopener"
           >
-            <v-icon >mdi-worker</v-icon>
+            <v-icon>mdi-worker</v-icon>
             Developers
           </v-btn>
         </div>
@@ -165,9 +165,9 @@ export default {
         },
         {
           name: 'mdi-github',
-          link: 'https://github.com/open-roboclub/roboclub-vue/graphs/contributors'
+          link:
+            'https://github.com/open-roboclub/roboclub-vue/graphs/contributors'
         }
-
       ]
     }
   },

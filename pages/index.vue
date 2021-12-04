@@ -35,21 +35,23 @@
         </v-card>
         <v-card class="mb-3">
           <v-card-title class="card-text">
-            In the last couple of years, students from AMURoboclub have won
-            many awards in various competitions which speak of its testimony.
-            Regular Classes, Annual Workshop, Guest Lectures, Project
-            Exhibition, Student Competitions etc are some of the main functions
-            of the club. Robonics, the annual workshop of AMURoboclub has
-            earned a name in itself. The highlights of the club which
-            differentiates it from the peers are its adherence to the
-            curriculum, its student-student interaction and importantly project
-            developments. More than 80 ideas have culminated into working models
-            so far and the number is on the rise. The strength of the club lies
-            in its Student members, it is them who has given a high repute to
-            the club. The members who complete at least one project under AMURoboclub are felicitated and they earn for themselves a separate
-            webpage in the AMURoboclub website which is dedicated for their
-            description and achievements. AMURoboclub alumni always attribute a
-            portion of their successes to the time and effort they spent at AMURoboclub which helped them become what they are today.
+            In the last couple of years, students from AMURoboclub have won many
+            awards in various competitions which speak of its testimony. Regular
+            Classes, Annual Workshop, Guest Lectures, Project Exhibition,
+            Student Competitions etc are some of the main functions of the club.
+            Robonics, the annual workshop of AMURoboclub has earned a name in
+            itself. The highlights of the club which differentiates it from the
+            peers are its adherence to the curriculum, its student-student
+            interaction and importantly project developments. More than 80 ideas
+            have culminated into working models so far and the number is on the
+            rise. The strength of the club lies in its Student members, it is
+            them who has given a high repute to the club. The members who
+            complete at least one project under AMURoboclub are felicitated and
+            they earn for themselves a separate webpage in the AMURoboclub
+            website which is dedicated for their description and achievements.
+            AMURoboclub alumni always attribute a portion of their successes to
+            the time and effort they spent at AMURoboclub which helped them
+            become what they are today.
           </v-card-title>
         </v-card>
         <v-card color="#00796B">
@@ -118,7 +120,9 @@
                 </div>
               </v-card-title>
               <v-card-actions>
-                <a href="https://www.amu.ac.in/colleges/zakir-husain-college-of-engineering-and-technology">
+                <a
+                  href="https://www.amu.ac.in/colleges/zakir-husain-college-of-engineering-and-technology"
+                >
                   <v-btn text color="orange">KNOW MORE</v-btn>
                 </a>
               </v-card-actions>
