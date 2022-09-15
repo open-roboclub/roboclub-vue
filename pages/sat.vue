@@ -4,10 +4,10 @@
       <v-col cols="12" md="10" lg="8" xl="6">
         <v-card color="cyan">
           <v-card-title class="text-center headline white--text">
-            Downloads
+            sat
           </v-card-title>
           <v-progress-linear
-            v-show="!downloads.length"
+            v-show="!sat.length"
             indeterminate
             color="cyan"
             background-color="cyan lighten-3"
@@ -29,7 +29,7 @@
               {{ tab }}
             </v-tab>
             <v-tab-item
-              v-for="download in downloads"
+              v-for="download in sat"
               :key="download.name"
               :value="download.name"
             >
@@ -57,16 +57,16 @@ export default {
   },
   head() {
     return {
-      title: 'Downloads'
+      title: 'sat'
     }
   },
   computed: {
-    ...mapGetters('downloads', ['downloadTypes']),
-    ...mapState('downloads', ['downloads'])
+    ...mapGetters('sat', ['downloadTypes']),
+    ...mapState('sat', ['sat'])
   },
   created() {
-    this.setDownloadsRef()
+    this.setsatRef()
   },
-  methods: mapActions('downloads', ['setDownloadsRef'])
+  methods: mapActions('sat', ['setsatRef'])
 }
 </script>
