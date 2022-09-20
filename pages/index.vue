@@ -28,6 +28,7 @@
                   Electrical, Electronics, Computers and Mechanical but also
                   prepares them for various national competitions by encouraging
                   participation.
+                  <a href="https://amu-sat.github.io">Click here for SS AMU SAT Website</a> - The First Satellite of Aligarh Muslim University.
                 </v-card-title>
               </v-col>
             </v-row>
