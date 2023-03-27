@@ -1,7 +1,8 @@
 import firebase from 'firebase/app'
 import 'firebase/database'
 import 'firebase/auth'
-import { firebaseMutations } from 'vuexfire'
+import 'firebase/firestore'
+import { firebaseMutations, vuexfireMutations } from 'vuexfire'
 
 export const strict = false
 
@@ -17,7 +18,8 @@ export const mutations = {
   setAdmin(state, admin) {
     state.isAdmin = admin
   },
-  ...firebaseMutations
+  ...firebaseMutations,
+  ...vuexfireMutations
 }
 
 export const actions = {
@@ -30,10 +32,11 @@ export const actions = {
     const ref = user ? user.uid : ''
     try {
       const snapshot = await firebase
-        .database()
-        .ref('admins/' + ref)
-        .once('value')
-      commit('setAdmin', snapshot.val())
+        .firestore()
+        .collection('users')
+        .doc(ref)
+        .get()
+      commit('setAdmin', snapshot.data().isAdmin)
     } catch {
       commit('setAdmin', false)
     }

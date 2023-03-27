@@ -23,7 +23,7 @@
           v-model="selected"
           :headers="headers"
           :items="contributions"
-          item-key="contributor"
+          item-key="name"
           show-select
           class="elevation-1"
         >

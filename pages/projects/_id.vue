@@ -7,9 +7,9 @@
           <v-card-title>
             {{ loadedProject.name }}
           </v-card-title>
-          <v-card-text>{{ loadedProject.team }}</v-card-text>
+          <v-card-text>{{ teammember }}</v-card-text>
           <v-avatar
-            v-if="!loadedProject.images"
+            v-if="!loadedProject.projectImg"
             class="align-self-center"
             :tile="false"
             :size="225"
@@ -17,13 +17,13 @@
           >
             <v-img
               :aspect-ratio="16 / 9"
-              :src="loadedProject.image"
+              :src="loadedProject.projectImg[0]"
               alt="Avatar"
             />
           </v-avatar>
-          <v-carousel v-if="loadedProject.images">
+          <v-carousel v-if="loadedProject.projectImg">
             <v-carousel-item
-              v-for="image in loadedProject.images"
+              v-for="image in loadedProject.projectImg"
               :key="image"
               :src="image"
             />
@@ -52,6 +52,14 @@ export default {
   computed: {
     loadedProject() {
       return this.getProjectById()(this.$route.params.id)
+    },
+    teammember() {
+      let str = ''
+      for (let i = 0; i < this.loadedProject.teamMembers.length; i++) {
+        str += this.loadedProject.teamMembers[i].member + ' , '
+      }
+      str = str.substring(0, str.length - 2)
+      return str
     }
   },
   created() {

@@ -23,7 +23,7 @@
             <v-avatar :tile="false" :size="200" color="grey lighten-4 mt-3">
               <resize-img
                 :aspect-ratio="16 / 9"
-                :src="member.thumbnail"
+                :src="member.profileImageUrl"
                 :width="250"
                 alt="Avatar"
               />
@@ -76,7 +76,7 @@
               <v-avatar :tile="false" :size="225" color="grey lighten-4">
                 <v-img
                   :aspect-ratio="16 / 9"
-                  :src="selectedMember.thumbnail"
+                  :src="selectedMember.profileImageUrl"
                   alt="Avatar"
                 />
               </v-avatar>
@@ -87,7 +87,8 @@
               </span>
               <v-card-text class="subtitle-1 black--text mt-2 pb-0">
                 <p class="batch">
-                  {{ selectedMember.profile_info.batch }}
+                  <!-- {{ selectedMember.profile_info.batch }} -->
+                  {{ selectedMember.batch }}
                 </p>
               </v-card-text>
             </v-col>
@@ -101,7 +102,8 @@
                 <v-list-item>
                   <v-list-item-content class="pb-0 mt-2">
                     <p>
-                      {{ selectedMember.profile_info.about }}
+                      <!-- {{ selectedMember.profile_info.about }} -->
+                      {{ selectedMember.about }}
                     </p>
                   </v-list-item-content>
                 </v-list-item>
@@ -114,18 +116,19 @@
                 </v-card>
                 <v-list-item>
                   <v-list-item-content class="text-left">
-                    <li
-                      v-for="item in selectedMember.profile_info.interests"
+                    <!-- <li
+                      v-for="item in selectedMember.interests"
                       :key="item.id"
                       class="mb-2"
                     >
-                      {{ item }}
-                    </li>
+                      {{ selectedMember.interests }}
+                    </li> -->
+                    {{ selectedMember.interests }}
                   </v-list-item-content>
                 </v-list-item>
               </v-card>
               <v-btn
-                :href="selectedMember.profile_info.cv"
+                :href="selectedMember.cvLink"
                 color="purple"
                 class="mt-5 py-6 px-9 white--text title"
                 target="_blank"
@@ -152,9 +155,11 @@
 import { mapActions, mapGetters } from 'vuex'
 import PageLoader from '@/components/widgets/PageLoader.vue'
 import ResizeImg from '@/components/widgets/ResizeImg.vue'
+import { DB } from '@/plugins/firebase'
 
 export default {
   components: { PageLoader, ResizeImg },
+
   data() {
     return {
       dialog: false,
@@ -167,19 +172,27 @@ export default {
     }
   },
   computed: {
-    ...mapGetters('team', ['members'])
+    ...mapGetters('team', ['members']),
+    ...mapGetters('team', ['users'])
   },
   created() {
     this.setTeamRef()
+    this.setFacultyRef()
   },
   methods: {
     openDialog(member) {
       this.dialog = true
-      this.selectedMember = member
+      DB.collection('users')
+        .doc(member.uid)
+        .get()
+        .then(snap => {
+          this.selectedMember = snap.data()
+        })
+      // this.selectedMember = member
     },
     iconColor(type) {
       switch (type) {
-        case 'facebook':
+        case 'fbId':
           return 'blue darken-4'
         case 'email':
           return 'red darken-1'
@@ -187,7 +200,7 @@ export default {
           return 'red darken-4'
         case 'linkedin':
           return 'indigo darken-1'
-        case 'mobile':
+        case 'contact':
           return 'green darken-3'
         case 'twitter':
           return 'light-blue darken-1'
@@ -197,7 +210,7 @@ export default {
       switch (type) {
         case 'g-plus':
           return 'mdi-google-plus'
-        case 'mobile':
+        case 'contact':
           return 'mdi-phone'
         default:
           return `mdi-${type}`
@@ -206,7 +219,7 @@ export default {
     getLink(link, type) {
       if (type === 'email') {
         return 'mailto:' + link
-      } else if (type === 'mobile') {
+      } else if (type === 'contact') {
         return 'tel:' + link
       } else if (!link.startsWith('http://') && !link.startsWith('https://')) {
         return '//' + link
@@ -214,7 +227,7 @@ export default {
 
       return link
     },
-    ...mapActions('team', ['setTeamRef'])
+    ...mapActions('team', ['setTeamRef', 'setFacultyRef'])
   }
 }
 </script>

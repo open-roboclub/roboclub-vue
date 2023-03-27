@@ -7,8 +7,8 @@
             <v-row>
               <v-col sm="12" class="text-sm-center text-center xs">
                 <iframe
-                  width="480"
-                  height="300"
+                  width="90%"
+                  height="350px"
                   allowfullscreen
                   src="https://www.youtube.com/embed/3TSxPcIJCB0?rel=0&showinfo=0&theme=light"
                   loading="lazy"
@@ -18,11 +18,11 @@
             <v-row>
               <v-col sm="12" class="text-sm-center">
                 <v-card-title primary-title class="card-text">
-                  AMU Roboclub is a student’s body which caters to the need of
+                  AMURoboclub is a student’s body which caters to the need of
                   electronics enthusiasts and hobbyists in creating an
                   environment which is driven by innovation and implementation.
                   Run under the able guidance and supervision of faculty
-                  advisors from various branches of engineering, AMU Roboclub
+                  advisors from various branches of engineering, AMURoboclub
                   stands as an epitome of marvel. It not only acts as a platform
                   for zealous students to hone their skills in the field of
                   Electrical, Electronics, Computers and Mechanical but also
@@ -36,23 +36,23 @@
         </v-card>
         <v-card class="mb-3">
           <v-card-title class="card-text">
-            In the last couple of years, students from AMU Roboclub have won
-            many awards in various competitions which speak of its testimony.
-            Regular Classes, Annual Workshop, Guest Lectures, Project
-            Exhibition, Student Competitions etc are some of the main functions
-            of the club. Robonics, the annual workshop of AMU Roboclub has
-            earned a name in itself. The highlights of the club which
-            differentiates it from the peers are its adherence to the
-            curriculum, its student-student interaction and importantly project
-            developments. More than 80 ideas have culminated into working models
-            so far and the number is on the rise. The strength of the club lies
-            in its Student members, it is them who has given a high repute to
-            the club. The members who complete at least one project under AMU
-            Roboclub are felicitated and they earn for themselves a separate
-            webpage in the AMU Roboclub website which is dedicated for their
-            description and achievements. AMU Roboclub alumni always attribute a
-            portion of their successes to the time and effort they spent at AMU
-            Roboclub which helped them become what they are today.
+            In the last couple of years, students from AMURoboclub have won many
+            awards in various competitions which speak of its testimony. Regular
+            Classes, Annual Workshop, Guest Lectures, Project Exhibition,
+            Student Competitions etc are some of the main functions of the club.
+            Robonics, the annual workshop of AMURoboclub has earned a name in
+            itself. The highlights of the club which differentiates it from the
+            peers are its adherence to the curriculum, its student-student
+            interaction and importantly project developments. More than 80 ideas
+            have culminated into working models so far and the number is on the
+            rise. The strength of the club lies in its Student members, it is
+            them who has given a high repute to the club. The members who
+            complete at least one project under AMURoboclub are felicitated and
+            they earn for themselves a separate webpage in the AMURoboclub
+            website which is dedicated for their description and achievements.
+            AMURoboclub alumni always attribute a portion of their successes to
+            the time and effort they spent at AMURoboclub which helped them
+            become what they are today.
           </v-card-title>
         </v-card>
         <v-card color="#00796B">
@@ -81,7 +81,7 @@
                   >
                     <resize-img
                       :aspect-ratio="16 / 9"
-                      :src="item.thumbnail"
+                      :src="item.profileImageUrl"
                       :alt="item.name"
                       :width="250"
                     />
@@ -121,7 +121,9 @@
                 </div>
               </v-card-title>
               <v-card-actions>
-                <a href="http://amu.ac.in/principal.jsp?did=10147">
+                <a
+                  href="https://www.amu.ac.in/colleges/zakir-husain-college-of-engineering-and-technology"
+                >
                   <v-btn text color="orange">KNOW MORE</v-btn>
                 </a>
               </v-card-actions>
@@ -188,10 +190,10 @@
           class="mb-3"
           color="#F5F5DC"
         >
-          <v-container>
+          <v-container class="text-justify">
             <v-row style="padding-right: 10px">
               <v-col cols="1" lg="2" xl="1" style="min-width: 40px">
-                <v-icon left x-large color="black"> mdi-newspaper </v-icon>
+                <v-icon left large color="black"> mdi-newspaper </v-icon>
               </v-col>
               <v-col cols="11" lg="10" xl="11">
                 {{ item.notice }}
@@ -207,7 +209,7 @@
             <v-row>
               <v-col cols="12" class="text-center">
                 <nuxt-link to="/news" class="iconLink">
-                  <v-icon x-large> mdi-expand-all </v-icon>
+                  <v-icon large> mdi-expand-all </v-icon>
                 </nuxt-link>
               </v-col>
             </v-row>
@@ -236,11 +238,11 @@ export default {
   },
   created() {
     this.setRecentNewsRef()
-    this.setCoordinatorsRef()
+    this.setTeamRef()
   },
   methods: {
     ...mapActions('news', ['setRecentNewsRef']),
-    ...mapActions('team', ['setCoordinatorsRef'])
+    ...mapActions('team', ['setTeamRef'])
   }
 }
 </script>

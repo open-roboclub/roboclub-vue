@@ -3,7 +3,7 @@ export default [
     text: 'Contributor(s)',
     align: 'left',
     sortable: false,
-    value: 'contributor'
+    value: 'name'
   },
   {
     text: 'Contribution',
@@ -15,7 +15,7 @@ export default [
     text: 'Purpose',
     align: 'left',
     sortable: false,
-    value: 'purpose'
+    value: 'description'
   },
   {
     text: 'Remarks',

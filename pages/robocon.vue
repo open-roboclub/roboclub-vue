@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+  <v-container v-if="robocon !== null">
     <v-row justify="center">
       <v-col cols="10" sm="6">
         <v-card color="blue darken-2">
@@ -50,6 +50,8 @@
             <v-carousel-item
               v-for="item in robocon.gallery"
               :key="item['.key']"
+              height="100%"
+              width="100%"
               :src="item"
             />
           </v-carousel>
